@@ -1,0 +1,11 @@
+area HyruleField:
+  room EastHillsNorth
+  room EastHillsMid
+  room EastHillsSouth
+  room LonLon
+  room North
+  room South
+  room Trillby
+  room WestWoodsNorth
+  room WestWoodsMid
+  room WestWoodsSouth

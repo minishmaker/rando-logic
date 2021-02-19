@@ -1,0 +1,6 @@
+area Crenel:
+    room Base
+    room BottomMid
+    room Climb
+    room Peak
+    room TopMid
