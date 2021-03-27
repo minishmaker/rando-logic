@@ -1,15 +1,17 @@
 area CrenelCaves:
-    room GraybladeEntrance
-    room RockPush
-    room SwitchBridge
-    room BlocksChest
-    room GripScrub
-    room FountHP
-    room BombBlocks
-    room PotCircle
-    room FloodBlock
-    room FountRupee
-    room HelmaHall
-    room BombScrub
-    room Guru
-    room 
+  room BlocksChest
+  room BlocksPuzzle
+  room BlocksBomb
+  room FloodBlock
+  room FountHP
+  room FountRupee
+  room GraybladeEntrance
+  room Guru
+  room HelmaHall
+  room MushroomGap
+  room RockPush
+  room ScrubBomb
+  room ScrubGrip
+  room ScrubHint
+  room SwitchBridge
+  room PotCircle
