@@ -1,2 +1,44 @@
 area Town:
-  room Main
+  room Main:
+    node Main:
+      chest CafeLady
+      door Bakery
+      door East
+      door FigurineHouseEast
+      door FigurineHouseWest
+      door HearthLedge
+      door HearthNorth
+      door HearthSOuth
+      door Julietta
+      door MayorEast
+      door MayorWest
+      door North
+      door Rem
+      door SchoolEast
+      door SchoolWest
+      door Simon
+      door South
+      door Stockwell
+      door Swiftblade
+      door Well
+      door West
+      entrance Crest
+      entrance TownDigging
+    node MainBellHP:
+      chest MainBellHP
+    Main -> MainBellHP: item Cape 
+    node MainMinish
+    Main <-> MainMinish: item CaneOfPacci
+    node NorthEastMinish:
+      door SchoolEntranceMinishEast
+      door SchoolGarden
+    node SouthWest:
+      door Carlov
+      door Carpenters
+      door DrLeft
+    Main <-> SouthWest: (item Flippers | item Cape)
+    node TownDigging:
+      exit TownDigging
+    Main <-> TownDigging: item MoleMitts
+    node Main +: exit Virtual.Zeffa.FluteAway
+    node SouthWest +: exit Virtual.Zeffa.FluteAway
