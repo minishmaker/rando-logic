@@ -1,10 +1,11 @@
 area Town:
   room Main:
+    node FigurineHouseDoorEast:
+      door FigurineHouseEast
     node Main:
       chest CafeLady
       door Bakery
       door East
-      door FigurineHouseEast
       door FigurineHouseWest
       door HearthLedge
       door HearthNorth
@@ -24,6 +25,7 @@ area Town:
       door West
       entrance Crest
       entrance TownDigging
+    Main <-> FigurineHouseDoorEast: item CarlovMedal
     node MainBellHP:
       chest MainBellHP
     Main -> MainBellHP: item Cape 
