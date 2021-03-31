@@ -22,7 +22,7 @@ area Town:
     node LibraryRoofMinish:
       door FlipperCave
       door LibraryMinish
-    LibraryRoof <-> LibraryRoofMinish: item Cane
+    LibraryRoof -> LibraryRoofMinish: item Cane
     node Main:
       chest CafeLady
       door Bakery
