@@ -2,24 +2,28 @@ area HyruleField:
   room EastHillsNorth:
     node West:
       door West
-      ennemy WestAcroBandits
+      enemy WestAcroBandits
       door South
     node WestFusionChest:
       chest WestFusionChest
     node GoldenRopeFusion:
-      ennemy GoldenRope
+      enemy GoldenRope
     node MainEast:
       door FarmersHouse
       door SouthEast
-      ennemy EastAcroBandits
-      ennemy Octorocs
+      enemy EastAcroBanditsAndOctorocs
     node WoodsFairyLedge:
       door NorthEast
     node FarmersDiggingCave:
       door DiggingCave
+    node BombableBlocks:
+      flag BombableBlocks
+
     West -> WestFusionChest : flag WestFusionChest
     West -> GoldenRopeFusion: flag GoldenRopeFusion
-    West <-> East : item BombBag
+    West <-> East: flag BombableBlocks
+    West -> BombableBlocks: item BombBag
+    East -> BombableBlocks: item BombBag
     East -> WoodsFairyLedge: item PacciCane
     WoodsFairyLedge -> East
     East -> FarmersDiggingCave: item MoleMitts
@@ -28,8 +32,7 @@ area HyruleField:
   room EastHillsMid:
     node Main:
       door North
-      ennemy Peahats
-      ennemy SpinyBeetles
+      enemy PeahatsAndSpinyBeetles
       door SouthEast
       door SouthWest
     node Beanstalk:
@@ -48,13 +51,92 @@ area HyruleField:
       door MinishHouse
     node East:
       door NorthEast
-      door SouthEast
-      ennemy SpinyBeetles
-    NorthWest <-> West : item BombBag
+      door East
+      enemy SpinyBeetles
+    node BombableBlocks:
+      flag BombableBlocks
+
+    NorthWest <-> West: flag BombableBlocks
+    NorthWest -> BombableBlocks: item BombBag
+    West -> BombableBlocks: item BombBag
     # Can be used to check for Ezlo
-    West <-> MinishHouse : flag CanTurnMinish
+    West <-> MinishHouse: flag CanTurnMinish
     East <-> West
-  room LonLon
+  room LonLon:
+    node VeilFallsEast:
+      door VeilFallsEast
+    node VeilFallsWest:
+      door VeilFallsWest
+    node VeiFallsFusionChest:
+      chest VeilFallsFusionChest
+    node West:
+      door NorthWest
+      enemy AcroBandits
+      enemy Octorocs
+      door South
+    node TownAccess:
+      door SouthWest
+    node LeftRanchDoor:
+      door LeftRanchDoor
+    node MinishLeftRanchDoor:
+      door MinishLeftRanchDoor
+    node GoronCave:
+      flag GoronCaveBoulder
+      door GoronCave
+    node SouthEast:
+      door SouthEast
+      flag SouthEastBoulder
+    node MiddleEast:
+      door MiddleEast
+    node Center:
+      door RightFarmDoor
+      door Cave
+      door NorthEast
+      flag NorthBoulder
+      enemy Octorocs
+    node MinishCenter:
+      door MinishPath
+      door MinishRightRanchDoor
+    node PondFusion:
+      door PondFusion
+    node NorthLedge
+    node MinishCrack:
+      door MinishCrack
+    node CenterLedge:
+      chest ObscureDiggingSpot
+    node NorthFreestanding:
+      chest Freestanding
+    node NorthDiggingCave:
+      door NorthDiggingCave
+
+    VeilFallsEast -> VeilFallsFusionChest: flag VeilFallsFusionChest
+    West <-> TownAccess: item BombBag
+    West -> VeilFallsWest: item PacciCane
+    VeilFallsWest -> West
+    West -> LeftRanchDoor: item LonLonKey
+    LeftRanchDoor -> West
+    West <-> MinishLeftRanchDoor : flag CanTurnMinish
+    # Not checking if we have ezlo to get into the tornados bc it works without him
+    West -> GoronCave: (flag GoronCaveBoulder | item RocsCape)
+    GoronCave -> West
+    West -> SouthEast: (flag SouthEastBoulder | item RocsCape)
+    SouthEast -> West
+    SouthEast <-> GoronCave
+    Center -> West
+    West -> Center: (flag NorthBoulder)
+    Center -> MiddleEast: (item RocsCape | item Flippers)
+    MiddleEast -> Center: (item RocsCape)
+    Center -> MinishCenter: (item PegasusBoots | flag CanTurnMinish)
+    MinishCenter -> Center: (flag CanTurnMinish)
+    # Assume this entrance/exit won't be randomized if no fusions
+    Center <-> PondFusion: (flag PondFusion)
+    Center -> NorthLedge: (item RocsCape | item PacciCane )
+    NorthLedge -> Center
+    NorthLedge -> MiddleEast
+    NorthLedge <-> MinishCrack: (flag CanTurnMinish)
+    NorthLedge -> CenterLedge: (flag ObscureSpots & item MoleMitts)
+    NorthFreestanding -> NorthDiggingCave: (item MoleMitts)
+    NorthDiggingCave -> NorthFreestanding
   room North
   room South
   room Trillby
