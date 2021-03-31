@@ -1,17 +1,118 @@
 area CrenelCaves:
-  room BlocksChest
-  room BlocksPuzzle
-  room BlocksBomb
-  room FloodBlock
-  room FountHP
-  room FountRupee
-  room GraybladeEntrance
-  room Guru
-  room HelmaHall
-  room MushroomGap
-  room RockPush
-  room ScrubBomb
-  room ScrubGrip
-  room ScrubHint
-  room SwitchBridge
-  room PotCircle
+  room BlocksChest:
+    node BlocksChest:
+      door Staircase
+      door Doorway
+      enemy RedChus
+      chest BlocksChest
+  room BlocksPuzzle:
+    node BlocksPuzzle:
+      door Ladder
+      door Doorway
+      enemy Helmasaurs
+    node MushroomGapSouth:
+      door Doorway
+      enemy Helmasaur
+    node MushroomGapNorth:
+      door Staircase
+      enemy Helmasaur
+    MushroomGapNorth <-> MushroomGapSouth: (item GustJar | item Cape | item LightArrows)
+  room BlocksBomb:
+    node PreBombBlocks:
+      door PreBombBlocks
+      enemy SilverChu
+      enemy RedChu
+    node PostBombBlocks:
+      door PostBombBlocks
+      enemy SilverChu
+    PreBombBlocks -> PostBombBlocks: item BombBag
+  room FloodBlock: #This is the room w/ 2 chests and a HP on the very left side of crenel right?
+    node FloodBlockEntrance:
+      door FloodBlock
+    node FloodBlockChests:
+      chest LeftFloodBlockChest
+      chest RightFloodBlockChest
+    FloodBlockEntrance -> FloodBlockChests: (item BombBag | item Cape)
+    node FloodBlockHP:
+      chest HearPiece
+    FloodBlockEntrance -> FloodBlockHP: (item BombBag | item Cape | item Flippers)
+  room FountHP:
+    node FountHP:
+      door FountHP
+      chest HeartPiece
+  room FountRupee:
+    node FountRupee:
+      door FountRupee
+    node FountRupeeItems:
+      chest LeftRupee
+      chest CenterRupee
+      chest RightRupee
+    FountRupee -> FountRupeeItems: setting Rupeemania
+  room GraybladeEntrance:
+    node GraybladeEntrance:
+      door Entrance
+    node Switches:
+	  flag Switches
+    #Completely guessing here on the actual item names/syntax
+	GraybladeEntrance -> Switches: (item SpinAttack & (item RedSword | item BlueSword | item FourSword))
+    node SwitchDoor:
+      door SwitchDoor
+    Switches <-> SwitchDoor
+    GraybladeEntrance -> SwitchDoor: flag SwitchesPressed
+  room Guru:
+    node Guru:
+      door Guru
+  room HelmaHall:
+    node HelmaHall:
+      door Staircase
+      door Doorway
+      enemy Helmasaurs
+  room MushroomGap:
+    node MushroomGap:
+      door Doorway
+      door Staircase
+      enemy LowerKeese
+      enemy UpperKeese
+  room RockPush:
+    node RockPush:
+      door Doorway
+      door Staircase
+  room ScrubBomb:
+    node ScrubBomb:
+      door ScrubBomb
+    node DekuScrub:
+      flag DekuScrub
+    ScrubBomb -> DekuScrub: item Shield
+  room ScrubGrip:
+    node ScrubGrip:
+      door ScrubGrip
+    node DekuScrub:
+      chest DekuScrub
+    ScrubGrip -> DekuScrub: item Shield
+  room ScrubHint:
+    node ScrubHint:
+      door ScrubHint
+    node DekuScrub:
+      flag DekuScrub
+    ScrubHint -> DekuScrub: item Shield
+  room SwitchBridge:
+    node SwitchBridgeNorth:
+      door Staircase
+      enemy RedChus
+    node SwitchBridgeSouth:
+      door Doorway
+      enemy RedChus
+      flag Switch
+    SwitchBridgeNorth -> SwitchBridgeSouth: (item Boomerang | item Cape | item BombBag | item Bow | item SwordBeam | item PerilBeam)
+  room PotCircle:
+    node PotCircle:
+      door Doorway
+      door Staircase
+      chest PotCircleChest
+      enemy RedChus
+  #This room was missing from the stub so I added it
+  room PreMineralSpring:
+    node PreMineralSpring:
+      door Doorway
+      door Ladder
+      enemy RedChus
