@@ -2,6 +2,26 @@ area Crenel:
   room Base
   room BottomMid # Can just be "Mid" if TopMid gets a better name
   room Climb
+    node ClimbChestFusion:
+      chest ClimbChestFusion
+    node ClimbBombWallEntrance:
+      entrance BombWall
+    node ClimbBombWallExit:
+      exit BombWall
+    node ClimbWall:
+      door ClimbNorth
+      door ClimbSouth
+    ClimbWall <-> ClimbChestFusion: flag ClimbChestFusion
+    ClimbWall -> ClimbBombWallEntrance: item BombBag
+    ClimbBombWallExit -> ClimbWall
+    node ClimbDigging:
+      door ClimbDigging
+    node NorthWest
+      door Ladder
+      doot HermitCave
+    NorthWest <-> ClimbDigging: item MoleMitts
+    node ClimbWall +: exit Virtual.Zeffa.FluteAway
+    node NorthWest +: exit Virtual.Zeffa.FluteAway
   room Peak
     node EastPeak:
       door MinishPathEast
@@ -15,5 +35,8 @@ area Crenel:
     WestPeak <-> EastPeakLadder: flag PeakBoulderPushed
     node WestPeakBeanstalk:
       door Beanstalk
-    WestPeak <-> WestPeakBeanstalk: flag CrenelBeanstalk
+    WestPeak <-> WestPeakBeanstalk: flag CrenelBeanstalkFusion
+    node EastPeak +: exit Virtual.Zeffa.FluteAway
+    node WestPeak +: exit Virtual.Zeffa.FluteAway
   room TopMid # Outside CoF and surrounding area, probably a better name
+  
