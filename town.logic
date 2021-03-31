@@ -2,6 +2,8 @@ area Town:
   room Main:
     node Anju:
       chest AnjuHP
+    node AnjuRoof:
+      door AnjuChimney
     node CatsMinish:
       door Fountain
       door StratoMinishBack
@@ -50,6 +52,7 @@ area Town:
       chest MainBellHP
     Main <-> MainBellHP: item Cape 
     node MainMinish:
+      door AnjuMinish
       door BakeryMinish
       door CafeMinish
       door CarpenterBuildingMinish
