@@ -58,7 +58,6 @@ area Town:
     Main <-> FigurineHouseDoorEast: item CarlovMedal
     Main <-> GormanHouseSouth: flag TalkedToOracle
     Main -> LibraryEntrance: flag LibraryManHasMoved
-    LibraryExit-> Main
     node MainBellHP:
       chest MainBellHP
     Main <-> MainBellHP: item Cape 
