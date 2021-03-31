@@ -85,10 +85,12 @@ area Town:
     node TownDigging:
       door TownDigging
     Main <-> TownDigging: item MoleMitts
-    node Waterfall:
-      door Waterfall
-    Main -> Waterfall: (item Flippers & flag TownWaterfallFusion)
-    Waterfall -> Main: item Flippers
+    node WaterfallExit:
+      exit Waterfall
+    node WaterfallEntrance:
+      entrance Waterfall
+    Main -> WaterfallEntrance: (item Flippers & flag TownWaterfallFusion)
+    WaterfallExit -> Main: item Flippers
     node West:
       door West
     Main <-> West: item CanSpin
