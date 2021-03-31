@@ -1,0 +1,10 @@
+area HouseInteriors3
+  room Bakery
+  room BorlovFront
+  room BorlovBack
+  room Cafe
+  room Carlov
+  room FigurineHouse
+  room Rem
+  room Simon
+  room StockwellShop
