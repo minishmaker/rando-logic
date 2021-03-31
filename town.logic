@@ -21,8 +21,6 @@ area Town:
       door RomioChimneyEast
     node LibraryEntrance:
       entrance LibraryBottom
-    node LibraryExit:
-      exit LibraryBottom
     node LibraryRoof:
       door LibraryRoof
     node LibraryRoofMinish:
