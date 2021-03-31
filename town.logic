@@ -24,7 +24,6 @@ area Town:
     node LibraryRoof:
       door LibraryRoof
     node LibraryRoofMinish:
-      door FlipperCave
       door LibraryMinish
     LibraryRoof -> LibraryRoofMinish: item Cane
     node Main:
@@ -75,6 +74,9 @@ area Town:
       door StockwellBridgeMinish
     node RomioRoof:
       door RomioChimneyWest
+    node SewerDoor:
+      door SewerDoor
+    SewerDoor <-> LibraryRoofMinish: item Flippers
     node SchoolGarden:
       door SchoolEast
     node SchoolGardenMinish:
