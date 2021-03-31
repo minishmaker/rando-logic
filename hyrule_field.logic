@@ -71,8 +71,7 @@ area HyruleField:
       chest VeilFallsFusionChest
     node West:
       door NorthWest
-      enemy AcroBandits
-      enemy Octorocs
+      enemy AcroBanditsAndOctorocs
       door South
     node TownAccess:
       door SouthWest
