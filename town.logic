@@ -9,6 +9,8 @@ area Town:
       door StratoMinishBack
     node FigurineHouseDoorEast:
       door FigurineHouseEast
+    node GormanHouseSouth:
+      door GormanHouseSouth
     node HearthLedge:
       door HearthLedge
       chest HearthLedge
@@ -29,7 +31,6 @@ area Town:
       door FigurineHouseWest
       door HearthNorth
       door HearthSouth
-      door GormanHouseSouth
       door GormanHouseWest
       door Julietta
       door LibraryBottom
@@ -48,6 +49,7 @@ area Town:
       entrance Crest
     Main <-> Anju: (item Flippers | item Cape)
     Main <-> FigurineHouseDoorEast: item CarlovMedal
+    Main <-> GormanHouseSouth: flag TalkedToOracle
     node MainBellHP:
       chest MainBellHP
     Main <-> MainBellHP: item Cape 
@@ -98,4 +100,5 @@ area Town:
     node MayorGarden +: exit Virtual.Zeffa.FluteAway
     node LibraryRoof +: exit Virtual.Zeffa.FluteAway
     node SchoolGarden +: exit Virtual.Zeffa.FluteAway
+    node SchoolRoof +: exit Virtual.Zeffa.FluteAway
     node SouthWest +: exit Virtual.Zeffa.FluteAway
