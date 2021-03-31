@@ -1,6 +1,7 @@
 area TreeInteriors
   room CarlovEntry
   room FairyTree
+  room GreatFairyTree
   room KinstoneScrubEntry
   room Percy
   room SouthHyruleField
