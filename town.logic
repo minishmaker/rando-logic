@@ -17,6 +17,10 @@ area Town:
     node JuliettaRoof:
       door JuliettaChimney
       door RomioChimneyEast
+    node LibraryEntrance:
+      entrance LibraryBottom
+    node LibraryExit:
+      exit LibraryBottom
     node LibraryRoof:
       door LibraryRoof
     node LibraryRoofMinish:
@@ -51,6 +55,8 @@ area Town:
     Main <-> Anju: (item Flippers | item Cape)
     Main <-> FigurineHouseDoorEast: item CarlovMedal
     Main <-> GormanHouseSouth: flag TalkedToOracle
+    Main -> LibraryEntrance: flag LibraryManHasMoved
+    LibraryExit-> Main
     node MainBellHP:
       chest MainBellHP
     Main <-> MainBellHP: item Cape 
