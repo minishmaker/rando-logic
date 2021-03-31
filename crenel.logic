@@ -39,4 +39,38 @@ area Crenel:
     node EastPeak +: exit Virtual.Zeffa.FluteAway
     node WestPeak +: exit Virtual.Zeffa.FluteAway
   room TopMid # Outside CoF and surrounding area, probably a better name
-  
+    node CoFExterior
+      door CoFEntrance
+      door MelariMinishEast
+      entrance Crest
+      flag Virtual.Zeffa.CrenelCrest
+    node EastOfMine
+      door MelariMinishWest
+      door CaveEntrance
+    node GraybladeExterior:
+      door Grayblade
+    node Main:
+      door LadderSouth
+      enemy MainEnemies
+    Main -> CoFExterior: item Cane
+    CoFExterior -> Main
+    Main <-> GraybladeExterior: item GripRing
+    node MainClimbSouth:
+      door MainClimbSouth
+    Main <-> MainClimbSouth: item GripRing
+    node MainBombWall:
+      door MainBombWall
+    Main <-> MainBombWall: item BombBag
+    node MiddleMountainShelf:
+      door MiddleMountainShelfEast
+      door MiddleMountainShelfWest
+      enemy MiddleMountainShelfEnemies
+    node TopMountainShelf
+      door TopMountainShelfEast
+      door TopMountainShelfWest
+      enemy TopMountainShelfEnemies
+    node CoFExterior +: exit Virtual.Zeffa.FluteAway
+    node EastOfMine +: exit Virtual.Zeffa.FluteAway
+    node GraybladeExterior +: exit Virtual.Zeffa.FluteAway
+    node MiddleMountainShelf +: exit Virtual.Zeffa.FluteAway
+    node TopMountainShelf +: exit Virtual.Zeffa.FluteAway
