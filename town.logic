@@ -1,46 +1,96 @@
 area Town:
   room Main:
+    node Anju:
+      chest AnjuHP
+    node CatsMinish:
+      door Fountain
+      door StratoMinishBack
     node FigurineHouseDoorEast:
       door FigurineHouseEast
+    node HearthLedge:
+      door HearthLedge
+      chest HearthLedge
+    node JuliettaRoof:
+      door JuliettaChimney
+      door RomioChimney
+    node LibraryRoof:
+      door LibraryRoof
+    node LibraryRoofMinish:
+      door FlipperCave
+      door LibraryMinish
+    LibraryRoof <-> LibraryRoofMinish: item Cane
     node Main:
       chest CafeLady
       door Bakery
+      door Borlov
       door East
       door FigurineHouseWest
-      door HearthLedge
       door HearthNorth
-      door HearthSOuth
+      door HearthSouth
+      door GormanHouseSouth
+      door GormanHouseWest
       door Julietta
-      door MayorEast
+      door LibraryBottom
       door MayorWest
       door North
+      door PostOffice
       door Rem
-      door SchoolEast
+      door Romio
       door SchoolWest
       door Simon
       door South
       door Stockwell
+      door Strato
       door Swiftblade
       door Well
-      door West
       entrance Crest
-      entrance TownDigging
+    Main <-> Anju: (item Flippers | item Cape)
     Main <-> FigurineHouseDoorEast: item CarlovMedal
     node MainBellHP:
       chest MainBellHP
-    Main -> MainBellHP: item Cape 
-    node MainMinish
-    Main <-> MainMinish: item CaneOfPacci
-    node NorthEastMinish:
+    Main <-> MainBellHP: item Cape 
+    node MainMinish:
+      door BakeryMinish
+      door CafeMinish
+      door CarpenterBuildingMinish
+      door DrLeftMinish
+      door HearthMinish
+      door RomeoMinish
+    node MayorGarden:
+      door MayorEast
+      door MayorBasementLadder
+    node MinishBridge:
+      door CafeBridgeMinish
+      door StockwellBridgeMinish
+    node SchoolGarden:
+      door SchoolEast
+    node SchoolGardenMinish:
       door SchoolEntranceMinishEast
       door SchoolGarden
+    node SchoolRoof:
+      chest SchoolRoof
+      door SchoolEntranceMinishWest
     node SouthWest:
       door Carlov
       door Carpenters
       door DrLeft
-    Main <-> SouthWest: (item Flippers | item Cape)
+    Main <-> SouthWest: (item Flippers | item Cape | flag DogMoves)
     node TownDigging:
-      exit TownDigging
+      door TownDigging
     Main <-> TownDigging: item MoleMitts
+    node Waterfall:
+      door Waterfall
+    Main <-> Waterfall: item Flippers
+    node West:
+      door West
+    Main <-> West: item CanSpin
+    node WestMinish:
+      door DrLeftChimney
+      door GormanHouseWest
+      door StratoMinish
+    node HearthLedge +: exit Virtual.Zeffa.FluteAway
     node Main +: exit Virtual.Zeffa.FluteAway
+    node MayorGarden +: exit Virtual.Zeffa.FluteAway
+    node LibraryRoof +: exit Virtual.Zeffa.FluteAway
+    node SchoolGarden +: exit Virtual.Zeffa.FluteAway
     node SouthWest +: exit Virtual.Zeffa.FluteAway
