@@ -1,0 +1,12 @@
+area Dojos
+  room Ghostblade
+  room Grayblade
+  room Greatblade
+  room Grimblade
+  room Spinblade
+  room Splitblade
+  room Waveblade
+  room GreatbladeEntry
+  room GrimbladeEntry
+  room SpinbladeEntry
+  room SplitbladeEntry
