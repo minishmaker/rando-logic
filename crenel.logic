@@ -3,4 +3,19 @@ area Crenel:
   room BottomMid # Can just be "Mid" if TopMid gets a better name
   room Climb
   room Peak
+    node EastPeak:
+      door MinishPathEast
+    node EastPeakLadder:
+      door EastPeakLadder
+    node WestPeak:
+      door Climb
+      door Ladder
+      door MinishPathWest
+      enemy PeakPeaHat
+      enemy PeakTektites
+      enemy PeakSpinyBeetle
+    WestPeak <-> EastPeakLadder: flag PeakBoulderPushed
+    node WestPeakBeanstalk:
+      door Beanstalk
+    WestPeak <-> WestPeakBeanstalk: flag CrenelBeanstalk
   room TopMid # Outside CoF and surrounding area, probably a better name
