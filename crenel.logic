@@ -1,6 +1,86 @@
 area Crenel:
-  room Base
-  room Middle
+  room Base:
+    node Center:
+      door WestCave
+      exit EastHillBombWall
+      exit FairyBombWall
+      exit WestHillBombWall
+    node EastHillBombWall:
+      entrance EastHillBombWall
+    node FairyBombWall:
+      entrance FairyBombWall
+    node WestHillBombWall:
+      entrance WestHillBombWall
+    Center -> EastHillBombWall: item BombBag
+    Center -> FairyBombWall: item BombBag
+    Center -> WestHillBombWall: item BombBag
+    node EastHilltop:
+      door EastHillLadder
+    EastHillTop -> Center
+    node EastHilltopMinish:
+      door SpringMinishPath
+      door MinishCave
+    EastHillTop <-> EastHillTopMinish: item BombBag
+    node NorthVine:
+      door NorthWine
+    node SouthEast:
+      chest SouthEastRupee
+      door East
+      exit SouthEastBombWall
+    SouthEast <-> Center: item Bottle
+    node SouthEastBombWall:
+      entrance SouthEastBombWall
+    SouthEast -> SouthEastBombWall: item BombBag
+    node West:
+      door LedgeCave
+      door NorthBridge
+    Center -> West: item Cape
+    West -> Center
+    node WestBridgeChestFusion:
+      chest WestBridgeChestFusion
+    West <-> WestBridgeChestFusion: flag WestBridgeChestFusion
+    node WestMinish:
+      door MinishHouse
+    West <-> NorthVine: flag CrenelGreenBeanIsPlanted
+    West <-> WestMinish: (item GustJar | item BombBag)
+  room Higher:
+    node CoFExterior:
+      door CoFEntrance
+      door MelariMinishEast
+      entrance Crest
+      flag Virtual.Zeffa.CrenelCrest
+    node EastOfMine:
+      door MelariMinishWest
+      door CaveEntrance
+    node GraybladeExterior:
+      door Grayblade
+    node Main:
+      door LadderSouth
+      enemy MainEnemies
+      exit MainBombWall
+    Main -> CoFExterior: item Cane
+    CoFExterior -> Main
+    Main <-> GraybladeExterior: item GripRing
+    node MainClimbSouth:
+      door MainClimbSouth
+    Main <-> MainClimbSouth: item GripRing
+    node MainBombWall:
+      entrance MainBombWall
+    Main -> MainBombWall: item BombBag
+    node MiddleMountainShelf:
+      door MiddleMountainShelfEast
+      door MiddleMountainShelfWest
+      enemy MiddleMountainShelfEnemies
+    node TopMountainShelf:
+      door TopMountainShelfEast
+      door TopMountainShelfWest
+      enemy TopMountainShelfEnemies
+    node CoFExterior +: exit Virtual.Zeffa.FluteAway
+    node EastOfMine +: exit Virtual.Zeffa.FluteAway
+    node GraybladeExterior +: exit Virtual.Zeffa.FluteAway
+    node MiddleMountainShelf +: exit Virtual.Zeffa.FluteAway
+    node TopMountainShelf +: exit Virtual.Zeffa.FluteAway
+  room Middle:
     node BridgeBombWall:
       entrance BridgeBombWall
     node FairyBombWall:
@@ -39,7 +119,7 @@ area Crenel:
     node SouthWestBombWall:
       entrance SouthWestBombWall
     SouthWest -> SouthWestBombWall: item BombBag
-  room Climb
+  room Climb:
     node ClimbChestFusion:
       chest ClimbChestFusion
     node ClimbBombWallEntrance:
@@ -52,13 +132,13 @@ area Crenel:
     ClimbWall -> ClimbBombWallEntrance: item BombBag
     node ClimbDigging:
       door ClimbDigging
-    node NorthWest
+    node NorthWest:
       door Ladder
       doot HermitCave
     NorthWest <-> ClimbDigging: item MoleMitts
     node ClimbWall +: exit Virtual.Zeffa.FluteAway
     node NorthWest +: exit Virtual.Zeffa.FluteAway
-  room Peak
+  room Peak:
     node EastPeak:
       door MinishPathEast
     node EastPeakLadder:
@@ -74,40 +154,3 @@ area Crenel:
     WestPeak <-> WestPeakBeanstalk: flag CrenelBeanstalkFusion
     node EastPeak +: exit Virtual.Zeffa.FluteAway
     node WestPeak +: exit Virtual.Zeffa.FluteAway
-  room Higher
-    node CoFExterior
-      door CoFEntrance
-      door MelariMinishEast
-      entrance Crest
-      flag Virtual.Zeffa.CrenelCrest
-    node EastOfMine
-      door MelariMinishWest
-      door CaveEntrance
-    node GraybladeExterior:
-      door Grayblade
-    node Main:
-      door LadderSouth
-      enemy MainEnemies
-      exit MainBombWall
-    Main -> CoFExterior: item Cane
-    CoFExterior -> Main
-    Main <-> GraybladeExterior: item GripRing
-    node MainClimbSouth:
-      door MainClimbSouth
-    Main <-> MainClimbSouth: item GripRing
-    node MainBombWall:
-      entrance MainBombWall
-    Main -> MainBombWall: item BombBag
-    node MiddleMountainShelf:
-      door MiddleMountainShelfEast
-      door MiddleMountainShelfWest
-      enemy MiddleMountainShelfEnemies
-    node TopMountainShelf
-      door TopMountainShelfEast
-      door TopMountainShelfWest
-      enemy TopMountainShelfEnemies
-    node CoFExterior +: exit Virtual.Zeffa.FluteAway
-    node EastOfMine +: exit Virtual.Zeffa.FluteAway
-    node GraybladeExterior +: exit Virtual.Zeffa.FluteAway
-    node MiddleMountainShelf +: exit Virtual.Zeffa.FluteAway
-    node TopMountainShelf +: exit Virtual.Zeffa.FluteAway
