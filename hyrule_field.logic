@@ -1,7 +1,59 @@
 area HyruleField:
-  room EastHillsNorth
-  room EastHillsMid
-  room EastHillsSouth
+  room EastHillsNorth:
+    node West:
+      door West
+      ennemy WestAcroBandits
+      door South
+    node WestFusionChest:
+      chest WestFusionChest
+    node GoldenRopeFusion:
+      ennemy GoldenRope
+    node MainEast:
+      door FarmersHouse
+      door SouthEast
+      ennemy EastAcroBandits
+      ennemy octorocs
+    node WoodsFairyLedge:
+      door NorthEast
+    node FarmersDiggingCave:
+      door DiggingCave
+    West -> WestFusionChest : flag WestFusionChest
+    West -> GoldenRopeFusion: flag GoldenRopeFusion
+    West <-> East : item BombBag
+    East -> WoodsFairyLedge: item PacciCane
+    WoodsFairyLedge -> East
+    East -> FarmersDiggingCave: item MoleMitts
+    # If we use warps, you don't need mitts to exit the cave.
+    FarmersDiggingCave -> East
+  room EastHillsMid:
+    node Main:
+      door North
+      ennemy Peahats
+      ennemy SpinyBeetles
+      door SouthEast
+      door SouthWest
+    node Beanstalk:
+      door Beanstalk
+    node BombableCaveEntrance:
+      door CaveEntrance
+    Main <-> Beanstalk : flag Beanstalk
+    # You don't need to bomb the entrance to exit the cave, so one-way only ? unsure
+    Main  -> BombableCaveEntrance : item BombBag
+    BombableCaveEntrance -> Main
+  room EastHillsSouth:
+    node NorthWest:
+      door NorthWest
+    node West
+    node MinishHouse:
+      door MinishHouse
+    node East:
+      door NorthEast
+      door SouthEast
+      ennemy SpinyBeetles
+    NorthWest <-> West : item BombBag
+    # Can be used to check for Ezlo
+    West <-> MinishHouse : flag CanTurnMinish
+    East <-> West
   room LonLon
   room North
   room South
