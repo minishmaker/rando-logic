@@ -2,6 +2,8 @@ area Town:
   room Main:
     node Anju:
       chest AnjuHP
+    node AnjuGarden:
+      door Anju
     node AnjuRoof:
       door AnjuChimney
     node CatsMinish:
