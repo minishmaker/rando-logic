@@ -14,7 +14,7 @@ area Town:
       chest HearthLedge
     node JuliettaRoof:
       door JuliettaChimney
-      door RomioChimney
+      door RomioChimneyEast
     node LibraryRoof:
       door LibraryRoof
     node LibraryRoofMinish:
@@ -65,6 +65,8 @@ area Town:
     node MinishBridge:
       door CafeBridgeMinish
       door StockwellBridgeMinish
+    node RomioRoof:
+      door RomioChimneyWest
     node SchoolGarden:
       door SchoolEast
     node SchoolGardenMinish:
