@@ -11,9 +11,7 @@ area Crenel:
       door Climb
       door Ladder
       door MinishPathWest
-      enemy PeakPeaHat
-      enemy PeakTektites
-      enemy PeakSpinyBeetle
+      enemy PeakEnemies
     WestPeak <-> EastPeakLadder: flag PeakBoulderPushed
     node WestPeakBeanstalk:
       door Beanstalk
