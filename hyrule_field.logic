@@ -12,7 +12,7 @@ area HyruleField:
       door FarmersHouse
       door SouthEast
       ennemy EastAcroBandits
-      ennemy octorocs
+      ennemy Octorocs
     node WoodsFairyLedge:
       door NorthEast
     node FarmersDiggingCave:
