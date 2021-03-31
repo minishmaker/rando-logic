@@ -51,6 +51,7 @@ area Town:
       door Swiftblade
       door Well
       entrance Crest
+      exit LibraryBottom
       flag Virtual.Zeffa.TownCrest
     Main <-> Anju: (item Flippers | item Cape)
     Main <-> FigurineHouseDoorEast: item CarlovMedal
