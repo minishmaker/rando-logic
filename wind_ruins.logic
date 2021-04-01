@@ -1,4 +1,4 @@
-area WindRuins
+area WindRuins:
   room ArmosRunner
   room BeanstalkArea
   room DungeonEntry
