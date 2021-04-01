@@ -1,0 +1,19 @@
+area CaveOfFlames
+  room BF1PostPacci
+  room BF1PacciChest
+  room BF1FlippedCart
+  room GFEntrance
+  room BF1TrackSwap
+  room GFLikeLike
+  room BF1CartExit
+  room BF1MinishPortal
+  room BF1PillbugsAndFloating
+  room BF1MinishLava
+  room BF2CartPuzzle
+  room BF2Pillbugs
+  room BF2GleerokEntrance
+  room BF2PostLava
+  room BF2BladeChest
+  room GFSpikedBeetles
+  room GBBombOmbs
+  room BF2Lava
