@@ -1,4 +1,4 @@
-area CaveOfFlames
+area CaveOfFlames:
   room BF1CartExit
   room BF1FlippedCart
   room BF1MinishLava
