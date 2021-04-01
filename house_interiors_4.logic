@@ -1,4 +1,4 @@
-area HouseInteriors4
+area HouseInteriors4:
   room Farm
   room LonLonEast
   room LonLonWest
