@@ -1,2 +1,77 @@
 area VeilFalls:
-  room Main
+  room Main:
+    node BottomWater:
+      exit BottomWaterFallFusion
+    node BottomWaterfall:
+      entrance BottomWaterfallFusion
+    BottomWater -> BottomWaterFall: flag VeilFallsBottomWaterfallFusion
+    node Bottom:
+      chest BottomHP
+      door SouthEast
+      door SouthWest
+    Bottom <-> BottomWater: item Flippers
+    Bottom <-> BottomEast: (item Cape | Item Flippers
+    node BottomEast:
+      chest Rupee1
+      chest Rupee2
+      chest Rupee3
+      enemy LikeLike20
+      exit BottomEastDigCave
+    room BottomEastDigCave:
+      entrance BottomEastDigCave
+    BottomEast -> BottomEastDigCave: item MoleMitts
+    node MiddleMain:
+      door West
+    node MiddleMainWallFusion:
+      door BottomCaveLeft
+    MiddleMain <-> MiddleMainWallFusion: flag SourceOfTheFlowFusion
+    node MiddleBelowClimbWall:
+      door BottomCaveMiddle
+    node MiddleBelowClimbWallDig:
+      chest MiddleDigSpot
+    MiddleBelowClimbWall <-> MiddleBelowClimbWallDig: item MoleMitts
+    node MiddleHP:
+      chest MiddleHP
+    MiddleMain <-> MiddleHP: (item Cape | item Flippers)
+    node MiddleDigCaveFusion:
+      door MiddleDigDoor
+    MiddleHP <-> MiddleDigCaveFusion: flag VeilFallsDigFusion
+    node MiddleChestLedge:
+      chest MiddleLedgeChest
+      door MiddleLedgeCave
+    node Crest:
+      entrance Crest
+      entrance TopCaveMiddle
+      flag Virtual.Zeffa.VeilFallsCrest
+    Crest <-> MiddleBelowClimbWall: item GripRing
+    Crest -> TopWaterLand
+    node CrestDigSpot:
+      chest CrestDig
+    Crest <-> CrestDig: item MoleMitts
+    node CrestChest:
+      chest CrestChestFusion
+    Crest <-> CrestChestFusion: flag VeilFallsCrestChestFusion
+    node TopWater:
+      exit TopWaterfallFusion
+    node TopWaterfall:
+      entrance TopWaterfallFusion
+    TopWater -> TopWaterfall: flag VeilFallsTopWaterfallFusion
+    node TopWaterLand:
+      door TopCaveBottom
+    TopWaterLand <-> TopWater: item Flippers
+    node PeakAccessLedge:
+      door TopCaveRight
+    node TopCaveLedge:
+      door TopCaveLadder
+      door TopCaveLeft
+    node North:
+      door North
+    PeakAccessLedge <-> North: item GripRing
+    node TopCaveLedge +: exit Virtual.Zeffa.FluteAway
+    node TopWaterLand +: exit Virtual.Zeffa.FluteAway
+    node PeakAccessLedge +: exit Virtual.Zeffa.FluteAway
+    node Crest +: exit Virtual.Zeffa.FluteAway
+    node Bottom +: exit Virtual.Zeffa.FluteAwayv
+    node BottomEast +: exit Virtual.Zeffa.FluteAway
+    node MiddleBelowClimbWall +: exit Virtual.Zeffa.FluteAway
+    node MiddleChestLedge +: exit Virtual.Zeffa.FluteAway
