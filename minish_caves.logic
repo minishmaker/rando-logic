@@ -1,4 +1,4 @@
-area MinishCaves
+area MinishCaves:
   room CastorWaterEntry
   room CastorWaterTop
   room CrenelVine
