@@ -1,4 +1,4 @@
-area PalaceOfWinds
+area PalaceOfWinds:
   room F1CloudStairs
   room F1Fans
   room F1InsideNorth
