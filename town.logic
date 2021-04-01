@@ -67,6 +67,7 @@ area Town:
       door DrLeftMinish
       door HearthMinish
       door RomioMinish
+      flag DogMoves
     node MayorGarden:
       door MayorEast
       door MayorBasementLadder
