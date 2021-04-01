@@ -1,4 +1,4 @@
-area Caves
+area Caves:
   room EasternHillsBomb
   room NorthHyruleFieldCave
   room NorthHyruleFieldCaveBasement
