@@ -17,7 +17,7 @@ area VeilFalls:
       chest Rupee3
       enemy LikeLike20
       exit BottomEastDigCave
-    room BottomEastDigCave:
+    node BottomEastDigCave:
       entrance BottomEastDigCave
     BottomEast -> BottomEastDigCave: item MoleMitts
     node MiddleMain:
