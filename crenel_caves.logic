@@ -1,6 +1,6 @@
 area CrenelCaves:
   room BlocksChest:
-    node BlocksChest:
+    node Main:
       door Staircase
       door Doorway
       enemy RedChus
@@ -16,12 +16,11 @@ area CrenelCaves:
     node MushroomGapNorth:
       door Staircase
       enemy Helmasaur
-    MushroomGapNorth <-> MushroomGapSouth: (item GustJar | item Cape | item LightArrows)
+    MushroomGapNorth <-> MushroomGapSouth: (item GustJar | item Cape | item LightArrows | item Cane)
   room BlocksBomb:
     node PreBombBlocks:
       door PreBombBlocks
-      enemy SilverChu
-      enemy RedChu
+      enemy Chus
     node PostBombBlocks:
       door PostBombBlocks
       enemy SilverChu
@@ -54,7 +53,7 @@ area CrenelCaves:
     node Switches:
 	  flag Switches
     #Completely guessing here on the actual item names/syntax
-	GraybladeEntrance -> Switches: (item SpinAttack & (item RedSword | item BlueSword | item FourSword))
+	GraybladeEntrance -> Switches: item CanSplit2
     node SwitchDoor:
       door SwitchDoor
     Switches <-> SwitchDoor
@@ -103,7 +102,7 @@ area CrenelCaves:
       door Doorway
       enemy RedChus
       flag Switch
-    SwitchBridgeNorth -> SwitchBridgeSouth: (item Boomerang | item Cape | item BombBag | item Bow | item SwordBeam | item PerilBeam)
+    SwitchBridgeNorth <-> SwitchBridgeSouth: (item Cape | flag Switch)
   room PotCircle:
     node PotCircle:
       door Doorway
