@@ -1,4 +1,4 @@
-area MinishHouseInteriors
+area MinishHouseInteriors:
   room EasternHills
   room Festari
   room Gentari
