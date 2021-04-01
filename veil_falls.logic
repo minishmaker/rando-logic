@@ -10,7 +10,7 @@ area VeilFalls:
       door SouthEast
       door SouthWest
     Bottom <-> BottomWater: item Flippers
-    Bottom <-> BottomEast: (item Cape | Item Flippers
+    Bottom <-> BottomEast: (item Cape | Item Flippers)
     node BottomEast:
       chest Rupee1
       chest Rupee2
