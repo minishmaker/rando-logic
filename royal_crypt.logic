@@ -1,4 +1,4 @@
-area RoyalCrypt
+area RoyalCrypt:
   room Entrance
   room KeyPuzzles
   room KingsGrave
