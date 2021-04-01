@@ -25,11 +25,11 @@ area VeilFalls:
     node MiddleMainWallFusion:
       door BottomCaveLeft
     MiddleMain <-> MiddleMainWallFusion: flag SourceOfTheFlowFusion
-    node MiddleBelowClimbWall:
+    node MiddleRight:
       door BottomCaveMiddle
-    node MiddleBelowClimbWallDig:
+    node MiddleRightDig:
       chest MiddleDigSpot
-    MiddleBelowClimbWall <-> MiddleBelowClimbWallDig: item MoleMitts
+    MiddleRight <-> MiddleRightDig: item MoleMitts
     node MiddleHP:
       chest MiddleHP
     MiddleMain <-> MiddleHP: (item Cape | item Flippers)
@@ -43,7 +43,7 @@ area VeilFalls:
       entrance Crest
       entrance TopCaveMiddle
       flag Virtual.Zeffa.VeilFallsCrest
-    Crest <-> MiddleBelowClimbWall: item GripRing
+    Crest <-> MiddleRight: item GripRing
     Crest -> TopWaterLand
     node CrestDigSpot:
       chest CrestDig
@@ -59,19 +59,19 @@ area VeilFalls:
     node TopWaterLand:
       door TopCaveBottom
     TopWaterLand <-> TopWater: item Flippers
-    node PeakAccessLedge:
+    node NorthPath:
       door TopCaveRight
     node TopCaveLedge:
       door TopCaveLadder
       door TopCaveLeft
     node North:
       door North
-    PeakAccessLedge <-> North: item GripRing
+    NorthPath <-> North: item GripRing
     node TopCaveLedge +: exit Virtual.Zeffa.FluteAway
     node TopWaterLand +: exit Virtual.Zeffa.FluteAway
-    node PeakAccessLedge +: exit Virtual.Zeffa.FluteAway
+    node NorthPath +: exit Virtual.Zeffa.FluteAway
     node Crest +: exit Virtual.Zeffa.FluteAway
     node Bottom +: exit Virtual.Zeffa.FluteAwayv
     node BottomEast +: exit Virtual.Zeffa.FluteAway
-    node MiddleBelowClimbWall +: exit Virtual.Zeffa.FluteAway
+    node MiddleRight +: exit Virtual.Zeffa.FluteAway
     node MiddleChestLedge +: exit Virtual.Zeffa.FluteAway
