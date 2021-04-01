@@ -1,0 +1,20 @@
+area Deepwood
+  room BarrelMagic
+  room BF1BigKey
+  room BF1LilyButton
+  room BF1LilyChest
+  room BF1LilyDrop
+  room F1PreChu
+  room GFBarrelROom
+  room GFEntrance
+  room GFLanterns
+  room GFLeverBridge
+  room GFMadderpillar
+  room GFMadderpillarHP
+  room GFMulldozers
+  room GFMushrooms
+  room GFPillarButtons
+  room GFPillarDoor
+  room GFPortalHeart
+  room GFPotButton
+  room GFStairs
