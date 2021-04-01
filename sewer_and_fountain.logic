@@ -1,4 +1,4 @@
-area SewerAndFountain
+area SewerAndFountain:
   room FountainBigChest
   room FountainEntrance
   room FountainPacciHole
