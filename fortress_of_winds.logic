@@ -1,4 +1,4 @@
-area FortressOfWinds
+area FortressOfWinds:
   room F1BladeSpin
   room F1CentralRoom
   room F1CloneButtons
