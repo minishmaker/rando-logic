@@ -1,2 +1,18 @@
 area LakeWoodsCave:
-  room Main
+  room Main:
+    node LadderArea:
+      door Ladder
+    node LeftDigging:
+      chest LeftDigging
+      enemy LikeLikes
+    LadderArea <-> LeftDigging: item MoleMitts
+    node RightDigging:
+      chest RightDigging1
+      chest RightDigging2
+      enemy LikeLikes
+    node LeftDigEntrance:
+      door LeftDigDoor
+    LeftDigEntrance <-> LeftDigging: item MoleMitts
+    node RightDigEntrance:
+      door RightDigDoor
+    RightDigEntrance <-> RightDigging: item MoleMitts
