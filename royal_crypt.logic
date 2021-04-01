@@ -1,0 +1,7 @@
+area RoyalCrypt
+  room Entrance
+  room KeyPuzzles
+  room KingsGrave
+  room LanternRoom
+  room MushroomPit
+  room RopeCorridor
