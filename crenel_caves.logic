@@ -24,7 +24,7 @@ area CrenelCaves:
     node PostBombBlocks:
       door PostBombBlocks
       enemy SilverChu
-	#These blocks respawn when leaving, and it seems to be impossible to go backwards through this room?
+    #These blocks respawn when leaving, and it seems to be impossible to go backwards through this room?
     PreBombBlocks -> PostBombBlocks: item BombBag
   room FloodBlock: #This is the room w/ 2 chests and a HP on the very left side of crenel right?
     node FloodBlockEntrance:
@@ -32,11 +32,11 @@ area CrenelCaves:
     node FloodBlockChests:
       chest LeftFloodBlockChest
       chest RightFloodBlockChest
-	#These are also respawning bomb-blocks
+    #These are also respawning bomb-blocks
     FloodBlockEntrance -> FloodBlockChests: (item BombBag | item Cape)
     node FloodBlockHP:
       chest HearPiece
-	#Should grabbing the HP from the water be in logic? Don't think it currently is
+    #Should grabbing the HP from the water be in logic? Don't think it currently is
     FloodBlockEntrance -> FloodBlockHP: (item BombBag | item Cape | item Flippers)
   room FountHP:
     node Main:
@@ -51,11 +51,11 @@ area CrenelCaves:
   room GraybladeEntrance:
     node Main:
       door Entrance
-	  exit DojoExit
+      exit DojoExit
     node Switches:
-	  flag Switches
+      flag Switches
     #Completely guessing here on the actual item names/syntax
-	Main -> Switches: item CanSplit2
+    Main -> Switches: item CanSplit2
     node SwitchDoor:
       entrance SwitchDoor
     Switches -> SwitchDoor
@@ -100,16 +100,16 @@ area CrenelCaves:
     node SwitchBridgeNorth:
       door Staircase
       enemy RedChus
-    node SwitchBridgeGap
-	  flag Switch
-	SwitchBridgeNorth -> SwitchBridgeGap: (item Boomerang | item BombBag | item Bow | item CanUseSwordBeam | item CanUsePerilBeam)
-	SwitchBridgeGap -> SwitchBridgeNorth
-	node SwitchBridgeSouth:
+    node SwitchBridgeGap:
+      flag Switch
+    SwitchBridgeNorth -> SwitchBridgeGap: (item Boomerang | item BombBag | item Bow | item CanUseSwordBeam | item CanUsePerilBeam)
+    SwitchBridgeGap -> SwitchBridgeNorth
+    node SwitchBridgeSouth:
       door Doorway
       enemy RedChus
     SwitchBridgeSouth -> SwitchBridgeGap: (item SmithSword | item Boomerang | item BombBag | item Bow)
-	SwitchBridgeGap -> SwitchBridgeSouth
-	SwitchBridgeNorth <-> SwitchBridgeSouth: (item Cape | flag Switch)
+    SwitchBridgeGap -> SwitchBridgeSouth
+    SwitchBridgeNorth <-> SwitchBridgeSouth: (item Cape | flag Switch)
   room PotCircle:
     node Main:
       door Doorway
