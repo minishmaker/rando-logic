@@ -1,4 +1,4 @@
-area HouseInteriors2
+area HouseInteriors2:
   room Anju
   room Dampe
   room DrLeft
