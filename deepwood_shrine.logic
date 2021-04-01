@@ -1,4 +1,4 @@
-area Deepwood
+area DeepwoodShrine:
   room BarrelMagic
   room BF1BigKey
   room BF1LilyButton
