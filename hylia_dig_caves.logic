@@ -1,13 +1,10 @@
 area HyliaDigCaves
   room WaterCave:
-    node DoorExit:
-      exit Door
-     node Main:
-      entrance Door
-     node Chest:
+    node Main:
+      door Door
+    node Chest:
       chest Chest
-     Main <-> Chest: item MoleMitts
-     Main -> DoorExit: item MoleMitts
+    Main <-> Chest: item MoleMitts
   room TreasureCave:
     node MainDigging:
       chest TopChest1
@@ -18,17 +15,11 @@ area HyliaDigCaves
       chest BottomChest3
       chest EastChest
     node EastDoorOpenArea:
-      entrance EastDoor
+      door EastDoor
     MainDigging <-> EastDoorOpenArea: item MoleMitts
-    node EastDoorExit:
-      exit EastDoor
-    EastDoorOpenArea -> EastDoorExit: item MoleMitts
     node WestDoorOpenArea:
-      entrance WestDoor
+      door WestDoor
     MainDigging <-> WestDoorOpenArea: item MoleMitts
-    node WestDoorExit:
-      exit WestDoor
-    WestDoorOpenArea -> WestDoorExit: item MoleMitts
     node EastLadder:
       door Ladder
     MainDigging <-> EastLadder: item MoleMitts
