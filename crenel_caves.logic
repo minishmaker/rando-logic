@@ -8,10 +8,10 @@ area CrenelCaves:
   room BlocksPuzzle:
     node BlocksPuzzle:
       door Ladder
-      door Doorway
+      door BlocksPuzzleDoor
       enemy Helmasaurs
     node MushroomGapSouth:
-      door Doorway
+      door MushroomGapDoor
       enemy Helmasaur
     node MushroomGapNorth:
       door Staircase
@@ -24,6 +24,7 @@ area CrenelCaves:
     node PostBombBlocks:
       door PostBombBlocks
       enemy SilverChu
+	#These blocks respawn when leaving, and it seems to be impossible to go backwards through this room?
     PreBombBlocks -> PostBombBlocks: item BombBag
   room FloodBlock: #This is the room w/ 2 chests and a HP on the very left side of crenel right?
     node FloodBlockEntrance:
@@ -31,54 +32,55 @@ area CrenelCaves:
     node FloodBlockChests:
       chest LeftFloodBlockChest
       chest RightFloodBlockChest
+	#These are also respawning bomb-blocks
     FloodBlockEntrance -> FloodBlockChests: (item BombBag | item Cape)
     node FloodBlockHP:
       chest HearPiece
+	#Should grabbing the HP from the water be in logic? Don't think it currently is
     FloodBlockEntrance -> FloodBlockHP: (item BombBag | item Cape | item Flippers)
   room FountHP:
-    node FountHP:
-      door FountHP
+    node Main:
+      door Doorway
       chest HeartPiece
   room FountRupee:
-    node FountRupee:
-      door FountRupee
-    node FountRupeeItems:
+    node Main:
+      door Doorway
       chest LeftRupee
       chest CenterRupee
       chest RightRupee
-    FountRupee -> FountRupeeItems: setting Rupeemania
   room GraybladeEntrance:
-    node GraybladeEntrance:
+    node Main:
       door Entrance
+	  exit DojoExit
     node Switches:
 	  flag Switches
     #Completely guessing here on the actual item names/syntax
-	GraybladeEntrance -> Switches: item CanSplit2
+	Main -> Switches: item CanSplit2
     node SwitchDoor:
-      door SwitchDoor
-    Switches <-> SwitchDoor
+      entrance SwitchDoor
+    Switches -> SwitchDoor
     GraybladeEntrance -> SwitchDoor: flag SwitchesPressed
   room Guru:
-    node Guru:
-      door Guru
+    node Main:
+      door Doorway
   room HelmaHall:
-    node HelmaHall:
+    node Main:
       door Staircase
       door Doorway
       enemy Helmasaurs
   room MushroomGap:
-    node MushroomGap:
+    node Main:
       door Doorway
       door Staircase
       enemy LowerKeese
       enemy UpperKeese
   room RockPush:
-    node RockPush:
+    node Main:
       door Doorway
       door Staircase
   room ScrubBomb:
     node ScrubBomb:
-      door ScrubBomb
+      door Doorway
     node DekuScrub:
       flag DekuScrub
     ScrubBomb -> DekuScrub: item Shield
@@ -98,20 +100,25 @@ area CrenelCaves:
     node SwitchBridgeNorth:
       door Staircase
       enemy RedChus
-    node SwitchBridgeSouth:
+    node SwitchBridgeGap
+	  flag Switch
+	SwitchBridgeNorth -> SwitchBridgeGap: (item Boomerang | item BombBag | item Bow | item CanUseSwordBeam | item CanUsePerilBeam)
+	SwitchBridgeGap -> SwitchBridgeNorth
+	node SwitchBridgeSouth:
       door Doorway
       enemy RedChus
-      flag Switch
-    SwitchBridgeNorth <-> SwitchBridgeSouth: (item Cape | flag Switch)
+    SwitchBridgeSouth -> SwitchBridgeGap: (item SmithSword | item Boomerang | item BombBag | item Bow)
+	SwitchBridgeGap -> SwitchBridgeSouth
+	SwitchBridgeNorth <-> SwitchBridgeSouth: (item Cape | flag Switch)
   room PotCircle:
-    node PotCircle:
+    node Main:
       door Doorway
       door Staircase
       chest PotCircleChest
       enemy RedChus
   #This room was missing from the stub so I added it
   room PreMineralSpring:
-    node PreMineralSpring:
+    node Main:
       door Doorway
       door Ladder
       enemy RedChus
