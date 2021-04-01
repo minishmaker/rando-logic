@@ -1,4 +1,4 @@
-area DarkHyruleCastle
+area DarkHyruleCastle:
   room B1BigChest
   room B1EastCannons
   room B1EastUpperPath
