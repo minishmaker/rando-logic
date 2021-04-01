@@ -1,4 +1,4 @@
-area TempleOfDroplets
+area TempleOfDroplets:
   room BF1BigAndFrozenChest
   room BF1BigKey
   room BF1ClonePushing
