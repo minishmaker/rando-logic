@@ -1,4 +1,4 @@
-area TreeInteriors
+area TreeInteriors:
   room CarlovEntry
   room FairyTree
   room GreatFairyTree
