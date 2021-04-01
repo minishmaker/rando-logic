@@ -43,7 +43,7 @@ area PalaceOfWinds:
   room F4WestWindGap
   room GFBlockPush
   room GFBridges
-  room GFCapeMiniboss
+  room GFWizrobesMiniboss
   room GFDarknut
   room GFEntrance
   room GFInside
