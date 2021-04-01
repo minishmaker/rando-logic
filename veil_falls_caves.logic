@@ -1,4 +1,4 @@
-area VeilFallsCaves
+area VeilFallsCaves:
   room C1F1BehindBreakableWall
   room C1F1BreakableWall
   room C1F2Climb
