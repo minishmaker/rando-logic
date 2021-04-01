@@ -1,4 +1,4 @@
-area TowninishHouses
+area TowninishHouses:
   room Mayor
   room GormanWest
   room DrLeft
