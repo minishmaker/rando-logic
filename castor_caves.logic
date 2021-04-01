@@ -1,4 +1,4 @@
-area CastorCaves
+area CastorCaves:
   room DarknutEntry
   room DekuScrub
   room HeartPiece
