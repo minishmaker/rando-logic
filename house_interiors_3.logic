@@ -1,4 +1,4 @@
-area HouseInteriors3
+area HouseInteriors3:
   room Bakery
   room BorlovFront
   room BorlovBack
