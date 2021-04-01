@@ -41,7 +41,7 @@ area VeilFalls:
       door MiddleLedgeCave
     node Crest:
       entrance Crest
-      entrance TopCaveMiddle
+      door TopCaveMiddle
       flag Virtual.Zeffa.VeilFallsCrest
     Crest <-> MiddleRight: item GripRing
     Crest -> TopWaterLand
