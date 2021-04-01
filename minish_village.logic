@@ -1,3 +1,25 @@
 area MinishVillage:
-  room Main
-  room Lake
+  room Main:
+    node Main:
+      door Festari
+      door GentariFront
+      door PotHouse
+      door LeftMushroomHouse
+      door CenterMushroomHouse
+      door RightMushroomHouse
+      door ShoeHouse
+      door BarrelLadder
+      door BarrelDoor
+      door East
+      door South
+    node West:
+      door West
+      door GentariSide
+    West -> Main
+  room Lake:
+    node Main:
+      chest HP
+      door West
+    node House:
+      door MushroomHouse
+    Main <-> House: item Flippers
