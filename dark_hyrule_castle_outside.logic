@@ -1,4 +1,4 @@
-area DarkHyruleCastleOutside
+area DarkHyruleCastleOutside:
   room Altar
   room EastEntry
   room NorthEastTower
