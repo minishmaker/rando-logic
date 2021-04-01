@@ -1,4 +1,4 @@
-area ArmosInteriors
+area ArmosInteriors:
   room Armos1
   room Armos2
   room Armos3
