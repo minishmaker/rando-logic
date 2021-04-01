@@ -1,4 +1,4 @@
-area WindTribeTower
+area WindTribeTower:
   room GF
   room 1F
   room 2F
