@@ -127,8 +127,8 @@ area HyruleField:
     MiddleEast -> Center: (item RocsCape)
     Center -> MinishCenter: (item PegasusBoots | flag CanTurnMinish)
     MinishCenter -> Center: (flag CanTurnMinish)
-    # Assume this entrance/exit won't be randomized if no fusions
-    Center <-> PondFusion: (flag PondFusion)
+    Center -> PondFusion: (flag PondFusion)
+    PondFusion -> Center
     Center -> NorthLedge: (item RocsCape | item PacciCane )
     NorthLedge -> Center
     NorthLedge -> MiddleEast
@@ -136,7 +136,86 @@ area HyruleField:
     NorthLedge -> CenterLedge: (flag ObscureSpots & item MoleMitts)
     NorthFreestanding -> NorthDiggingCave: (item MoleMitts)
     NorthDiggingCave -> NorthFreestanding
-  room North
+  room North:
+    node Main:
+      door South
+      door North
+      enemy OctorcsAndCrows
+    node NWTingleTree:
+      door NWTingleTree
+    node NWTingleTree:
+      door NETingleTree
+    node SWTingleTree:
+      door SWTingleTree
+    node SETingleTree:
+      door SETingleTree
+    node CenterTingleTree:
+      door CenterTingleTree
+    node FairyFountain:
+      door FairyFountain
+    node RightBombableRocks:
+      flag RightBombableRocks
+    node NorthEast:
+      door NorthEast
+    node WaterFallEntrance:
+      door WaterFallEntrance
+    node SouthWest:
+      door SouthWest
+      enemy Keaton
+    node SouthCave:
+      door SouthCave
+    node LeftBombableBlocks:
+      flag LeftBombableBlocks
+    node NorthCave:
+      door NorthLadder
+      door MiddleCave
+    node NorthWestWater:
+      door NorthWestWater
+    node NorthWestGraveyard:
+      door NorthWestGraveyard
+      ennemy GraveyardOctorocs
+    node NorthWestChestFusion:
+      chest NorthWestChestFusion
+    node MinishCrackBoulder:
+      flag MinishCrackBoulder
+    node MinishCrack:
+      door MinishCrack
+
+    Main -> NWTingleTree: flag NWTingleTree
+    NWTingleTree -> Main
+    Main -> NETingleTree: flag NETingleTree
+    NETingleTree -> Main
+    Main -> SWTingleTree: flag SWTingleTree
+    SWTingleTree -> Main
+    Main -> SETingleTree: flag SETingleTree
+    SETingleTree -> Main
+    Main -> CenterTingleTree: flag CenterTingleTree
+    CenterTingleTree -> Main
+    Main -> FairyFountain: flag FairyFountain
+    FairyFountain -> Main
+    Main -> RightBombableRocks: item BombBag
+    NorthEast -> RightBombableRocks: item BombBag
+    Main <-> NorthEast: flag RightBombableRocks
+    Main -> WaterFallEntrance: (flag WaterFallFusion | (item Flippers | item RocsCape ))
+    Main -> SouthWest: (item Flippers | item RocsCape)
+    # No flag for the bridge bc it resets in rando
+    SouthWest -> Main: (item Flippers | item RocsCape | (item PacciCane & item SmithSword))
+    SouthWest -> WaterFallEntrance: (flag WaterFallFusion | (item Flippers | item RocsCape ))
+    WaterFallEntrance -> SouthWest: item Flippers
+    WaterFallEntrance -> SouthCave: item Flippers
+    # Possible with cape only, but a bit hard
+    SouthCave -> WaterFallEntrance: (item Flippers | item RocsCape)
+    Main -> LeftBombableBlocks: item BombBag
+    NorthCave -> LeftBombableBlocks: item BombBag
+    Main <-> NorthCave: (flag LeftBombableBlocks)
+    NorthCave <-> NorthWest: item Flippers
+    NorthWestGraveyard -> SouthWest
+    NorthWestGraveyard -> NorthWestChestFusion: (flag NorthWestChestFusion)
+    # With Entrando you could access the lever (and the bridge that way)
+    NorthWestGraveyard -> Main: item SmithSword
+    Main -> MinishCrackBoulder: (item SmithSword | item FlameLantern | item LightArrows | item BombBag | item GustJar)
+    # Need to have removed the boulder to exit the cave
+    Main <-> MinishCrack: (flag MinishCrackBoulder | flag CanTurnMinish)
   room South
   room Trillby
   room WestWoodsNorth
