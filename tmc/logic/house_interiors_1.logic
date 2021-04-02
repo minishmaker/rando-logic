@@ -33,7 +33,10 @@ area HouseInteriors1:
       exit South
     node South:
       entrance South
-    Main -> South: item Lantern
+    node LampsLit:
+      flag DoorOpen
+    Main -> LampsLit: item Lantern
+    Main -> South: flag DoorOpen
   room LibraryBottom:
     node Main:
       door North
