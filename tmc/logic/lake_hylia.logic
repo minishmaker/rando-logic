@@ -33,8 +33,11 @@ area LakeHylia:
     node MinishPortal:
       door MinishPath
     MinishPortal <-> MinishWater: item Flippers
-    MinishPortal -> SouthEast: item CanTurnMinish
-    SouthEast -> MinishPortal: (item Boots & item CanTurnMinish)
+    MinishPortal -> SouthEast: item CanGrow
+    node MinishPortalBonk:
+      flag HyliaTreeBonk
+    SouthEast -> MinishPortalBonk: item Boots
+    SouthEast -> MinishPortal: item CanTurnMinish
     node DigCaveFusion:
       door DigCave
     Water <-> DigCaveFusion: flag HyliaDigCaveFusion
