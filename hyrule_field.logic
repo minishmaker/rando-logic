@@ -272,7 +272,58 @@ area HyruleField:
     SouthWestMinish -> SouthWest: flag CanTurnMinish
     SouthWestMinish <-> MinishWaterHole: item Flippers
 
-  room Trillby
+  room Trilby:
+    node Top:
+      door SouthEast
+      ennemy OctorocsAndKeatons
+      door NorthEast
+      door West
+      door TopLadder
+    node NorthChestFusion:
+      chest NorthChestFusion
+    node MidChestFusion:
+      chest MidChestFusion
+    node LeftDiggingCave:
+      door LeftDiggingCave
+    node RightDiggingCave:
+      door RightDiggingCave
+    node KnuckleLedge:
+      door DiggingCaveLadder
+    node MinishKnuckleLedge:
+      door MinishHouse
+    node GraveyardLedge:
+      door North
+    node Bottom:
+      enemy BlueOctorocsMoblinsAndKeatons
+      door BottomLadder
+      door PercyTreeHouse
+      door South
+      flag BoulderShortCut
+    node RupeePondFusion
+      door RupeePondFusion
+    node BombableCave
+      door BombableCave
+    node FairyFountain
+      door FairyFountain
+
+
+      Top -> NorthChestFusion: flag NorthChestFusion
+      Top -> MidChestFusion: flag MidChestFusion
+      Top -> LeftDiggingCave: item MoleMitts
+      LeftDiggingCave -> Top
+      Top -> RightDiggingCave: (flag RightDiggingCaveFusion & item MoleMitts & (item Flippers | item RocsCape ))
+      RightDiggingCave -> Top ((flag RightDiggingCaveFusion & item RocsCape) | item Fippers)
+      KnuckleLedge <-> MinishKnuckleLedge: flag CanTurnMinish
+      KnuckleLedge -> Top: item Flippers
+      GraveyardLedge -> Top
+      Top <-> Bottom: flag BoulderShortCut
+      Bottom -> RupeePondFusion: flag RupeePondFusion
+      RupeePondFusion -> Bottom
+      Bottom -> BombableCave: item BombBag
+      BombableCave -> Bottom
+      Bottom -> FairyFountain: item BombBag
+      FairyFountain -> Bottom
+
   room WestWoodsNorth
   room WestWoodsMid
   room WestWoodsSouth
