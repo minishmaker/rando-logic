@@ -6,8 +6,11 @@ area LakeHylia:
     node WestArea:
       door Ladder
     node BeanstalkFusion:
-      door BeanstalkFusion
-    WestArea <-> BeanstalkFusion: flag HyliaBeanstalkFusion
+      entrance beanStalkFusion
+    node BeanStalkFusionExit:
+      exit beanStalkFusion
+    BeanStalkFusionExit -> WestArea: flag HyliaBeanstalkFusion
+    WestArea -> BeanstalkFusion: flag HyliaBeanstalkFusion
     node EastArea +: exit Virtual.Zeffa.FluteAway
     node WestArea +: exit Virtual.Zeffa.FluteAway
   room Main:
