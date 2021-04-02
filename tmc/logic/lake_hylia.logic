@@ -21,14 +21,20 @@ area LakeHylia:
       entrance CrestHoleFusion
     Crest -> CrestHoleFusion: flag CrestHoleFusion
     node MinishWater:
-      door MinishSouth
-      door NorthHole
+      exit MinishSouth
+      exit NorthHole
+    node MinishWaterEntrances:
+      entrance South
+      entrance NorthHole
+    MinishWater -> MinishWaterEntrances: item Flippers
+    node EastVineHole:
       door EastVineHole
+    MinishWater <-> EastVineHole: item Flippers
     node MinishPortal:
       door MinishPath
     MinishPortal <-> MinishWater: item Flippers
-    MinishPortal -> SouthEast
-    SouthEast -> MinishPortal: item Boots
+    MinishPortal -> SouthEast: item CanTurnMinish
+    SouthEast -> MinishPortal: (item Boots & item CanTurnMinish)
     node DigCaveFusion:
       door DigCave
     Water <-> DigCaveFusion: flag HyliaDigCaveFusion
@@ -43,8 +49,10 @@ area LakeHylia:
       enemy SouthWestChuChus
     node Water:
       chest SouthHP
-      door DropletsEntrance
       enemy Octoroks
+    node DropletsEntrance:
+      door DropletsEntrance
+    Water <-> DropletsEntrance: (item Cape | item Flippers)
     node FifiWaterHole:
       item HP
     NorthWest <-> FifiWaterHole: item Flippers
@@ -61,8 +69,10 @@ area LakeHylia:
       door Cabin
     SouthEast <-> Water: (item Cape | item Flippers)
     node DigCaveNorthArea:
-      chest HP
       exit DigCave
+    node NorthHP:
+      item NorthHP
+    DigCaveNorthArea <-> NorthHP: item Cape
     node DigCaveNorthEntrance:
       entrance DigCave
     DigCaveNorthArea -> DigCaveNorthEntrance: item MoleMitts
