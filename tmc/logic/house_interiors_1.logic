@@ -30,9 +30,9 @@ area HouseInteriors1:
     node Main:
       door Stairs
       door West
-      entrance South
-    node South:
       exit South
+    node South:
+      entrance South
     Main -> South: item Lantern
   room LibraryBottom:
     node Main:
@@ -49,9 +49,9 @@ area HouseInteriors1:
     node Main:
       door East
       door South
-    node MinishMain:
+    node MainMinish:
       door MinishHouse
-    Main <-> MinishMain: (item Boots & item Cane)
+    Main -> MainMinish: (item Boots & item Cane)
   room PostOffice:
     node Main:
       door Door
@@ -67,4 +67,4 @@ area HouseInteriors1:
     node MainMinish:
       door MinishLeft
       door MinishRight
-    Main <-> MainMinish: item Cane
+    Main -> MainMinish: item Cane
