@@ -19,7 +19,7 @@ area LakeHylia:
     Crest -> NorthWest
     node CrestHoleFusion:
       entrance CrestHoleFusion
-    Crest -> CrestHoleFusion
+    Crest -> CrestHoleFusion: flag CrestHoleFusion
     node MinishWater:
       door MinishSouth
       door NorthHole
