@@ -330,7 +330,7 @@ area HyruleField:
       enemy CrowsBlueOctorocsKeatonsAndMoblins
       door North
       door West
-      door SouthWest
+      door SouthMid
       flag BoulderShortcut
     node East:
       door East
@@ -343,12 +343,19 @@ area HyruleField:
     node NorthWestTreeFusion
     #Tag this as obsucre
     node NorthWestObscure:
-      chest DigSpot1
-      chest DigSpot2
-      chest DigSpot3
-      chest DigSpot4
-      chest DigSpot5
-      chest DigSpot6
+      chest NorthWestDigSpot1
+      chest NorthWestDigSpot2
+      chest NorthWestDigSpot3
+      chest NorthWestDigSpot4
+      chest NorthWestDigSpot5
+      chest NorthWestDigSpot6
+    node SouthEast:
+      door SouthEast
+    node SouthEastTreeFusion
+    #Tag this as obsucre
+    node SouthEastObsucre:
+      chest SouthWestDigSpot1
+      chest SouthWestDigSpot2
 
     Main <-> East: flag BoulderShortcut
     Main -> MiddleChestFusion: flag MiddleChestFusion
@@ -357,6 +364,8 @@ area HyruleField:
     Main <-> SouthWestTreeFusion: flag SouthWestTreeFusion
     Main <-> NorthWestTreeFusion: flag NorthWestTreeFusion
     NorthWestTreeFusion -> NorthWestObscure: item MoleMitts
+    SouthEast <-> SouthEastTreeFusion: flag SouthEastTreeFusion
+    SouthEastTreeFusion -> SouthEastObsucre: item MoleMitts
 
 
 
