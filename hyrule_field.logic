@@ -221,7 +221,7 @@ area HyruleField:
     MinishCrack -> Main: (flag MinishCrackBoulder & flag CanTurnMinish)
     Main -> ObscureSpot: (item MoleMitts & flag ObscureSpots )
 
-  room South
+  room South:
     node Main:
       door North
       enemy MainOctorocs
@@ -251,7 +251,7 @@ area HyruleField:
       enemy SouthWestOctorocs
     node SouthWestMinish:
       door MinishHouse
-    node MinishWaterHole
+    node MinishWaterHole:
       door MinishWaterHole
 
     Main <-> WindTribeWarpFusion: flag WindTribeWarpFusion
