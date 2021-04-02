@@ -180,6 +180,8 @@ area HyruleField:
       flag MinishCrackBoulder
     node MinishCrack:
       door MinishCrack
+    node ObscureSpot:
+      chest ObscureDigRupee
 
     Main -> NWTingleTree: flag NWTingleTree
     NWTingleTree -> Main
@@ -215,8 +217,61 @@ area HyruleField:
     NorthWestGraveyard -> Main: item SmithSword
     Main -> MinishCrackBoulder: (item SmithSword | item FlameLantern | item LightArrows | item BombBag | item GustJar)
     # Need to have removed the boulder to exit the cave
-    Main <-> MinishCrack: (flag MinishCrackBoulder | flag CanTurnMinish)
+    Main -> MinishCrack: (flag MinishCrackBoulder & flag CanTurnMinish & item PegasusBoots)
+    MinishCrack -> Main: (flag MinishCrackBoulder & flag CanTurnMinish)
+    Main -> ObscureSpot: (item MoleMitts & flag ObscureSpots )
+
   room South
+    node Main:
+      door North
+      enemy MainOctorocs
+      door LinksHouse
+    node WindTribeWarpFusion:
+      door WindTribeWarpFusion
+    node FairyFountain:
+      door FairyFountain
+    node NorthWest:
+      door West
+      enemy NorthWestOctorocs
+    node RupeePondFusion:
+      door RupeePondFusion
+    node East:
+      door East
+      enemy EastOctorocs
+      flag WindCrest
+    # Splitting this for vanilla fusions
+    node TingleLedge
+    node Tingle:
+      chest Tingle
+    node EastTreeFusion:
+      door EastTreeFusion
+    node EastChestFusion:
+     chest EastChestFusion
+    node SouthWest:
+      enemy SouthWestOctorocs
+    node SouthWestMinish:
+      door MinishHouse
+    node MinishWaterHole
+      door MinishWaterHole
+
+    Main <-> WindTribeWarpFusion: flag WindTribeWarpFusion
+    Main -> FairyFountain: item BombBag
+    FairyFountain -> Main
+    Main <-> NorthWest: (item SmithSword | item FlameLantern | item BombBag | item LightArrows | item Flippers | item RocsCape)
+    Main -> RupeePondFusion: (flag RupeePondFusion)
+    RupeePondFusion -> Main
+    Main <-> East: (item SmithSword | item FlameLantern | item BombBag | item LightArrows)
+    East -> TingleLedge: item PacciCane
+    TingleLedge -> East
+    TingleLedge -> Tingle: item TingleTrophee
+    East -> EastTreeFusion: flag EastTreeFusion
+    EastTreeFusion -> East
+    East -> EastChestFusion: flag EastChestFusion
+    Main <-> SouthWest: (item SmithSword | item FlameLantern | item BombBag | item LightArrows)
+    SouthWest -> SouthWestMinish: (flag CanTurnMinish & item PegasusBoots)
+    SouthWestMinish -> SouthWest: flag CanTurnMinish
+    SouthWestMinish <-> MinishWaterHole: item Flippers
+
   room Trillby
   room WestWoodsNorth
   room WestWoodsMid
