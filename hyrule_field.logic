@@ -101,6 +101,7 @@ area HyruleField:
     node NorthLedge
     node MinishCrack:
       door MinishCrack
+    #Tag this as obsucre
     node CenterLedge:
       chest ObscureDiggingSpot
     node NorthFreestanding:
@@ -133,7 +134,7 @@ area HyruleField:
     NorthLedge -> Center
     NorthLedge -> MiddleEast
     NorthLedge <-> MinishCrack: (flag CanTurnMinish)
-    NorthLedge -> CenterLedge: (flag ObscureSpots & item MoleMitts)
+    NorthLedge -> CenterLedge: item MoleMitts
     NorthFreestanding -> NorthDiggingCave: (item MoleMitts)
     NorthDiggingCave -> NorthFreestanding
   room North:
@@ -180,6 +181,7 @@ area HyruleField:
       flag MinishCrackBoulder
     node MinishCrack:
       door MinishCrack
+    #Tag this as obsucre
     node ObscureSpot:
       chest ObscureDigRupee
 
@@ -219,7 +221,7 @@ area HyruleField:
     # Need to have removed the boulder to exit the cave
     Main -> MinishCrack: (flag MinishCrackBoulder & flag CanTurnMinish & item PegasusBoots)
     MinishCrack -> Main: (flag MinishCrackBoulder & flag CanTurnMinish)
-    Main -> ObscureSpot: (item MoleMitts & flag ObscureSpots )
+    Main -> ObscureSpot: item MoleMitts
 
   room South:
     node Main:
@@ -298,25 +300,24 @@ area HyruleField:
       door BottomLadder
       door PercyTreeHouse
       door South
-      flag BoulderShortCut
-    node RupeePondFusion
+      flag BoulderShortcut
+    node RupeePondFusion:
       door RupeePondFusion
-    node BombableCave
+    node BombableCave:
       door BombableCave
-    node FairyFountain
+    node FairyFountain:
       door FairyFountain
-
 
       Top -> NorthChestFusion: flag NorthChestFusion
       Top -> MidChestFusion: flag MidChestFusion
       Top -> LeftDiggingCave: item MoleMitts
       LeftDiggingCave -> Top
       Top -> RightDiggingCave: (flag RightDiggingCaveFusion & item MoleMitts & (item Flippers | item RocsCape ))
-      RightDiggingCave -> Top ((flag RightDiggingCaveFusion & item RocsCape) | item Fippers)
+      RightDiggingCave -> Top: ((flag RightDiggingCaveFusion & item RocsCape) | item Fippers)
       KnuckleLedge <-> MinishKnuckleLedge: flag CanTurnMinish
       KnuckleLedge -> Top: item Flippers
       GraveyardLedge -> Top
-      Top <-> Bottom: flag BoulderShortCut
+      Top <-> Bottom: flag BoulderShortcut
       Bottom -> RupeePondFusion: flag RupeePondFusion
       RupeePondFusion -> Bottom
       Bottom -> BombableCave: item BombBag
@@ -324,6 +325,40 @@ area HyruleField:
       Bottom -> FairyFountain: item BombBag
       FairyFountain -> Bottom
 
-  room WestWoodsNorth
+  room WestWoodsNorth:
+    node Main:
+      enemy CrowsBlueOctorocsKeatonsAndMoblins
+      door North
+      door West
+      door SouthWest
+      flag BoulderShortcut
+    node East:
+      door East
+    node MiddleChestFusion:
+      chest MiddleChestFusion
+    node WestTreeFusion:
+      door WestTreeFusion
+    node SouthWestTreeFusion:
+      door SouthWestFusion
+    node NorthWestTreeFusion
+    #Tag this as obsucre
+    node NorthWestObscure:
+      chest DigSpot1
+      chest DigSpot2
+      chest DigSpot3
+      chest DigSpot4
+      chest DigSpot5
+      chest DigSpot6
+
+    Main <-> East: flag BoulderShortcut
+    Main -> MiddleChestFusion: flag MiddleChestFusion
+    Main -> WestTreeFusion: flag WestTreeFusion
+    WestTreeFusion -> Main
+    Main <-> SouthWestTreeFusion: flag SouthWestTreeFusion
+    Main <-> NorthWestTreeFusion: flag NorthWestTreeFusion
+    NorthWestTreeFusion -> NorthWestObscure: item MoleMitts
+
+
+
   room WestWoodsMid
   room WestWoodsSouth
