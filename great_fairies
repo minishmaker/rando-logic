@@ -1,4 +1,15 @@
 area GreatFairies:
-  room RoyalValley
-  room MinishWoods
-  room Crenel
+  room RoyalValley:
+    node Main:
+      chest Fairy
+      door Door
+  room MinishWoods:
+    node Main:
+      chest Fairy
+      door Door
+  room Crenel:
+    node Main:
+      door Door
+    node Fairy:
+      chest Fairy
+    Main <-> Fairy: item BombBag
