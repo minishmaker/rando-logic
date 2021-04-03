@@ -75,7 +75,7 @@ area WindRuins:
   room TektiteFight:
     node Main:
       enemy Tektites
-    node MainNorth
+    node MainNorth:
       door North
     Main <-> MainNorth: defeat Tektites
     node MainMinish:
