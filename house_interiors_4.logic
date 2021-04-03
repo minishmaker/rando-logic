@@ -1,7 +1,54 @@
 area HouseInteriors4:
-  room Farm
-  room LonLonEast
-  room LonLonWest
-  room Lumberjack
-  room MayorCabin
-  room Swiftblade
+  room Farm:
+    node Main:
+      door South
+  room LonLonEast:
+    node Main:
+      door South
+    node MainMinish:
+      door SouthMinish
+    node MainUnlocked:
+      door West
+    Main <-> MainUnlocked: item LonLonKey
+  room LonLonWest:
+    node Main:
+      chest Pot
+    node MainMinish:
+      door SouthMinish
+    node MainUnlocked:
+      door South
+      door East
+    Main -> MainMinish: item CanTurnMinish
+    MainMinish -> Main: item CanGrow
+    Main <-> MainUnlocked: item LonLonKey
+  room Lumberjack:
+    node Main:
+      door South
+    node MainMinish:
+      door NorthMinish
+      door MinishHouse
+    Main -> MainMinish: item CanTurnMinish
+    MainMinish -> Main: item CanGrow
+  room MayorCabin:
+    node Main:
+      door South
+    node MainMinish:
+      door NorthMinish
+    node MainItem:
+      chest Item
+    Main <-> MainItem: flag HasPushedItem
+  room Swiftblade:
+    node Main:
+      door South
+    node MainSpinScroll:
+      chest SpinScroll
+    node MainDashScroll:
+      chest DashScroll
+    node MainRockScroll:
+      chest RockScroll
+    node MainDownScroll:
+      chest DownScroll
+    Main <-> MainSpinScroll: item SmithsSword
+    Main <-> MainDashScroll: ( item SmithsSword & item Boots )
+    Main <-> MainRockScroll: item WhiteSword
+    Main <-> MainDownScroll: ( item WhiteSword & item Cape )
