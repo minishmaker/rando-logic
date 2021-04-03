@@ -2,13 +2,13 @@ area MinishPaths:
   room CastorWilds:
     node North:
       door North
-    node South
+    node South:
       door South
     North <-> South: (item Flippers | item GustJar)
   room HyliaCabin:
     node North:
       door North
-    node South
+    node South:
       door South
     North <-> South: (item Flippers | item GustJar)
     node SouthFusionChest:
