@@ -1,2 +1,8 @@
 area CrenelDigCave:
-  room Main
+  room Main:
+    node Entrance:
+      door Door
+    node HP:
+      chest HP
+      enemy Enemies
+    Entrance <-> HP: item MoleMitts
