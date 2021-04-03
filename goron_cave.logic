@@ -1,3 +1,14 @@
 area GoronCave:
-  room Entrance
-  room Main
+  room Entrance:
+    node Main:
+      door Door
+      door Stairs
+  room Main:
+    node Main:
+      door Stairs
+    node MainFirstChest:
+      chest SmallChest
+    node MainSecondChest:
+      chest BigChest
+    Main <-> MainFirstChest: flag FourGoronFusions
+    MainFirstChest <-> MainSecondChest: flag SixGoronFusions
