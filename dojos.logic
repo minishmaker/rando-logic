@@ -52,7 +52,7 @@ area Dojos:
       door North
     node SouthExit:
       exit South
-    node SouthEntrance
+    node SouthEntrance:
       entrance South
     North -> SouthExit: item Flippers
     SouthEntrance -> North: item Flippers
@@ -65,7 +65,7 @@ area Dojos:
       door North
     node SouthExit:
       exit South
-    node SouthEntrance
+    node SouthEntrance:
       entrance South
     North -> SouthExit: item Flippers
     SouthEntrance -> North: item Flippers
@@ -74,7 +74,7 @@ area Dojos:
       door North
     node SouthExit:
       exit South
-    node SouthEntrance
+    node SouthEntrance:
       entrance South
     North -> SouthExit: item Flippers
     SouthEntrance -> North: item Flippers
