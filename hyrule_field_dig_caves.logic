@@ -1,3 +1,24 @@
 area HyruleFieldDigCaves:
-  room Farm
-  room Trilby
+  room Farm:
+    node Main:
+      door Door
+    node Dig:
+      chest Rupee
+      enemy LikeLikeAndBeetle
+    Main <-> Dig: item MoleMitts
+  room Trilby:
+    node LeftLadder:
+      chest CenterChest
+      door LeftLadder
+    node LeftDoor:
+      door LeftDoor
+    LeftLadder <-> LeftDoor: item MoleMitts
+    node LeftChest:
+      chest LeftChest
+    LeftDoor <-> LeftChest: item MoleMitts
+    node RightLadder:
+      door RightLadder
+    node RightDoor:
+      chest RightChest
+      door RightDoor
+    RightLadder <-> RightDoor: item MoleMitts
