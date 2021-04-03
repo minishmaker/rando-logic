@@ -50,16 +50,15 @@ area CrenelCaves:
       chest RightRupee
   room GraybladeEntrance:
     node Main:
-      door Entrance
-      exit DojoExit
+      door South
+      exit North
     node Switches:
       flag Switches
-    #Completely guessing here on the actual item names/syntax
     Main -> Switches: item CanSplit2
     node SwitchDoor:
-      entrance SwitchDoor
+      entrance North
     Switches -> SwitchDoor
-    GraybladeEntrance -> SwitchDoor: flag SwitchesPressed
+    GraybladeEntrance -> SwitchDoor: flag Switches
   room Guru:
     node Main:
       door Doorway
