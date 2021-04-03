@@ -6,7 +6,7 @@ area RoyalValley:
       exit Crypt
     node NorthDoor:
       entrance Crypt
-    node North -> NorthDoor: item WhiteSword3
+    North -> NorthDoor: item WhiteSword3
     node NorthButterfly:
       chest Butterfly
     North <-> NorthButterfly: flag GraveyardButterflyFusion
