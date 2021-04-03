@@ -1,7 +1,89 @@
 area WindRuins:
-  room ArmosRunner
-  room BeanstalkArea
-  room DungeonEntry
-  room Entry
-  room LadderBottom
-  room TektiteFight
+  room ArmosRunner:
+    node North:
+      door North
+      enemy Armoses
+    node South:
+      enemy GoldenRope
+      enemy Ropes
+    North -> South: flag ArmosOn
+    node NorthEastDoor:
+      door NorthEast
+    South <-> NorthEastDoor: defeat Ropes
+    node Chests:
+      chest ChestLeft
+      chest ChestRight
+    North <-> Chests: defeat Armoses
+  room BeanstalkArea:
+    node Main:
+      door East
+      door South
+      enemy LeverAndTektites
+    node MainMinish:
+      door SouthMinish
+    node BeanstalkEntry:
+      entrance BeanstalkFusion
+    node BeanstalkExit:
+      exit BeanstalkFusion
+    Main -> BeanstalkEntrance: flag RuinsBeanstalkFusion
+    BeanstalkExit -> Main: flag RuinsBeanstalkFusion
+  room DungeonEntry:
+    node East:
+      door Fortress
+      door SouthEast
+      enemy Leevers
+    node EastChestFusion:
+      chest ChestFusion
+    East <-> EastChestFusion: flag ChestFusion
+    node Center:
+      door SouthCenter
+      enemy Tektites
+    East -> Center
+    West <-> Center: ( flag ArmosOn | flag RockPushed )
+    node West:
+      door West
+      enemy Armos
+      enemy Ropes
+  room Entry:
+    node Main:
+      chest Butterfly
+      door North
+      exit BombWall
+    node BombWall:
+      entrance BombWall
+    Main <-> BombWall: item BombBag
+    node MainMinish:
+      door MinishHouse
+      door Armos
+    node PostArmos:
+      door East
+    Main -> MainMinish: item CanTurnMinish
+    MainMinish -> Main: item CanGrow
+    Main <-> PostArmos: ( flag ArmosOn | flag RockPushed )
+  room LadderBottom:
+    node Main:
+      enemy Tektites
+    node MainChestFusion:
+      chest ChestFusion
+    Main <-> MainChestFusion: flag ChestFusion
+    node MainMinish:
+      door MinishVineLeft
+      door MinishVineRight
+    node MinishCave:
+      door MinishCave
+      door MinishVineCenter
+  room TektiteFight:
+    node Main:
+      enemy Tektites
+    node MainNorth
+      door North
+    Main <-> MainNorth: defeat Tektites
+    node MainMinish:
+      door North
+      door SouthLeftMinish
+      door SouthCenterMinish
+      door SouthRightMinish
+      exit FusionHole
+    node MainMinishFusionHole:
+      entrance FusionHole
+    MainMinish -> MainMinishFusionHole: flag MinishFusionHole
