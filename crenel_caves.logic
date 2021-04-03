@@ -57,7 +57,6 @@ area CrenelCaves:
     Main -> Switches: item CanSplit2
     node SwitchDoor:
       entrance North
-    Switches -> SwitchDoor
     GraybladeEntrance -> SwitchDoor: flag Switches
   room Guru:
     node Main:
@@ -102,12 +101,10 @@ area CrenelCaves:
     node SwitchBridgeGap:
       flag Switch
     SwitchBridgeNorth -> SwitchBridgeGap: (item Boomerang | item BombBag | item Bow | item CanUseSwordBeam | item CanUsePerilBeam)
-    SwitchBridgeGap -> SwitchBridgeNorth
     node SwitchBridgeSouth:
       door Doorway
       enemy RedChus
     SwitchBridgeSouth -> SwitchBridgeGap: (item SmithSword | item Boomerang | item BombBag | item Bow)
-    SwitchBridgeGap -> SwitchBridgeSouth
     SwitchBridgeNorth <-> SwitchBridgeSouth: (item Cape | flag Switch)
   room PotCircle:
     node Main:
