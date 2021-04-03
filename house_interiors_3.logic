@@ -35,7 +35,7 @@ area HouseInteriors3:
       chest Chest2
       chest Chest3
       chest HP
-      entrance right
+      entrance Right
     node RightExit:
       exit Right
     Right <-> RightExit: item CarlovMedal
