@@ -1,5 +1,26 @@
 area MinishRafters:
-  room Bakery
-  room Cafe
+  room Bakery:
+    node Left:
+      door East
+      entrance Down
+    node Right:
+      door Right
+      entrance Down
+    Left <-> Right: item Cape
+  room Cafe:
+    node Main:
+      door North
+      door East
+      entrance Down
   room DrLeft
-  room Shop
+    node Main:
+      door North
+      entrance Down
+    node Book
+    Main <-> Book: ( item WhiteSword | (item BombBag | item GustJar ) )
+  room Shop:
+    node Main:
+      door North
+      door West
+      entrance Down
+      enemy Mulldozers
