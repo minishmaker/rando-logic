@@ -1,2 +1,6 @@
 area VeilFallsTop:
-  room Main
+  room Main:
+    door Tornado
+  room MainSouth:
+    door South
+  Main <-> MainSouth: item GripRing
