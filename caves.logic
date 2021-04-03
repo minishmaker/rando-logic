@@ -1,19 +1,72 @@
 area Caves:
   room EasternHillsBomb
   room LonLonPuddle
-  room LonLonTingle
+  room LonLonTingle:
+    node South:
+      door Door
+    node North:
+      chest Chest
+      door Ladder
+    node BombWallExit:
+      exit BombWall
+    node BombWallEntrance:
+      entrance BombWall
+    South -> North: item WhiteSword
+    North -> BombWallEntrance: item BombBag
+    BombWallExit -> North: flag WallBombed
   room LonLonTingleDark
-  room MagicBoomerang
+  room MagicBoomerang:
+    node TopLeft:
+      chest TopLeft
+      door TopLeftLadder
+    node TopRight:
+      chest TopRight
+      door TopRightLadder
+    node Middle:
+      chest Middle
+      entrance MiddleLadder
+    node MiddleExit:
+      exit MiddleLadder
+    Middle -> MiddleExit: flag AllTingleTreesLit
+    node BottomLeft:
+      chest BottomLeft
+      door BottomLeftLadder
+    node BottomRight:
+      chest BottomRight
+      door BottomRightLadder
   room MinishWoodsScrub
-  room NorthHyruleFieldCave
+  room NorthHyruleFieldCave:
+    node Left:
+      door LeftLadder
+      door South
+      door Stair
+    node Right:
+      door RightLadder
+    Right -> Left: item WhiteSword3
   room NorthHyruleFieldCaveBasement
   room NorthHyruleFieldFairy
-  room SouthHyruleFieldFairy
+  room SouthHyruleFieldFairy:
+    node Main:
+      door Door
   room SouthHyruleFieldPuddle
-  room TownWaterfall
+  room TownWaterfall:
+    node Main:
+      chest Chest
+    node MainExit:
+      exit Door
+    node MainEntrance: 
+      entrance Door
+    MainEntrance -> Main: item Flippers
+    Main -> MainExit: item Flippers
   room TrilbyDigFairy
-  room TrilbyFairy
-  room TrilbyKeese
+  room TrilbyFairy:
+    node Main:
+      door Door
+  room TrilbyKeese:
+    node Main:
+      chest Chest
+      door Door
+      enemy Keese
   room TrilbyLowerAccess
   room TrilbyPuddle
   room TrilbyScrub
