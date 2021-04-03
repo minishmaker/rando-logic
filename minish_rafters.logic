@@ -12,7 +12,7 @@ area MinishRafters:
       door North
       door East
       entrance Down
-  room DrLeft
+  room DrLeft:
     node Main:
       door North
       entrance Down
