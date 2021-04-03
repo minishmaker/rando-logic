@@ -1,6 +1,12 @@
 area Caves:
-  room EasternHillsBomb
-  room LonLonPuddle
+  room EasternHillsBomb:
+    node Main:
+      chest Chest
+      door Door
+      enemy Keese
+  room LonLonPuddle:
+    door Door
+    chest Chest
   room LonLonTingle:
     node South:
       door Door
@@ -14,7 +20,12 @@ area Caves:
     South -> North: item WhiteSword
     North -> BombWallEntrance: item BombBag
     BombWallExit -> North: flag WallBombed
-  room LonLonTingleDark
+  room LonLonTingleDark:
+    node Main:
+      door Door
+    node MainChest:
+      chest Chest
+    Main <-> MainChest: item Lantern
   room MagicBoomerang:
     node TopLeft:
       chest TopLeft
@@ -34,7 +45,9 @@ area Caves:
     node BottomRight:
       chest BottomRight
       door BottomRightLadder
-  room MinishWoodsScrub
+  room MinishWoodsScrub:
+    node Main:
+      door Door
   room NorthHyruleFieldCave:
     node Left:
       door LeftLadder
@@ -43,12 +56,34 @@ area Caves:
     node Right:
       door RightLadder
     Right -> Left: item WhiteSword3
-  room NorthHyruleFieldCaveBasement
-  room NorthHyruleFieldFairy
+  room NorthHyruleFieldCaveBasement:
+    chest HP
+    door Stair
+    door South
+  room NorthHyruleFieldFairy:
+    node Main:
+      door Door
   room SouthHyruleFieldFairy:
     node Main:
       door Door
-  room SouthHyruleFieldPuddle
+  room SouthHyruleFieldPuddle:
+    node Main:
+      chest Rupee1
+      chest Rupee2
+      chest Rupee3
+      chest Rupee4
+      chest Rupee5
+      chest Rupee6
+      chest Rupee7
+      chest Rupee8
+      chest Rupee9
+      chest Rupee10
+      chest Rupee11
+      chest Rupee12
+      chest Rupee13
+      chest Rupee14
+      chest Rupee15
+      door Door
   room TownWaterfall:
     node Main:
       chest Chest
@@ -58,7 +93,9 @@ area Caves:
       entrance Door
     MainEntrance -> Main: item Flippers
     Main -> MainExit: item Flippers
-  room TrilbyDigFairy
+  room TrilbyDigFairy:
+    node Main:
+      door Ladder
   room TrilbyFairy:
     node Main:
       door Door
@@ -67,6 +104,39 @@ area Caves:
       chest Chest
       door Door
       enemy Keese
-  room TrilbyLowerAccess
-  room TrilbyPuddle
-  room TrilbyScrub
+  room TrilbyLowerAccess:
+    node Left:
+      door LadderLeft
+    node Right:
+      door LadderRight
+    node BombWallExit:
+      exit BombWall
+    node BombWallEntrance:
+      entrance BombWall
+    Right -> Left: item WhiteSword
+    Right -> BombWallEntrance: item BombBag
+    BombWallExit -> Right: flag WallBombed
+  room TrilbyPuddle:
+    node Main:
+      chest Rupee1
+      chest Rupee2
+      chest Rupee3
+      chest Rupee4
+      chest Rupee5
+      chest Rupee6
+      chest Rupee7
+      chest Rupee8
+      chest Rupee9
+      chest Rupee10
+      chest Rupee11
+      chest Rupee12
+      chest Rupee13
+      chest Rupee14
+      chest Rupee15
+      door Door
+  room TrilbyScrub:
+    node Main:
+      door Door
+    node Scrub:
+      chest Scrub
+    Main <-> Scrub: item Shield
