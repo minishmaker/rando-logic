@@ -1,18 +1,105 @@
 area HouseInteriors2:
-  room Anju
-  room Dampe
-  room DrLeft
-  room Gorman1A
-  room Gorman1B
-  room Gorman1C
-  room Gorman2A
-  room Gorman2B
-  room Gorman2C
-  room Julietta
-  room LinkBedroom
-  room LinkEntry
-  room LinkSmithy
-  room Percy
-  room Romio
-  room Fifi
-  room Strato
+  room Anju:
+    node Main:
+      door South
+    node MainMinish:
+      door WestMinish
+      door MinishChimney
+  room Dampe:
+    node Main:
+      chest Dampe
+      door South
+  room DrLeft:
+    node Main:
+      door South
+    node MainBook:
+      chest Book
+    Main <-> MainBook: flag BookPushed
+    node MainMinish:
+      door MinishNorth
+    node Chimney:
+      door MinishChimney
+    MainMinish <-> MinishChimney: flag ChimneyPutOut
+    node RaftersEntrance:
+      door MinishRafters
+    MainMinish -> RaftersEntrance: ( item Bracelets | flag BookcasesMoved )
+  room Fifi:
+    node Main:
+      chest Fifi
+      door South
+  room Gorman1A:
+    node Main:
+      door South
+  room Gorman1B:
+    node Main:
+      door South
+  room Gorman1C:
+    node Main:
+      door South
+  room Gorman2A:
+    node Main:
+      door South
+    node MainMinish:
+      door SouthMinish
+    node MainMinishHouse:
+      door MinishHouse
+    MainMinish -> MainMinishHouse: ( item Bracelets | flag BookcasesMoved )
+    MainMinishHouse -> MainMinish: flag BookcasesMoved
+  room Gorman2B:
+    node Main:
+      door South
+    node MainMinish:
+      door SouthMinish
+      door MinishHouse
+  room Gorman2C:
+      door South
+    node MainMinish:
+      door SouthMinish
+    node MainMinishHouse:
+      door MinishHouse
+    MainMinish -> MainMinishHouse: ( item Bracelets | flag BookcaseMoved )
+    MainMinishHouse -> MainMinish: flag BookcaseMoved
+  room Julietta:
+    node Main:
+      door South
+    node MainHP:
+      chest HP
+    Main <-> MainHP: flag HPPushed
+    node MainMinish:
+      door Chimney
+      flag HPPushed
+  room LinkBedroom:
+    node Main:
+      door North
+  room LinkEntry:
+    node Main:
+      door South
+      door East
+      door Stairs
+  room LinkSmithy:
+    chest Chest
+    chest ItemLeft
+    chest ItemRight
+    door East
+  room Percy:
+    node Main:
+      item Percy
+    node MainBeast:
+      item Beast
+    Main <-> MainBeast: flag SpokeToBeast
+  room Romio:
+    node Main:
+      door South
+    node MainMinish:
+      door LeftChimney
+    Main -> MainMinish: ( item Cane | flag PortalFlipped )
+    MainMinish -> Main: flag PortalFlipped
+    node MinishRightChimney:
+      door RightChimney
+    MainMinish <-> MinishRightChimney: flag ChimneyPutOut
+  room Strato:
+    node Main:
+      door South
+    node MainMinish:
+      door MinishNorth
+      door MinishSouth
