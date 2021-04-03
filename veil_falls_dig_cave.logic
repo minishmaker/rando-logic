@@ -1,2 +1,16 @@
 area VeilFallsDigCave:
-  room Main
+  room Main:
+    node Left:
+      chest HP
+      chest LeftChest
+      enemy Spark
+    node LeftEntrance:
+      door LeftDoor
+    Left <-> LeftEntrance: item MoleMitts
+    node Right:
+      chest RightChest1
+      chest RightChest2
+    node RightEntrance:
+      door RightDoor
+      enemy ChuChu
+    Right <-> RightEntrance: item MoleMitts
