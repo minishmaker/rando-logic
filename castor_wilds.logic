@@ -1,2 +1,74 @@
 area CastorWilds:
-  room Main
+  room Main:
+    node East:
+      door East
+    node Main:
+      door DarknutCave
+      exit DigCave
+    node MainDigCave:
+      entrance DigCave
+    Main -> MainDigCave: item MoleMitts
+    Main <-> East: ( item Boots | item Cape )
+    node NorthEast:
+      door NorthEastCave
+    node NorthEastIsland:
+      door NorthEastIslandCave
+    NorthEast -> NorthEastIsland: ( item Flippers | item Cape )
+    node NorthEastWaterfallExit:
+      door WaterfallExit
+    node NorthEastWaterfallEntrance:
+      door WaterfallEntrance
+    NorthEast -> NorthEastWaterfallEntrance: ( item Flippers & flag CastorWaterfallFusion )
+    NorthEastWaterfallExit -> NorthEast: ( item Flippers & flag CastorWaterfallFusion )
+    node NorthWest
+    Main <-> NorthWest: ( item Bow | flag NorthBoulderPushed )
+    node MainMinish:
+      door CenterHole
+      door MinishPathNorth
+    node NorthWestMinish:
+      door BowHole
+      door South
+      exit NorthWestFusionHole
+    node NorthWestMinishFusion:
+      entrance NorthWestFusionHole
+    NorthWestMinishFusion <-> NorthWestMinish: flag NorthWestMinishHoleFusion
+    node NorthMinishFusion:
+      door NorthMunishHole
+    MainMinish <-> NorthMinishFusion: flag NorthLilyFusion
+    node West:
+      door Ghostblade
+    node WestHilltop:
+      chest WestChest
+      enemy LikeLikes
+    WestHillTop -> West
+    Main -> WestHillTop: item Bow
+    WestHillTop -> Main
+    node MinishVineHole:
+      door MinishVineHole
+    MainMinish <-> MinishVineHole: flag MinishVineLilyFusion
+    node South:
+      entrance Crest
+      flag Virtual.Zeffa.CastorCrest
+    South <-> West: ( item Cape | item Boots )
+    South <-> Main: ( item Bow | flag SouthBoulderPushed )
+    node SouthBetweenSouthAndWater:
+      door SouthCave
+    Main <-> SouthBetweenSouthAndWater: ( item Cape | item Flippers )
+    SouthBetweenSouthAndWater <-> South: ( item Bow | flag EastBoulderPushed )
+    node SouthWest
+    node SouthWestExit
+    node SouthWestEntrance
+    South <-> SouthWest: ( item Cape | item Boots )
+    SouthWestExit -> SouthWest: flag CastorFusions
+    SouthWest -> SouthWestEntrance: flag CastorFusions
+    Main <-> SouthEastWater: item Flippers
+    node SouthEastWater:
+      chest Rupee1
+      chest Rupee2
+      chest Rupee3
+    node SouthEastWaterMinishEntrance:
+      entrance SouthEastMinish
+    node SouthEastWaterMinishExit:
+      exit SouthEastMinish
+    MainMinish -> SouthEastWaterMinishEntrance: item Flippers
+    SouthEastWaterMinishExit -> MainMinish: item Flippers
