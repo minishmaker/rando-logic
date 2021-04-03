@@ -1,6 +1,12 @@
 area MelariMine:
   room Main:
-    node Main: # digspots are clockwise from the north entrance to Melari
+    node Main
+      door East
+      door North
+      door SouthEast
+      door SouthWest
+      door West
+    node MainDigSpots: # digspots are clockwise from the north entrance to Melari
       chest DigSpot1
       chest DigSpot2
       chest DigSpot3
@@ -9,11 +15,7 @@ area MelariMine:
       chest DigSpot6
       chest DigSpot7
       chest DigSpot8
-      door East
-      door North
-      door SouthEast
-      door SouthWest
-      door West
+    Main <-> MainDigSpots: item MoleMitts
     node Melari:
       chest Sword
     Main <-> Melari: flag HasDefeatedGleerock
