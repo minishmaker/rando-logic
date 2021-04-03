@@ -1,6 +1,6 @@
 area MelariMine:
   room Main:
-    node Main
+    node Main:
       door East
       door North
       door SouthEast
