@@ -1,6 +1,44 @@
 area MinishPaths:
-  room CastorWilds
-  room HyliaCabin
-  room LonLonRanch
-  room MinishVillageWoods
-  room SchoolYard
+  room CastorWilds:
+    node North:
+      door North
+    node South
+      door South
+    North <-> South: (item Flippers | item GustJar)
+  room HyliaCabin:
+    node North:
+      door North
+    node South
+      door South
+    North <-> South: (item Flippers | item GustJar)
+    node SouthFusionChest:
+      chest FusionChest
+    South <-> SouthFusionChest: flag FusionChest
+  room LonLonRanch:
+    node Main:
+      chest HP
+      door South
+      enemy PestoAndMoldWorm
+    node MainFusionChest:
+      chest FusionChest
+    Main <-> MainFusionChest: flag FusionChest
+  room MinishVillageWoods:
+    node Main:
+      door North
+      door South
+    node MainFusionChest:
+      chest FusionChest
+    Main <-> MainFusionChest: flag FusionChest
+  room SchoolYard:
+    node Main:
+      door South
+      enemy ScissorsBeetle
+    node MainFusionChest:
+      chest FusionChest
+    Main <-> MainFusionChest: flag FusionChest
+    node North:
+      chest Left
+      chest Middle
+      chest Right
+      chest HP
+    Main <-> North: item CanSplit4
