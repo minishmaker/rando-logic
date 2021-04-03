@@ -1,5 +1,40 @@
 area WindTribeTower:
-  room GF
-  room "1F"
-  room "2F"
-  room "3F"
+  room GF:
+    node Main:
+      chest LeftChest
+      chest RightChest
+      door Stair
+    node MainUnlocked:
+      door South
+    node MainPortal:
+      door PortalFusion
+    Main <-> MainPortal: flag WindTribePortalFusion
+    Main <-> MainUnlocked: flag WindTribeUnlocked
+  room F1:
+    node Main:
+      chest Chest
+      door StairDown
+      exit StairUp
+    node MainUnlocked:
+      entrance StairUp
+    node MainGregalCured:
+      chest Gregal1
+      flag GregalCured
+    node MainUnlockedGregalCured:
+      chest Gregal2
+    Main <-> MainUnlocked: flag WindTribeUnlocked
+    Main <-> MainGregalCured: item GustJar
+    MainUnlocked <-> MainUnlockedGregalCured: flag GregalCured
+  room F2:
+    node Main:
+      chest Left
+      chest Middle
+      chest Right
+      door StairUp
+      door StairDown
+  room F3:
+    node Main:
+      chest Left
+      chest Right
+      door StairUp
+      door StairDown
