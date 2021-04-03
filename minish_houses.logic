@@ -1,0 +1,22 @@
+area MinishHouseInteriors:
+  room EasternHills
+  room Festari
+  room Gentari
+  room GentariSide
+  room HyruleTownPreWestGorman
+  room LakeCenter
+  room LakeCrest
+  room MineEast
+  room MineSouth
+  room MineSouthWest
+  room MinishWoods
+  room SouthHyruleField
+  room Trilby
+  room VillageBarrel
+  room VillageLakeMushroom
+  room VillageMushroomCenter
+  room VillageMushroomEast
+  room VillageMushroomWest
+  room VillagePot
+  room VillageShoe
+  room WesternWood
