@@ -52,6 +52,7 @@ area HouseInteriors2:
       door SouthMinish
       door MinishHouse
   room Gorman2C:
+    node Main:
       door South
     node MainMinish:
       door SouthMinish
