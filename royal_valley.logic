@@ -1,3 +1,42 @@
 area RoyalValley:
-  room Graveyard
-  room LostWoods
+  room Graveyard:
+    node North:
+      door LeftGrave
+      door RightGrave
+      exit Crypt
+    node NorthDoor:
+      entrance Crypt
+    node North -> NorthDoor: item WhiteSword3
+    node NorthButterfly:
+      chest Butterfly
+    North <-> NorthButterfly: flag GraveyardButterflyFusion
+    node NorthLeftChest:
+      chest LeftChest
+    North <-> NorthLeftChest: flag LeftChestFusion
+    node NorthRightChest:
+      chest RightChest
+    North <-> NorthRightChest: flag RightChestFusion
+    node Middle:
+      door Dampe
+      door South
+      enemy Ghinis
+    North <-> Middle: flag GotKeyFromCrow
+    node MiddleKeyCrow:
+      chest CrowKey
+    Middle <-> MiddleKeyCrow: ( item Boots & item GraveyardKey & flag TalkedToDampe )
+    node South:
+      door East
+      door South
+      door North
+      enemy GhinisAndCrows
+      exit Fairy
+    node SouthFairy:
+      entrance Fairy
+    South -> SouthFairy: item BombBag
+  room LostWoods:
+    node Main
+      chest Chest
+      door North
+      door East
+      door South
+      door West
