@@ -34,7 +34,7 @@ area RoyalValley:
       entrance Fairy
     South -> SouthFairy: item BombBag
   room LostWoods:
-    node Main
+    node Main:
       chest Chest
       door North
       door East
