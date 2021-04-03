@@ -1,6 +1,86 @@
 area OuterFoW:
-  room Entrance
-  room F2
-  room F3
-  room LeftEye
-  room RightEye
+  room Entrance:
+    node Main:
+      door Left
+      door Center
+      door Right
+      door FarRight
+    node FarLeft:
+      door FarLeft
+    node Dig:
+      chest Rupee
+      chest Chest
+    Main <-> FarLeft: item MoleMitts
+    Main <-> Dig: item MoleMitts
+  room F2:
+    node Left:
+      chest Rupee1
+      chest Rupee2
+      chest Rupee3
+      chest Rupee4
+      chest Rupee5
+      chest Rupee6
+      chest Rupee7
+      door Door
+      door Ladder
+    node LeftDig:
+      chest LeftChest
+    Left <-> LeftDig: item MoleMitts
+    node Center:
+      door Door
+      door Ladder
+    node CenterDig:
+      chest CenterChest
+    Center <-> CenterDig: item MoleMitts
+    node Right:
+      door Door
+      door Ladder
+    node RightDig:
+      chest RightChest
+    Right <-> RightDig: item MoleMitts
+    node FarRightNorth:
+      door Door
+    node FarRightDig:
+      chest Pot1
+      chest Pot2
+    node FarRightSouth:
+      door Ladder
+    FarRightNorth <-> FarRightDig: item MoleMitts
+    FarRightSouth <-> FarRightDig: item MoleMitts
+  room F3:
+    node Left:
+      door LeftDoor
+      door LeftLadder
+    node LeftDig:
+      chest LeftChest
+    Left <-> LeftDig: item MoleMitts
+    node CenterDoor:
+      door CenterDoor
+    node CenterLadder:
+      door CenterLadder
+    CenterDoor <-> CenterLadder: item MoleMitts
+    node Right:
+      door Ladder
+      door Door
+    node RightDig:
+      chest RightChest
+    Right <-> RightDig: item MoleMitts
+    node FarRight:
+      door Door
+      door Ladder
+  room LeftEye:
+    node Main:
+      door Door
+      chest SmallChest
+    node Dig:
+      chest BigChest
+    Main <-> Dig: item MoleMitts
+  room RightEye:
+    node Main
+    node MainMinish:
+      door Door
+    Main -> MainMinish: item CanTurnMinish
+    MainMinish -> Main: item CanGrow
+    Main <-> Dig: item MoleMitts
+    node Dig:
+      chest Chest
