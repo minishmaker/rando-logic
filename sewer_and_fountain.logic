@@ -1,12 +1,104 @@
 area SewerAndFountain:
-  room FountainBigChest
-  room FountainEntrance
-  room FountainPacciHole
-  room FountainSmallChest
-  room FountainWaterfall
-  room SewerBigChest
-  room SewerCrossroads
-  room SewerDropIn
-  room SewerEast
-  room SewerEntrance
-  room SewerFrozenChest
+  room FountainBigChest:
+    node Main:
+      enemy Mulldozers
+      exit South
+      exit West
+    node PostFight:
+      chest Chest
+      entrance South
+      entrance West
+    Main -> PostFight: defeat Mulldozers
+  room FountainEntrance:
+    node Main:
+      door North
+      door South
+      door East
+    node HP:
+      chest HP
+    Main <-> HP: item Cape
+  room FountainPacciHole:
+    node Main:
+      door West
+    node North:
+      door North
+    North -> Main
+    Main -> North: item Cane
+  room FountainSmallChest:
+    node Main:
+      chest Chest
+      door Door
+  room FountainWaterfall:
+    node Main:
+      door South
+    node West:
+      door West
+    node East:
+      door East
+    East -> Main
+    Main <-> West: ( item Cape | item Flippers )
+  room SewerBigChest:
+    node Main:
+      exit South
+      enemy Enemies
+    node Water:
+      chest WaterRupee
+      door SouthWater
+    node Chest:
+      chest Chest
+    Main <-> Chest: defeat Enemies
+    Main <-> Water: item Flippers
+  room SewerCrossroads:
+    node Main:
+      door North
+      door East
+    node Water:
+      exit WaterNorth
+      exit WaterEast
+      exit WaterWest
+      exit WaterSouth
+    Water <-> Main: item Flippers
+    Water <-> WaterEntrances: item Flippers
+    node WaterEntrances:
+      entrance WaterNorth
+      entrance WaterEast
+      entrance WaterWest
+      entrance WaterSouth
+  room SewerDropIn:
+    node Main:
+      door South
+    node Water:
+      door South
+    Main -> Water: item Flippers
+  room SewerEast:
+    node East:
+      door East
+    node West:
+      door West
+    East -> West: item GustJar
+    East <-> West: item Cape
+    East <-> Water: item Flippers
+    West -> Water: item Flippers
+    node Water:
+      exit WaterNorth
+      exit WaterWest
+    node WaterEntrances:
+      entrance WaterNorth
+      entrance WaterWest
+  room SewerEntrance:
+     node Water:
+      exit WaterNorth
+      exit WaterSouth
+    Water <-> WaterEntrances: item Flippers
+    node WaterEntrances:
+      entrance WaterNorth
+      entrance WaterSouth
+  room SewerFrozenChest:
+    node WaterEntry:
+      entrance Water
+    node WaterExit
+      exit Water
+    node MainChest:
+      chest Chest
+    WaterExit -> WaterEntry: item Flippers
+    WaterEntry -> MainChest: item Lantern
