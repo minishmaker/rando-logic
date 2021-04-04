@@ -96,7 +96,7 @@ area SewerAndFountain:
   room SewerFrozenChest:
     node WaterEntry:
       entrance Water
-    node WaterExit
+    node WaterExit:
       exit Water
     node MainChest:
       chest Chest
