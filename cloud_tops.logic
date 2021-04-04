@@ -1,0 +1,166 @@
+#Some of the names (esp the doors) get a bit wordy, could be improved
+#I also checked most jumps to see if they worked, might have missed one or two though
+area CloudTops:
+  room LowerClouds:
+    node CenterPlatform:
+      door CloudTopsExit
+      door CenterTornado
+      exit BigTornado
+    node CenterFusion:
+      flag CenterFusion
+    #Reusing the current name for CT Kinstones
+    CenterPlatform -> CenterFusion: item KinstoneX.YellowTornadoProng::5
+    node MiddleRightPlatform:
+      enemy MiddleRightCloudPiranha
+      door MiddleRightPlatformLowerTornado
+      door MiddleBottomPlatformUpperTornado
+    CenterPlatform <-> MiddleRightPlatform: item Cape
+    node TopRightPlatform:
+      door TopRightTornado
+    node TopRightFusion:
+      flag TopRightFusion
+    TopRightPlatform -> TopRightFusion: item KinstoneX.YellowTornadoProng::5
+    node MiddleTopPlatform
+      enemy NorthCloudPiranhas
+      entrance NorthFightEntrance
+    node NorthFight:
+      chest NorthFightItem
+      exit NorthFightExit
+    #Could just be a flag since you don't need sword to beat them?
+    MiddleTopPlatform -> NorthFight: defeat NorthCloudPiranhas
+    node TopLeftPlatform:
+      door TopLeftTornado
+      enemy TopLeftLakitu
+    node TopLeftFusion:
+      flag TopLeftFusion
+    TopLeftPlatform -> TopLeftFusion: item KinstoneX.YellowTornadoProng::5
+    node BottomLeftPlatform:
+      enemy BottomLeftEnemies
+      door BottomLeftPlatformLeftTornado
+      door BottomLeftPlatformRightTornado
+      door BottomLeftPlatformTopTornado
+    node BottomLeftFusion:
+      flag BottomLeftFusion
+    BottomLeftPlatform -> BottomLeftFusion: item KinstoneX.YellowTornadoProng::5
+    node MiddleBottomPlatform:
+      door MiddleBottomPlatformLowerTornado
+      entrance SouthFightEntrance
+      enemy SouthCloudPiranhas
+    node SouthFight:
+      chest SouthFight
+      exit SouthFightExit
+    MiddleBottomPlatform -> SouthFight: defeat SouthCloudPiranhas
+    node BottomRightPlatform:
+      enemy BottomRightCloudPiranha
+      door BottomRightTornado
+    MiddleBottomPlatform <-> BottomRightPlatform: item Cape
+    node BottomRightFusionPlatform:
+      door BottomRightFusionPlatformTornado
+    node BottomRightFusion:
+      flag BottomRightFusion
+    BottomRightFusionPlatform -> BottomRightFusion: item KinstoneX.YellowTornadoProng::5
+    #This way we could pre-set it maybe? Could just remove this if it's not necessary
+    node FusionsComplete:
+      flag FusionsComplete
+    CenterPlatform -> FusionsComplete: (flag CenterFusion & flag TopRightFusion & flag TopLeftFusion & BottomLeftFusion & BottomRightFusion)
+    node BigTornado:
+      entrance BigTornado
+    CenterPlatform -> BigTornado: flag FusionsComplete
+    node CenterPlatform +: exit Virtual.Zeffa.FluteAway
+    node MiddleRightPlatform +: exit Virtual.Zeffa.FluteAway
+    node MiddleTopPlatform +: exit Virtual.Zeffa.FluteAway
+    node TopLeftPlatform +: exit Virtual.Zeffa.FluteAway
+    node BottomLeftPlatform +: exit Virtual.Zeffa.FluteAway
+    node MiddleBottomPlatform +: exit Virtual.Zeffa.FluteAway
+    node BottomRightPlatform +: exit Virtual.Zeffa.FluteAway
+  room TowerEntrance:
+    node Main:
+      entrance Crest
+      flag Virtual.Zeffa.CloudTopsCrest
+      door WindTribeTower
+      door Hole
+    node Main +: exit Virtual.Zeffa.FluteAway
+  room UpperClouds:
+    node StartingPlatform:
+      chest StartingPlatformChest
+      door StartingPlatformLeftHole
+      door StartingPlatformRightHole
+    node TopRightCornerLowerArea:
+      door TopRightCornerLowerHole
+    node TopRightObscure:
+      chest TopRightObscureItem
+    TopRightCornerLowerArea -> TopRightObscure: item MoleMitts
+    #All of the northern islands that can reach each other w/o items condensed together
+    node TopTornadoField:
+      door TopRightHole
+      door TopCenterHole
+      door CenterLeftHole
+    TopRightCornerLowerArea -> TopTornadoField: (item Cape | item Mitts)
+    TopTornadoField -> TopRightObscure: item MoleMitts
+    node TopLeftDigItems:
+      chest TopLeftLeftChest
+      chest TopLeftRightChest
+      chest TopLeftObscure
+    TopTornadoField -> TopLeftDigItems: item MoleMitts
+    node TopLeftCornerLowerArea:
+      chest TopLeftLowerChest
+    TopTornadoField -> TopLeftCornerLowerArea
+    TopLeftCornerLowerArea -> TopTornadoField: (item MoleMitts | item Cape)
+    node BottomleftPlatform:
+      door BottomLeftHole
+    #Can't go backwards from here
+    TopTornadoField -> BottomleftPlatform
+    node BottomLeftDigItems:
+      chest BottomLeftDigChest
+      chest BottomLeftObscure
+    BottomleftPlatform -> BottomLeftDigItems: item MoleMitts
+    node BottomCenterLeftPlatform:
+      door BottomCenterLeftPlatformHole
+      chest BottomCenterLeftChest
+    BottomleftPlatform <-> BottomCenterLeftPlatform: item Cape
+    node BottomCenterLeftDigItem:
+      chest BottomCenterLeftObscure
+    BottomCenterLeftPlatform -> BottomCenterLeftDigItem: item MoleMitts
+    #Can jump into a tornado in the corner to go back up
+    BottomCenterLeftDigItem -> TopTornadoField
+    node BottomCenterPlatform:
+      door BottomCenterPlatformLeftHole
+      door BottomCenterPlatformRightHole
+    BottomleftPlatform <-> BottomCenterPlatform: item Cape
+    #Also includes the empty platform that has the 1x1 hole
+    node BottomCenterRightPlatform:
+      door BottomCenterRightPlatformHole
+      chest BottomCenterRightChest
+    BottomCenterPlatform <-> BottomCenterRightPlatform: item Cape
+    #BottomCenterRightPlatform has a tornado that can reach the other platforms w/o items
+    BottomCenterRightPlatform -> BottomCenterPlatform
+    BottomCenterRightPlatform -> BottomCenterLeftPlatform
+    BottomCenterRightPlatform -> BottomLeftPlatform
+    node BottomRightLeftDigItem:
+      chest BottomRightLeftObscureItem
+    BottomCenterRightPlatform -> BottomRightLeftDigItem: item MoleMitts
+    node SmallHole:
+      door SmallHole
+    BottomCenterRightPlatform -> SmallHole: item MoleMitts
+    #Includes the empty platform to the left of the starting platfirm
+    node BottomRightCornerPlatform:
+      door BottomRightLowerHole
+      door BottomRightUpperHole
+    BottomRightCornerPlatform -> SmallHole: item Cape
+    #Via the center platform
+    BottomRightCornerPlatform -> TopTornadoField: item MoleMitts
+    StartingPlatform -> BottomRightCornerPlatform: item MoleMitts	
+    node BottomRightCornerDigItems:
+      chest BottomRightLowerObscureItem
+      chest BottomRightUpperObscureItem
+    BottomRightCornerPlatform -> BottomRightCornerDigItems: item MoleMitts
+    node StartingPlatform +: exit Virtual.Zeffa.FluteAway
+    node TopRightCornerLowerArea +: exit Virtual.Zeffa.FluteAway
+    node TopTornadoField +: exit Virtual.Zeffa.FluteAway
+    node TopLeftCornerLowerArea +: exit Virtual.Zeffa.FluteAway
+    node BottomleftPlatform +: exit Virtual.Zeffa.FluteAway
+    node BottomCenterLeftPlatform +: exit Virtual.Zeffa.FluteAway
+    node BottomCenterPlatform +: exit Virtual.Zeffa.FluteAway
+    node BottomCenterRightPlatform +: exit Virtual.Zeffa.FluteAway
+    node BottomRightCornerPlatform +: exit Virtual.Zeffa.FluteAway
+    
