@@ -1,6 +1,39 @@
 area HyruleCastle:
-  room B1FMainHalls
-  room GFBedroom
-  room GFEntrance
-  room GFMainHalls
-  room GFThroneRoom
+  room B1FMainHalls:
+    node Main:
+      door Door
+      exit StairBottom
+      exit StairLeft
+      exit StairRight
+    node West:
+      door West
+    Main <-> West: flag BasementDoorUnlocked
+    node Stairs:
+      entrance StairBottom
+      entrance StairLeft
+      entrance StairRight
+    Main <-> Stairs: flag StairsOpen
+  room GFBedroom:
+    door West
+  room GFEntrance:
+    node Main:
+      door North
+      door South
+      exit StairDown
+    Node StairDown:
+      entrance StairDown
+    Main <-> StairDown: flag StairsOpen
+  room GFMainHalls:
+    node Main:
+      door North
+      door South
+      exit StairDownLeft
+      exit StairDownRight
+    Node StairDown:
+      entrance StairDownLeft
+      entrance StairDownRight      
+    Main <-> StairDown: flag StairsOpen
+  room GFThroneRoom:
+    node Main:
+      door South
+      door East
