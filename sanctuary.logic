@@ -1,4 +1,17 @@
 area Sanctuary:
-  room Hall
-  room Pedestal
-  room StainedGlass
+  room Hall:
+    node Main:
+      door North
+      door South
+  room Pedestal:
+    node Main:
+      door South
+    node North:
+      entrance North
+    node NorthExit:
+      exit North  
+    Main <-> North: flag PedFull
+    NorthExit -> Main: flag PedFull
+  room StainedGlass:
+    node Main:
+      door South
