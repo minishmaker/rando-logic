@@ -1,2 +1,6 @@
 area FortressTop:
-  room Main
+  room Main:
+    node Main:
+      chest Element
+      door South
+      entrance Exit
