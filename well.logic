@@ -1,3 +1,30 @@
 area Well:
-  room Main
-  room SouthEntry
+  room Main:
+    node NorthEntry:
+      door Door
+    node NorthBombChest:
+      chest BombChest
+    NorthEntry <-> NorthBombChest: item BombBag
+    node East:
+      chest East
+      door EastLadder
+    node West:
+      chest West
+      door WestLadder
+    node South:
+      door South
+    node Center:
+      chest South
+    South <-> Center:
+    node CenterOpen:
+      chest Open
+    node Holes
+    Hole <-> Center: flag BottomBoulderPushed
+    Hole <-> East: flag EastBoulderPushed
+    Hole <-> West: flag WestBoulderPushed
+    Hole <-> BombChest: ( flag MiddleChestMoved | item BombBag )
+    Center <-> CenterOpen: flag MiddleChestMoved
+  room SouthEntry:
+    node Main:
+      door Ladder
+      door Door
