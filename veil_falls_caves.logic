@@ -1,11 +1,89 @@
 area VeilFallsCaves:
-  room C1F1BehindBreakableWall
-  room C1F1BreakableWall
-  room C1F2Climb
-  room C1F3PushClones
-  room C1GFEntrance
-  room C2BF1WaterRupees
-  room C2F1
-  room C2GFEntry
-  room C2GFSideRoom
-  room WaterfallCave
+  room C1F1BehindBreakableWall:
+    node Main:
+      chest Chest
+      door Stair
+      door Door
+  room C1F1BreakableWall:
+    node Main:
+      door Stair
+      door South
+      enemy RedBubble
+    node BombWallExit:
+      exit BombWall
+    node BombWallEntrance
+      entrance BombWall
+    Main -> BombWallEntrance: ( item BombBag | flag BombWallBombed )
+    BombWallExit -> Main: ( item BombBag | flag BombWallBombed )
+  room C1F2Climb:
+    node Main:
+      door StairUp
+      door StairDown
+      enemy Ghini
+  room C1F3PushClones:
+    node North:
+      door Stair
+      enemy Leevers
+    node South:
+      door Door
+      enemy Leevers
+    North <-> South: item CanSplit3
+  room C1GFEntrance:
+    node Main:
+      door South
+      door Stair
+      enemy Keese
+  room C2BF1WaterRupees:
+    node Main:
+      chest Rupee1
+      chest Rupee2
+      chest Rupee3
+      chest Rupee4
+      chest Rupee5
+      chest Rupee6
+      chest Rupee7
+      chest Rupee8
+      chest Rupee9
+      door Stair
+      door South
+      enemy LikeLike
+    node MainWater:
+      chest UnderwaterRupee1
+      chest UnderwaterRupee2
+      chest UnderwaterRupee3
+      chest UnderwaterRupee4
+      chest UnderwaterRupee5
+      chest UnderwaterRupee6
+    Main <-> MainWater: item Flippers
+  room C2F1:
+    node Main:
+      chest Chest
+      door Stair
+      door Left
+      door Right
+      enemy KeeseAndHelmasaurs
+  room C2GFEntry:
+    node Main:
+      door StairUp
+      door StairDown
+      door Door
+      door Ladder
+      enemy KeeseAndHelmasaurs
+    node MainBombWall:
+      door BombWall
+    MainBombWall -> Main: flag BombWallBombed
+    Main -> MainBombWall: ( item BombBag | flag BombWallBombed )
+  room C2GFSideRoom:
+    node Main:
+      chest Chest
+      door Door
+      enemy Keese
+  room WaterfallCave:
+    node Main:
+      chest HP
+    node DoorEntrance:
+      entrance Door
+    node DoorExit:
+      exit Door
+    DoorEntrance -> Main: item Flippers
+    Main -> DoorExit: item Flippers
