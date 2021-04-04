@@ -1,17 +1,120 @@
 area CrenelCaves:
-  room BlocksChest
-  room BlocksPuzzle
-  room BlocksBomb
-  room FloodBlock
-  room FountHP
-  room FountRupee
-  room GraybladeEntrance
-  room Guru
-  room HelmaHall
-  room MushroomGap
-  room RockPush
-  room ScrubBomb
-  room ScrubGrip
-  room ScrubHint
-  room SwitchBridge
-  room PotCircle
+  room BlocksChest:
+    node Main:
+      door Staircase
+      door Doorway
+      enemy RedChus
+      chest BlocksChest
+  room BlocksPuzzle:
+    node BlocksPuzzle:
+      door Ladder
+      door BlocksPuzzleDoor
+      enemy Helmasaurs
+    node MushroomGapSouth:
+      door MushroomGapDoor
+      enemy Helmasaur
+    node MushroomGapNorth:
+      door Staircase
+      enemy Helmasaur
+    MushroomGapNorth <-> MushroomGapSouth: (item GustJar | item Cape | item LightArrows | item Cane)
+  room BlocksBomb:
+    node PreBombBlocks:
+      door PreBombBlocks
+      enemy Chus
+    node PostBombBlocks:
+      door PostBombBlocks
+      enemy SilverChu
+    #These blocks respawn when leaving, and it seems to be impossible to go backwards through this room?
+    PreBombBlocks -> PostBombBlocks: item BombBag
+  room FloodBlock: #This is the room w/ 2 chests and a HP on the very left side of crenel right?
+    node FloodBlockEntrance:
+      door FloodBlock
+    node FloodBlockChests:
+      chest LeftFloodBlockChest
+      chest RightFloodBlockChest
+    #These are also respawning bomb-blocks
+    FloodBlockEntrance -> FloodBlockChests: (item BombBag | item Cape)
+    node FloodBlockHP:
+      chest HearPiece
+    #Should grabbing the HP from the water be in logic? Don't think it currently is
+    FloodBlockEntrance -> FloodBlockHP: (item BombBag | item Cape | item Flippers)
+  room FountHP:
+    node Main:
+      door Doorway
+      chest HeartPiece
+  room FountRupee:
+    node Main:
+      door Doorway
+      chest LeftRupee
+      chest CenterRupee
+      chest RightRupee
+  room GraybladeEntrance:
+    node Main:
+      door South
+      exit North
+    node Switches:
+      flag Switches
+    Main -> Switches: item CanSplit2
+    node SwitchDoor:
+      entrance North
+    GraybladeEntrance -> SwitchDoor: flag Switches
+  room Guru:
+    node Main:
+      door Doorway
+  room HelmaHall:
+    node Main:
+      door Staircase
+      door Doorway
+      enemy Helmasaurs
+  room MushroomGap:
+    node Main:
+      door Doorway
+      door Staircase
+      enemy LowerKeese
+      enemy UpperKeese
+  room RockPush:
+    node Main:
+      door Doorway
+      door Staircase
+  room ScrubBomb:
+    node ScrubBomb:
+      door Doorway
+    node DekuScrub:
+      flag DekuScrub
+    ScrubBomb -> DekuScrub: item Shield
+  room ScrubGrip:
+    node ScrubGrip:
+      door ScrubGrip
+    node DekuScrub:
+      chest DekuScrub
+    ScrubGrip -> DekuScrub: item Shield
+  room ScrubHint:
+    node ScrubHint:
+      door ScrubHint
+    node DekuScrub:
+      flag DekuScrub
+    ScrubHint -> DekuScrub: item Shield
+  room SwitchBridge:
+    node SwitchBridgeNorth:
+      door Staircase
+      enemy RedChus
+    node SwitchBridgeGap:
+      flag Switch
+    SwitchBridgeNorth -> SwitchBridgeGap: (item Boomerang | item BombBag | item Bow | item CanUseSwordBeam | item CanUsePerilBeam)
+    node SwitchBridgeSouth:
+      door Doorway
+      enemy RedChus
+    SwitchBridgeSouth -> SwitchBridgeGap: (item SmithSword | item Boomerang | item BombBag | item Bow)
+    SwitchBridgeNorth <-> SwitchBridgeSouth: (item Cape | flag Switch)
+  room PotCircle:
+    node Main:
+      door Doorway
+      door Staircase
+      chest PotCircleChest
+      enemy RedChus
+  #This room was missing from the stub so I added it
+  room PreMineralSpring:
+    node Main:
+      door Doorway
+      door Ladder
+      enemy RedChus
