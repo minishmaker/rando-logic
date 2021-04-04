@@ -15,7 +15,7 @@ area Well:
       door South
     node Center:
       chest South
-    South <-> Center:
+    South <-> Center: ( item Cape | item Flippers )
     node CenterOpen:
       chest Open
     node Holes
