@@ -1,2 +1,9 @@
 area Simon:
-  room Main
+  room Main:
+    node Main:
+      entrance Door
+      enemy Enemies
+    node MainPostFight:
+      chest Chest
+      exit Door
+    Main <-> MainPostFight: defeat Enemies
