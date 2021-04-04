@@ -22,8 +22,9 @@ area VeilFalls:
     BottomEast -> BottomEastDigCave: item MoleMitts
     node MiddleMain:
       door West
+      exit BottomCaveLeft
     node MiddleMainWallFusion:
-      door BottomCaveLeft
+      entrance BottomCaveLeft
     MiddleMain <-> MiddleMainWallFusion: flag SourceOfTheFlowFusion
     node MiddleRight:
       door BottomCaveMiddle
