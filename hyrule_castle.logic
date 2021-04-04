@@ -20,7 +20,7 @@ area HyruleCastle:
       door North
       door South
       exit StairDown
-    Node StairDown:
+    node StairDown:
       entrance StairDown
     Main <-> StairDown: flag StairsOpen
   room GFMainHalls:
