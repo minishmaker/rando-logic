@@ -11,7 +11,7 @@ area VeilFallsCaves:
       enemy RedBubble
     node BombWallExit:
       exit BombWall
-    node BombWallEntrance
+    node BombWallEntrance:
       entrance BombWall
     Main -> BombWallEntrance: ( item BombBag | flag BombWallBombed )
     BombWallExit -> Main: ( item BombBag | flag BombWallBombed )
