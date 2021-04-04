@@ -1,2 +1,8 @@
 area Vaati3:
-  room Main
+  room Main:
+    node Main:
+      exit Entrance:
+      enemy Vaati
+    node PostFight:
+      flag GameFinish
+    Main -> PostFight: defeat Vaati
