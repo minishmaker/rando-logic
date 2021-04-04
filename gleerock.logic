@@ -1,2 +1,10 @@
 area Gleerock:
-  room Main
+  room Main:
+    node Main:
+      exit Door
+      enemy Gleerock
+    node MainPostFight:
+      entrance GreenTeleport
+      chest HP
+      chest Element
+    Main -> MainPostFight: defeat Gleerock
