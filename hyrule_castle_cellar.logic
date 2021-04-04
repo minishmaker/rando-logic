@@ -1,3 +1,14 @@
 area HyruleCastleCellar:
-  room GardenEntrance
-  room CastleEntrance
+  room GardenEntrance:
+    node Main:
+      door Ladder
+      door East
+      enemy Ropes
+  room CastleEntrance:
+    node Main:
+      door West
+      exit East
+      enemy Rope
+    node East:
+      entrance East
+    Main <-> East: flag DoorOpen
