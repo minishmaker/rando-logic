@@ -29,7 +29,7 @@ area HyruleCastle:
       door South
       exit StairDownLeft
       exit StairDownRight
-    Node StairDown:
+    node StairDown:
       entrance StairDownLeft
       entrance StairDownRight      
     Main <-> StairDown: flag StairsOpen
