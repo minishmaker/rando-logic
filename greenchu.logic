@@ -1,2 +1,10 @@
 area Greenchu:
-  room Main
+  room Main:
+    node Main:
+      exit Door
+      enemy Greenchu
+    node MainPostFight:
+      entrance GreenTeleport
+      chest HP
+      chest Element
+    Main -> MainPostFight: defeat Greenchu
