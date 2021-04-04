@@ -86,7 +86,7 @@ area SewerAndFountain:
       entrance WaterNorth
       entrance WaterWest
   room SewerEntrance:
-     node Water:
+    node Water:
       exit WaterNorth
       exit WaterSouth
     Water <-> WaterEntrances: item Flippers
