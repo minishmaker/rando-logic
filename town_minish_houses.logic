@@ -4,16 +4,16 @@ area TownMinishHouses:
       door South
   room GormanWest:
     node Main:
-      Door East
+      door East
   room DrLeft:
     node Main:
       door South
   room LumberMill:
     node Main:
-      Door East
+      door East
   room Cafe:
     node Main:
-      Door West
+      door West
   room LibraryBookCase:
     node Main:
       door South
