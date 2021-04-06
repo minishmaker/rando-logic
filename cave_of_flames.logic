@@ -1,19 +1,210 @@
 area CaveOfFlames:
-  room BF1CartExit
-  room BF1FlippedCart
-  room BF1MinishLava
-  room BF1MinishPortal
-  room BF1PacciChest
-  room BF1PillbugsAndFloating
-  room BF1PostPacci
-  room BF1TrackSwap
-  room BF2BladeChest
-  room BF2CartPuzzle
-  room BF2GleerokEntrance
-  room BF2Lava
-  room BF2Pillbugs
-  room BF2PostLava
-  room GFBombOmbs
-  room GFEntrance
-  room GFLikeLike
-  room GFSpikedBeetles
+  room BF1CartExit:
+    node North:
+      door MinecartNorth
+      door North
+    node NorthEast:
+      door BombWall
+    node NorthEastHP:
+      chest HP
+    NorthEast <-> NorthEastHP: item BombBag
+    node South:
+      door MinecartSouth
+      door West
+    node SouthDoor:
+      door South
+    SouthDoor -> South
+    node MainMinish:
+      door MinishWest
+      door MinishSouth
+      door MinishNorth
+  room BF1FlippedCart:
+    node Main:
+      door SouthWest
+      door MiddleNorth
+    node NorthWestDoor:
+      door NorthWest
+    Main <-> NorthWestDoor: flag DoorOpen
+    node Minecart:
+      door Minecart
+    Main -> Minecart: iten Cane
+    Minecart -> Main
+    node BombWall:
+      door BombWall
+    Main <-> BombWall: item BombBag
+  room BF1MinishLava:
+    node MainMinish:
+      door NorthMinish
+    node Main:
+      chest BigChest
+      chest Chest
+      door West
+    MainMinish -> Main: item CanGrow
+  room BF1MinishPortal:
+    node Main:
+      enemy Helmasaurs
+    node East:
+      door East
+    East <-> Main: item BombBag
+    node MainMinish:
+      door EastMinish
+    Main -> MainMinish: ( defeat Helmasaurs | item CanTurnMinish )
+    MainMinish -> Main: ( defeat Helmasaurs | item CanGrow )
+  room BF1PacciChest:
+    node Fight:
+      enemy SpinyChus
+    node MiddleDoor:
+      door Middle
+    node PostFight:
+      chest BigChest
+    Fight <-> PostFight: defeat SpinyChus
+    PostFight <-> West: defeat SpinyChus
+    node West:
+      door West
+    Middle -> Fight
+    node East:
+      chest EastChest
+      door East
+  room BF1PillbugsAndFloating:
+    node Main:
+      chest BottomChest
+      chest TopChest
+      door North
+      door West
+  room BF1PostPacci:
+    node East:
+      door East
+    node Stair:
+      entrance Stair
+    node South:
+      door South
+      flag ButtonPressed
+    node WestPortal:
+      door Portal
+    West <-> WestPortal: flag ButtonPressed
+    node West:
+      exit Stair
+    East <-> West: ( item Cane | item Cape )
+    South -> West
+    West -> South: item Cane
+    West -> Stair: flag DoorUnlocked
+  room BF1TrackSwap:
+    node Main:
+      door North
+      door MinecartSouth
+    node Tracknorth:
+      door MinecartNorth
+    TrackSouth <-> Main: flag DoorUnlocked
+  room BF2BladeChest:
+    node Upper
+      door UpperWest
+      door LowerWest
+    node Lower:
+      chest Chest
+      door West
+    Lower -> Upper: item Cape
+    Upper -> Lower
+  room BF2CartPuzzle:
+    node Main:
+      door North
+    Main <-> Minecart: ( item CanTurnMinish | item CanShrink | item Cane )
+    node Minecart:
+      door SouthMinecart
+    node South:
+      door East
+    node SouthUpper:
+      door South
+    node UpperChest:
+      chest UpperChest
+    node LowerChest:
+      chest LowerChest
+    SouthUpper -> UpperChest
+    UpperChest -> South
+    South <-> UpperChest: item Cane
+    South -> SouthUpper: item Cane
+  room BF2GleerokEntrance:
+    node Main:
+      door Hole
+      door Door
+  room BF2Lava:
+    node BigDoor:
+      door BigDoor
+    node West:
+      door West
+    node North:
+      door North
+    node MainEast:
+      door RedPortal
+    MainEast -> MainWest: item Cape
+    MainWest -> MainEast: ( item Cape | item Cane )
+    North <-> MainEast: ( item Cape | item Cane )
+    West <-> MainWest: ( item Cape | item Cane )
+    node MainWest:
+      chest SouthEastChest
+      chest SouthWestChest
+      chest BigChest
+      door WestUpper
+  room BF2Pillbugs:
+    node East:
+      door MinecartNorth
+    node West:
+      door North
+    East <-> West: flag SwitchActivated
+  room BF2PostLava:
+    node South:
+      door South
+    node North:
+      door EastUpper
+    node East:
+      door East
+    node West
+    node SouthEast:
+      door SouthUpper
+      door EastLower
+    South -> East
+    North -> West
+    West -> North: ( item Cane | item Cape )
+    West -> East: ( item Cane | item Cape )
+    East -> West: item Cane
+    East -> South: item Cane
+  room GFBombOmbs:
+    node Main:
+      door West
+    node North:
+      door North
+    Main <-> North: flag WallBombed
+  room GFEntrance:
+    node Main:
+      door North
+      door South
+      door East
+    node RedPortal:
+      door RedPortal
+    node BluePortal:
+      door BluePortal
+  room GFLikeLike:
+    node Main:
+      chest Rupee1
+      chest Rupee2
+      chest Rupee3
+      chest Rupee4
+      chest Rupee5
+      door North
+      enemy LikeLike
+    node South: 
+      door South
+    Main -> South
+    node East:
+      door East
+    East <-> Main: defeat CaveOfFlames.GFSpikedBeetles.enemies
+  room GFSpikedBeetles:
+    node Main:
+      door South
+      enemy SpikedBeetles
+    node PostFight:
+      chest Chest
+    Main <-> PostFight: defeat SpikedBeetles
+    node West:
+      door West
+    Main <-> West: defeat SpikedBeetles
+    
