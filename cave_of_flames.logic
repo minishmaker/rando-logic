@@ -96,7 +96,7 @@ area CaveOfFlames:
       door MinecartNorth
     TrackSouth <-> Main: flag DoorUnlocked
   room BF2BladeChest:
-    node Upper
+    node Upper:
       door UpperWest
       door LowerWest
     node Lower:
