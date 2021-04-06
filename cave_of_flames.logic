@@ -196,7 +196,7 @@ area CaveOfFlames:
     Main -> South
     node East:
       door East
-    East <-> Main: defeat CaveOfFlames.GFSpikedBeetles.enemies
+    East <-> Main: defeat CaveOfFlames.GFSpikedBeetles.SpikedBeetles
   room GFSpikedBeetles:
     node Main:
       door South
