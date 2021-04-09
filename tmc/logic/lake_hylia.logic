@@ -14,15 +14,18 @@ area LakeHylia:
     node EastArea +: exit Virtual.Zeffa.FluteAway
     node WestArea +: exit Virtual.Zeffa.FluteAway
   room Main:
-    node Crest
+    node Crest:
       exit Crest
+      flag Virtual.Zeffa.LakeCrest
+    node CrestMinish:
       door MinishHouse
       exit CrestHoleFusion
-      flag Virtual.Zeffa.LakeCrest
+    Crest -> CrestMinish: item CanTurnMinish
+    CrestMinish -> Crest: item CanGrow
     Crest -> NorthWest
     node CrestHoleFusion:
       entrance CrestHoleFusion
-    Crest -> CrestHoleFusion: flag CrestHoleFusion
+    CrestMinish -> CrestHoleFusion: flag CrestHoleFusion
     node MinishWater:
       exit MinishSouth
       exit NorthHole
@@ -41,9 +44,12 @@ area LakeHylia:
       flag TreeBonk
     SouthEast -> MinishPortalBonk: item Boots
     SouthEast -> MinishPortal: item CanTurnMinish, flag TreeBonk
-    node DigCaveFusion:
-      door DigCave
-    Water <-> DigCaveFusion: flag HyliaDigCaveFusion, (item Flippers || item Cape)
+    node DigCaveFusionEntrance:
+      entrance DigCaveFusion
+    node DigCaveFusionExit:
+      exit DigCaveFusion
+    Water -> DigCaveFusionEntrance: flag HyliaDigCaveFusion, item MoleMitts, (item Flippers | item Cape)
+    DigCaveFusionExit -> Water: ( flag HyliaDigCaveFusion | item Flippers )
     node IslandTop:
       door MinishHouse
       door Hole
