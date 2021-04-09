@@ -72,3 +72,9 @@ area CastorWilds:
       exit SouthEastMinish
     MainMinish -> SouthEastWaterMinishEntrance: item Flippers
     SouthEastWaterMinishExit -> MainMinish: item Flippers
+    node East +: entrance Virtual.Zeffa.FluteAway
+    node Main +: entrance Virtual.Zeffa.FluteAway
+    node West +: entrance Virtual.Zeffa.FluteAway
+    node South +: entrance Virtual.Zeffa.FluteAway
+    node SouthWest +: entrance Virtual.Zeffa.FluteAway
+    node NorthEast +: entrance Virtual.Zeffa.FluteAway
