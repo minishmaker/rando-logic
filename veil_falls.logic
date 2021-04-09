@@ -40,7 +40,7 @@ area VeilFalls:
       chest MiddleLedgeChest
       door MiddleLedgeCave
     node Crest:
-      entrance Crest
+      exit Crest
       door TopCaveMiddle
       flag Virtual.Zeffa.VeilFallsCrest
     Crest <-> MiddleRight: item GripRing
@@ -67,11 +67,11 @@ area VeilFalls:
     node North:
       door North
     NorthPath <-> North: item GripRing
-    node TopCaveLedge +: exit Virtual.Zeffa.FluteAway
-    node TopWaterLand +: exit Virtual.Zeffa.FluteAway
-    node NorthPath +: exit Virtual.Zeffa.FluteAway
-    node Crest +: exit Virtual.Zeffa.FluteAway
-    node Bottom +: exit Virtual.Zeffa.FluteAwayv
-    node BottomEast +: exit Virtual.Zeffa.FluteAway
-    node MiddleRight +: exit Virtual.Zeffa.FluteAway
-    node MiddleChestLedge +: exit Virtual.Zeffa.FluteAway
+    node TopCaveLedge +: entrance Virtual.Zeffa.FluteAway
+    node TopWaterLand +: entrance Virtual.Zeffa.FluteAway
+    node NorthPath +: entrance Virtual.Zeffa.FluteAway
+    node Crest +: entrance Virtual.Zeffa.FluteAway
+    node Bottom +: entrance Virtual.Zeffa.FluteAwayv
+    node BottomEast +: entrance Virtual.Zeffa.FluteAway
+    node MiddleRight +: entrance Virtual.Zeffa.FluteAway
+    node MiddleChestLedge +: entrance Virtual.Zeffa.FluteAway
