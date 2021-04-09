@@ -33,6 +33,9 @@ area RoyalValley:
     node SouthFairy:
       entrance Fairy
     South -> SouthFairy: item BombBag
+    node South +: entrance Virtual.Zeffa.FluteAway
+    node Middle +: entrance Virtual.Zeffa.FluteAway
+    node North +: entrance Virtual.Zeffa.FluteAway
   room LostWoods:
     node Main:
       chest Chest
@@ -40,3 +43,4 @@ area RoyalValley:
       door East
       door South
       door West
+    node Main +: entrance Virtual.Zeffa.FluteAway
