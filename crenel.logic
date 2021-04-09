@@ -47,7 +47,7 @@ area Crenel:
     node CoFExterior:
       door CoFEntrance
       door MelariMinishEast
-      entrance Crest
+      exit Crest
       flag Virtual.Zeffa.CrenelCrest
     node EastOfMine:
       door MelariMinishWest
@@ -75,11 +75,11 @@ area Crenel:
       door TopMountainShelfEast
       door TopMountainShelfWest
       enemy TopMountainShelfEnemies
-    node CoFExterior +: exit Virtual.Zeffa.FluteAway
-    node EastOfMine +: exit Virtual.Zeffa.FluteAway
-    node GraybladeExterior +: exit Virtual.Zeffa.FluteAway
-    node MiddleMountainShelf +: exit Virtual.Zeffa.FluteAway
-    node TopMountainShelf +: exit Virtual.Zeffa.FluteAway
+    node CoFExterior +: entrance Virtual.Zeffa.FluteAway
+    node EastOfMine +: entrance Virtual.Zeffa.FluteAway
+    node GraybladeExterior +: entrance Virtual.Zeffa.FluteAway
+    node MiddleMountainShelf +: entrance Virtual.Zeffa.FluteAway
+    node TopMountainShelf +: entrance Virtual.Zeffa.FluteAway
   room Middle:
     node BridgeBombWall:
       entrance BridgeBombWall
@@ -136,8 +136,8 @@ area Crenel:
       door Ladder
       doot HermitCave
     NorthWest <-> ClimbDigging: item MoleMitts
-    node ClimbWall +: exit Virtual.Zeffa.FluteAway
-    node NorthWest +: exit Virtual.Zeffa.FluteAway
+    node ClimbWall +: entrance Virtual.Zeffa.FluteAway
+    node NorthWest +: entrance Virtual.Zeffa.FluteAway
   room Peak:
     node EastPeak:
       door MinishPathEast
@@ -152,5 +152,5 @@ area Crenel:
     node WestPeakBeanstalk:
       door Beanstalk
     WestPeak <-> WestPeakBeanstalk: flag CrenelBeanstalkFusion
-    node EastPeak +: exit Virtual.Zeffa.FluteAway
-    node WestPeak +: exit Virtual.Zeffa.FluteAway
+    node EastPeak +: entrance Virtual.Zeffa.FluteAway
+    node WestPeak +: entrance Virtual.Zeffa.FluteAway
