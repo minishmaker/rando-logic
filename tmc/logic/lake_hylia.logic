@@ -48,7 +48,9 @@ area LakeHylia:
       entrance DigCaveFusion
     node DigCaveFusionExit:
       exit DigCaveFusion
-    DigCaveFusionExit -> DigCaveFusionEntrance: flag HyliaDigCaveFusion
+    node DigCaveFusionIsland
+    DigCaveFusionExit -> DigCaveFusionIsland: flag HyliaDigCaveFusion
+    DigCaveFusionIsland -> DigCaveFusionEntrance: ( flag HyliaDigCaveFusion | item MoleMitts )
     Water -> DigCaveFusionEntrance: flag HyliaDigCaveFusion, item MoleMitts, (item Flippers | item Cape)
     DigCaveFusionExit -> Water: ( flag HyliaDigCaveFusion | item Flippers )
     node IslandTop:
@@ -97,3 +99,4 @@ area LakeHylia:
     node SouthEast +: entrance Virtual.Zeffa.FluteAway
     node SouthWest +: entrance Virtual.Zeffa.FluteAway
     node DigCaveFusion +: entrance Virtual.Zeffa.FluteAway
+    node DigCaveFusionIsland +: entrance Virtual.Zeffa.FluteAway
