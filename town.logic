@@ -49,7 +49,7 @@ area Town:
       door Strato
       door Swiftblade
       door Well
-      entrance Crest
+      exit Crest
       exit LibraryBottom
       flag Virtual.Zeffa.TownCrest
     Main <-> Anju: (item Flippers | item Cape)
@@ -111,10 +111,10 @@ area Town:
       door DrLeftChimney
       door GormanHouseWest
       door StratoMinish
-    node HearthLedge +: exit Virtual.Zeffa.FluteAway
-    node Main +: exit Virtual.Zeffa.FluteAway
-    node MayorGarden +: exit Virtual.Zeffa.FluteAway
-    node LibraryRoof +: exit Virtual.Zeffa.FluteAway
-    node SchoolGarden +: exit Virtual.Zeffa.FluteAway
-    node SchoolRoof +: exit Virtual.Zeffa.FluteAway
-    node SouthWest +: exit Virtual.Zeffa.FluteAway
+    node HearthLedge +: entrance Virtual.Zeffa.FluteAway
+    node Main +: entrance Virtual.Zeffa.FluteAway
+    node MayorGarden +: entrance Virtual.Zeffa.FluteAway
+    node LibraryRoof +: entrance Virtual.Zeffa.FluteAway
+    node SchoolGarden +: entrance Virtual.Zeffa.FluteAway
+    node SchoolRoof +: entrance Virtual.Zeffa.FluteAway
+    node SouthWest +: entrance Virtual.Zeffa.FluteAway
