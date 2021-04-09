@@ -66,7 +66,7 @@ area LakeHylia:
       door DropletsEntrance
     Water <-> DropletsEntrance: (item Cape | item Flippers)
     node FifiWaterHole:
-      item HP
+      chest FifiWaterHoleHP
     NorthWest <-> FifiWaterHole: item Flippers
     node West:
       flag Boulder
@@ -84,7 +84,7 @@ area LakeHylia:
     node DigCaveNorthArea:
       exit DigCave
     node NorthHP:
-      item NorthHP
+      chest NorthHP
     DigCaveNorthArea <-> NorthHP: item Cape
     node DigCaveNorthEntrance:
       entrance DigCave
