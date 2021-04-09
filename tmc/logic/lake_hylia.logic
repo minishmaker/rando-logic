@@ -48,6 +48,7 @@ area LakeHylia:
       entrance DigCaveFusion
     node DigCaveFusionExit:
       exit DigCaveFusion
+    DigCaveFusionExit -> DigCaveFusionEntrance: flag HyliaDigCaveFusion
     Water -> DigCaveFusionEntrance: flag HyliaDigCaveFusion, item MoleMitts, (item Flippers | item Cape)
     DigCaveFusionExit -> Water: ( flag HyliaDigCaveFusion | item Flippers )
     node IslandTop:
