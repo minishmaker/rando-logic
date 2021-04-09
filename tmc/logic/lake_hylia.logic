@@ -11,8 +11,8 @@ area LakeHylia:
       exit BeanStalkFusion
     BeanStalkFusionExit -> WestArea: flag HyliaBeanstalkFusion
     WestArea -> BeanstalkFusion: flag HyliaBeanstalkFusion
-    node EastArea +: exit Virtual.Zeffa.FluteAway
-    node WestArea +: exit Virtual.Zeffa.FluteAway
+    node EastArea +: entrance Virtual.Zeffa.FluteAway
+    node WestArea +: entrance Virtual.Zeffa.FluteAway
   room Main:
     node Crest:
       exit Crest
