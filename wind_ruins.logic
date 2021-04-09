@@ -14,6 +14,8 @@ area WindRuins:
       chest ChestLeft
       chest ChestRight
     North <-> Chests: defeat Armoses
+    node South +: entrance Virtual.Zeffa.FluteAway
+    node North +: entrance Virtual.Zeffa.FluteAway
   room BeanstalkArea:
     node Main:
       door East
@@ -27,6 +29,7 @@ area WindRuins:
       exit BeanstalkFusion
     Main -> BeanstalkEntrance: flag RuinsBeanstalkFusion
     BeanstalkExit -> Main: flag RuinsBeanstalkFusion
+    node Main +: entrance Virtual.Zeffa.FluteAway
   room DungeonEntry:
     node East:
       door Fortress
@@ -44,6 +47,9 @@ area WindRuins:
       door West
       enemy Armos
       enemy Ropes
+    node East +: entrance Virtual.Zeffa.FluteAway
+    node West +: entrance Virtual.Zeffa.FluteAway
+    node Center +: entrance Virtual.Zeffa.FluteAway
   room Entry:
     node Main:
       chest Butterfly
@@ -60,6 +66,8 @@ area WindRuins:
     Main -> MainMinish: item CanTurnMinish
     MainMinish -> Main: item CanGrow
     Main <-> PostArmos: ( flag ArmosOn | flag RockPushed )
+    node Main +: entrance Virtual.Zeffa.FluteAway
+    node PostArmos +: entrance Virtual.Zeffa.FluteAway
   room LadderBottom:
     node Main:
       enemy Tektites
@@ -72,6 +80,7 @@ area WindRuins:
     node MinishCave:
       door MinishCave
       door MinishVineCenter
+    node Main +: entrance Virtual.Zeffa.FluteAway
   room TektiteFight:
     node Main:
       enemy Tektites
@@ -87,3 +96,4 @@ area WindRuins:
     node MainMinishFusionHole:
       entrance FusionHole
     MainMinish -> MainMinishFusionHole: flag MinishFusionHole
+    node Main +: entrance Virtual.Zeffa.FluteAway
