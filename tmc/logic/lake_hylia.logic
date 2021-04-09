@@ -6,16 +6,16 @@ area LakeHylia:
     node WestArea:
       door Ladder
     node BeanstalkFusion:
-      entrance beanStalkFusion
+      entrance BeanStalkFusion
     node BeanStalkFusionExit:
-      exit beanStalkFusion
+      exit BeanStalkFusion
     BeanStalkFusionExit -> WestArea: flag HyliaBeanstalkFusion
     WestArea -> BeanstalkFusion: flag HyliaBeanstalkFusion
     node EastArea +: exit Virtual.Zeffa.FluteAway
     node WestArea +: exit Virtual.Zeffa.FluteAway
   room Main:
     node Crest
-      entrance Crest
+      exit Crest
       door MinishHouse
       exit CrestHoleFusion
       flag Virtual.Zeffa.LakeCrest
@@ -40,14 +40,14 @@ area LakeHylia:
     node MinishPortalBonk:
       flag TreeBonk
     SouthEast -> MinishPortalBonk: item Boots
-    SouthEast -> MinishPortal: item CanTurnMinish
+    SouthEast -> MinishPortal: item CanTurnMinish, flag TreeBonk
     node DigCaveFusion:
       door DigCave
-    Water <-> DigCaveFusion: flag HyliaDigCaveFusion
+    Water <-> DigCaveFusion: flag HyliaDigCaveFusion, (item Flippers || item Cape)
     node IslandTop:
       door MinishHouse
       door Hole
-    IslandTop -> MinishWater: item Flippers
+    IslandTop -> MinishWater: item Flippers, setting LakeMinishWaterJump
     node SouthWest:
       door East
       door EastSouth
@@ -63,10 +63,11 @@ area LakeHylia:
       item HP
     NorthWest <-> FifiWaterHole: item Flippers
     node West:
+      flag Boulder
       door Tree
       enemy Octoroks
     West <-> Water: (item Cape | item Flippers)
-    West <-> NorthWest: flag HyliaBoulder
+    West <-> NorthWest: flag Boulder
     node NorthWest:
       door Fifi
       door West
@@ -84,10 +85,8 @@ area LakeHylia:
     DigCaveNorthArea -> DigCaveNorthEntrance: item MoleMitts
     DigCaveNorthArea <-> NorthWest: item Cape
     NorthWest <-> Water: (item Cape | item Flippers)
-    node Crest +: exit Virtual.Zeffa.FluteAway
-    node DigCaveFusion +: exit Virtual.Zeffa.FluteAway
-    node SouthEast +: exit Virtual.Zeffa.FluteAway
-    node Water +: exit Virtual.Zeffa.FluteAway
-    node DigCaveNorthArea +: exit Virtual.Zeffa.FluteAway
-    node West +: exit Virtual.Zeffa.FluteAway
-    node SouthWest +: exit Virtual.Zeffa.FluteAway
+    node NorthWest +: entrance Virtual.Zeffa.FluteAway
+    node DigCaveNorthArea +: entrance Virtual.Zeffa.FluteAway
+    node SouthEast +: entrance Virtual.Zeffa.FluteAway
+    node SouthWest +: entrance Virtual.Zeffa.FluteAway
+    node DigCaveFusion +: entrance Virtual.Zeffa.FluteAway
