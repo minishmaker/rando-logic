@@ -64,7 +64,7 @@ area MinishWoods:
       door MinishWaterCavesWest
     SouthWaterCavesMinish <-> BelariMinish: item Flippers
     node Belari:
-      entrance Crest
+      exit Crest
       flag Virtual.Zeffa.MinishWoodsCrest
     Belari <-> BelariMinish
     node BelariChestFusion:
@@ -79,8 +79,8 @@ area MinishWoods:
       flag SouthWestBombRock3
     SouthEast -> SouthWestBombRocks: item BombBag
     Belari -> SouthWestBombRocks: item BombBag
-    node Main +: exit Virtual.Zeffa.FluteAway
-    node North +: exit Virtual.Zeffa.FluteAway
-    node Belari +: exit Virtual.Zeffa.FluteAway
-    node SouthWest +: exit Virtual.Zeffa.FluteAway
-    node FairyTree +: exit Virtual.Zeffa.FluteAway
+    node Main +: entrance Virtual.Zeffa.FluteAway
+    node North +: entrance Virtual.Zeffa.FluteAway
+    node Belari +: entrance Virtual.Zeffa.FluteAway
+    node SouthWest +: entrance Virtual.Zeffa.FluteAway
+    node FairyTree +: entrance Virtual.Zeffa.FluteAway
