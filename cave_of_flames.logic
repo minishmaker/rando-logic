@@ -178,10 +178,14 @@ area CaveOfFlames:
       door North
       door South
       door East
+      exit RedPortal
+      exit BluePortal
     node RedPortal:
-      door RedPortal
+      entrance RedPortal
     node BluePortal:
-      door BluePortal
+      entrance BluePortal
+    Main -> RedPortal: flag RedPortal
+    Main -> BluePortal: flag BluePortal
   room GFLikeLike:
     node Main:
       chest Rupee1
