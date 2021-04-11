@@ -23,10 +23,12 @@ area DeepwoodShrine:
     node WaterExits:
       exit North
       exit West
+      enemy Pesto
     WaterExits -> WaterEntrances: item Flippers
   room BF1LilyChest:
     node Main:
       door North
+      enemy Pesto
     node WaterDoorExit:
       exit Water
     node WaterDoorEntrance:
@@ -39,6 +41,7 @@ area DeepwoodShrine:
     node Water:
       door North
       door West
+      enemy Enemies
     Main -> Water: ( item GustJar | item Flippers )
   room F1PreChu:
     node North:
@@ -53,6 +56,7 @@ area DeepwoodShrine:
     node SouthEast:
       door South
       door BarrelSouthEast
+      enemy SouthEastPuffStool
     node SouthWest:
       door West
       door BarrelSouthWest
@@ -60,6 +64,7 @@ area DeepwoodShrine:
       door BarrelNorthEast
     node NorthWest:
       door BarrelNorthWest
+      enemy NorthWestPuffStools
     node NorthWestChest:
       chest Chest
     NorthWest <-> NorthWestChest: item GustJar
@@ -93,6 +98,7 @@ area DeepwoodShrine:
     node Main:
       door South
       chest Chest
+      enemy Sluggulas
     node North:
       door North
     Main <-> North: flag DoorUnlocked
@@ -100,6 +106,7 @@ area DeepwoodShrine:
     node Main:
       door North
       door South
+      enemy Sluggulas
   room GFMadderpillar:
     node Main:
       enemy Madderpillar
@@ -123,6 +130,7 @@ area DeepwoodShrine:
       door East
       door West
       chest BigChest
+      enemy MullDozers
   room GFMulldozers:
     node Main:
       exit West
@@ -149,11 +157,13 @@ area DeepwoodShrine:
     node Main:
       door North
       door West
+      enemy Sluggulas
   room GFPortalHeart:
     node Main:
       door SouthWest
       door South
       door East
+      enemy PuffStools
     node MainChests:
       chest EastChest
       chest WestChest
@@ -169,10 +179,12 @@ area DeepwoodShrine:
     node Main:
       door South
       door East
+      enemy Enemies
   room GFStairs:
     node Main:
       door North
       door West
+      enemy MullDozers
     node MainChest:
       chest Chest
     Main <-> MainChest: item GustJar
