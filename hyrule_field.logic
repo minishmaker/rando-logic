@@ -79,7 +79,8 @@ area HyruleField:
     NorthWest -> BombableBlocks: item BombBag
     West -> BombableBlocks: item BombBag
     # Can be used to check for Ezlo
-    West <-> MinishHouse: item CanTurnMinish
+    West -> MinishHouse: item CanTurnMinish
+    MinishHouse -> West: item CanGrow
     East <-> West
 
 
@@ -155,7 +156,8 @@ area HyruleField:
     VeilFallsWest -> West
     West -> OpenLeftRanchDoor: item LonLonKey
     West -> LeftRanchDoorExit: flag OpenLeftRanchDoor
-    West <-> MinishLeftRanchDoor : flag CanTurnMinish
+    West -> MinishLeftRanchDoor: item CanTurnMinish
+    MinishLeftRanchDoor -> West: item CanGrow
     # Not checking if we have ezlo to get into the tornados bc it works without him
     West -> GoronCave: (flag GoronCaveBoulder | item RocsCape)
     GoronCave -> West
@@ -166,15 +168,16 @@ area HyruleField:
     West -> Center: (flag NorthBoulder)
     Center -> MiddleEast: (item RocsCape | item Flippers)
     MiddleEast -> Center: (item RocsCape)
-    Center -> MinishCenter: (item PegasusBoots | flag CanTurnMinish)
-    MinishCenter -> Center: (flag CanTurnMinish)
+    Center -> MinishCenter: (item PegasusBoots | item CanTurnMinish)
+    MinishCenter -> Center: (item CanGrow)
     Center -> PondFusionExit: (flag PondFusion)
     Center -> NorthLedge: (item RocsCape | item PacciCane )
     NorthLedge -> Center
     NorthLedge -> MiddleEast
-    NorthLedge <-> MinishCrack: (flag CanTurnMinish)
+    NorthLedge -> MinishCrack: item CanTurnMinish
+    MinishCrack -> NorthLedge: item CanGrow
     NorthLedge -> CenterLedge: item MoleMitts
-    NorthFreestanding -> NorthDiggingCaveExit: (item MoleMitts)
+    NorthFreestanding -> NorthDiggingCaveExit: item MoleMitts
 
 
   room North:
@@ -268,8 +271,8 @@ area HyruleField:
     NorthWestGraveyard -> Main: item SmithSword
     Main -> MinishCrackBoulder: (item SmithSword | item FlameLantern | item LightArrows | item BombBag | item GustJar)
     # Need to have removed the boulder to exit the cave
-    Main -> MinishCrack: (flag MinishCrackBoulder & flag CanTurnMinish & item PegasusBoots)
-    MinishCrack -> Main: (flag MinishCrackBoulder & flag CanTurnMinish)
+    Main -> MinishCrack: (flag MinishCrackBoulder & item CanTurnMinish & item PegasusBoots)
+    MinishCrack -> Main: (flag MinishCrackBoulder & item CanGrow)
     Main -> ObscureSpot: item MoleMitts
 
 
@@ -330,8 +333,8 @@ area HyruleField:
     East -> EastTreeFusionExit: flag EastTreeFusion
     East -> EastChestFusion: flag EastChestFusion
     Main <-> SouthWest: (item SmithSword | item FlameLantern | item BombBag | item LightArrows)
-    SouthWest -> SouthWestMinish: (flag CanTurnMinish & item PegasusBoots)
-    SouthWestMinish -> SouthWest: flag CanTurnMinish
+    SouthWest -> SouthWestMinish: (item CanTurnMinish & item PegasusBoots)
+    SouthWestMinish -> SouthWest: item CanGrow
     SouthWestMinish <-> MinishWaterHole: item Flippers
 
 
@@ -344,6 +347,7 @@ area HyruleField:
       door West
       door TopLadder
       entrance LeftDiggingCaveEntrance
+      exit Virtual.Zeffa.FluteAway
     node NorthChestFusion:
       chest NorthChestFusion
     node MidChestFusion:
@@ -356,10 +360,12 @@ area HyruleField:
       exit RightDiggingCaveExit
     node KnuckleLedge:
       door DiggingCaveLadder
+      exit Virtual.Zeffa.FluteAway
     node MinishKnuckleLedge:
       door MinishHouse
     node GraveyardLedge:
       door North
+      exit Virtual.Zeffa.FluteAway
     node Bottom:
       enemy BlueOctorocsMoblinsAndKeatons
       door BottomLadder
@@ -369,6 +375,7 @@ area HyruleField:
       entrance RupeePondFusionEntrance
       entrance BombableCaveEntrance
       entrance FairyFountainEntrance
+      exit Virtual.Zeffa.FluteAway
     node RupeePondFusionExit:
       exit RupeePondFusionExit
     node BombableCaveExit:
@@ -386,7 +393,8 @@ area HyruleField:
       Top -> RightDiggingCaveFusion: (item Flippers | item RocsCape )
       RightDiggingCaveFusion -> Top: ((flag RightDiggingCaveFusion & item RocsCape) | item Fippers)
       RightDiggingCaveFusion -> RightDiggingCaveExit: (item MoleMitts & flag RightDiggingCaveFusion)
-      KnuckleLedge <-> MinishKnuckleLedge: flag CanTurnMinish
+      KnuckleLedge -> MinishKnuckleLedge: item CanTurnMinish
+      MinishKnuckleLedge -> KnuckleLedge: item CanGrow
       KnuckleLedge -> Top: item Flippers
       GraveyardLedge -> Top
       Top <-> Bottom: flag BoulderShortcut
@@ -405,12 +413,15 @@ area HyruleField:
       door West
       door SouthMid
       flag BoulderShortcut
+      entrance WestTreeFusionEntrance
+      exit Virtual.Zeffa.FluteAway
     node East:
       door East
+      exit Virtual.Zeffa.FluteAway
     node MiddleChestFusion:
       chest MiddleChestFusion
-    node WestTreeFusion:
-      door WestTreeFusion
+    node WestTreeFusionExit:
+      exit WestTreeFusionExit
     node SouthWestTreeFusion:
       door SouthWestFusion
     node NorthWestTreeFusion
@@ -424,6 +435,7 @@ area HyruleField:
       chest NorthWestDigSpot6
     node SouthEast:
       door SouthEast
+      exit Virtual.Zeffa.FluteAway
     node SouthEastTreeFusion
     #Tag this as obsucre
     node SouthEastObsucre:
@@ -432,8 +444,7 @@ area HyruleField:
 
     Main <-> East: flag BoulderShortcut
     Main -> MiddleChestFusion: flag MiddleChestFusion
-    Main -> WestTreeFusion: flag WestTreeFusion
-    WestTreeFusion -> Main
+    Main -> WestTreeFusionExit: flag WestTreeFusion
     Main <-> SouthWestTreeFusion: flag SouthWestTreeFusion
     Main <-> NorthWestTreeFusion: flag NorthWestTreeFusion
     NorthWestTreeFusion -> NorthWestObscure: item MoleMitts
@@ -441,5 +452,36 @@ area HyruleField:
     SouthEastTreeFusion -> SouthEastObsucre: item MoleMitts
 
 
-  room WestWoodsMid
-  room WestWoodsSouth
+  room WestWoodsMid:
+    node West:
+      door NorthWest
+      door PercyHouse
+      exit Virtual.Zeffa.FluteAway
+    node East:
+      door NorthMiddle
+      door NortEast
+      enemy Moblins
+      door SouthMiddle
+      door SouthEast
+      exit Virtual.Zeffa.FluteAway
+    node GoldenOctorocFusion:
+      enemy GoldenOcotorocFusion
+
+    East -> GoldenOcotorocFusion: flag GoldenOctorocFusion
+
+
+  room WestWoodsSouth:
+
+    node Main:
+      door NorthMiddle
+      door NorthEast
+      enemy Moblins
+      exit Virtual.Zeffa.FluteAway
+    node Beanstalk:
+      door Beanstalk
+    node MinishMain:
+      door MinishHouse
+
+    Main <-> Beanstalk: flag Beanstalk
+    Main -> MinishMain: item CanTurnMinish
+    MinishMain -> Main: item CanGrow
