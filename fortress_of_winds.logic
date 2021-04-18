@@ -1,24 +1,230 @@
 area FortressOfWinds:
-  room F1BladeSpin
-  room F1CentralRoom
-  room F1CloneButtons
-  room F1Darknut
-  room F1DropIn
-  room F1EastMinishHole
-  room F1EastStairs
-  room F1EyeBridge
-  room F1EyeDoor
-  room F1MinishPortal
-  room F1Split
-  room F1West
-  room F1WestStairs
-  room F2CenterKeyPull
-  room F2East
-  room F2EyegoreButtons
-  room F2MazaalRoom
-  room F2PreMazaal
-  room F2West
-  room GFCenterStairs
-  room GFEastStairs
-  room GFMinishHP
-  room GFWizrobes
+  room F1BladeSpin:
+    node North:
+      door North
+      flag DoorOpen
+    node South:
+      door South
+    North <-> South: flag DoorOpen
+  room F1CentralRoom:
+    node North:
+      chest Chest
+    node NorthEast:
+      door NorthEast
+    North <-> NorthEast: flag EastDoorUnlocked
+    node NorthWest:
+      door NorthWest
+    North <-> NorthWest: flag WestDoorUnlocked
+    node Main:
+      door Stair
+      door South
+      enemy Eyegores
+    North -> Main
+    Main -> North: defeat Eyegores
+    node East:
+      door East
+    East -> North
+    node West:
+      door West
+    West -> North
+  room F1CloneButtons:
+    node Main:
+      door West
+    node Key:
+      chest Key
+    node South:
+      door South
+    Main <-> South: flag DoorUnlocked
+    node MainMinish:
+      door WestMinish
+    node SouthMinish:
+      door SouthMinish
+    MainMinish <-> SouthMinish: flag DoorUnlocked
+  room F1Darknut:
+    node Main:
+      exit East
+      exit South
+      enemy Darknut
+    node PostFight:
+      entrance East
+      entrance South
+    Main -> PostFight: defeat Darknut
+  room F1DropIn:
+    node UpperMinish:
+      door NorthMinish
+      door NorthWestMinish
+    node LowerMinish:
+      door WestMinish
+    node Upper:
+      door North
+      door NorthWest
+    node Lower:
+      door Wes
+      door South
+    node East:
+      exit RoofHole
+    East -> Lower
+  room F1EastMinishHole:
+    node Main:
+      door East
+      door UpperEast
+      door West
+    node UpperMinish:
+      door UpperEastMinish
+      door NorthMinish
+      door WestMinish
+    node LowerMinish:
+      door EastMinish
+    UpperMinish -> LowerMinish
+    LowerMinish -> Main: item CanGrow
+    Main -> LowerMinish: item CanTurnMinish
+  room F1EastStairs:
+    node Main:
+      door North
+      exit RoofHole
+      entrance Hole
+      chest EastChest
+      chest WestChest
+    node South:
+      door South
+    Main <-> South: flag DoorOpen
+  room F1EyeBridge:
+    node East:
+      door East
+    node West:
+      door West
+    East <-> West: ( item Cape | flag TargetsHit )
+  room F1EyeDoor:
+    node Upper:
+      door NorthEast
+      door NorthWest
+    node North:
+      door North
+    Upper <-> North: item BombBag
+    node SouthWest:
+      door SouthWest
+    node South:
+      door South
+    South <-> SouthWest: flag TargetShot
+  room F1MinishPortal:
+    node Main:
+      door East
+      door West
+      enemy WallMaster
+    node MainMinish:
+      door EastMinish
+      door WestMinish
+    Main -> MainMinish: ( defeat WallMaster & item CanTurnMinish )
+    MainMinish -> Main: ( defeat WallMaster & item CanGrow )
+  room F1Split:
+    node SouthEast:
+      door SouthEast
+    node East:
+      door East
+    SouthEast -> East
+    node SouthWest:
+      door SouthWest
+    node West:
+      door West
+    SouthWest -> West
+  room F1West:
+    node Upper:
+      door North
+      door NorthEast
+    node Main:
+      exit South
+      exit SouthEast
+      enemy Enemies
+    node PostFight:
+      entrance South
+      entrance SouthEast
+    Main -> PostFight: defeat Enemies
+  room F1WestStairs:
+    node Main:
+      door North
+      entrance Hole
+      exit RoofHole
+      door StairDown
+  room F2CenterKeyPull:
+    node Main:
+      entrance Hole
+      door West
+    node MainWest:
+      flag KeyDropped
+    Main <-> East: ( item Cape | item CanSplit2 )
+    node East:
+      door South
+    node EastBigDoor:
+      door North
+    East <-> EastBigDoor flag DoorUnlocked
+  room F2East:
+    node East:
+      door SouthEast
+    node NorthEast:
+      entrance EastHoles
+    East -> NorthEast: flag DoorUnlocked
+    node West:
+      door SouthWest
+      entrance WestHole
+    node WestMinish:
+      entrance MinishHole
+      flag KeyDropped
+  room F2EyegoreButtons:
+    node Main:
+      door South
+      enemy Eyegores
+    node Chest:
+      chest Chest
+    Main <-> Chest: defeat Eyegores
+  room F2MazaalRoom:
+    node Main:
+      exit South
+      enemy Mazaal
+    node PostFight:
+      door North
+      chest HP
+      entrance South
+    Main <-> PostFight: defeat Mazaal
+  room F2PreMazaal:
+    node Main:
+      door South
+      door North
+  room F2West:
+    node Main:
+      door South
+    node North:
+      door North
+    node East:
+      door East
+    Main <-> East: flag TargetsShot
+    Main <-> North: flag TargetsShot
+  room GFCenterStairs:
+    node Main:
+      door North
+      door South
+  room GFEastStairs:
+    node Main:
+      door North
+      door South
+  room GFMinishHP:
+    node Main:
+      chest Chest
+    node MainMinish:
+      door WestMinish
+    node South:
+      door South
+    Main -> South
+    Main -> MainMinish: item CanTurnMinish
+    MainMinish -> Main: item CanGrow
+  room GFWestStairs:
+    node Main:
+      door North
+      door South
+  room GFWizrobes:
+    node Main:
+      exit South
+      enemy Wizrobes
+    node PostFight:
+      entrance South
+      chest Chest
+    Main -> PostFight: defeat Wizrobes
