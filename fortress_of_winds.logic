@@ -156,7 +156,7 @@ area FortressOfWinds:
       door South
     node EastBigDoor:
       door North
-    East <-> EastBigDoor flag DoorUnlocked
+    East <-> EastBigDoor: flag DoorUnlocked
   room F2East:
     node East:
       door SouthEast
