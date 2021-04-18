@@ -115,10 +115,10 @@ area DarkHyruleCastle:
       chest Chest
     Main <-> Chest: ( item CanSplit4 | flag BlocksUnlocked)
   room F1BigKeyDoor:
-    node Main
+    node Main:
       exit Portal
       enemy ChainSoldier
-    node PostFight
+    node PostFight:
       entrance Portal
     node North:
       door North
