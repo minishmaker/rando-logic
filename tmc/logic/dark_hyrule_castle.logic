@@ -168,7 +168,7 @@ area DarkHyruleCastle:
       exit South
       exit East
     node PostFight:
-      entrance south
+      entrance South
       entrance East
     Fight -> PostFight: defeat Ghini
   room F1NortheastLanternTrial:
