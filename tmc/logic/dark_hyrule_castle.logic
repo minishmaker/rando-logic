@@ -204,9 +204,8 @@ area DarkHyruleCastle:
   room F1NorthwestTower:
     node MainEast:
       door East
-      door Hole
       entrance South
-      entrance hole
+      entrance Hole
     node MainNorth:
       door StairUp
       door StairDown
