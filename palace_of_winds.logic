@@ -144,8 +144,8 @@ area PalaceOfWinds:
     East -> Main
     Main -> East: item Cane
     node EastMinish
-    EastMinish -> East: ( item CanGrow & SwitchesActivated )
-    East -> EastMinish: ( item CanTurnMinish & SwitchesActivated )
+    EastMinish -> East: ( item CanGrow & flag SwitchesActivated )
+    East -> EastMinish: ( item CanTurnMinish & flag SwitchesActivated )
     node MainMinish:
       door MinishNorth
     EastMinish -> MainMinish
