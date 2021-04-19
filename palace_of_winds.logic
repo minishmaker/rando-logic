@@ -304,7 +304,7 @@ area PalaceOfWinds:
     node West:
       door West
     Main <-> West: flag WestDoorUnlocked
-    node PostFight
+    node PostFight:
       chest Chest
     Main <-> PostFight: defeat BallAndChainSoldiers
   room F4BigKey:
