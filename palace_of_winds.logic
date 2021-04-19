@@ -390,7 +390,7 @@ area PalaceOfWinds:
       entrance Cloud
     Main -> Cloud: item Cape
     node PostFight
-    PostFight <-> Main: ( defeat Wizrobes & ( item Cape item Bow | item Boomerang | item BombBag ) )
+    PostFight <-> Main: ( defeat Wizrobes & ( item Cape | item Bow | item Boomerang | item BombBag ) )
   room GFClonePushBlock:
     node South:
       door South
