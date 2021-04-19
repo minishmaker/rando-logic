@@ -1,51 +1,444 @@
 area PalaceOfWinds:
-  room F1CloudStairs
-  room F1Fans
-  room F1InsideNorth
-  room F1InsideNorthEast
-  room F1InsideNorthWest
-  room F1InsideSouth
-  room F1InsideSouthEast
-  room F1InsideSouthWest
-  room F1South
-  room F1SouthEast
-  room F1SouthWest
-  room F2CloneBlockPush
-  room F2CloudStairUp
-  room F2East
-  room F2InsideNorth
-  room F2InsideNorthEast
-  room F2InsideNorthWest
-  room F2InsideSouth
-  room F2InsideSouthEast
-  room F2InsideSouthWest
-  room F2MovingPlatform
-  room F2PotPush
-  room F3EastClouds
-  room F3Inside
-  room F3Lakitus
-  room F3SouthFans
-  room F3WestClouds
-  room F3WestCloudsChestAccess
-  room F4BigKey
-  room F4BombRoom
-  room F4BossKey
-  room F4CenterWindGap
-  room F4CloudStairTop
-  room F4DoubleCloudStairTop
-  room F4Drop
-  room F4EastWindGap
-  room F4KeyMiniboss
-  room F4NorthEastChest
-  room F4Stairs
-  room F4UnstableFloor
-  room F4WestExterior
-  room F4WestWindGap
-  room GFBlockPush
-  room GFBridges
-  room GFWizrobesMiniboss
-  room GFDarknut
-  room GFEntrance
-  room GFInside
-  room GFMovingPlatform
-  room GFPostDarknut
+  room F1BombarossaTornado:
+    node East:
+      door East
+    node West:
+      door North
+    East <-> West: item Cape
+  room F1CrumbleClones:
+    node Main:
+      door North
+    node East:
+      door East
+    node Upper:
+      door Upper
+    node West:
+      door West
+    Main <-> East: flag DoorUnlocked
+    Main <-> West: flag DoorOpen
+    Upper -> Main
+  room F1CloudUpAndDown:
+    node NorthEast:
+      door NorthEast
+    node NorthCenter:
+      door CloudDown
+    NorthCenter -> SouthCenter: item Cape
+    NorthCenter <-> NorthEast: item Cape
+    node SouthEast:
+      door SouthEast
+    node SouthCenter:
+      chest Rupee1
+      chest Rupee2
+      chest Rupee3
+      chest Rupee4
+      chest Rupee5
+      enemy LikeLike
+    SouthCenter <-> SouthEast: item Cape
+    SouthCenter <-> West: item Cape
+    node West:
+      exit CloudUp
+    node WestCloud:
+      entrance CloudUp
+    West -> WestCloud: item Cape
+  room F1RollerSmallKey:
+    node Main:
+      chest Chest
+      door North
+      door South
+  room F1SpikyBeetleFight:
+    node Main:
+      door NorthWest
+    node MainFight:
+      enemy SpikyBeetles
+    Main <-> MainFight: flag SwitchesActivated
+    node MainPostFight
+      door SouthWest
+    Main -> MainPostFight: ( defeat SpikyBeetles & item Cape & item Cane )
+    MainPostFight -> Main: ( defeat SpikyBeetles & item Cape )
+  room F1TowerBottomLeft:
+    node Main:
+      entrance FloorHole
+      door South
+      door North
+      door StairDown
+    node East:
+      door East
+    Main <-> East: flag PalaceOfWinds.F1TowerBottomMiddle.DoorOpen
+  room F1TowerBottomMiddle:
+    node Main:
+      exit RoofHole
+      enemy Wizrobes
+      exit East
+      exit West
+    node PostFight:
+      entrance East
+      entrance West
+      chest Chest
+      flag DoorOpen
+    Main -> PostFight: flag DoorOpen
+  room F1TowerBottomRight:
+    node Main:
+      door South
+      door North
+      door StairDown
+    node West:
+      door West
+    Main <-> West: flag PalaceOfWinds.F1TowerBottomMiddle.DoorOpen
+  room F1TowerTopLeft:
+    node Main:
+      entrance FloorHole
+      door East
+      door South
+  room F1TowerTopMiddle:
+    node Main:
+      exit RoofHole
+      entrance FloorHole
+      door East
+      door West
+  room F1TowerTopRight:
+    node Main:
+      entrance FloorHole
+      door South
+      door West
+  room F2ClonePushBlock:
+    node North:
+      door Cloud
+    node South:
+      door South
+    South -> North
+    North -> South: item CanSplit3
+  room F2ExitAfterSmallKey:
+    node West:
+      door West
+    node East:
+      door South
+    East <-> West: ( flag DoorOpen & item Cape )
+  room F2GratePlatforms:
+    node East:
+      door East
+    node West:
+      door SouthWest
+    East <-> West: item Cape
+    node North:
+      door NorthEast
+      exit Cloud
+    node Cloud:
+      entrance Cloud
+    North -> NorthCloud: item Cape
+  room F2PlatformRide:
+    node North:
+      door North
+    node South:
+      door East
+    North <-> South: item Cape
+  room F2PotPushing:
+    node Main
+    node South:
+      door SouthWest
+    Main <-> South: item Cape
+    node West:
+      door West
+    Main <-> West: flag DoorUnlocked
+    node East:
+      door North
+    East -> Main
+    Main -> East: item Cane
+    node EastMinish
+    EastMinish -> East: ( item CanGrow & SwitchesActivated )
+    East -> EastMinish: ( item CanTurnMinish & SwitchesActivated )
+    node MainMinish:
+      door MinishNorth
+    EastMinish -> MainMinish
+  room F2TowerBottomLeft:
+    node Main:
+      door North
+      door StairUp
+  room F2TowerBottomMiddle:
+    node Main:
+      exit RoofHole
+      entrance FloorHole
+      enemy Wizrobes
+      door East
+  room F2TowerBottomRight:
+    node Main:
+      door North
+      door West
+      flag SwitchActive
+    node East:
+      door NorthEast
+      door East
+    node EastMinish:
+      door NorthEastMinish
+      door SouthMinish
+    node Chest:
+      chest Key
+    East <-> Chest: flag SwitchActive
+    East -> EastMinish: item CanTurnMinish
+    EastMinish -> East: item CanGrow
+  room F2TowerTopLeft:
+    node Main:
+      door East
+      door South
+      exit RoofHole
+  room F2TowerTopMiddle:
+    node Main:
+      door East
+      door West
+      enemy Wizrobes
+      entrance FloorHole
+    node PostFight:
+      chest Chest
+    Main <-> PostFight: defeat Wizrobes
+  room F2TowerTopRight:
+    node Main:
+      exit RoofHole
+      door South
+      door West
+    node East:
+      door SouthEast
+    node EastMinish:
+      door SouthEastMinish
+    East -> EastMinish: item CanTurnMinish
+    EastMinish -> East: item CanGrow
+  room F3BlockMaze:
+    node West:
+      chest Chest
+    node Center:
+      exit CenterCloud
+    West -> Center: item Cape
+    Center -> West
+    node CenterCloud:
+      entrance CenterCloud
+    Center -> CenterCloud: item Cape
+    Center <-> East: item Cape
+    node East:
+      exit EastCloud
+    node EastCloud:
+      entrance EastCloud
+    East -> EastCloud: item Cape
+  room F3CloudEntry:
+    node Main:
+      door Cloud
+      door West
+  room F3CloudJumps:
+    node East:
+      door SouthEast
+    node CenterHP:
+      chest HP
+      door South
+    node Center:
+      chest Chest
+    West -> Center: item Cape
+    Center -> East: item Cape
+    node West:
+      exit Cloud
+    node WestCloud:
+      entrance Cloud
+    West -> WestCloud: item Cape
+  room F3FanJumps:
+    node East:
+      door East
+    node West:
+      door North
+    East <-> West: item Cape
+  room F3Interior:
+    node East:
+      door StairUp
+    node West:
+      door StairDown
+      entrance CenterFloorHole
+      entrance WestFloorHole
+    East <-> West: ( item Cape & flag BlocksBombed )
+    node NorthEast:
+      door NorthEast
+      exit EastRoofHole
+      entrance EastFloorHole
+    node NorthWest:
+      door NorthWest
+      exit WestRoofHole
+      entrance WestFloorHole
+    West -> NorthWest: item Cape
+    node North:
+      chest Chest
+    West <-> North: flag SwitchActive
+  room F3LakituJumps:
+    node North:
+      door North
+    node South:
+      door South
+    North <-> South: item Cape
+  room F3ToHeartPiece:
+    node Main:
+      door North
+      door South
+  room F42ndBigKeyDoor:
+    node West:
+      chest Chest
+      door South
+    node Center:
+      door CenterCloud
+    node North:
+      door North
+    Center <-> North: flag DoorUnlocked
+    node East:
+      door East
+      door EastCloud
+  room F44Buttons:
+    node NorthWest:
+      door NorthWest
+    node NorthEast:
+      door NorthEast
+    NorthWest <-> NorthEast: flag SwitchesActivated
+    node SouthWest:
+      door SouthWest
+    node SouthEast:
+      door SouthEast
+    SouthWest <-> SouthEast: item Cape
+  room F4BallAndChainSoldiers:
+    node Main:
+      door North
+      enemy BallAndChainSoldiers
+    node South:
+      door South
+    Main <-> South: flag SouthDoorUnlocked
+    node West:
+      door West
+    Main <-> West: flag WestDoorUnlocked
+    node PostFight
+      chest Chest
+    Main <-> PostFight: defeat BallAndChainSoldiers
+  room F4BigKey:
+    node Main:
+      chest Chest
+      door South
+  room F4BombableWallToOutside:
+    node Main:
+      door StairDown
+      door North
+    node BombWall:
+      door BombWall
+    Main <-> BombWall: item BombBag
+  room F4BombarossaPath:
+    node Main:
+      door North
+      door South
+  room F4BossEntry:
+    node Main:
+      door Boss
+    node South:
+      door South
+    Main <-> South: flag DoorUnlocked
+    node PostFight:
+      chest Element
+      chest HP
+      entrance GreenPortal
+    Main <-> PostFight: defeat Gyorg
+  room F4CloudEntry:
+    node Main:
+      door Cloud
+      door South
+  room F4DropToDarknut:
+    node Main:
+      door North
+      entrance Hole
+  room F4Eastof2ndBigDoorChest:
+    node Main:
+      door West
+      chest Chest
+  room F4MoblinAndWizrobeFight:
+    node North:
+      door North
+    node South:
+      door South
+    North -> South: item Cape
+  room F4Outside:
+    node Main:
+      door South
+      enemy WizrobesAndMoblins
+    node BombWall:
+      door North
+    Main <-> BombWall: item BombBag
+  room F4SmallKeyFanJump:
+    node South:
+      door SouthWest
+    node North:
+      door NorthEast
+      door NorthWest
+    node NorthUp:
+      door North
+    North <-> NorthUp: flag DoorUnlocked
+    South -> North: item Cape
+    node Center:
+      chest Chest
+    Center -> North
+  room F4ToBombarossaPath:
+    node South:
+      door South
+    node East:
+      door East
+    East -> South: item BombBag
+    node North:
+      door North
+      entrance FloorHole
+    East <-> North: item BombBag
+  room GFCapeChestRoom:
+    node Main:
+      door East
+      exit Cloud
+      enemy Wizrobes
+    node Cloud:
+      entrance Cloud
+    Main -> Cloud: item Cape
+    node PostFight
+    PostFight <-> Main: ( defeat Wizrobes & ( item Cape item Bow | item Boomerang | item BombBag ) )
+  room GFClonePushBlock:
+    node South:
+      door South
+    node North:
+      door North
+    South -> North: ( item CanSplit3 & ( item Cape | item Bow | item Boomerang ) )
+    North -> South: ( item Cape | item Bow | item Boomerang )
+  room GFDarknutFight:
+    node Main:
+      enemy Darknut
+    node PostFight:
+      door Portal
+      door North
+    Main <-> PostFight: defeat Darknut
+  room GFEntrance:
+    node Main:
+      door North
+      door Hole
+      exit RedPortal
+      exit BluePortal
+    node RedPortal:
+      entrance RedPortal
+    node BluePortal:
+      entrance BluePortal
+    Main -> RedPortal: flag RedPortal
+    Main -> BluePortal: flag BluePortal
+  room GFGrateChest:
+    node Main:
+      door East
+      door West
+    node North:
+      chest Chest
+    Main <-> North: item Cape
+  room GFInterior:
+    node Main:
+      chest BigChest
+      door South
+      door StairUp
+      exit MainRoofHoles
+    node Upper:
+      chest Chest
+      exit UpperRoofHole
+    Upper -> Main
+  room GFInteriorEntry:
+    node Main:
+      door North
+      door South
+  room GFPlatformRide:
+    node Main:
+      door South
+      door West
