@@ -51,7 +51,7 @@ area PalaceOfWinds:
     node MainFight:
       enemy SpikyBeetles
     Main <-> MainFight: flag SwitchesActivated
-    node MainPostFight
+    node MainPostFight:
       door SouthWest
     Main -> MainPostFight: ( defeat SpikyBeetles & item Cape & item Cane )
     MainPostFight -> Main: ( defeat SpikyBeetles & item Cape )
