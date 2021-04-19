@@ -1,16 +1,229 @@
 area TempleOfDroplets:
-  room BF1BigAndFrozenChest
-  room BF1BigKey
-  room BF1ClonePushing
-  room BF1CloneSliding
-  room BF1DarkMaze
-  room BF1DarkSplitPath
-  room BF1DoubleMadderpillars
-  room BF1FrozenLilyChest
-  room BF1IceBridge
-  room BF1IceMadderpillar
-  room BF1LightMiddle
-  room BF1LilypadPuzzles
+
+  room BF1BigAndFrozenChest:
+    node East:
+      door East
+    node Main:
+      door Stairs
+    node FrozenChest:
+      chest FrozenChest
+    node West:
+      door West
+      enemy RedMulldozers
+    node PostFrozenMadderpillar:
+      chest BigChest
+    node PostFrozenMadderpillarDoor:
+      door South
+
+
+    Main -> FrozenChest: item FlameLantern
+    Main <-> West: item FlameLantern
+    PostFrozenMadderpillar <-> PostFrozenMadderpillarDoor: flag TempleOfDroplets.BF1IceMadderpillar.OpenDoor
+
+
+  room BF1BigKey:
+
+    node Main:
+      door Stairs
+    node IceblockItem
+      chest IceBlock
+
+    Main -> IceblockItem: (item FlameLantern | flag TempleOfDroplets.GFAboveBigKey.OpenFloorDoor
+
+
+  room BF1ClonePushing:
+
+    node West:
+      door West
+    node North:
+      door North
+
+    North <-> West: item CanSplit2
+
+
+  room BF1CloneSliding:
+
+    node SouthWest:
+      door SouthWest
+    node SouthEast:
+      door SouthEast
+    node SlidingBlocksPuzzle
+      flag SlidingBlocksPuzzle
+
+    SouthEast -> SlidingBlocksPuzzle: item CanSplit2
+    SouthWest <-> SouthEast: flag SlidingBlocksPuzzle
+
+
+  room BF1DarkMaze:
+    # Here the parts are delimited by the blocks you remove with the torches when doing this room vanilla
+    node MazePart1:
+      door SouthWest
+      enemy Pestos
+    node MazePart1Torch:
+      flag MazePart1Torch
+    node MazePart2:
+      chest BottomChest
+      enemy Part2Mulldozers
+      enemy Pestos
+    node MazePart2Torch:
+      flag MazePart2Torch
+    node MazePart3:
+      chest NorthEast
+      enemy Part3Mulldozers
+      enemy Pestos
+    node MiddleWest:
+      door MiddleWest
+    node BomableWall:
+      flag BomableWall
+    node MazePart3Torch:
+      flag MazePart3Torch
+    node MazePart4:
+      chest NorthEast
+      enemy Part4Mulldozers
+      enemy Pestos
+    node MazePart4Torch:
+      flag MazePart4Torch
+    node MazePart5:
+      door NorthWest
+      enemy Pestos
+
+    MazePart1 -> MazePart1Torch: item FlameLantern
+    MazePart2 -> MazePart2Torch: item FlameLantern
+    MazePart3 -> MazePart3Torch: item FlameLantern
+    MazePart4 -> MazePart4Torch: item FlameLantern
+    MazePart5 -> MazePart4Torch: item FlameLantern
+    MazePart1 <-> MazePart2: flag MazePart1Torch
+    MazePart2 <-> MazePart3: flag MazePart2Torch
+    MazePart3 <-> MazePart4: flag MazePart3Torch
+    MazePart4 <-> MazePart5: flag MazePart4Torch
+    MazePart3 -> BomableWall: item BombBag
+    MazePart3 <-> MiddleWest: flag BomableWall
+
+
+  room BF1DarkSplitPath:
+
+    node StonePath:
+      door West
+      door NorthWest
+    node IcePath:
+      door East
+      door NorthEast
+
+    IcePath <-> StonePath: item RocsCape
+
+
+  room BF1DoubleMadderpillars:
+
+    node Main:
+      enemy Maddepillars
+    node OpenDoor:
+      flag OpenDoor
+    node SouthDoor:
+      door SouthDoor
+    node EastDoor:
+      door EastDoor
+
+    SouthDoor -> Main: item FlameLantern
+    Main -> SouthDoor: (item FlameLantern | item GustJar)
+    Main -> OpenDoor: defeat Maddepillars
+    Main <-> SouthDoor: flag OpenDoor
+
+
+  room BF1FrozenLilyChest:
+
+    node Top:
+      door North
+    node TopWestDoor:
+      door West
+    node BottomWater:
+      door East
+    node BottomIce
+    node BottomFrozenChest:
+      chest BottomFrozenChest
+
+    Top -> TopWestDoor: flag TempleOfDroplets.BF1DoubleMadderpillars.OpenDoor
+    BottomWater -> BottomIce: item Lilypad
+    BottomIce -> BottomWater
+    BottomIce -> BottomFrozenChest: item FlameLantern
+
+
+  room BF1IceBridge:
+
+    node BottomNorth:
+      door NorthEast
+      enemy NorthMulldozers
+    node BottomSouth:
+      door SouthWest
+      enemy SouthMulldozers
+    node Top:
+      door TopSouth
+      door TopNorth
+      enemy Sluggula
+
+    BottomNorth <-> BottomSouth: (item FlameLantern | item CanSplit2)
+
+
+  room BF1IceMadderpillar:
+
+    node Main:
+      enemy Maddepillar
+    node OpenDoor:
+      flag OpenDoor
+    node WestWater:
+      door West:
+    node NorthDoor:
+      door North
+
+    WestWater -> Main: item Lilypad
+    Main -> WestWater
+    Main -> OpenDoor: defeat Maddepillar
+    Main <-> NorthDoor: flag OpenDoor
+
+  room BF1LightMiddle:
+    node Main:
+      door WestStairs
+      door EastStairs
+    node LightHole:
+      exit StoneDoorFall
+    node StoneDoorLever:
+      flag StoneDoor
+
+    Main -> LightHole: flag StoneDoor
+    Main <-> StoneDoorLever: ( flag StoneDoor | item RocsCape )
+
+
+  room BF1LilypadPuzzles:
+
+    node SouthEast:
+      door South
+      door East
+      enemy Pestos
+    node SouthEastIceIslands:
+      flag SouthWaterBarrier
+      enemy Pestos
+    node WestWater:
+      enemy Pestos
+    node MiddleIsland:
+      enemy Mulldozers
+      flag MiddleWaterBarrier
+      chest NorthChest
+      enemy Pestos
+    node ForzenChest:
+      chest FrozenChest
+      enemy Pestos
+    node NorthWater:
+      door West
+      enemy Pestos
+    node NorthEast:
+      door NorthEast
+      enemy Pestos
+
+    SouthEast -> SouthEastIceIslands: item Lilypad
+    SouthEastIceIslands -> SouthEast
+    SouthEast <-> WestWater: flag SouthWaterBarrier
+    WestWater -> MiddleIsland: item
+
+
   room BF1Mulldozers
   room BF1PreDouble
   room BF1PushFiresnake
