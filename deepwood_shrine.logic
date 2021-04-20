@@ -18,32 +18,48 @@ area DeepwoodShrine:
       chest Chest
     Main <-> South: ( item GustJar | item Cape )
   room BF1LilyButton:
-    node WaterEntrances:
-      entrance North
-      entrance West
-    node WaterExits:
-      exit North
-      exit West
-      enemy Pesto
-    WaterExits -> WaterEntrances: item Flippers
+    node WestExit:
+      exit WestWater
+    node West:
+      entrance WestWater
+    WestExit -> West: ( item Flippers | ( state Lilypad & item GustJar ) )
+    node NorthExit:
+      exit NorthWater
+    node North:
+      entrance NorthWater
+    NorthExit -> North: ( item Flippers | ( state Lilypad & item GustJar ) )
+    North <-> South: flag ButtonPressed
+    node Button:
+      flag ButtonPressed
+    West <-> Button: ( state Lilypad & item GustJar )
   room BF1LilyChest:
     node Main:
       door North
       enemy Pesto
-    node WaterDoorExit:
+      chest BigChest
+    node Chest:
+      chest Chest
+    Main <-> Chest: ( item Cape | ( state Lilypad & item GustJar ) )
+    node WaterExit:
       exit Water
-    node WaterDoorEntrance:
+    node Water:
       entrance Water
-    WaterDoorExit -> Main: item Flippers
-    Main -> WaterDoorEntrance: item Flippers
+    WaterExit -> Water: ( item Flippers | ( state Lilypad & item GustJar ) )
+    Water -> Main: ( state Lilypad & item GustJar )
+    Main -> Water: ( item Flippers | ( state Lilypad & item GustJar ) )
   room BF1LilyDrop:
     node Main:
-      entrance Drop
-    node Water:
+      exit Drop
+    node North:
       door North
-      door West
+    node Water:
+      entrance East
       enemy Enemies
-    Main -> Water: ( item GustJar | item Flippers )
+    Water <-> North: ( flag DoorUnlocked & ( state Lilypad & item GustJar ) )
+    node WaterExit:
+      exit East
+    WaterExits -> Water: ( item flippers | ( state Lilypad & item GustJar ) )
+    Main -> Water: ( item flippers | ( state Lilypad & item GustJar ) )
   room F1PreChu:
     node North:
       door North
