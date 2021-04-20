@@ -58,8 +58,8 @@ area DeepwoodShrine:
     Water <-> North: ( flag DoorUnlocked & ( state Lilypad & item GustJar ) )
     node WaterExit:
       exit East
-    WaterExits -> Water: ( item flippers | ( state Lilypad & item GustJar ) )
-    Main -> Water: ( item flippers | ( state Lilypad & item GustJar ) )
+    WaterExits -> Water: ( item Flippers | ( state Lilypad & item GustJar ) )
+    Main -> Water: ( item Flippers | ( state Lilypad & item GustJar ) )
   room F1PreChu:
     node North:
       door North
