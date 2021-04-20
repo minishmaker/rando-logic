@@ -16,6 +16,7 @@ area DeepwoodShrine:
     node Main:
       door Portal
       chest Chest
+    Main <-> South: ( item GustJar | item Cape )
   room BF1LilyButton:
     node WaterEntrances:
       entrance North
