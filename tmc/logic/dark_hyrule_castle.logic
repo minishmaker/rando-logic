@@ -111,9 +111,13 @@ area DarkHyruleCastle:
   room F1BigKeyChest:
     node Main:
       door South
+      lock Block1
+      lock Block2
+      lock Block3
+      lock Block4
     node Chest:
       chest Chest
-    Main <-> Chest: ( item CanSplit4 | flag BlocksUnlocked)
+    Main <-> Chest: ( open Block1 & open Block2 & open Block3 & open Block4 )
   room F1BigKeyDoor:
     node Main:
       exit Portal
@@ -330,6 +334,7 @@ area DarkHyruleCastle:
       exit East
       door West
       door South
+      lock EastDoor
       exit RedPortal
       exit BluePortal
     node RedPortal:
@@ -340,7 +345,7 @@ area DarkHyruleCastle:
     Main -> BluePortal: flag BluePortal
     node EastStair:
       entrance East
-    Main -> EastStair: flag DoorUnlocked
+    Main -> EastStair: open EastDoor
   room GFNortheastPath:
     node Main:
       door South
