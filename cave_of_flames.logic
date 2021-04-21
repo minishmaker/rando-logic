@@ -129,8 +129,13 @@ area CaveOfFlames:
       door Hole
       door Door
   room BF2Lava:
-    node BigDoor:
-      door BigDoor
+    node BigDoorEntrance:
+      entrance BigDoor
+    node BigDoorExit:
+      exit BigDoor
+    node FrontOfBigDoor
+    BigDoorExit -> FrontOfBigDoor: flag DoorUnlocked
+    FrontOfBigDoor -> BigDoorEntrance: flag DoorUnlocked
     node West:
       door West
     node North:
