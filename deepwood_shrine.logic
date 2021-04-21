@@ -53,9 +53,10 @@ area DeepwoodShrine:
     node North:
       door North
     node Water:
+      lock NorthDoor
       entrance East
       enemy Enemies
-    Water <-> North: ( flag DoorUnlocked & ( state Lilypad & item GustJar ) )
+    Water <-> North: ( open NorthDoor & ( state Lilypad & item GustJar ) )
     node WaterExit:
       exit East
     WaterExits -> Water: ( item Flippers | ( state Lilypad & item GustJar ) )
@@ -79,6 +80,7 @@ area DeepwoodShrine:
       door BarrelSouthWest
     node NorthEast:
       door BarrelNorthEast
+      lock NorthEastDoor
     node NorthWest:
       door BarrelNorthWest
       enemy NorthWestPuffStools
@@ -87,10 +89,10 @@ area DeepwoodShrine:
     NorthWest <-> NorthWestChest: item GustJar
     node NorthEastDoor:
       door NorthEast
-    NorthEast <-> NorthEastDoor: flag DoorUnlocked
+    NorthEast <-> NorthEastDoor: open NorthEastDoor
     node NorthDoor:
       door North
-    NorthEast <-> NorthDoor: flag NorthDoorUnlocked
+    NorthEast <-> NorthDoor: flag DeepwoodShrine.GFPortalHeart.SouthDoorOpen
   room GFEntrance:
     node Main:
       door South
@@ -113,12 +115,19 @@ area DeepwoodShrine:
     Main -> BluePortal: flag BluePortal
   room GFLanterns:
     node Main:
+      enemy Slugs
+      flag TopLeftTorch
+      flag TopRightTorch
+      flag BottomLeftTorch
+      flag BottomRightTorch
       door South
+      lock NorthDoor
+    node Chest:
       chest Chest
-      enemy Sluggulas
+    Main -> Chest: flag TopLeftTorch, flag TopRightTorch, flag BottomLeftTorch, flag BottomRightTorch
     node North:
       door North
-    Main <-> North: flag DoorUnlocked
+    Main <-> North: open NorthDoor
   room GFLeverBridge:
     node Main:
       door North
@@ -165,7 +174,7 @@ area DeepwoodShrine:
       door SouthEast
     node NorthEastDoor:
       door NorthEast
-    Main <-> NorthEastDoor: flag DoorOpen
+    Main <-> NorthEastDoor: defeat DeepwoodShrine.GFMulldozers.Mulldozers
   room GFPillarButtons:
     node Main:
       door North
@@ -180,14 +189,16 @@ area DeepwoodShrine:
       door SouthWest
       door South
       door East
+      flag SouthDoorOpen
       enemy PuffStools
+      lock NorthWestDoor
     node MainChests:
       chest EastChest
       chest WestChest
     Main <-> MainChests: item GustJar
     node NorthWest:
       door NorthWest
-    Main <-> NorthWest: flag DoorUnlocked
+    Main <-> NorthWest: open NorthWestDoor
     node Top:
       door Portal
       chest HP
