@@ -125,8 +125,11 @@ area DarkHyruleCastle:
       lock BigKeyDoor
     node PostFight:
       entrance Portal
-    node North:
-      door North
+    node NorthExit:
+      exit North
+    node NorthEntrance:
+      entrance North
+      flag BigKeyDoorOpen
     node East:
       door East
     node West:
@@ -134,7 +137,8 @@ area DarkHyruleCastle:
     Main <-> PostFight: defeat ChainSoldier
     Main <-> East: defeat ChainSoldier
     Main <-> West: defeat ChainSoldier
-    Main <-> North: open BigKeyDoor
+    NorthExit -> Main: flag BigKeyDoorOpen
+    Main -> NorthEntrance: flag BigKeyDoorOpen
   room F1DarkKnight:
     node Fight:
       exit North
