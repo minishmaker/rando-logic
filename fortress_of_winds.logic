@@ -9,12 +9,14 @@ area FortressOfWinds:
   room F1CentralRoom:
     node North:
       chest Chest
+      lock EastDoor
+      lock WestDoor
     node NorthEast:
       door NorthEast
-    North <-> NorthEast: flag EastDoorUnlocked
+    North <-> NorthEast: open EastDoor
     node NorthWest:
       door NorthWest
-    North <-> NorthWest: flag WestDoorUnlocked
+    North <-> NorthWest: open WestDoor
     node Main:
       door Stair
       door South
@@ -30,16 +32,17 @@ area FortressOfWinds:
   room F1CloneButtons:
     node Main:
       door West
+      lock Door
     node Key:
       chest Key
     node South:
       door South
-    Main <-> South: flag DoorUnlocked
+    Main <-> South: open Door
     node MainMinish:
       door WestMinish
     node SouthMinish:
       door SouthMinish
-    MainMinish <-> SouthMinish: flag DoorUnlocked
+    MainMinish <-> SouthMinish: open Door
   room F1Darknut:
     node Main:
       exit East
@@ -83,6 +86,7 @@ area FortressOfWinds:
       door North
       exit RoofHole
       entrance Hole
+      flag DoorOpen
       chest EastChest
       chest WestChest
     node South:
@@ -154,15 +158,17 @@ area FortressOfWinds:
     Main <-> East: ( item Cape | item CanSplit2 )
     node East:
       door South
+      lock Door
     node EastBigDoor:
       door North
-    East <-> EastBigDoor: flag DoorUnlocked
+    East <-> EastBigDoor: open Door
   room F2East:
     node East:
       door SouthEast
+      lock SouthEastDoor
     node NorthEast:
       entrance EastHoles
-    East -> NorthEast: flag DoorUnlocked
+    East -> NorthEast: open SouthEastDoor
     node West:
       door SouthWest
       entrance WestHole
