@@ -6,10 +6,8 @@ area CloudTops:
       door CloudTopsExit
       door CenterTornado
       exit BigTornado
-    node CenterFusion:
-      flag CenterFusion
+      lock CenterFusion: key CloudTopsKinstone
     #Reusing the current name for CT Kinstones
-    CenterPlatform -> CenterFusion: item KinstoneX.YellowTornadoProng::5
     node MiddleRightPlatform:
       enemy MiddleRightCloudPiranha
       door MiddleRightPlatformLowerTornado
@@ -17,38 +15,32 @@ area CloudTops:
     CenterPlatform <-> MiddleRightPlatform: item Cape
     node TopRightPlatform:
       door TopRightTornado
-    node TopRightFusion:
-      flag TopRightFusion
-    TopRightPlatform -> TopRightFusion: item KinstoneX.YellowTornadoProng::5
+	  lock TopRightFusion: key CloudTopsKinstone
     node MiddleTopPlatform
       enemy NorthCloudPiranhas
-      entrance NorthFightEntrance
+      exit NorthFightTornado
     node NorthFight:
       chest NorthFightItem
-      exit NorthFightExit
+      entrance NorthFightTornado
     #Could just be a flag since you don't need sword to beat them?
     MiddleTopPlatform -> NorthFight: defeat NorthCloudPiranhas
     node TopLeftPlatform:
       door TopLeftTornado
       enemy TopLeftLakitu
-    node TopLeftFusion:
-      flag TopLeftFusion
-    TopLeftPlatform -> TopLeftFusion: item KinstoneX.YellowTornadoProng::5
+      lock TopLeftFusion: key CloudTopsKinstone
     node BottomLeftPlatform:
       enemy BottomLeftEnemies
       door BottomLeftPlatformLeftTornado
       door BottomLeftPlatformRightTornado
       door BottomLeftPlatformTopTornado
-    node BottomLeftFusion:
-      flag BottomLeftFusion
-    BottomLeftPlatform -> BottomLeftFusion: item KinstoneX.YellowTornadoProng::5
+      lock BottomLeftFusion: key CloudTopsKinstone
     node MiddleBottomPlatform:
       door MiddleBottomPlatformLowerTornado
-      entrance SouthFightEntrance
+      exit SouthFightTornado
       enemy SouthCloudPiranhas
     node SouthFight:
       chest SouthFight
-      exit SouthFightExit
+      entrance SouthFightTornado
     MiddleBottomPlatform -> SouthFight: defeat SouthCloudPiranhas
     node BottomRightPlatform:
       enemy BottomRightCloudPiranha
@@ -56,30 +48,29 @@ area CloudTops:
     MiddleBottomPlatform <-> BottomRightPlatform: item Cape
     node BottomRightFusionPlatform:
       door BottomRightFusionPlatformTornado
-    node BottomRightFusion:
-      flag BottomRightFusion
-    BottomRightFusionPlatform -> BottomRightFusion: item KinstoneX.YellowTornadoProng::5
+      lock BottomRightFusion: key CloudTopsKinstone
     #This way we could pre-set it maybe? Could just remove this if it's not necessary
     node FusionsComplete:
       flag FusionsComplete
-    CenterPlatform -> FusionsComplete: (flag CenterFusion & flag TopRightFusion & flag TopLeftFusion & BottomLeftFusion & BottomRightFusion)
+    CenterPlatform -> FusionsComplete: (open CenterFusion & open TopRightFusion & open TopLeftFusion & open BottomLeftFusion & open BottomRightFusion)
     node BigTornado:
+      flag WindTribeDoorOpen
       entrance BigTornado
     CenterPlatform -> BigTornado: flag FusionsComplete
-    node CenterPlatform +: exit Virtual.Zeffa.FluteAway
-    node MiddleRightPlatform +: exit Virtual.Zeffa.FluteAway
-    node MiddleTopPlatform +: exit Virtual.Zeffa.FluteAway
-    node TopLeftPlatform +: exit Virtual.Zeffa.FluteAway
-    node BottomLeftPlatform +: exit Virtual.Zeffa.FluteAway
-    node MiddleBottomPlatform +: exit Virtual.Zeffa.FluteAway
-    node BottomRightPlatform +: exit Virtual.Zeffa.FluteAway
+    node CenterPlatform +: entrance Virtual.Zeffa.FluteAway
+    node MiddleRightPlatform +: entrance Virtual.Zeffa.FluteAway
+    node MiddleTopPlatform +: entrance Virtual.Zeffa.FluteAway
+    node TopLeftPlatform +: entrance Virtual.Zeffa.FluteAway
+    node BottomLeftPlatform +: entrance Virtual.Zeffa.FluteAway
+    node MiddleBottomPlatform +: entrance Virtual.Zeffa.FluteAway
+    node BottomRightPlatform +: entrance Virtual.Zeffa.FluteAway
   room TowerEntrance:
     node Main:
-      entrance Crest
+      exit Crest
       flag Virtual.Zeffa.CloudTopsCrest
       door WindTribeTower
       door Hole
-    node Main +: exit Virtual.Zeffa.FluteAway
+    node Main +: entrance Virtual.Zeffa.FluteAway
   room UpperClouds:
     node StartingPlatform:
       chest StartingPlatformChest
@@ -118,6 +109,7 @@ area CloudTops:
       door BottomCenterLeftPlatformHole
       chest BottomCenterLeftChest
     BottomleftPlatform <-> BottomCenterLeftPlatform: item Cape
+    TopTornadoField -> BottomCenterLeftPlatform
     node BottomCenterLeftDigItem:
       chest BottomCenterLeftObscure
     BottomCenterLeftPlatform -> BottomCenterLeftDigItem: item MoleMitts
@@ -127,6 +119,7 @@ area CloudTops:
       door BottomCenterPlatformLeftHole
       door BottomCenterPlatformRightHole
     BottomleftPlatform <-> BottomCenterPlatform: item Cape
+    TopTornadoField -> BottomCenterPlatform
     #Also includes the empty platform that has the 1x1 hole
     node BottomCenterRightPlatform:
       door BottomCenterRightPlatformHole
@@ -142,25 +135,26 @@ area CloudTops:
     node SmallHole:
       door SmallHole
     BottomCenterRightPlatform -> SmallHole: item MoleMitts
-    #Includes the empty platform to the left of the starting platfirm
+    #Includes the empty platform to the left of the starting platform
     node BottomRightCornerPlatform:
       door BottomRightLowerHole
       door BottomRightUpperHole
     BottomRightCornerPlatform -> SmallHole: item Cape
+    BottomCenterRightPlatform -> BottomRightCornerPlatform: (item MoleMitts & item Cape)
     #Via the center platform
     BottomRightCornerPlatform -> TopTornadoField: item MoleMitts
-    StartingPlatform -> BottomRightCornerPlatform: item MoleMitts	
+    StartingPlatform -> BottomRightCornerPlatform: (item MoleMitts & item Cape)
     node BottomRightCornerDigItems:
       chest BottomRightLowerObscureItem
       chest BottomRightUpperObscureItem
     BottomRightCornerPlatform -> BottomRightCornerDigItems: item MoleMitts
-    node StartingPlatform +: exit Virtual.Zeffa.FluteAway
-    node TopRightCornerLowerArea +: exit Virtual.Zeffa.FluteAway
-    node TopTornadoField +: exit Virtual.Zeffa.FluteAway
-    node TopLeftCornerLowerArea +: exit Virtual.Zeffa.FluteAway
-    node BottomleftPlatform +: exit Virtual.Zeffa.FluteAway
-    node BottomCenterLeftPlatform +: exit Virtual.Zeffa.FluteAway
-    node BottomCenterPlatform +: exit Virtual.Zeffa.FluteAway
-    node BottomCenterRightPlatform +: exit Virtual.Zeffa.FluteAway
-    node BottomRightCornerPlatform +: exit Virtual.Zeffa.FluteAway
+    node StartingPlatform +: entrance Virtual.Zeffa.FluteAway
+    node TopRightCornerLowerArea +: entrance Virtual.Zeffa.FluteAway
+    node TopTornadoField +: entrance Virtual.Zeffa.FluteAway
+    node TopLeftCornerLowerArea +: entrance Virtual.Zeffa.FluteAway
+    node BottomleftPlatform +: entrance Virtual.Zeffa.FluteAway
+    node BottomCenterLeftPlatform +: entrance Virtual.Zeffa.FluteAway
+    node BottomCenterPlatform +: entrance Virtual.Zeffa.FluteAway
+    node BottomCenterRightPlatform +: entrance Virtual.Zeffa.FluteAway
+    node BottomRightCornerPlatform +: entrance Virtual.Zeffa.FluteAway
     
