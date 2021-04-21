@@ -158,10 +158,12 @@ area FortressOfWinds:
     Main <-> East: ( item Cape | item CanSplit2 )
     node East:
       door South
-      lock Door
-    node EastBigDoor:
-      door North
-    East <-> EastBigDoor: open Door
+    node EastBigDoorEntrance:
+      entrance North
+    node EastBigDoorExit:
+      exit North
+    East -> EastBigDoorEntrance: flag BigDoorUnlocked
+    EastBigDoorExit -> East: flag BigDoorUnlocked
   room F2East:
     node East:
       door SouthEast
