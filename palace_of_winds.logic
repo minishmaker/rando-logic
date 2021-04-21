@@ -8,13 +8,14 @@ area PalaceOfWinds:
   room F1CrumbleClones:
     node Main:
       door North
+      lock EastDoor
     node East:
       door East
     node Upper:
       door Upper
     node West:
       door West
-    Main <-> East: flag DoorUnlocked
+    Main <-> East: open EastDoor
     Main <-> West: flag DoorOpen
     Upper -> Main
   room F1CloudUpAndDown:
@@ -132,13 +133,14 @@ area PalaceOfWinds:
       door East
     North <-> South: item Cape
   room F2PotPushing:
-    node Main
+    node Main:
+      lock WestDoor
     node South:
       door SouthWest
     Main <-> South: item Cape
     node West:
       door West
-    Main <-> West: flag DoorUnlocked
+    Main <-> West: open WestDoor
     node East:
       door North
     East -> Main
@@ -277,9 +279,10 @@ area PalaceOfWinds:
       door South
     node Center:
       door CenterCloud
+      lock NorthDoor
     node North:
       door North
-    Center <-> North: flag DoorUnlocked
+    Center <-> North: open NorthDoor
     node East:
       door East
       door EastCloud
@@ -298,12 +301,14 @@ area PalaceOfWinds:
     node Main:
       door North
       enemy BallAndChainSoldiers
+      lock WestDoor
+      lock BigKeyDoor
     node South:
       door South
-    Main <-> South: flag SouthDoorUnlocked
+    Main <-> South: open BigKeyDoor
     node West:
       door West
-    Main <-> West: flag WestDoorUnlocked
+    Main <-> West: open WestDoor
     node PostFight:
       chest Chest
     Main <-> PostFight: defeat BallAndChainSoldiers
@@ -364,9 +369,10 @@ area PalaceOfWinds:
     node North:
       door NorthEast
       door NorthWest
+      lock NorthDoor
     node NorthUp:
       door North
-    North <-> NorthUp: flag DoorUnlocked
+    North <-> NorthUp: open NorthDoor
     South -> North: item Cape
     node Center:
       chest Chest
