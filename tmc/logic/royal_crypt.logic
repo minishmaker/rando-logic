@@ -11,9 +11,11 @@ area RoyalCrypt:
   room KeyPuzzles:
     node Main:
       door South
+      lock Block1
+      lock Block2
     node North:
       door North
-    Main <-> North: flag KeyBlocksUnlocked
+    Main <-> North: ( open Block1 & open Block2 )
     node LeftChest:
       chest Left
     node RightChest:
@@ -39,9 +41,10 @@ area RoyalCrypt:
   room MushroomPit:
     node North:
       exit North
+      lock Door
     node NorthEntrance:
       entrance North
-    North -> NorthEntrance: flag DoorUnlocked
+    North -> NorthEntrance: open Door
     node South:
       door South
     South -> North
