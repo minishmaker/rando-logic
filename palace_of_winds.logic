@@ -279,10 +279,13 @@ area PalaceOfWinds:
       door South
     node Center:
       door CenterCloud
-      lock NorthDoor
-    node North:
-      door North
-    Center <-> North: open NorthDoor
+    node NorthEntrance:
+      entrance North
+      flag NorthDoorOpen
+    node NorthExit:
+      exit North
+    Center -> NorthEntrance: flag NorthDoorOpen
+    NorthExit -> Center: flag NorthDoorOpen
     node East:
       door East
       door EastCloud
@@ -302,10 +305,13 @@ area PalaceOfWinds:
       door North
       enemy BallAndChainSoldiers
       lock WestDoor
-      lock BigKeyDoor
-    node South:
-      door South
-    Main <-> South: open BigKeyDoor
+    node SouthEntrance:
+      entrance South
+      flag BigKeyDoorOpen
+    node SouthExit:
+      exit South
+    SouthExit -> Main: flag BigKeyDoorOpen
+    Main -> SouthEntrance: flag BigKeyDoorOpen
     node West:
       door West
     Main <-> West: open WestDoor
