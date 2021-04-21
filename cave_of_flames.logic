@@ -27,7 +27,7 @@ area CaveOfFlames:
     Main <-> NorthWestDoor: flag DoorOpen
     node Minecart:
       door Minecart
-    Main -> Minecart: iten Cane
+    Main -> Minecart: item Cane
     Minecart -> Main
     node BombWall:
       door BombWall
@@ -84,17 +84,19 @@ area CaveOfFlames:
     West <-> WestPortal: flag ButtonPressed
     node West:
       exit Stair
+      lock Door
     East <-> West: ( item Cane | item Cape )
     South -> West
     West -> South: item Cane
-    West -> Stair: flag DoorUnlocked
+    West -> Stair: open Door
   room BF1TrackSwap:
     node Main:
       door North
       door MinecartSouth
+      lock Door
     node Tracknorth:
       door MinecartNorth
-    TrackSouth <-> Main: flag DoorUnlocked
+    TrackSouth <-> Main: open Door
   room BF2BladeChest:
     node Upper:
       door UpperWest
