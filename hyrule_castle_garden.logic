@@ -1,2 +1,38 @@
 area Garden:
-  room Main
+  room Main:
+    node Main:
+      door South
+      door NorthWestLadder
+      door SouthEastLadder
+      exit North
+      exit LeftFountain
+      exit RightFountain
+    node MainBonk:
+      flag Bonk
+    node North:
+      entrance North
+    Main -> North: flag CastleOpen
+    node LeftFountain:
+      entrance LeftFountain
+    node RightFountain:
+      entrance RightFountain
+    Main -> LeftFountain: flag LeftFountainFusion
+    Main -> RightFountain: flag RightFountainFusion
+    node MainMinish:
+      door MinishHouse
+    node LeftFountainMinishEntrance:
+      entrance LeftFountainMinish
+    node RightFountainMinishEntrance:
+      entrance RightFountainMinish
+    node LeftFountainMinishExit:
+      exit LeftFountainMinish
+    node RightFountainMinishExit:
+      exit RightFountainMinish
+    RightFountainMinishExit -> MainMinish: flag RightFountainFusion
+    MainMinish -> RightFountainMinishEntrance: flag RightFountainFusion
+    LeftFountainMinishExit -> MainMinish: flag LeftFountainFusion
+    MainMinish -> LeftFountainMinishEntrance: flag LeftFountainFusion
+    Main -> MainMinish: ( flag Bonk & item CanTurnMinish )
+    MainMinish -> Main: item CanGrow
+    node Main +: entrance Virtual.Zeffa.FluteAway
+    node North +: entrance Virtual.Zeffa.FluteAway
