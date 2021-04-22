@@ -2,14 +2,22 @@ area CastorWilds:
   room Main:
     node East:
       door East
+      enemy PeaHats
     node Main:
       door DarknutCave
+      door NorthCave
       exit DigCave
+      enemy NorthEyeGore
+      enemy NorthWestEyeGore
+      enemy WestEyeGore
+      enemy Ropes
+      enemy PeaHats
     node MainDigCave:
       entrance DigCave
     Main -> MainDigCave: item MoleMitts
     Main <-> East: ( item Boots | item Cape )
     node NorthEast:
+      enemy PeaHats
       door NorthEastCave
     node NorthEastIsland:
       door NorthEastIslandCave
@@ -21,7 +29,7 @@ area CastorWilds:
     NorthEast -> NorthEastWaterfallEntrance: ( item Flippers & flag CastorWaterfallFusion )
     NorthEastWaterfallExit -> NorthEast: ( item Flippers & flag CastorWaterfallFusion )
     node NorthWest
-    Main <-> NorthWest: ( item Bow | flag NorthBoulderPushed )
+    Main <-> NorthWest: ( defeat NorthWestEyeGore | flag NorthBoulderPushed )
     node MainMinish:
       door CenterHole
       door MinishPathNorth
@@ -37,30 +45,37 @@ area CastorWilds:
     MainMinish <-> NorthMinishFusion: flag NorthLilyFusion
     node West:
       door Ghostblade
+      enemy PeaHats
     node WestHilltop:
       chest WestChest
+      enemy PeaHats
       enemy LikeLikes
     WestHillTop -> West
-    Main -> WestHillTop: item Bow
+    Main -> WestHillTop: defeat WestEyeGore
     WestHillTop -> Main
     node MinishVineHole:
       door MinishVineHole
     MainMinish <-> MinishVineHole: flag MinishVineLilyFusion
     node South:
       entrance Crest
+      enemy SouthEyeGore
+      flag SouthBoulderPushed
       flag Virtual.Zeffa.CastorCrest
     South <-> West: ( item Cape | item Boots )
-    South <-> Main: ( item Bow | flag SouthBoulderPushed )
-    node SouthBetweenSouthAndWater:
+    South <-> Main: ( defeat SouthEyeGore | flag SouthBoulderPushed )
+    node SouthEast:
       door SouthCave
-    Main <-> SouthBetweenSouthAndWater: ( item Cape | item Flippers )
-    SouthBetweenSouthAndWater <-> South: ( item Bow | flag EastBoulderPushed )
+    Main <-> SouthEast: ( item Cape | item Flippers )
+    SouthEast <-> South: ( item Bow | flag EastBoulderPushed )
     node SouthWest:
+      enemy PeaHats
       lock CastorKinstone1: key CastorKinstone
       lock CastorKinstone2: key CastorKinstone
       lock CastorKinstone3: key CastorKinstone
-    node SouthWestExit
-    node SouthWestEntrance
+    node SouthWestExit:
+      exit SouthWest
+    node SouthWestEntrance:
+      entrance SouthWest
     South <-> SouthWest: ( item Cape | item Boots )
     SouthWestExit -> SouthWest: ( open CastorKinstone1 & open CastorKinstone2 & open CastorKinstone3)
     SouthWest -> SouthWestEntrance: ( open CastorKinstone1 & open CastorKinstone2 & open CastorKinstone3)
