@@ -55,12 +55,15 @@ area CastorWilds:
       door SouthCave
     Main <-> SouthBetweenSouthAndWater: ( item Cape | item Flippers )
     SouthBetweenSouthAndWater <-> South: ( item Bow | flag EastBoulderPushed )
-    node SouthWest
+    node SouthWest:
+      lock CastorKinstone1: key CastorKinstone
+      lock CastorKinstone2: key CastorKinstone
+      lock CastorKinstone3: key CastorKinstone
     node SouthWestExit
     node SouthWestEntrance
     South <-> SouthWest: ( item Cape | item Boots )
-    SouthWestExit -> SouthWest: flag CastorFusions
-    SouthWest -> SouthWestEntrance: flag CastorFusions
+    SouthWestExit -> SouthWest: ( open CastorKinstone1 & open CastorKinstone2 & open CastorKinstone3)
+    SouthWest -> SouthWestEntrance: ( open CastorKinstone1 & open CastorKinstone2 & open CastorKinstone3)
     Main <-> SouthEastWater: item Flippers
     node SouthEastWater:
       chest Rupee1
