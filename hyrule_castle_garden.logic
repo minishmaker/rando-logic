@@ -6,30 +6,33 @@ area Garden:
       door SouthEastLadder
       exit North
       exit LeftFountain
-      exit RightFusion
-    node MainNorth:
+      exit RightFountain
+    node MainBonk:
+      flag Bonk
+    node North:
       entrance North
-    Main -> MainNorth: flag CastleOpen
-    node MainLeftFountain:
+    Main -> North: flag CastleOpen
+    node LeftFountain:
       entrance LeftFountain
-    node MainRightFountain:
+    node RightFountain:
       entrance RightFountain
-    Main <-> MainLeftFountain: flag LeftFountainFusion
-    Main <-> MainRightFountain: flag RightFountainFusion
+    Main -> LeftFountain: flag LeftFountainFusion
+    Main -> RightFountain: flag RightFountainFusion
     node MainMinish:
       door MinishHouse
-    node MainLeftFountainMinishEntrance:
+    node LeftFountainMinishEntrance:
       entrance LeftFountainMinish
-    node MainRightFountainMinishEntrance:
+    node RightFountainMinishEntrance:
       entrance RightFountainMinish
-    node MainLeftFountainMinishExit:
+    node LeftFountainMinishExit:
       exit LeftFountainMinish
-    node MainRightFountainMinishExit:
+    node RightFountainMinishExit:
       exit RightFountainMinish
-    MainRightFountainMinishExit -> MainMinish: flag RightFountainFusion
-    MainMinish -> MainRightFountainMinishEntrance: flag RightFountainFusion
-    MainLeftFountainMinishExit -> MainMinish: flag LeftFountainFusion
-    MainMinish -> MainLeftFountainMinishEntrance: flag LeftFountainFusion
-    Main -> MainMinish: ( flag CastleGardenBonk & item CanTurnMinish )
+    RightFountainMinishExit -> MainMinish: flag RightFountainFusion
+    MainMinish -> RightFountainMinishEntrance: flag RightFountainFusion
+    LeftFountainMinishExit -> MainMinish: flag LeftFountainFusion
+    MainMinish -> LeftFountainMinishEntrance: flag LeftFountainFusion
+    Main -> MainMinish: ( flag Bonk & item CanTurnMinish )
     MainMinish -> Main: item CanGrow
     node Main +: entrance Virtual.Zeffa.FluteAway
+    node North +: entrance Virtual.Zeffa.FluteAway
