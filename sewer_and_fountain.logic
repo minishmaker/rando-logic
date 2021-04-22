@@ -14,12 +14,14 @@ area SewerAndFountain:
       door North
       door South
       door East
+      enemy Sluggulas
     node HP:
       chest HP
     Main <-> HP: item Cape
   room FountainPacciHole:
     node Main:
       door West
+      enemy Mulldozers
     node North:
       door North
     North -> Main
@@ -52,6 +54,7 @@ area SewerAndFountain:
     node Main:
       door North
       door East
+      enemy Sluggulas
     node Water:
       exit WaterNorth
       exit WaterEast
@@ -73,6 +76,7 @@ area SewerAndFountain:
   room SewerEast:
     node East:
       door East
+      enemy Sluggulas
     node West:
       door West
     East -> West: item GustJar
