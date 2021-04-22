@@ -2,7 +2,10 @@ area HouseInteriors1:
   room HearthBackDoor:
     node Main:
       chest HP
-      door Door
+    node MainMinish:
+      door NorthMinish
+    MainMinish -> Main: item CanGrow
+    Main -> MainMinish: item CanTurnMinish
   room HearthBottom:
     node Main:
       door South
@@ -35,7 +38,7 @@ area HouseInteriors1:
       entrance South
     node LampsLit:
       flag DoorOpen
-    Main -> LampsLit: item Lantern
+    Main <-> LampsLit: item Lantern
     Main -> South: flag DoorOpen
   room LibraryBottom:
     node Main:
@@ -47,14 +50,21 @@ area HouseInteriors1:
       door South
     node MainMinish:
       door Bookcase
-      door South
+      door SouthMinish
   room Mayor:
     node Main:
       door East
       door South
+    node MasksBroken:
+      flag MasksBroken
+    node PortalFlipped:
+      flag PortalFlipped
+    Main <-> PortalFlipped: item Cane
+    Main <-> MasksBroken: item Boots
     node MainMinish:
       door MinishHouse
-    Main -> MainMinish: (item Boots & item Cane)
+    Main -> MainMinish: (flag MasksBroken & flag PortalFlipped & item CanTurnMinish)
+    MainMinish -> Main: (flag MasksBroken & flag PortalFlipped & item CanTurnMinish)
   room PostOffice:
     node Main:
       door Door
@@ -67,7 +77,11 @@ area HouseInteriors1:
     node Main:
       door West
       door South
+    node PortalFlipped:
+      flag PortalFlipped
+    Main <-> PortalFlipped: item Cane
     node MainMinish:
       door MinishLeft
       door MinishRight
-    Main -> MainMinish: item Cane
+    Main -> MainMinish: ( flag PortalFlipped & item CanTurnMinish )
+    MainMinish -> Main: ( flag PortalFlipped & item CanGrow)
