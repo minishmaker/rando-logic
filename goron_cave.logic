@@ -1,7 +1,7 @@
 area GoronCave:
   room Entrance:
     node Main:
-      door Door
+      door South
       door Stairs
   room Main:
     node Main:
