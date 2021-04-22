@@ -27,4 +27,5 @@ area HyliaDigCaves
       door Ladder
     node Westladder:
       door Ladder
+      enemy LikeLike
     CenterLadder <-> WestLadder: item MoleMitts
