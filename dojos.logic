@@ -2,79 +2,79 @@ area Dojos:
   room Ghostblade:
     node Main:
       chest HP
-      door Door
-    node MainCanLearn:
+      door South
+    node CanLearn:
       chest Ghostblade
-    Main <-> MainCanLearn: ( item SmithsSword & item HasSevenScrolls )
+    Main <-> CanLearn: ( item SmithsSword & item HasSevenScrolls )
   room Grayblade:
     node Main:
       chest HP
-      chest Left
-      chest Right
-      door Door
-    node MainCanLearn:
+      chest LeftChest
+      chest RightChest
+      door South
+    node CanLearn:
       chest Grayblade
-    Main <-> MainCanLearn: item SmithsSword
+    Main <-> CanLearn: item SmithsSword
   room Greatblade:
     node Main:
-      door Door
-    node MainCanLearn:
+      door South
+    node CanLearn:
       chest Greatblade
-    Main <-> MainCanLearn: item SmithsSword
+    Main <-> CanLearn: item SmithsSword
   room Grimblade:
     node Main:
       chest HP
-      door Door
-    node MainCanLearn:
+      door South
+    node CanLearn:
       chest Grimblade
-    Main <-> MainCanLearn: ( item SmithsSword & item Lantern )
+    Main <-> CanLearn: ( item SmithsSword & item Lantern )
   room Scarblade:
     node Main:
-      door Door
-    node MainCanLearn:
+      door South
+    node CanLearn:
       chest Scarblade
-    Main <-> MainCanLearn: item SmithsSword
+    Main <-> CanLearn: item SmithsSword
   room Splitblade:
     node Main:
-      door Door
-    node MainCanLearn:
+      door South
+    node CanLearn:
       chest Splitblade
-    Main <-> MainCanLearn: item SmithsSword
+    Main <-> CanLearn: item SmithsSword
   room Waveblade:
     node Main:
       chest HP
-      door Door
-    node MainCanLearn:
+      door South
+    node CanLearn:
       chest Waveblade
-    Main <-> MainCanLearn: ( item SmithsSword & item HasTenHearts )
+    Main <-> CanLearn: ( item SmithsSword & item HasTenHearts )
   room GreatbladeEntry:
-    node North:
+    node Main:
       door North
     node SouthExit:
       exit South
     node SouthEntrance:
       entrance South
-    North -> SouthExit: item Flippers
-    SouthEntrance -> North: item Flippers
+    Main -> SouthEntrance: item Flippers
+    SouthExit -> Main: item Flippers
   room GrimbladeEntry:
     node Main:
-      door Door
+      door North
       door Ladder
   room ScarbladeEntry:
-    node North:
+    node Main:
       door North
     node SouthExit:
       exit South
     node SouthEntrance:
       entrance South
-    North -> SouthExit: item Flippers
-    SouthEntrance -> North: item Flippers
+    Main -> SouthEntrance: item Flippers
+    SouthExit -> Main: item Flippers
   room SplitbladeEntry:
-    node North:
+    node Main:
       door North
     node SouthExit:
       exit South
     node SouthEntrance:
       entrance South
-    North -> SouthExit: item Flippers
-    SouthEntrance -> North: item Flippers
+    Main -> SouthEntrance: item Flippers
+    SouthExit -> Main: item Flippers
