@@ -4,12 +4,14 @@ area WindRuins:
       door North
       enemy Armoses
     node South:
+      enemy SouthEnemies
+    node SouthGoldenRope:
       enemy GoldenRope
-      enemy Ropes
-    North -> South: flag ArmosOn
+    South <-> SouthGoldenRope: flag RuinsGoldenRopeFusion
+    North -> South: flag ArmosOff
     node NorthEastDoor:
       door NorthEast
-    South <-> NorthEastDoor: defeat Ropes
+    South <-> NorthEastDoor: defeat SouthEnemies
     node Chests:
       chest ChestLeft
       chest ChestRight
@@ -23,6 +25,7 @@ area WindRuins:
       enemy LeverAndTektites
     node MainMinish:
       door SouthMinish
+      door EastMinish
     node BeanstalkEntry:
       entrance BeanstalkFusion
     node BeanstalkExit:
@@ -41,8 +44,10 @@ area WindRuins:
     node Center:
       door SouthCenter
       enemy Tektites
+      flag BoulderPushed
     East -> Center
-    West <-> Center: ( flag ArmosOn | flag RockPushed )
+    West -> Center: ( defeat Armos | flag BoulderPushed )
+    Center -> West: flag BoulderPushed
     node West:
       door West
       enemy Armos
@@ -51,23 +56,35 @@ area WindRuins:
     node West +: entrance Virtual.Zeffa.FluteAway
     node Center +: entrance Virtual.Zeffa.FluteAway
   room Entry:
-    node Main:
-      chest Butterfly
+    node North:
       door North
+      enemy NorthLeever
+      enemy NorthArmos
       exit BombWall
+    node South:
+      enemy SouthLeeverAndTektite
+      enemy SouthArmos
+    North -> South: defeat NorthArmos
+    South -> North
+    node NorthButterflyFusion:
+      chest Butterfly
+    North <-> NorthButterflyFusion: flag RuinsButterflyFusion
     node BombWall:
       entrance BombWall
-    Main <-> BombWall: item BombBag
-    node MainMinish:
+    North -> BombWall: item BombBag
+    node SouthMinish:
       door MinishHouse
       door Armos
-    node PostArmos:
+    node East:
       door East
-    Main -> MainMinish: item CanTurnMinish
-    MainMinish -> Main: item CanGrow
-    Main <-> PostArmos: ( flag ArmosOn | flag RockPushed )
-    node Main +: entrance Virtual.Zeffa.FluteAway
-    node PostArmos +: entrance Virtual.Zeffa.FluteAway
+      flag BoulderPushed
+    South -> SouthMinish: item CanTurnMinish
+    SouthMinish -> South: item CanGrow
+    South -> East: ( defeat SouthArmos | flag BoulderPushed )
+    East -> South: flag BoulderPushed
+    node North +: entrance Virtual.Zeffa.FluteAway
+    node South +: entrance Virtual.Zeffa.FluteAway
+    node East +: entrance Virtual.Zeffa.FluteAway
   room LadderBottom:
     node Main:
       enemy Tektites
@@ -75,8 +92,8 @@ area WindRuins:
       chest ChestFusion
     Main <-> MainChestFusion: flag ChestFusion
     node MainMinish:
-      door MinishVineLeft
-      door MinishVineRight
+      door MinishVineEast
+      door MinishVineWest
     node MinishCave:
       door MinishCave
       door MinishVineCenter
@@ -89,9 +106,9 @@ area WindRuins:
     Main <-> MainNorth: defeat Tektites
     node MainMinish:
       door North
-      door SouthLeftMinish
+      door SouthWestMinish
       door SouthCenterMinish
-      door SouthRightMinish
+      door SouthEastMinish
       exit FusionHole
     node MainMinishFusionHole:
       entrance FusionHole
