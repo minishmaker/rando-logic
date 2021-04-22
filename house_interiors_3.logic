@@ -3,62 +3,70 @@ area HouseInteriors3:
     node Main:
       door West
     node MainMinish:
-      door East
+      door EastMinish
+      door NorthEastMinish
+      door NorthWestMinish
+    node MainMinish:
+      door EastMinish
       door LeftRafter
       door RightRafter
   room BorlovFront:
-    door North
-    door South
+    node Main:
+      door North
+      door South
   room BorlovBack:
-    door Door
+    node Main:
+      door Door
   room Cafe:
     node Main:
       door South
     node MainMinish:
       door SouthMinish
       door EastMinish
-    node MainMinishRafters:
-      door MinishRafters
-    MainMinish -> MainMinishRafters: ( item Bracelets | flag BookcaseMoved )
-    MainMinishRafters -> MainMinish: flag BookcaseMoved
-    Main -> MainMinish: ( item Cane | flag PortalFlipped )
+      exit RoofHole
+    node MinishLedge:
+      door MinishLedge
+    MainMinish -> MinishLedge: flag BookcaseMoved 
+    MinishLedge -> MainMinish: flag BookcaseMoved
+    Main -> MainMinish: flag PortalFlipped 
     MainMinish -> Main: flag PortalFlipped
   room Carlov:
     node Main:
       chest Carlov
-      door Door
+      door SOuth
   room FigurineHouse:
-    node Left:
-      door Left
-    node Right:
+    node West:
+      door West
+    node East:
       chest Chest1
       chest Chest2
       chest Chest3
       chest HP
-      entrance Right
-    node RightExit:
-      exit Right
-    Right <-> RightExit: item CarlovMedal
+      entrance East
+    node EastExit:
+      exit East
+    East <-> EastExit: item CarlovMedal
   room Rem:
     node Main:
       chest Rem
-      door Door
+      door East
   room Simon:
     node Main:
-      door Door
+      door East
       door Bed
   room Shop:
     node Back:
       chest BackItem
     node BackMinish:
       door MinishRafters
-    BackMinish <-> Back: item CanTurnMinish
     node Main:
       chest Item1
       door South
     node MainSecondItem:
       chest Item2
-    Main <-> MainSecondItem: item Wallet1
     node MainThirdItem:
       chest Item3
-    Main <-> MainThirdItem: item Wallet2
+    BackMinish -> Back: item CanGrow
+    Back -> BackMinish: item CanTurnMinish
+    Main <-> MainSecondItem: item Wallet300
+    Main <-> MainThirdItem: item Wallet999
