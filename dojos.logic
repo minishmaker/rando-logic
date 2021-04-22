@@ -1,12 +1,80 @@
 area Dojos:
-  room Ghostblade
-  room Grayblade
-  room Greatblade
-  room Grimblade
-  room Scarblade
-  room Splitblade
-  room Waveblade
-  room GreatbladeEntry
-  room GrimbladeEntry
-  room ScarbladeEntry
-  room SplitbladeEntry
+  room Ghostblade:
+    node Main:
+      chest HP
+      door South
+    node CanLearn:
+      chest Ghostblade
+    Main <-> CanLearn: ( item SmithsSword & item HasSevenScrolls )
+  room Grayblade:
+    node Main:
+      chest HP
+      chest LeftChest
+      chest RightChest
+      door South
+    node CanLearn:
+      chest Grayblade
+    Main <-> CanLearn: item SmithsSword
+  room Greatblade:
+    node Main:
+      door South
+    node CanLearn:
+      chest Greatblade
+    Main <-> CanLearn: item SmithsSword
+  room Grimblade:
+    node Main:
+      chest HP
+      door South
+    node CanLearn:
+      chest Grimblade
+    Main <-> CanLearn: ( item SmithsSword & item Lantern )
+  room Scarblade:
+    node Main:
+      door South
+    node CanLearn:
+      chest Scarblade
+    Main <-> CanLearn: item SmithsSword
+  room Splitblade:
+    node Main:
+      door South
+    node CanLearn:
+      chest Splitblade
+    Main <-> CanLearn: item SmithsSword
+  room Waveblade:
+    node Main:
+      chest HP
+      door South
+    node CanLearn:
+      chest Waveblade
+    Main <-> CanLearn: ( item SmithsSword & item HasTenHearts )
+  room GreatbladeEntry:
+    node Main:
+      door North
+    node SouthExit:
+      exit South
+    node SouthEntrance:
+      entrance South
+    Main -> SouthEntrance: item Flippers
+    SouthExit -> Main: item Flippers
+  room GrimbladeEntry:
+    node Main:
+      door North
+      door Ladder
+  room ScarbladeEntry:
+    node Main:
+      door North
+    node SouthExit:
+      exit South
+    node SouthEntrance:
+      entrance South
+    Main -> SouthEntrance: item Flippers
+    SouthExit -> Main: item Flippers
+  room SplitbladeEntry:
+    node Main:
+      door North
+    node SouthExit:
+      exit South
+    node SouthEntrance:
+      entrance South
+    Main -> SouthEntrance: item Flippers
+    SouthExit -> Main: item Flippers
