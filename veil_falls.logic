@@ -23,9 +23,10 @@ area VeilFalls:
     node MiddleMain:
       door West
       exit BottomCaveLeft
+      lock SourceOfTheFlow: key VeilFallsKinstone
     node MiddleMainWallFusion:
       entrance BottomCaveLeft
-    MiddleMain <-> MiddleMainWallFusion: flag SourceOfTheFlowFusion
+    MiddleMain <-> MiddleMainWallFusion: open SourceOfTheFlow
     node MiddleRight:
       door BottomCaveMiddle
     node MiddleRightDig:
