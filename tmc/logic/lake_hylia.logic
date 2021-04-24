@@ -29,6 +29,7 @@ area LakeHylia:
     node MinishWater:
       exit MinishSouth
       exit NorthHole
+      enemy WaterEnemies
     node MinishWaterEntrances:
       entrance South
       entrance NorthHole
@@ -43,7 +44,7 @@ area LakeHylia:
     node MinishPortalBonk:
       flag TreeBonk
     SouthEast -> MinishPortalBonk: item Boots
-    SouthEast -> MinishPortal: item CanTurnMinish, flag TreeBonk
+    SouthEast -> MinishPortal: ( item CanTurnMinish | flag TreeBonk )
     node DigCaveFusionEntrance:
       entrance DigCaveFusion
     node DigCaveFusionExit:
@@ -51,20 +52,20 @@ area LakeHylia:
     node DigCaveFusionIsland
     DigCaveFusionExit -> DigCaveFusionIsland: flag HyliaDigCaveFusion
     DigCaveFusionIsland -> DigCaveFusionEntrance: item MoleMitts
-    Water -> DigCaveFusionIsland: flag HyliaDigCaveFusion, (item Flippers | item Cape)
+    Water -> DigCaveFusionIsland: (flag HyliaDigCaveFusion & (item Flippers | item Cape)
     DigCaveFusionExit -> Water: item Flippers
     node IslandTop:
       door MinishHouse
       door Hole
-    IslandTop -> MinishWater: item Flippers, setting LakeMinishWaterJump
+    IslandTop -> MinishWater: (item Flippers & setting LakeMinishWaterJump)
     node SouthWest:
       door East
       door EastSouth
       door South
-      enemy SouthWestChuChus
+      enemy SouthWestChus
     node Water:
       chest SouthHP
-      enemy Octoroks
+      enemy WaterEnemies
     node DropletsEntrance:
       door DropletsEntrance
     Water <-> DropletsEntrance: (item Cape | item Flippers)
@@ -74,12 +75,13 @@ area LakeHylia:
     node West:
       flag Boulder
       door Tree
-      enemy Octoroks
+      enemy WestEnemies
     West <-> Water: (item Cape | item Flippers)
     West <-> NorthWest: flag Boulder
     node NorthWest:
       door Fifi
       door West
+      enemy ChuAndOctorok
     node SouthEast:
       door Ladder
       door Cabin
