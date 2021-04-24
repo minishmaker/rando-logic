@@ -5,6 +5,7 @@ area Crenel:
       exit EastHillBombWall
       exit FairyBombWall
       exit WestHillBombWall
+      enemy CenterTektites
     node EastHillBombWall:
       entrance EastHillBombWall
     node FairyBombWall:
@@ -16,11 +17,14 @@ area Crenel:
     Center -> WestHillBombWall: item BombBag
     node EastHilltop:
       door EastHillLadder
+    node EastHillTopBombBlock:
+      flag BombBlockExploded
+    EastHillTopBombBlock <-> EastHillTop: item BombBag
     EastHillTop -> Center
     node EastHilltopMinish:
       door SpringMinishPath
-      door MinishCave
-    EastHillTop <-> EastHillTopMinish: item BombBag
+    EastHillTop -> EastHillTopMinish: ( item CanTurnMinish & flag BombBlockExploded )
+    EastHillTopMinish -> EastHillTop: ( item CanGrow & flag BombBlockExploded )
     node NorthVine:
       door NorthWine
     node SouthEast:
@@ -34,13 +38,16 @@ area Crenel:
     node West:
       door LedgeCave
       door NorthBridge
+      enemy WestEnemies
     Center -> West: item Cape
     West -> Center
     node WestBridgeChestFusion:
       chest WestBridgeChestFusion
     West <-> WestBridgeChestFusion: flag WestBridgeChestFusion
     node WestMinish:
+      door MinishCave
       door MinishHouse
+      door MinishPath
     West <-> NorthVine: flag CrenelGreenBeanIsPlanted
     West <-> WestMinish: (item GustJar | item BombBag)
   room Higher:
