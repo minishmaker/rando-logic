@@ -52,7 +52,7 @@ area LakeHylia:
     node DigCaveFusionIsland
     DigCaveFusionExit -> DigCaveFusionIsland: flag HyliaDigCaveFusion
     DigCaveFusionIsland -> DigCaveFusionEntrance: item MoleMitts
-    Water -> DigCaveFusionIsland: (flag HyliaDigCaveFusion & (item Flippers | item Cape)
+    Water -> DigCaveFusionIsland: (flag HyliaDigCaveFusion & (item Flippers | item Cape))
     DigCaveFusionExit -> Water: item Flippers
     node IslandTop:
       door MinishHouse
@@ -95,6 +95,7 @@ area LakeHylia:
       entrance DigCave
     DigCaveNorthArea -> DigCaveNorthEntrance: item MoleMitts
     DigCaveNorthArea <-> NorthWest: item Cape
+    DigCaveNorthArea -> Water: item Flippers
     NorthWest <-> Water: (item Cape | item Flippers)
     node NorthWest +: entrance Virtual.Zeffa.FluteAway
     node DigCaveNorthArea +: entrance Virtual.Zeffa.FluteAway
