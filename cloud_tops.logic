@@ -7,7 +7,6 @@ area CloudTops:
       door CenterTornado
       exit BigTornado
       lock CenterFusion: key CloudTopsKinstone
-    #Reusing the current name for CT Kinstones
     node MiddleRightPlatform:
       enemy MiddleRightCloudPiranha
       door MiddleRightPlatformLowerTornado
