@@ -44,7 +44,7 @@ area LakeHylia:
     node MinishPortalBonk:
       flag TreeBonk
     SouthEast -> MinishPortalBonk: item Boots
-    SouthEast -> MinishPortal: ( item CanTurnMinish | flag TreeBonk )
+    SouthEast -> MinishPortal: (item CanTurnMinish & flag TreeBonk)
     node DigCaveFusionEntrance:
       entrance DigCaveFusion
     node DigCaveFusionExit:
