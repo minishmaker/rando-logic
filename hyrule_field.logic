@@ -1,7 +1,5 @@
 area HyruleField:
-
   room EastHillsNorth:
-
     node West:
       door West
       enemy WestAcroBandits
@@ -11,7 +9,7 @@ area HyruleField:
       chest WestFusionChest
     node GoldenRopeFusion:
       enemy GoldenRope
-    node MainEast:
+    node East:
       door FarmersHouse
       door SouthEast
       enemy EastAcroBanditsAndOctorocs
@@ -92,7 +90,7 @@ area HyruleField:
     node VeilFallsWest:
       door VeilFallsWest
       exit Virtual.Zeffa.FluteAway
-    node VeiFallsFusionChest:
+    node VeilFallsFusionChest:
       chest VeilFallsFusionChest
     node West:
       door NorthWest
@@ -264,7 +262,7 @@ area HyruleField:
     Main -> LeftBombableBlocks: item BombBag
     NorthCave -> LeftBombableBlocks: item BombBag
     Main <-> NorthCave: (flag LeftBombableBlocks)
-    NorthCave <-> NorthWest: item Flippers
+    NorthCave <-> NorthEast: item Flippers
     NorthWestGraveyard -> SouthWest
     NorthWestGraveyard -> NorthWestChestFusion: (flag NorthWestChestFusion)
     # With Entrando you could access the lever (and the bridge that way)
@@ -339,7 +337,6 @@ area HyruleField:
 
 
   room Trilby:
-
     node Top:
       door SouthEast
       ennemy OctorocsAndKeatons
@@ -386,23 +383,22 @@ area HyruleField:
       exit FairyFountainExit
     node FairyFountainWall:
       flag FairyFountainWall
-
-      Top -> NorthChestFusion: flag NorthChestFusion
-      Top -> MidChestFusion: flag MidChestFusion
-      Top -> LeftDiggingCaveExit: item MoleMitts
-      Top -> RightDiggingCaveFusion: (item Flippers | item RocsCape )
-      RightDiggingCaveFusion -> Top: ((flag RightDiggingCaveFusion & item RocsCape) | item Fippers)
-      RightDiggingCaveFusion -> RightDiggingCaveExit: (item MoleMitts & flag RightDiggingCaveFusion)
-      KnuckleLedge -> MinishKnuckleLedge: item CanTurnMinish
-      MinishKnuckleLedge -> KnuckleLedge: item CanGrow
-      KnuckleLedge -> Top: item Flippers
-      GraveyardLedge -> Top
-      Top <-> Bottom: flag BoulderShortcut
-      Bottom -> RupeePondFusionExit: flag RupeePondFusion
-      Bottom -> BombableCaveWall: item BombBag
-      Bottom -> BombableCaveExit: flag BombableCaveWall
-      Bottom -> FairyFountainWall: item BombBag
-      Bottom -> FairyFountainExit: flag FairyFountainWall
+    Top -> NorthChestFusion: flag NorthChestFusion
+    Top -> MidChestFusion: flag MidChestFusion
+    Top -> LeftDiggingCaveExit: item MoleMitts
+    Top -> RightDiggingCaveFusion: (item Flippers | item RocsCape )
+    RightDiggingCaveFusion -> Top: ((flag RightDiggingCaveFusion & item RocsCape) | item Fippers)
+    RightDiggingCaveFusion -> RightDiggingCaveExit: (item MoleMitts & flag RightDiggingCaveFusion)
+    KnuckleLedge -> MinishKnuckleLedge: item CanTurnMinish
+    MinishKnuckleLedge -> KnuckleLedge: item CanGrow
+    KnuckleLedge -> Top: item Flippers
+    GraveyardLedge -> Top
+    Top <-> Bottom: flag BoulderShortcut
+    Bottom -> RupeePondFusionExit: flag RupeePondFusion
+    Bottom -> BombableCaveWall: item BombBag
+    Bottom -> BombableCaveExit: flag BombableCaveWall
+    Bottom -> FairyFountainWall: item BombBag
+    Bottom -> FairyFountainExit: flag FairyFountainWall
 
 
   room WestWoodsNorth:
@@ -464,7 +460,7 @@ area HyruleField:
       door SouthMiddle
       door SouthEast
       exit Virtual.Zeffa.FluteAway
-    node GoldenOctorocFusion:
+    node GoldenOcotorocFusion:
       enemy GoldenOcotorocFusion
 
     East -> GoldenOcotorocFusion: flag GoldenOctorocFusion
