@@ -267,7 +267,7 @@ area DarkHyruleCastle:
       door South
     Main <-> South: defeat Ghini
   room F1SouthwestPathPuzzle:
-    node Main:
+    node North:
       door North
       flag PuzzleCompleted
     node South:
