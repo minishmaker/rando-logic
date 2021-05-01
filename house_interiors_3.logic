@@ -1,10 +1,68 @@
 area HouseInteriors3:
-  room Bakery
-  room BorlovFront
-  room BorlovBack
-  room Cafe
-  room Carlov
-  room FigurineHouse
-  room Rem
-  room Simon
-  room Shop
+  room Bakery:
+    node Main:
+      door West
+    node MainMinish:
+      door EastMinish
+      door NorthEastMinish
+      door NorthWestMinish
+  room BorlovFront:
+    node Main:
+      door North
+      door South
+  room BorlovBack:
+    node Main:
+      door Door
+  room Cafe:
+    node Main:
+      door South
+    node MainMinish:
+      door SouthMinish
+      door EastMinish
+      exit RoofHole
+    node MinishLedge:
+      door MinishLedge
+    MainMinish -> MinishLedge: flag BookcaseMoved 
+    MinishLedge -> MainMinish: flag BookcaseMoved
+    Main -> MainMinish: flag PortalFlipped 
+    MainMinish -> Main: flag PortalFlipped
+  room Carlov:
+    node Main:
+      chest Carlov
+      door SOuth
+  room FigurineHouse:
+    node West:
+      door West
+    node East:
+      chest Chest1
+      chest Chest2
+      chest Chest3
+      chest HP
+      entrance East
+    node EastExit:
+      exit East
+    East <-> EastExit: item CarlovMedal
+  room Rem:
+    node Main:
+      chest Rem
+      door East
+  room Simon:
+    node Main:
+      door East
+      door Bed
+  room Shop:
+    node Back:
+      chest BackItem
+    node BackMinish:
+      door MinishRafters
+    node Main:
+      chest Item1
+      door South
+    node MainSecondItem:
+      chest Item2
+    node MainThirdItem:
+      chest Item3
+    BackMinish -> Back: item CanGrow
+    Back -> BackMinish: item CanTurnMinish
+    Main <-> MainSecondItem: item Wallet300
+    Main <-> MainThirdItem: item Wallet999
