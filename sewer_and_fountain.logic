@@ -61,12 +61,12 @@ area SewerAndFountain:
       exit WaterWest
       exit WaterSouth
     Water <-> Main: item Flippers
-    Water <-> WaterEntrances: item Flippers
     node WaterEntrances:
       entrance WaterNorth
       entrance WaterEast
       entrance WaterWest
       entrance WaterSouth
+    Water <-> WaterEntrances: item Flippers
   room SewerDropIn:
     node Main:
       door South
@@ -80,12 +80,12 @@ area SewerAndFountain:
     node West:
       door West
     East -> West: item GustJar
-    East <-> West: item Cape
-    East <-> Water: item Flippers
-    West -> Water: item Flippers
+    West -> East: item Cape
     node Water:
       exit WaterNorth
       exit WaterWest
+    East <-> Water: item Flippers
+    West -> Water: item Flippers
     node WaterEntrances:
       entrance WaterNorth
       entrance WaterWest
@@ -93,10 +93,10 @@ area SewerAndFountain:
     node Water:
       exit WaterNorth
       exit WaterSouth
-    Water <-> WaterEntrances: item Flippers
     node WaterEntrances:
       entrance WaterNorth
       entrance WaterSouth
+    Water <-> WaterEntrances: item Flippers
   room SewerFrozenChest:
     node WaterEntry:
       entrance Water
