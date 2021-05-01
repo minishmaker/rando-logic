@@ -6,10 +6,6 @@ area HouseInteriors3:
       door EastMinish
       door NorthEastMinish
       door NorthWestMinish
-    node MainMinish:
-      door EastMinish
-      door LeftRafter
-      door RightRafter
   room BorlovFront:
     node Main:
       door North
