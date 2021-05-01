@@ -155,9 +155,9 @@ area FortressOfWinds:
       door West
     node MainWest:
       flag KeyDropped
-    Main <-> East: ( item Cape | item CanSplit2 )
     node East:
       door South
+    Main <-> East: ( item Cape | item CanSplit2 )
     node EastBigDoorEntrance:
       entrance North
     node EastBigDoorExit:
