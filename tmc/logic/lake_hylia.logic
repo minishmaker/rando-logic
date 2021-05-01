@@ -22,7 +22,6 @@ area LakeHylia:
       exit CrestHoleFusion
     Crest -> CrestMinish: item CanTurnMinish
     CrestMinish -> Crest: item CanGrow
-    Crest -> NorthWest
     node CrestHoleFusion:
       entrance CrestHoleFusion
     CrestMinish -> CrestHoleFusion: flag CrestHoleFusion
@@ -37,14 +36,9 @@ area LakeHylia:
     node EastVineHole:
       door EastVineHole
     MinishWater <-> EastVineHole: item Flippers
-    node MinishPortal:
-      door MinishPath
-    MinishPortal <-> MinishWater: item Flippers
-    MinishPortal -> SouthEast: item CanGrow
-    node MinishPortalBonk:
-      flag TreeBonk
-    SouthEast -> MinishPortalBonk: item Boots
-    SouthEast -> MinishPortal: (item CanTurnMinish & flag TreeBonk)
+    node Water:
+      chest SouthHP
+      enemy WaterEnemies
     node DigCaveFusionEntrance:
       entrance DigCaveFusion
     node DigCaveFusionExit:
@@ -63,29 +57,35 @@ area LakeHylia:
       door EastSouth
       door South
       enemy SouthWestChus
-    node Water:
-      chest SouthHP
-      enemy WaterEnemies
     node DropletsEntrance:
       door DropletsEntrance
     Water <-> DropletsEntrance: (item Cape | item Flippers)
     node FifiWaterHole:
       chest FifiWaterHoleHP
-    NorthWest <-> FifiWaterHole: item Flippers
     node West:
       flag Boulder
       door Tree
       enemy WestEnemies
-    West <-> Water: (item Cape | item Flippers)
-    West <-> NorthWest: flag Boulder
     node NorthWest:
       door Fifi
       door West
       enemy ChuAndOctorok
+    NorthWest <-> FifiWaterHole: item Flippers
+    West <-> Water: (item Cape | item Flippers)
+    West <-> NorthWest: flag Boulder
+    Crest -> NorthWest
     node SouthEast:
       door Ladder
       door Cabin
     SouthEast <-> Water: (item Cape | item Flippers)
+    node MinishPortalBonk:
+      flag TreeBonk
+    node MinishPortal:
+      door MinishPath
+    SouthEast -> MinishPortalBonk: item Boots
+    SouthEast -> MinishPortal: (item CanTurnMinish & flag TreeBonk)
+    MinishPortal <-> MinishWater: item Flippers
+    MinishPortal -> SouthEast: item CanGrow
     node DigCaveNorthArea:
       exit DigCave
     node NorthHP:
