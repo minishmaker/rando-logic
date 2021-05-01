@@ -14,7 +14,8 @@ area HyruleCastle:
       entrance StairRight
     Main <-> Stairs: flag StairsOpen
   room GFBedroom:
-    door West
+    node Main:
+      door West
   room GFEntrance:
     node Main:
       door North
