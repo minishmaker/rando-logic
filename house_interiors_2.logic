@@ -19,7 +19,7 @@ area HouseInteriors2:
       door MinishNorth
     node Chimney:
       door MinishChimney
-    MainMinish <-> MinishChimney: flag ChimneyPutOut
+    MainMinish <-> Chimney: flag ChimneyPutOut
     node RaftersEntrance:
       door MinishRafters
     MainMinish -> RaftersEntrance: ( item Bracelets | flag BookcasesMoved )
@@ -78,10 +78,11 @@ area HouseInteriors2:
       door East
       door Stairs
   room LinkSmithy:
-    chest Chest
-    chest ItemLeft
-    chest ItemRight
-    door East
+    node Main:
+      chest Chest
+      chest ItemLeft
+      chest ItemRight
+      door East
   room Percy:
     node Main:
       item Percy
