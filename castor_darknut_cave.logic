@@ -6,7 +6,7 @@ area CastorDarknutCave:
     node PostFight:
       chest Chest
       exit Door
-    Main <-> MainPostFight: defeat Darknut
+    Main <-> PostFight: defeat Darknut
   room Stairs:
     node Main:
       door LeftStair
