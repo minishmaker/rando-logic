@@ -46,7 +46,7 @@ area CastorWilds:
     node West:
       door Ghostblade
       enemy PeaHats
-    node WestHilltop:
+    node WestHillTop:
       chest WestChest
       enemy PeaHats
       enemy LikeLikes
@@ -79,11 +79,11 @@ area CastorWilds:
     South <-> SouthWest: ( item Cape | item Boots )
     SouthWestExit -> SouthWest: ( open CastorKinstone1 & open CastorKinstone2 & open CastorKinstone3)
     SouthWest -> SouthWestEntrance: ( open CastorKinstone1 & open CastorKinstone2 & open CastorKinstone3)
-    Main <-> SouthEastWater: item Flippers
     node SouthEastWater:
       chest Rupee1
       chest Rupee2
       chest Rupee3
+    Main <-> SouthEastWater: item Flippers
     node SouthEastWaterMinishEntrance:
       entrance SouthEastMinish
     node SouthEastWaterMinishExit:
