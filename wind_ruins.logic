@@ -26,7 +26,7 @@ area WindRuins:
     node MainMinish:
       door SouthMinish
       door EastMinish
-    node BeanstalkEntry:
+    node BeanstalkEntrance:
       entrance BeanstalkFusion
     node BeanstalkExit:
       exit BeanstalkFusion
@@ -46,12 +46,12 @@ area WindRuins:
       enemy Tektites
       flag BoulderPushed
     East -> Center
-    West -> Center: ( defeat Armos | flag BoulderPushed )
-    Center -> West: flag BoulderPushed
     node West:
       door West
       enemy Armos
       enemy Ropes
+    West -> Center: ( defeat Armos | flag BoulderPushed )
+    Center -> West: flag BoulderPushed
     node East +: entrance Virtual.Zeffa.FluteAway
     node West +: entrance Virtual.Zeffa.FluteAway
     node Center +: entrance Virtual.Zeffa.FluteAway
