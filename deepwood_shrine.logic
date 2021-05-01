@@ -28,7 +28,7 @@ area DeepwoodShrine:
     node North:
       entrance NorthWater
     NorthExit -> North: ( item Flippers | ( state Lilypad & item GustJar ) )
-    North <-> South: flag ButtonPressed
+    North <-> West: flag ButtonPressed
     node Button:
       flag ButtonPressed
     West <-> Button: ( state Lilypad & item GustJar )
@@ -59,7 +59,7 @@ area DeepwoodShrine:
     Water <-> North: ( open NorthDoor & ( state Lilypad & item GustJar ) )
     node WaterExit:
       exit East
-    WaterExits -> Water: ( item Flippers | ( state Lilypad & item GustJar ) )
+    WaterExit -> Water: ( item Flippers | ( state Lilypad & item GustJar ) )
     Main -> Water: ( item Flippers | ( state Lilypad & item GustJar ) )
   room F1PreChu:
     node NorthExit:
@@ -129,7 +129,7 @@ area DeepwoodShrine:
       lock NorthDoor
     node Chest:
       chest Chest
-    Main -> Chest: flag TopLeftTorch, flag TopRightTorch, flag BottomLeftTorch, flag BottomRightTorch
+    Main -> Chest: ( flag TopLeftTorch & flag TopRightTorch & flag BottomLeftTorch & flag BottomRightTorch )
     node North:
       door North
     Main <-> North: open NorthDoor
