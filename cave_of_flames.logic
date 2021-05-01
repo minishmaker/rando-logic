@@ -57,11 +57,11 @@ area CaveOfFlames:
       door Middle
     node PostFight:
       chest BigChest
-    Fight <-> PostFight: defeat SpinyChus
-    PostFight <-> West: defeat SpinyChus
     node West:
       door West
-    Middle -> Fight
+    Fight <-> PostFight: defeat SpinyChus
+    PostFight <-> West: defeat SpinyChus
+    MiddleDoor -> Fight
     node East:
       chest EastChest
       door East
@@ -81,10 +81,10 @@ area CaveOfFlames:
       flag ButtonPressed
     node WestPortal:
       door Portal
-    West <-> WestPortal: flag ButtonPressed
     node West:
       exit Stair
       lock Door
+    West <-> WestPortal: flag ButtonPressed
     East <-> West: ( item Cane | item Cape )
     South -> West
     West -> South: item Cane
@@ -94,9 +94,9 @@ area CaveOfFlames:
       door North
       door MinecartSouth
       lock Door
-    node Tracknorth:
+    node TrackNorth:
       door MinecartNorth
-    TrackSouth <-> Main: open Door
+    TrackNorth <-> Main: open Door
   room BF2BladeChest:
     node Upper:
       door UpperWest
@@ -109,9 +109,9 @@ area CaveOfFlames:
   room BF2CartPuzzle:
     node Main:
       door North
-    Main <-> Minecart: ( item CanTurnMinish | item CanShrink | item Cane )
     node Minecart:
       door SouthMinecart
+    Main <-> Minecart: ( item CanTurnMinish | item CanShrink | item Cane )
     node South:
       door East
     node SouthUpper:
@@ -122,7 +122,7 @@ area CaveOfFlames:
       chest LowerChest
     SouthUpper -> UpperChest
     UpperChest -> South
-    South <-> UpperChest: item Cane
+    South -> UpperChest: item Cane
     South -> SouthUpper: item Cane
   room BF2GleerokEntrance:
     node Main:
@@ -142,15 +142,15 @@ area CaveOfFlames:
       door North
     node MainEast:
       door RedPortal
-    MainEast -> MainWest: item Cape
-    MainWest -> MainEast: ( item Cape | item Cane )
-    North <-> MainEast: ( item Cape | item Cane )
-    West <-> MainWest: ( item Cape | item Cane )
     node MainWest:
       chest SouthEastChest
       chest SouthWestChest
       chest BigChest
       door WestUpper
+    MainEast -> MainWest: item Cape
+    MainWest -> MainEast: ( item Cape | item Cane )
+    North <-> MainEast: ( item Cape | item Cane )
+    West <-> MainWest: ( item Cape | item Cane )
   room BF2Pillbugs:
     node East:
       door MinecartNorth
