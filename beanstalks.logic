@@ -1,4 +1,4 @@
-area Beanstalks
+area Beanstalks:
   room CrenelClimb:
     node Main:
       door North
