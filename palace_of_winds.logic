@@ -23,7 +23,6 @@ area PalaceOfWinds:
       door NorthEast
     node NorthCenter:
       door CloudDown
-    NorthCenter -> SouthCenter: item Cape
     NorthCenter <-> NorthEast: item Cape
     node SouthEast:
       door SouthEast
@@ -34,10 +33,11 @@ area PalaceOfWinds:
       chest Rupee4
       chest Rupee5
       enemy LikeLike
+    NorthCenter -> SouthCenter: item Cape
     SouthCenter <-> SouthEast: item Cape
-    SouthCenter <-> West: item Cape
     node West:
       exit CloudUp
+    SouthCenter <-> West: item Cape
     node WestCloud:
       entrance CloudUp
     West -> WestCloud: item Cape
@@ -125,7 +125,7 @@ area PalaceOfWinds:
       exit Cloud
     node Cloud:
       entrance Cloud
-    North -> NorthCloud: item Cape
+    North -> Cloud: item Cape
   room F2PlatformRide:
     node North:
       door North
@@ -212,9 +212,9 @@ area PalaceOfWinds:
     node CenterCloud:
       entrance CenterCloud
     Center -> CenterCloud: item Cape
-    Center <-> East: item Cape
     node East:
       exit EastCloud
+    Center <-> East: item Cape
     node EastCloud:
       entrance EastCloud
     East -> EastCloud: item Cape
@@ -230,10 +230,10 @@ area PalaceOfWinds:
       door South
     node Center:
       chest Chest
-    West -> Center: item Cape
     Center -> East: item Cape
     node West:
       exit Cloud
+    West -> Center: item Cape
     node WestCloud:
       entrance Cloud
     West -> WestCloud: item Cape
