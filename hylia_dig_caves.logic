@@ -1,4 +1,4 @@
-area HyliaDigCaves
+area HyliaDigCaves:
   room WaterCave:
     node Main:
       door Door
@@ -25,7 +25,7 @@ area HyliaDigCaves
     MainDigging <-> EastLadder: item MoleMitts
     node CenterLadder:
       door Ladder
-    node Westladder:
+    node WestLadder:
       door Ladder
       enemy LikeLike
     CenterLadder <-> WestLadder: item MoleMitts
