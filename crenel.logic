@@ -15,13 +15,13 @@ area Crenel:
     Center -> EastHillBombWall: item BombBag
     Center -> FairyBombWall: item BombBag
     Center -> WestHillBombWall: item BombBag
-    node EastHilltop:
+    node EastHillTop:
       door EastHillLadder
     node EastHillTopBombBlock:
       flag BombBlockExploded
     EastHillTopBombBlock <-> EastHillTop: item BombBag
     EastHillTop -> Center
-    node EastHilltopMinish:
+    node EastHillTopMinish:
       door SpringMinishPath
     EastHillTop -> EastHillTopMinish: ( item CanTurnMinish & flag BombBlockExploded )
     EastHillTopMinish -> EastHillTop: ( item CanGrow & flag BombBlockExploded )
