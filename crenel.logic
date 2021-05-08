@@ -6,15 +6,11 @@ area Crenel:
       exit FairyBombWall
       exit WestHillBombWall
       enemy CenterTektites
-    node EastHillBombWall:
+    node CenterBombWallEntrances:
       entrance EastHillBombWall
-    node FairyBombWall:
       entrance FairyBombWall
-    node WestHillBombWall:
       entrance WestHillBombWall
-    Center -> EastHillBombWall: item BombBag
-    Center -> FairyBombWall: item BombBag
-    Center -> WestHillBombWall: item BombBag
+    Center -> CenterBombWallEntrances: item BombBag
     node EastHillTop:
       door EastHillLadder
     node EastHillTopBombBlock:
@@ -31,7 +27,11 @@ area Crenel:
       chest SouthEastRupee
       door East
       exit SouthEastBombWall
-    SouthEast <-> Center: item Bottle
+    node SouthEastVineWatered:
+      flag SouthEastVineWatered
+    SouthEast <-> SouthEastVineWatered: item Bottle
+    SouthEast -> Center: flag SouthEastVineWatered
+    Center -> SouthEast
     node SouthEastBombWall:
       entrance SouthEastBombWall
     SouthEast -> SouthEastBombWall: item BombBag
@@ -57,8 +57,11 @@ area Crenel:
       exit Crest
       flag Virtual.Zeffa.CrenelCrest
     node EastOfMine:
-      door MelariMinishWest
       door CaveEntrance
+    node EastOfMineMinish:
+      door MelariMinishWest
+    EastOfMine -> EastOfMineMinish: item CanTurnMinish
+    EastOfMineMinish -> EastOfMine: item CanGrow
     node GraybladeExterior:
       door Grayblade
     node Main:
@@ -67,7 +70,7 @@ area Crenel:
       exit MainBombWall
     Main -> CoFExterior: item Cane
     CoFExterior -> Main
-    Main <-> GraybladeExterior: item GripRing
+    Main -> GraybladeExterior: item GripRing
     node MainClimbSouth:
       door MainClimbSouth
     Main <-> MainClimbSouth: item GripRing
@@ -117,9 +120,12 @@ area Crenel:
     node SouthClimb:
       door SouthClimb
     Main <-> SouthClimb: item GripRing
-    node SouthVine:
-      door SouthVine
-    Main <-> SouthVine: flag CrenelGreenBeanIsPlanted
+    node SouthVineEntrance:
+      entrance SouthVine
+    node SouthVineExit:
+      exit SouthVine
+    Main -> SouthVineEntrance: flag CrenelGreenBeanIsPlanted
+    SouthVineExit -> Main: flag CrenelGreenBeanIsPlanted
     node SouthWest:
       door BridgeSouth
       exit SouthWestBombWall
@@ -127,37 +133,55 @@ area Crenel:
       entrance SouthWestBombWall
     SouthWest -> SouthWestBombWall: item BombBag
   room Climb:
-    node ClimbChestFusion:
-      chest ClimbChestFusion
-    node ClimbBombWallEntrance:
-      entrance BombWall
-    node ClimbWall:
-      door ClimbNorth
-      door ClimbSouth
+    node NorthEntrance:
+      entrance North
+    node MiddlePlatform:
+      exit North
+    node MiddlePlatformChestFusion:
+      chest ChestFusion
+    MiddlePlatform <-> MiddlePlatformChestFusion: flag MiddlePlatformChestFusion
+    node BombWallPlatform:
       exit BombWall
-    ClimbWall <-> ClimbChestFusion: flag ClimbChestFusion
-    ClimbWall -> ClimbBombWallEntrance: item BombBag
-    node ClimbDigging:
-      door ClimbDigging
-    node NorthWest:
-      door Ladder
-      doot HermitCave
-    NorthWest <-> ClimbDigging: item MoleMitts
-    node ClimbWall +: entrance Virtual.Zeffa.FluteAway
-    node NorthWest +: entrance Virtual.Zeffa.FluteAway
+    node BombWallEntrance:
+      entrance BombWall
+    MiddlePlatform -> BombWallPlatform
+    BombWallPlatform -> BombWallEntrance: item BombBag
+    node South:
+      door South
+    BombWallPlatform -> South
+    South -> MiddlePlatform: item GripRing
+    MiddlePlatform -> NorthEntrance: item GripRing
+    node DigCave:
+      door DigCave
+    node West:
+      door NorthWest
+      door HermitCave
+    West <-> DigCave: item MoleMitts
+    node South +: entrance Virtual.Zeffa.FluteAway
+    node West +: entrance Virtual.Zeffa.FluteAway
   room Peak:
-    node EastPeak:
+    node EastPeakRight:
+      flag BoulderPushed
+    node EastPeakRightMinish:
       door MinishPathEast
+    EastPeakRight -> EastPeakRightMinish: item CanTurnMinish
+    EastPeakRightMinish -> EastPeakRight: item CanGrow
     node EastPeakLadder:
       door EastPeakLadder
-    node WestPeak:
+    node EastPeakLeftMinish:
+      door MinishPathWest
+    node Main:
       door Climb
       door Ladder
-      door MinishPathWest
       enemy PeakEnemies
-    WestPeak <-> EastPeakLadder: flag PeakBoulderPushed
-    node WestPeakBeanstalk:
-      door Beanstalk
-    WestPeak <-> WestPeakBeanstalk: flag CrenelBeanstalkFusion
-    node EastPeak +: entrance Virtual.Zeffa.FluteAway
-    node WestPeak +: entrance Virtual.Zeffa.FluteAway
+      exit Beanstalk
+    node MainBeanstalk:
+      entrance Beanstalk
+    Main -> EastPeakLeftMinish: item CanTurnMinish
+    EastPeakLeftMinish -> Main: item CanGrow
+    Main <-> EastPeakLadder: flag BoulderPushed
+    Main <-> EastPeakRight: flag BoulderPushed
+    Main -> MainBeanstalk: flag CrenelBeanstalkFusion
+    node EastPeakRight +: entrance Virtual.Zeffa.FluteAway
+    node EastPeakLadder +: entrance Virtual.Zeffa.FluteAway
+    node Main +: entrance Virtual.Zeffa.FluteAway
