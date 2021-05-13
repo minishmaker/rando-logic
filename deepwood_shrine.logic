@@ -106,12 +106,10 @@ area DeepwoodShrine:
       exit BluePortal
       exit LeftStair
       exit RightStair
-    node LeftStair:
+    node StairEntrances:
       entrance LeftStair
-    node RightStair:
       entrance RightStair
-    Main -> LeftStair: ( item GustJar | item Lantern )
-    Main -> RightStair: ( item GustJar | item Lantern )
+    Main -> StairEntrances: ( item GustJar | item Lantern )
     node RedPortal:
       entrance RedPortal
     node BluePortal:
