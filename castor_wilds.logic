@@ -8,7 +8,7 @@ area CastorWilds:
       door NorthCave
       exit DigCave
       enemy NorthEyeGore
-      enemy NorthWestEyeGore
+      enemy NorthEastEyeGore
       enemy WestEyeGore
       enemy Ropes
       enemy PeaHats
@@ -19,6 +19,7 @@ area CastorWilds:
     node NorthEast:
       enemy PeaHats
       door NorthEastCave
+      flag NorthBoulderPushed
     node NorthEastIsland:
       door NorthEastIslandCave
     NorthEast -> NorthEastIsland: ( item Flippers | item Cape )
@@ -29,10 +30,13 @@ area CastorWilds:
     NorthEast -> NorthEastWaterfallEntrance: ( item Flippers & flag CastorWaterfallFusion )
     NorthEastWaterfallExit -> NorthEast: ( item Flippers & flag CastorWaterfallFusion )
     node NorthWest
-    Main <-> NorthWest: ( defeat NorthWestEyeGore | flag NorthBoulderPushed )
+    Main <-> NorthEast: ( defeat NorthEastEyeGore | flag NorthBoulderPushed )
     node MainMinish:
-      door CenterHole
       door MinishPathNorth
+    node WestMinish:
+      door CenterHole
+    MainMinish <-> WestMinish: flag CenterLilyFusion
+    Main <-> NorthWest: ( defeat NorthEyeGore | ( item Boots | item Cape ) )
     node NorthWestMinish:
       door BowHole
       door South
@@ -43,6 +47,8 @@ area CastorWilds:
     node NorthMinishFusion:
       door NorthMunishHole
     MainMinish <-> NorthMinishFusion: flag NorthLilyFusion
+    NorthWest -> MainMinish: item CanTurnMinish
+    MainMinish -> NorthWest: item CanGrow
     node West:
       door Ghostblade
       enemy PeaHats
@@ -55,7 +61,7 @@ area CastorWilds:
     WestHillTop -> Main
     node MinishVineHole:
       door MinishVineHole
-    MainMinish <-> MinishVineHole: flag MinishVineLilyFusion
+    WestMinish <-> MinishVineHole: flag MinishVineLilyFusion
     node South:
       entrance Crest
       enemy SouthEyeGore
@@ -88,8 +94,8 @@ area CastorWilds:
       entrance SouthEastMinish
     node SouthEastWaterMinishExit:
       exit SouthEastMinish
-    MainMinish -> SouthEastWaterMinishEntrance: item Flippers
-    SouthEastWaterMinishExit -> MainMinish: item Flippers
+    WestMinish -> SouthEastWaterMinishEntrance: item Flippers
+    SouthEastWaterMinishExit -> WestMinish: item Flippers
     node East +: entrance Virtual.Zeffa.FluteAway
     node Main +: entrance Virtual.Zeffa.FluteAway
     node West +: entrance Virtual.Zeffa.FluteAway
