@@ -29,10 +29,13 @@ area VeilFallsCaves:
       enemy Leevers
     North <-> South: item CanSplit3
   room C1GFEntrance:
-    node Main:
+    node East:
       door South
+      enemy Keese
+    node West:
       door Stair
       enemy Keese
+    East <-> West: item Lantern
   room C2BF1WaterRupees:
     node Main:
       chest Rupee1
