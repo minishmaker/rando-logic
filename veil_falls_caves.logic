@@ -16,10 +16,13 @@ area VeilFallsCaves:
     Main -> BombWallEntrance: ( item BombBag | flag BombWallBombed )
     BombWallExit -> Main: ( item BombBag | flag BombWallBombed )
   room C1F2Climb:
-    node Main:
-      door StairUp
+    node East:
       door StairDown
       enemy Ghini
+    node West:
+      door StairUp
+      enemy Ghini
+    East <-> West: (item Lantern | setting LanternlessDarkrooms)
   room C1F3PushClones:
     node North:
       door Stair
@@ -35,7 +38,7 @@ area VeilFallsCaves:
     node West:
       door Stair
       enemy Keese
-    East <-> West: item Lantern
+    East <-> West: (item Lantern | setting LanternlessDarkrooms)
   room C2BF1WaterRupees:
     node Main:
       chest Rupee1
