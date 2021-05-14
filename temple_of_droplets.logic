@@ -25,10 +25,10 @@ area TempleOfDroplets:
 
     node Main:
       door Stairs
-    node IceblockItem
+    node IceblockItem:
       chest IceBlock
 
-    Main -> IceblockItem: (item FlameLantern | flag TempleOfDroplets.GFAboveBigKey.OpenFloorDoor
+    Main -> IceblockItem: (item FlameLantern | flag TempleOfDroplets.GFAboveBigKey.OpenFloorDoor )
 
 
   room BF1ClonePushing:
@@ -47,7 +47,7 @@ area TempleOfDroplets:
       door SouthWest
     node SouthEast:
       door SouthEast
-    node SlidingBlocksPuzzle
+    node SlidingBlocksPuzzle:
       flag SlidingBlocksPuzzle
 
     SouthEast -> SlidingBlocksPuzzle: item CanSplit2
@@ -170,7 +170,7 @@ area TempleOfDroplets:
     node OpenDoor:
       flag OpenDoor
     node WestWater:
-      door West:
+      door West
     node NorthDoor:
       door North
 
@@ -221,7 +221,6 @@ area TempleOfDroplets:
     SouthEast -> SouthEastIceIslands: item Lilypad
     SouthEastIceIslands -> SouthEast
     SouthEast <-> WestWater: flag SouthWaterBarrier
-    WestWater -> MiddleIsland: item
 
 
   room BF1Mulldozers
