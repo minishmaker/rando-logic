@@ -161,7 +161,7 @@ area HyruleField:
     GoronCave -> West
     West -> SouthEast: (flag SouthEastBoulder | item RocsCape)
     SouthEast -> West
-    SouthEast <-> GoronCave
+    SouthEast -> GoronCave
     Center -> West
     West -> Center: (flag NorthBoulder)
     Center -> MiddleEast: (item RocsCape | item Flippers)
@@ -176,6 +176,7 @@ area HyruleField:
     MinishCrack -> NorthLedge: item CanGrow
     NorthLedge -> CenterLedge: item MoleMitts
     NorthFreestanding -> NorthDiggingCaveExit: item MoleMitts
+    CenterLedge -> Center
 
 
   room North:
