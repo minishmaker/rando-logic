@@ -11,6 +11,7 @@ area CaveOfFlames:
     node South:
       door MinecartSouth
       door West
+      enemy BobOmbs
     node SouthDoor:
       door South
     SouthDoor -> South
@@ -177,6 +178,7 @@ area CaveOfFlames:
   room GFBombOmbs:
     node Main:
       door West
+      enemy BobOmbs
     node North:
       door North
     Main <-> North: flag WallBombed
