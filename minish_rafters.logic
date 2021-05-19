@@ -1,5 +1,26 @@
 area MinishRafters:
-  room Bakery
-  room Cafe
-  room DrLeft
-  room Shop
+  room Bakery:
+    node Left:
+      door East
+      entrance FloorHole
+    node Right:
+      door Right
+      entrance FloorHole
+    Left <-> Right: item Cape
+  room Cafe:
+    node Main:
+      door North
+      door East
+      entrance FloorHole
+  room DrLeft:
+    node Main:
+      door North
+      entrance FloorHole
+    node Book
+    Main <-> Book: ( item CanSplit & ( item BombBag | state HasExplosive | item GustJar ) )
+  room Shop:
+    node Main:
+      door North
+      door West
+      entrance FloorHole
+      enemy Mulldozers
