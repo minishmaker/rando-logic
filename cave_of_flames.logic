@@ -12,6 +12,9 @@ area CaveOfFlames:
       door MinecartSouth
       door West
       enemy BobOmbs
+    node WallBombed:
+      flag WallBombed
+    South <-> WallBombed: ( state HasExplosive | item BombBag )
     node SouthDoor:
       door South
     SouthDoor -> South
@@ -95,6 +98,7 @@ area CaveOfFlames:
       door North
       door MinecartSouth
       lock Door
+      enemy BobOmbs
     node TrackNorth:
       door MinecartNorth
     TrackNorth <-> Main: open Door
@@ -181,6 +185,9 @@ area CaveOfFlames:
       enemy BobOmbs
     node North:
       door North
+    node WallBombed:
+      flag WallBombed
+    Main <-> WallBombed: ( state HasExplosive | item BombBag )
     Main <-> North: flag WallBombed
   room GFEntrance:
     node Main:
