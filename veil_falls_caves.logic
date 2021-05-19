@@ -13,8 +13,8 @@ area VeilFallsCaves:
       exit BombWall
     node BombWallEntrance:
       entrance BombWall
-    Main -> BombWallEntrance: ( item BombBag | flag BombWallBombed )
-    BombWallExit -> Main: ( item BombBag | flag BombWallBombed )
+    Main -> BombWallEntrance: ( item BombBag | state HasExplosive | flag BombWallBombed )
+    BombWallExit -> Main: ( item BombBag | state HasExplosive | flag BombWallBombed )
   room C1F2Climb:
     node East:
       door StairDown
@@ -78,7 +78,7 @@ area VeilFallsCaves:
     node MainBombWall:
       door BombWall
     MainBombWall -> Main: flag BombWallBombed
-    Main -> MainBombWall: ( item BombBag | flag BombWallBombed )
+    Main -> MainBombWall: ( item BombBag | state HasExplosive | flag BombWallBombed )
   room C2GFSideRoom:
     node Main:
       chest Chest
