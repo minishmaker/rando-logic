@@ -18,7 +18,7 @@ area Caves:
     node BombWallEntrance:
       entrance BombWall
     South -> North: item WhiteSword
-    North -> BombWallEntrance: item BombBag
+    North -> BombWallEntrance: ( item BombBag | state HasExplosive )
     BombWallExit -> North: flag WallBombed
   room LonLonTingleDark:
     node Main:
@@ -114,7 +114,7 @@ area Caves:
     node BombWallEntrance:
       entrance BombWall
     Right -> Left: item WhiteSword
-    Right -> BombWallEntrance: item BombBag
+    Right -> BombWallEntrance: ( item BombBag | state HasExplosive )
     BombWallExit -> Right: flag WallBombed
   room TrilbyPuddle:
     node Main:
