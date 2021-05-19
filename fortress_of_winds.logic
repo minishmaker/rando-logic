@@ -104,7 +104,7 @@ area FortressOfWinds:
       door NorthWest
     node North:
       door North
-    Upper <-> North: item BombBag
+    Upper <-> North: ( item Cape | flag TargetsHit )
     node SouthWest:
       door SouthWest
     node South:
