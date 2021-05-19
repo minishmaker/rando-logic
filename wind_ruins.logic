@@ -71,7 +71,7 @@ area WindRuins:
     North <-> NorthButterflyFusion: flag RuinsButterflyFusion
     node BombWall:
       entrance BombWall
-    North -> BombWall: item BombBag
+    North -> BombWall: ( item BombBag | state HasExplosive )
     node SouthMinish:
       door MinishHouse
       door Armos
