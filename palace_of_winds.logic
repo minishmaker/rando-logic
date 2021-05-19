@@ -328,7 +328,7 @@ area PalaceOfWinds:
       door North
     node BombWall:
       door BombWall
-    Main <-> BombWall: item BombBag
+    Main <-> BombWall: ( item BombBag | state HasExplosive )
   room F4BombarossaPath:
     node Main:
       door North
@@ -368,7 +368,7 @@ area PalaceOfWinds:
       enemy WizrobesAndMoblins
     node BombWall:
       door North
-    Main <-> BombWall: item BombBag
+    Main <-> BombWall: ( item BombBag | state HasExplosive )
   room F4SmallKeyFanJump:
     node South:
       door SouthWest
@@ -388,11 +388,11 @@ area PalaceOfWinds:
       door South
     node East:
       door East
-    East -> South: item BombBag
+    East -> South: ( item BombBag | state HasExplosive )
     node North:
       door North
       entrance FloorHole
-    East <-> North: item BombBag
+    East <-> North: ( item BombBag | state HasExplosive )
   room GFCapeChestRoom:
     node Main:
       door East
