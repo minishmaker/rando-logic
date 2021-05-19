@@ -40,19 +40,19 @@ area DarkHyruleCastle:
     node Main:
       door StairDown
       door South
-    Main <-> East: item BombBag
+    Main <-> East: ( item BombBag | state HasExplosive )
   room B1KeatonBombWall:
     node Main:
       door South
     node West:
       door West
-    Main <-> West: item BombBag
+    Main <-> West: ( item BombBag | state HasExplosive )
   room B1MinishPortal:
     node East:
       door East
     node North:
       door North
-    East <-> North: item BombBag
+    East <-> North: ( item BombBag | state HasExplosive )
     node West:
       door West
     node WestMinish:
@@ -289,7 +289,7 @@ area DarkHyruleCastle:
       door South
     node North:
       door North
-    South <-> North: ( item BombBag & item Cape & ( item Bow | item Boomerang ) )
+    South <-> North: ( ( item BombBag | state HasExplosive ) & item Cape & ( item Bow | item Boomerang ) )
   room F2KeatonPath:
     node Main:
       door South
