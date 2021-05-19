@@ -7,7 +7,7 @@ area CaveOfFlames:
       door BombWall
     node NorthEastHP:
       chest HP
-    NorthEast <-> NorthEastHP: item BombBag
+    NorthEast <-> NorthEastHP: ( item BombBag | state HasExplosive )
     node South:
       door MinecartSouth
       door West
@@ -35,7 +35,7 @@ area CaveOfFlames:
     Minecart -> Main
     node BombWall:
       door BombWall
-    Main <-> BombWall: item BombBag
+    Main <-> BombWall: ( item BombBag | state HasExplosive )
   room BF1MinishLava:
     node MainMinish:
       door NorthMinish
@@ -49,7 +49,7 @@ area CaveOfFlames:
       enemy Helmasaurs
     node East:
       door East
-    East <-> Main: item BombBag
+    East <-> Main: ( item BombBag | state HasExplosive )
     node MainMinish:
       door EastMinish
     Main -> MainMinish: ( defeat Helmasaurs | item CanTurnMinish )
