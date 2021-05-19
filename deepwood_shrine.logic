@@ -91,7 +91,7 @@ area DeepwoodShrine:
       enemy NorthWestPuffStools
     node NorthWestChest:
       chest Chest
-    NorthWest <-> NorthWestChest: item GustJar
+    NorthWest <-> NorthWestChest: ( item GustJar | item BombBag | state HasExplosive )
     node NorthEastDoor:
       door NorthEast
     NorthEast <-> NorthEastDoor: open NorthEastDoor
@@ -198,7 +198,7 @@ area DeepwoodShrine:
     node MainChests:
       chest EastChest
       chest WestChest
-    Main <-> MainChests: item GustJar
+    Main <-> MainChests: ( item GustJar | item BombBag | state HasExplosive )
     node NorthWest:
       door NorthWest
     Main <-> NorthWest: open NorthWestDoor
