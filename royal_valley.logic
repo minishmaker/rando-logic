@@ -32,7 +32,7 @@ area RoyalValley:
       exit Fairy
     node SouthFairy:
       entrance Fairy
-    South -> SouthFairy: item BombBag
+    South -> SouthFairy: ( item BombBag | state HasExplosive )
     node South +: entrance Virtual.Zeffa.FluteAway
     node Middle +: entrance Virtual.Zeffa.FluteAway
     node North +: entrance Virtual.Zeffa.FluteAway
