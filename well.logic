@@ -4,7 +4,7 @@ area Well:
       door Door
     node BombChest:
       chest BombChest
-    NorthEntry <-> BombChest: item BombBag
+    NorthEntry <-> BombChest: ( item BombBag | state HasExplosive )
     node East:
       chest East
       door EastLadder
@@ -22,7 +22,7 @@ area Well:
     Holes <-> Center: flag BottomBoulderPushed
     Holes <-> East: flag EastBoulderPushed
     Holes <-> West: flag WestBoulderPushed
-    Holes <-> BombChest: ( flag MiddleChestMoved | item BombBag )
+    Holes <-> BombChest: ( flag MiddleChestMoved | item BombBag | state HasExplosive )
     Center <-> CenterOpen: flag MiddleChestMoved
   room SouthEntry:
     node Main:
