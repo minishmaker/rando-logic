@@ -8,7 +8,7 @@ area MinishCracks:
       enemy Mulldozers
     node MainEnemiesDefeated:
       chest Chest
-    Main <-> MainEnemiesDefeated: (item SmithsSword | item Bow | item BombBag )
+    Main <-> MainEnemiesDefeated: (item SmithsSword | item Bow | item BombBag | state HasExplosive )
   room CastorLilyDown:
     node Main:
       chest Chest
