@@ -17,7 +17,7 @@ area MinishRafters:
       door North
       entrance FloorHole
     node Book
-    Main <-> Book: ( item CanSplit & (item BombBag | item GustJar ) )
+    Main <-> Book: ( item CanSplit & ( item BombBag | state HasExplosive | item GustJar ) )
   room Shop:
     node Main:
       door North
