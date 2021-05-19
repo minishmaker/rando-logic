@@ -10,12 +10,12 @@ area Crenel:
       entrance EastHillBombWall
       entrance FairyBombWall
       entrance WestHillBombWall
-    Center -> CenterBombWallEntrances: item BombBag
+    Center -> CenterBombWallEntrances: ( item BombBag | state HasExplosive )
     node EastHillTop:
       door EastHillLadder
     node EastHillTopBombBlock:
       flag BombBlockExploded
-    EastHillTopBombBlock <-> EastHillTop: item BombBag
+    EastHillTopBombBlock <-> EastHillTop:( item BombBag | state HasExplosive )
     EastHillTop -> Center
     node EastHillTopMinish:
       door SpringMinishPath
@@ -34,7 +34,7 @@ area Crenel:
     Center -> SouthEast
     node SouthEastBombWall:
       entrance SouthEastBombWall
-    SouthEast -> SouthEastBombWall: item BombBag
+    SouthEast -> SouthEastBombWall: ( item BombBag | state HasExplosive )
     node West:
       door LedgeCave
       door NorthBridge
@@ -76,7 +76,7 @@ area Crenel:
     Main <-> MainClimbSouth: item GripRing
     node MainBombWall:
       entrance MainBombWall
-    Main -> MainBombWall: item BombBag
+    Main -> MainBombWall: ( item BombBag | state HasExplosive )
     node MiddleMountainShelf:
       door MiddleMountainShelfEast
       door MiddleMountainShelfWest
@@ -100,8 +100,8 @@ area Crenel:
       enemy NorthWestTektites
       exit BridgeBombWall
       exit FairyBombWall
-    Main -> BridgeBombWall: item BombBag
-    Main -> FairyBombWall: item BombBag
+    Main -> BridgeBombWall: ( item BombBag | state HasExplosive )
+    Main -> FairyBombWall: ( item BombBag | state HasExplosive )
     node NorthEastClimb:
       door NorthEastClimb
     Main <-> NorthEastClimb: item GripRing
@@ -131,7 +131,7 @@ area Crenel:
       exit SouthWestBombWall
     node SouthWestBombWall:
       entrance SouthWestBombWall
-    SouthWest -> SouthWestBombWall: item BombBag
+    SouthWest -> SouthWestBombWall: ( item BombBag | state HasExplosive )
   room Climb:
     node NorthEntrance:
       entrance North
@@ -145,7 +145,7 @@ area Crenel:
     node BombWallEntrance:
       entrance BombWall
     MiddlePlatform -> BombWallPlatform
-    BombWallPlatform -> BombWallEntrance: item BombBag
+    BombWallPlatform -> BombWallEntrance: ( item BombBag | state HasExplosive )
     node South:
       door South
     BombWallPlatform -> South
