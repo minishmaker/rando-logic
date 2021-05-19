@@ -5,8 +5,8 @@ area RoyalCrypt:
       door North
       door South
     node MainPostEnemies:
-      item Left
-      item Right
+      chest Left
+      chest Right
     Main <-> MainPostEnemies: defeat Gibdos
   room KeyPuzzles:
     node Main:
