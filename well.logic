@@ -1,3 +1,30 @@
 area Well:
-  room Main
-  room SouthEntry
+  room Main:
+    node NorthEntry:
+      door Door
+    node BombChest:
+      chest BombChest
+    NorthEntry <-> BombChest: ( item BombBag | state HasExplosive )
+    node East:
+      chest East
+      door EastLadder
+    node West:
+      chest West
+      door WestLadder
+    node South:
+      door South
+    node Center:
+      chest South
+    South <-> Center: ( item Cape | item Flippers )
+    node CenterOpen:
+      chest Open
+    node Holes
+    Holes <-> Center: flag BottomBoulderPushed
+    Holes <-> East: flag EastBoulderPushed
+    Holes <-> West: flag WestBoulderPushed
+    Holes <-> BombChest: ( flag MiddleChestMoved | item BombBag | state HasExplosive )
+    Center <-> CenterOpen: flag MiddleChestMoved
+  room SouthEntry:
+    node Main:
+      door Ladder
+      door Door
