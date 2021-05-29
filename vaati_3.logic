@@ -4,5 +4,6 @@ area Vaati3:
       exit Entrance
       enemy Vaati
     node PostFight:
+      goal
       flag GameFinish
     Main -> PostFight: defeat Vaati
