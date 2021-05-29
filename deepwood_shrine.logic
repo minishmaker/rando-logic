@@ -50,6 +50,7 @@ area DeepwoodShrine:
   room BF1LilyDrop:
     node Main:
       exit Drop
+      gain Lilypad
     node North:
       door North
     node Water:
