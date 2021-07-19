@@ -1,4 +1,4 @@
-area HouseInteriors1
+area HouseInteriors1:
   room HearthBackDoor
   room HearthBottom
   room HearthCheap

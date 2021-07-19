@@ -1,2 +1,120 @@
 area Town:
-  room Main
+  room Main:
+    node Anju:
+      chest AnjuHP
+    node AnjuGarden:
+      door Anju
+    AnjuGarden -> Main # do we want to be able to make this out of logic (so as to not require this in entrance rando)?
+    node AnjuRoof:
+      door AnjuChimney
+    node CatsMinish:
+      door Fountain
+      door StratoMinishBack
+    node FigurineHouseDoorEast:
+      door FigurineHouseEast
+    node GormanHouseSouth:
+      door GormanHouseSouth
+    node HearthLedge:
+      door HearthLedge
+      chest HearthLedge
+    node JuliettaRoof:
+      door JuliettaChimney
+      door RomioChimneyEast
+    node LibraryEntrance:
+      entrance LibraryBottom
+    node LibraryRoof:
+      door LibraryRoof
+    node LibraryRoofMinish:
+      door LibraryMinish
+    LibraryRoof -> LibraryRoofMinish: item Cane
+    node Main:
+      chest CafeLady
+      door Bakery
+      door Borlov
+      door East
+      door FigurineHouseWest
+      door HearthNorth
+      door HearthSouth
+      door GormanHouseWest
+      door Julietta
+      door MayorWest
+      door North
+      door PostOffice
+      door Rem
+      door Romio
+      door SchoolWest
+      door Simon
+      door South
+      door Stockwell
+      door Strato
+      door Swiftblade
+      door Well
+      entrance Crest
+      exit LibraryBottom
+      flag Virtual.Zeffa.TownCrest
+    Main <-> Anju: (item Flippers | item Cape)
+    Main <-> FigurineHouseDoorEast: item CarlovMedal
+    Main <-> GormanHouseSouth: flag TalkedToOracle
+    Main -> LibraryEntrance: flag LibraryManHasMoved
+    node MainBellHP:
+      chest MainBellHP
+    Main <-> MainBellHP: item Cape 
+    node MainMinish:
+      door AnjuMinish
+      door BakeryMinish
+      door CafeMinish
+      door CarpenterBuildingMinish
+      door DrLeftMinish
+      door HearthMinish
+      door RomioMinish
+    node MayorGarden:
+      door MayorEast
+      door MayorBasementLadder
+    node MinishBridge:
+      door CafeBridgeMinish
+      door StockwellBridgeMinish
+    node RomioRoof:
+      door RomioChimneyWest
+    node SewerDoor:
+      door SewerDoor
+    SewerDoor <-> LibraryRoofMinish: item Flippers
+    node SchoolGarden:
+      door SchoolEast
+    node SchoolGardenMinish:
+      door SchoolEntranceMinishEast
+      door SchoolGarden
+    node SchoolRoof:
+      chest SchoolRoof
+      door SchoolEntranceMinishWest
+    node SouthWest:
+      door Carlov
+      door Carpenters
+      door DrLeft
+    Main <-> SouthWest: (item Flippers | item Cape | flag DogMoves)
+    node TownDigging:
+      door TownDigging
+    Main <-> TownDigging: item MoleMitts
+    node WaterfallExit:
+      exit Waterfall
+    node WaterfallEntrance:
+      entrance Waterfall
+    Main -> WaterfallEntrance: (item Flippers & flag TownWaterfallFusion)
+    WaterfallExit -> Main: item Flippers
+    node West:
+      door West
+    Main -> West: (flag GuardMoved | (setting TownGuardBootSkip & item Boots))
+    West -> Main: (flag GuardMoved | setting TownGuardEastwards) # should moving past the guard this way be in logic? probably yes unless it's decoupled ER, this way we can choose that elsewhere
+    node GuardMove:
+      flag GuardMoved
+    Main -> GuardMove: item CanSpin
+    node WestMinish:
+      door DrLeftChimney
+      door GormanHouseWest
+      door StratoMinish
+    node HearthLedge +: exit Virtual.Zeffa.FluteAway
+    node Main +: exit Virtual.Zeffa.FluteAway
+    node MayorGarden +: exit Virtual.Zeffa.FluteAway
+    node LibraryRoof +: exit Virtual.Zeffa.FluteAway
+    node SchoolGarden +: exit Virtual.Zeffa.FluteAway
+    node SchoolRoof +: exit Virtual.Zeffa.FluteAway
+    node SouthWest +: exit Virtual.Zeffa.FluteAway

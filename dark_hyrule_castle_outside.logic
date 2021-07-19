@@ -1,0 +1,9 @@
+area DarkHyruleCastleOutside:
+  room Altar
+  room EastEntry
+  room NorthEastTower
+  room NorthwestTower
+  room ShrineEntrance
+  room SouthEastTower
+  room SouthEntry
+  room SouthwestTower

@@ -1,0 +1,10 @@
+area TownMinishHouses:
+  room Mayor
+  room GormanWest
+  room DrLeft
+  room LumberMill
+  room Cafe
+  room LibraryBookCase
+  room LibraryBook
+  room Rem
+  

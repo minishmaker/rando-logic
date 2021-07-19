@@ -1,0 +1,19 @@
+area Caves:
+  room EasternHillsBomb
+  room LonLonPuddle
+  room LonLonTingle
+  room LonLonTingleDark
+  room MagicBoomerang
+  room MinishWoodsScrub
+  room NorthHyruleFieldCave
+  room NorthHyruleFieldCaveBasement
+  room NorthHyruleFieldFairy
+  room SouthHyruleFieldFairy
+  room SouthHyruleFieldPuddle
+  room TownWaterfall
+  room TrilbyDigFairy
+  room TrilbyFairy
+  room TrilbyKeese
+  room TrilbyLowerAccess
+  room TrilbyPuddle
+  room TrilbyScrub

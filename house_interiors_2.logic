@@ -1,0 +1,18 @@
+area HouseInteriors2:
+  room Anju
+  room Dampe
+  room DrLeft
+  room Gorman1A
+  room Gorman1B
+  room Gorman1C
+  room Gorman2A
+  room Gorman2B
+  room Gorman2C
+  room Julietta
+  room LinkBedroom
+  room LinkEntry
+  room LinkSmithy
+  room Percy
+  room Romio
+  room Fifi
+  room Strato
