@@ -4,7 +4,7 @@ area HyruleField:
       door West
       enemy WestAcroBandits
       door South
-      exit Virtual.Zeffa.FluteAway
+      entrance Virtual.Zeffa.FluteAway
     node WestFusionChest:
       chest WestFusionChest
     node GoldenRopeFusion:
@@ -13,13 +13,13 @@ area HyruleField:
       door FarmersHouse
       door SouthEast
       enemy EastAcroBanditsAndOctorocs
-      entrance DiggingCaveEntrance
-      exit Virtual.Zeffa.FluteAway
+      exit DiggingCaveExit
+      entrance Virtual.Zeffa.FluteAway
     node WoodsFairyLedge:
       door NorthEast
-      exit Virtual.Zeffa.FluteAway
+      entrance Virtual.Zeffa.FluteAway
     node FarmersDiggingCave:
-      exit DiggingCaveExit
+      entrance DiggingCaveEntrance
     node BombableBlocks:
       flag BombableBlocks
 
@@ -40,36 +40,36 @@ area HyruleField:
       enemy PeahatsAndSpinyBeetles
       door SouthEast
       door SouthWest
-      exit Virtual.Zeffa.FluteAway
-      entrance CaveEntrance
+      entrance Virtual.Zeffa.FluteAway
+      exit CaveExit
     node Beanstalk:
       door Beanstalk
-      exit Virtual.Zeffa.FluteAway
-    node CaveExit:
-      exit CaveExit
+      entrance Virtual.Zeffa.FluteAway
+    node CaveEntrance:
+      entrance CaveEntrance
     node BombableCave:
       flag BombableCave
 
     Main <-> Beanstalk: flag Beanstalk
     Main -> BombableCave: item BombBag
-    Main -> CaveExit: flag BombableCave
+    Main -> CaveEntrance: flag BombableCave
 
 
   room EastHillsSouth:
 
     node NorthWest:
       door NorthWest
-      exit Virtual.Zeffa.FluteAway
+      entrance Virtual.Zeffa.FluteAway
     node West:
-      exit Virtual.Zeffa.FluteAway
+      entrance Virtual.Zeffa.FluteAway
     node MinishHouse:
       door MinishHouse
-      exit Virtual.Zeffa.FluteAway
+      entrance Virtual.Zeffa.FluteAway
     node East:
       door NorthEast
       door East
       enemy SpinyBeetles
-      exit Virtual.Zeffa.FluteAway
+      entrance Virtual.Zeffa.FluteAway
     node BombableBlocks:
       flag BombableBlocks
 
@@ -86,24 +86,24 @@ area HyruleField:
 
     node VeilFallsEast:
       door VeilFallsEast
-      exit Virtual.Zeffa.FluteAway
+      entrance Virtual.Zeffa.FluteAway
     node VeilFallsWest:
       door VeilFallsWest
-      exit Virtual.Zeffa.FluteAway
+      entrance Virtual.Zeffa.FluteAway
     node VeilFallsFusionChest:
       chest VeilFallsFusionChest
     node West:
       door NorthWest
       enemy AcroBanditsAndOctorocs
       door South
-      entrance LeftRanchDoorEntrance
-      exit Virtual.Zeffa.FluteAway
+      exit LeftRanchDoorExit
+      entrance Virtual.Zeffa.FluteAway
     node TownAccess:
       door SouthWest
-      exit Virtual.Zeffa.FluteAway
-    node LeftRanchDoorExit:
-      exit LeftRanchDoorExit
-      exit Virtual.Zeffa.FluteAway
+      entrance Virtual.Zeffa.FluteAway
+    node LeftRanchDoorEntrance:
+      entrance LeftRanchDoorEntrance
+      entrance Virtual.Zeffa.FluteAway
     node OpenLeftRanchDoor:
       flag OpenLeftRanchDoor
     node MinishLeftRanchDoor:
@@ -111,30 +111,30 @@ area HyruleField:
     node GoronCave:
       flag GoronCaveBoulder
       door GoronCave
-      exit Virtual.Zeffa.FluteAway
+      entrance Virtual.Zeffa.FluteAway
     node SouthEast:
       door SouthEast
       flag SouthEastBoulder
-      exit Virtual.Zeffa.FluteAway
+      entrance Virtual.Zeffa.FluteAway
     node MiddleEast:
       door MiddleEast
-      exit Virtual.Zeffa.FluteAway
+      entrance Virtual.Zeffa.FluteAway
     node Center:
       door RightFarmDoor
       door Cave
       door NorthEast
       flag NorthBoulder
       enemy Octorocs
-      entrance PondFusionEntrance
-      exit Virtual.Zeffa.FluteAway
+      exit PondFusionExit
+      entrance Virtual.Zeffa.FluteAway
     node MinishCenter:
       door MinishPath
       door MinishRightRanchDoor
-    node PondFusionExit:
-      exit PondFusionExit
-      exit Virtual.Zeffa.FluteAway
+    node PondFusionEntrance:
+      entrance PondFusionEntrance
+      entrance Virtual.Zeffa.FluteAway
     node NorthLedge:
-      exit Virtual.Zeffa.FluteAway
+      entrance Virtual.Zeffa.FluteAway
     node MinishCrack:
       door MinishCrack
     #Tag this as obsucre
@@ -142,18 +142,18 @@ area HyruleField:
       chest ObscureDiggingSpot
     node NorthFreestanding:
       chest Freestanding
-      entrance NorthDiggingCaveEntrance
-      exit Virtual.Zeffa.FluteAway
-    node NorthDiggingCaveExit:
       exit NorthDiggingCaveExit
-      exit Virtual.Zeffa.FluteAway
+      entrance Virtual.Zeffa.FluteAway
+    node NorthDiggingCaveEntrance:
+      entrance NorthDiggingCaveEntrance
+      entrance Virtual.Zeffa.FluteAway
 
     VeilFallsEast -> VeilFallsFusionChest: flag VeilFallsFusionChest
     West <-> TownAccess: item BombBag
     West -> VeilFallsWest: item PacciCane
     VeilFallsWest -> West
     West -> OpenLeftRanchDoor: item LonLonKey
-    West -> LeftRanchDoorExit: flag OpenLeftRanchDoor
+    West -> LeftRanchDoorEntrance: flag OpenLeftRanchDoor
     West -> MinishLeftRanchDoor: item CanTurnMinish
     MinishLeftRanchDoor -> West: item CanGrow
     # Not checking if we have ezlo to get into the tornados bc it works without him
@@ -161,21 +161,22 @@ area HyruleField:
     GoronCave -> West
     West -> SouthEast: (flag SouthEastBoulder | item RocsCape)
     SouthEast -> West
-    SouthEast <-> GoronCave
+    SouthEast -> GoronCave
     Center -> West
     West -> Center: (flag NorthBoulder)
     Center -> MiddleEast: (item RocsCape | item Flippers)
     MiddleEast -> Center: (item RocsCape)
     Center -> MinishCenter: (item PegasusBoots | item CanTurnMinish)
     MinishCenter -> Center: (item CanGrow)
-    Center -> PondFusionExit: (flag PondFusion)
+    Center -> PondFusionEntrance: (flag PondFusion)
     Center -> NorthLedge: (item RocsCape | item PacciCane )
     NorthLedge -> Center
     NorthLedge -> MiddleEast
     NorthLedge -> MinishCrack: item CanTurnMinish
     MinishCrack -> NorthLedge: item CanGrow
     NorthLedge -> CenterLedge: item MoleMitts
-    NorthFreestanding -> NorthDiggingCaveExit: item MoleMitts
+    NorthFreestanding -> NorthDiggingCaveEntrance: item MoleMitts
+    CenterLedge -> Center
 
 
   room North:
@@ -184,52 +185,52 @@ area HyruleField:
       door South
       door North
       enemy OctorcsAndCrows
-      entrance NWTingleTreeEntrance
-      entrance NETingleTreeEntrance
-      entrance SWTingleTreeEntrance
-      entrance SETingleTreeEntrance
-      entrance CenterTingleTreeEntrance
-      entrance FairyFountainEntrance
-      exit Virtual.Zeffa.FluteAway
-    node NWTingleTreeExit:
       exit NWTingleTreeExit
-    node NETingleTreeExit:
       exit NETingleTreeExit
-    node SWTingleTreeExit:
       exit SWTingleTreeExit
-    node SETingleTreeExit:
       exit SETingleTreeExit
-    node CenterTingleTreeExit:
       exit CenterTingleTreeExit
-    node FairyFountainExit:
-      exit FairyFountainEntrance
+      exit FairyFountainExit
+      entrance Virtual.Zeffa.FluteAway
+    node NWTingleTreeEntrance:
+      entrance NWTingleTreeEntrance
+    node NETingleTreeEntrance:
+      entrance NETingleTreeEntrance
+    node SWTingleTreeEntrance:
+      entrance SWTingleTreeEntrance
+    node SETingleTreeEntrance:
+      entrance SETingleTreeEntrance
+    node CenterTingleTreeEntrance:
+      entrance CenterTingleTreeEntrance
+    node FairyFountainEntrance:
+      entrance FairyFountainExit
     node RightBombableRocks:
       flag RightBombableRocks
     node NorthEast:
       door NorthEast
-      exit Virtual.Zeffa.FluteAway
-    node WaterFallEntrance:
-      door WaterFallEntrance
-      exit Virtual.Zeffa.FluteAway
+      entrance Virtual.Zeffa.FluteAway
+    node WaterFallExit:
+      door WaterFallExit
+      entrance Virtual.Zeffa.FluteAway
     node SouthWest:
       door SouthWest
       enemy Keaton
-      exit Virtual.Zeffa.FluteAway
+      entrance Virtual.Zeffa.FluteAway
     node SouthCave:
       door SouthCave
-      exit Virtual.Zeffa.FluteAway
+      entrance Virtual.Zeffa.FluteAway
     node LeftBombableBlocks:
       flag LeftBombableBlocks
     node NorthCave:
       door NorthLadder
       door MiddleCave
-      exit Virtual.Zeffa.FluteAway
+      entrance Virtual.Zeffa.FluteAway
     node NorthWestWater:
       door NorthWestWater
-      exit Virtual.Zeffa.FluteAway
+      entrance Virtual.Zeffa.FluteAway
     node NorthWestGraveyard:
       door NorthWestGraveyard
-      exit Virtual.Zeffa.FluteAway
+      entrance Virtual.Zeffa.FluteAway
       ennemy GraveyardOctorocs
     node NorthWestChestFusion:
       chest NorthWestChestFusion
@@ -241,24 +242,24 @@ area HyruleField:
     node ObscureSpot:
       chest ObscureDigRupee
 
-    Main -> NWTingleTreeExit: flag NWTingleTree
-    Main -> NETingleTreeExit: flag NETingleTree
-    Main -> SWTingleTreeExit: flag SWTingleTree
-    Main -> SETingleTreeExit: flag SETingleTree
-    Main -> CenterTingleTreeExit: flag CenterTingleTree
-    Main -> FairyFountainExit: flag FairyFountain
+    Main -> NWTingleTreeEntrance: flag NWTingleTree
+    Main -> NETingleTreeEntrance: flag NETingleTree
+    Main -> SWTingleTreeEntrance: flag SWTingleTree
+    Main -> SETingleTreeEntrance: flag SETingleTree
+    Main -> CenterTingleTreeEntrance: flag CenterTingleTree
+    Main -> FairyFountainEntrance: flag FairyFountain
     Main -> RightBombableRocks: item BombBag
     NorthEast -> RightBombableRocks: item BombBag
     Main <-> NorthEast: flag RightBombableRocks
-    Main -> WaterFallEntrance: (flag WaterFallFusion | (item Flippers | item RocsCape ))
+    Main -> WaterFallExit: (flag WaterFallFusion | (item Flippers | item RocsCape ))
     Main -> SouthWest: (item Flippers | item RocsCape)
     # No flag for the bridge bc it resets in rando
     SouthWest -> Main: (item Flippers | item RocsCape | (item PacciCane & item SmithSword))
-    SouthWest -> WaterFallEntrance: (flag WaterFallFusion | (item Flippers | item RocsCape ))
-    WaterFallEntrance -> SouthWest: item Flippers
-    WaterFallEntrance -> SouthCave: item Flippers
+    SouthWest -> WaterFallExit: (flag WaterFallFusion | (item Flippers | item RocsCape ))
+    WaterFallExit -> SouthWest: item Flippers
+    WaterFallExit -> SouthCave: item Flippers
     # Possible with cape only, but a bit hard
-    SouthCave -> WaterFallEntrance: (item Flippers | item RocsCape)
+    SouthCave -> WaterFallExit: (item Flippers | item RocsCape)
     Main -> LeftBombableBlocks: item BombBag
     NorthCave -> LeftBombableBlocks: item BombBag
     Main <-> NorthCave: (flag LeftBombableBlocks)
@@ -268,7 +269,7 @@ area HyruleField:
     # With Entrando you could access the lever (and the bridge that way)
     NorthWestGraveyard -> Main: item SmithSword
     Main -> MinishCrackBoulder: (item SmithSword | item FlameLantern | item LightArrows | item BombBag | item GustJar)
-    # Need to have removed the boulder to exit the cave
+    # Need to have removed the boulder to entrance the cave
     Main -> MinishCrack: (flag MinishCrackBoulder & item CanTurnMinish & item PegasusBoots)
     MinishCrack -> Main: (flag MinishCrackBoulder & item CanGrow)
     Main -> ObscureSpot: item MoleMitts
@@ -280,40 +281,40 @@ area HyruleField:
       door North
       enemy MainOctorocs
       door LinksHouse
-      entrance FairyFountainEntrance
-      exit Virtual.Zeffa.FluteAway
+      exit FairyFountainExit
+      entrance Virtual.Zeffa.FluteAway
     node WindTribeWarpFusion:
       door WindTribeWarpFusion
-    node FairyFountainExit:
-      exit FairyFountainExit
+    node FairyFountainEntrance:
+      entrance FairyFountainEntrance
     node FairyFountainBombableWall:
       flag FairyFountainBombableWall
     node NorthWest:
       door West
       enemy NorthWestOctorocs
-      entrance RupeePondFusionEntrance
-      exit Virtual.Zeffa.FluteAway
-    node RupeePondFusionExit:
       exit RupeePondFusionExit
+      entrance Virtual.Zeffa.FluteAway
+    node RupeePondFusionEntrance:
+      entrance RupeePondFusionEntrance
     node East:
       door East
       enemy EastOctorocs
-      entrance EastTreeFusionEntrance
-      exit Virtual.Zeffa.FluteAway
-      entrance Crest
+      exit EastTreeFusionExit
+      entrance Virtual.Zeffa.FluteAway
+      exit Crest
       flag Virtual.Zeffa.SouthernHyruleFieldCrest
     # Splitting this for vanilla fusions
     node TingleLedge:
-      exit Virtual.Zeffa.FluteAway
+      entrance Virtual.Zeffa.FluteAway
     node Tingle:
       chest Tingle
-    node EastTreeFusionExit:
-      exit EastTreeFusionExit
+    node EastTreeFusionEntrance:
+      entrance EastTreeFusionEntrance
     node EastChestFusion:
      chest EastChestFusion
     node SouthWest:
       enemy SouthWestOctorocs
-      exit Virtual.Zeffa.FluteAway
+      entrance Virtual.Zeffa.FluteAway
     node SouthWestMinish:
       door MinishHouse
     node MinishWaterHole:
@@ -321,14 +322,14 @@ area HyruleField:
 
     Main <-> WindTribeWarpFusion: flag WindTribeWarpFusion
     Main -> FairyFountainBombableWall: item BombBag
-    Main -> FairyFountainExit: flag FairyFountainBombableWall
+    Main -> FairyFountainEntrance: flag FairyFountainBombableWall
     Main <-> NorthWest: (item SmithSword | item FlameLantern | item BombBag | item LightArrows | item Flippers | item RocsCape)
-    Main -> RupeePondFusionExit: (flag RupeePondFusion)
+    Main -> RupeePondFusionEntrance: (flag RupeePondFusion)
     Main <-> East: (item SmithSword | item FlameLantern | item BombBag | item LightArrows)
     East -> TingleLedge: item PacciCane
     TingleLedge -> East
     TingleLedge -> Tingle: item TingleTrophee
-    East -> EastTreeFusionExit: flag EastTreeFusion
+    East -> EastTreeFusionEntrance: flag EastTreeFusion
     East -> EastChestFusion: flag EastChestFusion
     Main <-> SouthWest: (item SmithSword | item FlameLantern | item BombBag | item LightArrows)
     SouthWest -> SouthWestMinish: (item CanTurnMinish & item PegasusBoots)
@@ -343,62 +344,62 @@ area HyruleField:
       door NorthEast
       door West
       door TopLadder
-      entrance LeftDiggingCaveEntrance
-      exit Virtual.Zeffa.FluteAway
+      exit LeftDiggingCaveExit
+      entrance Virtual.Zeffa.FluteAway
     node NorthChestFusion:
       chest NorthChestFusion
     node MidChestFusion:
       chest MidChestFusion
-    node LeftDiggingCaveExit:
-      exit LeftDiggingCaveExit
+    node LeftDiggingCaveEntrance:
+      entrance LeftDiggingCaveEntrance
     node RightDiggingCaveFusion:
-      entrance RightDiggingCaveEntrance
-    node RightDiggingCaveExit:
       exit RightDiggingCaveExit
+    node RightDiggingCaveEntrance:
+      entrance RightDiggingCaveEntrance
     node KnuckleLedge:
       door DiggingCaveLadder
-      exit Virtual.Zeffa.FluteAway
+      entrance Virtual.Zeffa.FluteAway
     node MinishKnuckleLedge:
       door MinishHouse
     node GraveyardLedge:
       door North
-      exit Virtual.Zeffa.FluteAway
+      entrance Virtual.Zeffa.FluteAway
     node Bottom:
       enemy BlueOctorocsMoblinsAndKeatons
       door BottomLadder
       door PercyTreeHouse
       door South
       flag BoulderShortcut
-      entrance RupeePondFusionEntrance
-      entrance BombableCaveEntrance
-      entrance FairyFountainEntrance
-      exit Virtual.Zeffa.FluteAway
-    node RupeePondFusionExit:
       exit RupeePondFusionExit
-    node BombableCaveExit:
       exit BombableCaveExit
+      exit FairyFountainExit
+      entrance Virtual.Zeffa.FluteAway
+    node RupeePondFusionEntrance:
+      entrance RupeePondFusionEntrance
+    node BombableCaveEntrance:
+      entrance BombableCaveEntrance
     node BombableCaveWall:
       flag BombableCaveWall
-    node FairyFountainExit:
-      exit FairyFountainExit
+    node FairyFountainEntrance:
+      entrance FairyFountainEntrance
     node FairyFountainWall:
       flag FairyFountainWall
     Top -> NorthChestFusion: flag NorthChestFusion
     Top -> MidChestFusion: flag MidChestFusion
-    Top -> LeftDiggingCaveExit: item MoleMitts
+    Top -> LeftDiggingCaveEntrance: item MoleMitts
     Top -> RightDiggingCaveFusion: (item Flippers | item RocsCape )
     RightDiggingCaveFusion -> Top: ((flag RightDiggingCaveFusion & item RocsCape) | item Fippers)
-    RightDiggingCaveFusion -> RightDiggingCaveExit: (item MoleMitts & flag RightDiggingCaveFusion)
+    RightDiggingCaveFusion -> RightDiggingCaveEntrance: (item MoleMitts & flag RightDiggingCaveFusion)
     KnuckleLedge -> MinishKnuckleLedge: item CanTurnMinish
     MinishKnuckleLedge -> KnuckleLedge: item CanGrow
     KnuckleLedge -> Top: item Flippers
     GraveyardLedge -> Top
     Top <-> Bottom: flag BoulderShortcut
-    Bottom -> RupeePondFusionExit: flag RupeePondFusion
+    Bottom -> RupeePondFusionEntrance: flag RupeePondFusion
     Bottom -> BombableCaveWall: item BombBag
-    Bottom -> BombableCaveExit: flag BombableCaveWall
+    Bottom -> BombableCaveEntrance: flag BombableCaveWall
     Bottom -> FairyFountainWall: item BombBag
-    Bottom -> FairyFountainExit: flag FairyFountainWall
+    Bottom -> FairyFountainEntrance: flag FairyFountainWall
 
 
   room WestWoodsNorth:
@@ -409,15 +410,15 @@ area HyruleField:
       door West
       door SouthMid
       flag BoulderShortcut
-      entrance WestTreeFusionEntrance
-      exit Virtual.Zeffa.FluteAway
+      exit WestTreeFusionExit
+      entrance Virtual.Zeffa.FluteAway
     node East:
       door East
-      exit Virtual.Zeffa.FluteAway
+      entrance Virtual.Zeffa.FluteAway
     node MiddleChestFusion:
       chest MiddleChestFusion
-    node WestTreeFusionExit:
-      exit WestTreeFusionExit
+    node WestTreeFusionEntrance:
+      entrance WestTreeFusionEntrance
     node SouthWestTreeFusion:
       door SouthWestFusion
     node NorthWestTreeFusion
@@ -431,7 +432,7 @@ area HyruleField:
       chest NorthWestDigSpot6
     node SouthEast:
       door SouthEast
-      exit Virtual.Zeffa.FluteAway
+      entrance Virtual.Zeffa.FluteAway
     node SouthEastTreeFusion
     #Tag this as obsucre
     node SouthEastObsucre:
@@ -440,7 +441,7 @@ area HyruleField:
 
     Main <-> East: flag BoulderShortcut
     Main -> MiddleChestFusion: flag MiddleChestFusion
-    Main -> WestTreeFusionExit: flag WestTreeFusion
+    Main -> WestTreeFusionEntrance: flag WestTreeFusion
     Main <-> SouthWestTreeFusion: flag SouthWestTreeFusion
     Main <-> NorthWestTreeFusion: flag NorthWestTreeFusion
     NorthWestTreeFusion -> NorthWestObscure: item MoleMitts
@@ -452,14 +453,14 @@ area HyruleField:
     node West:
       door NorthWest
       door PercyHouse
-      exit Virtual.Zeffa.FluteAway
+      entrance Virtual.Zeffa.FluteAway
     node East:
       door NorthMiddle
       door NortEast
       enemy Moblins
       door SouthMiddle
       door SouthEast
-      exit Virtual.Zeffa.FluteAway
+      entrance Virtual.Zeffa.FluteAway
     node GoldenOcotorocFusion:
       enemy GoldenOcotorocFusion
 
@@ -472,7 +473,7 @@ area HyruleField:
       door NorthMiddle
       door NorthEast
       enemy Moblins
-      exit Virtual.Zeffa.FluteAway
+      entrance Virtual.Zeffa.FluteAway
     node Beanstalk:
       door Beanstalk
     node MinishMain:
