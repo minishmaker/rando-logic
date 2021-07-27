@@ -107,8 +107,10 @@ area TempleOfDroplets:
     node MazePart4Torch:
       flag MazePart4Torch
     node MazePart5:
-      door NorthWest
+      lock NorthWestDoor
       enemy Pestos
+    node NorthWestDoor:
+      door NorthWest
 
     MazePart1 -> MazePart1Torch: item FlameLantern
     MazePart2 -> MazePart2Torch: item FlameLantern
@@ -121,6 +123,7 @@ area TempleOfDroplets:
     MazePart4 <-> MazePart5: flag MazePart4Torch
     MazePart3 -> BomableWall: item BombBag
     MazePart3 <-> MiddleWest: flag BomableWall
+    MazePart5 <-> NorthWestDoor: open NorthWestDoor
 
 
   room BF1DarkSplitPath:
