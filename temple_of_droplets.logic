@@ -240,22 +240,22 @@ area TempleOfDroplets:
     Lever -> StoneDoorOpened
     Lever -> StoneDoorClosed
 
-    room BF2LightBottom:
-      node AboveDropDown:
-        exit DropDown
-      node Main:
-        door Stairs
-      node StoneDoorOpened:
-        flag StoneDoorOpened
-      node StoneDoorClosed:
-        flag StoneDoorClosed
-      node FrozenItem:
-        chest FrozenItem
+  room BF2LightBottom:
+    node AboveDropDown:
+      exit DropDown
+    node Main:
+      door Stairs
+    node StoneDoorOpened:
+      flag StoneDoorOpened
+    node StoneDoorClosed:
+      flag StoneDoorClosed
+    node FrozenItem:
+      chest FrozenItem
 
-      AboveDropDown -> Main
-      Main -> StoneDoorOpened
-      Main -> StoneDoorClosed
-      Main -> FrozenItem: (item FlameLantern | (flag StoneDoorOpened & flag TempleOfDroplets.BF1LightMiddle.StoneDoorOpened))
+    AboveDropDown -> Main
+    Main -> StoneDoorOpened
+    Main -> StoneDoorClosed
+    Main -> FrozenItem: (item FlameLantern | (flag StoneDoorOpened & flag TempleOfDroplets.BF1LightMiddle.StoneDoorOpened))
 
 
   room BF1LilypadPuzzles:
