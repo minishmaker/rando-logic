@@ -22,7 +22,7 @@ area Crenel:
     EastHillTop -> EastHillTopMinish: ( item CanTurnMinish & flag BombBlockExploded )
     EastHillTopMinish -> EastHillTop: ( item CanGrow & flag BombBlockExploded )
     node NorthVine:
-      door NorthWine
+      door NorthVine
     node SouthEast:
       chest SouthEastRupee
       door East
