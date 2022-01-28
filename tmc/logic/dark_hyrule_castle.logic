@@ -138,7 +138,7 @@ area DarkHyruleCastle:
     Main <-> East: defeat ChainSoldier
     Main <-> West: defeat ChainSoldier
     NorthExit -> Main: flag BigKeyDoorOpen
-    Main -> NorthEntrance: flag BigKeyDoorOpen
+    Main -> NorthEntrance: item DHCBigKey
   room F1DarkKnight:
     node Fight:
       exit North
