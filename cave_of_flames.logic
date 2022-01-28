@@ -140,7 +140,7 @@ area CaveOfFlames:
       exit BigDoor
     node FrontOfBigDoor
     BigDoorExit -> FrontOfBigDoor: flag DoorUnlocked
-    FrontOfBigDoor -> BigDoorEntrance: flag DoorUnlocked
+    FrontOfBigDoor -> BigDoorEntrance: item CoFBigKey
     node West:
       door West
     node North:
