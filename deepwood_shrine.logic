@@ -69,7 +69,7 @@ area DeepwoodShrine:
       entrance North
     node North
     NorthExit -> North: flag DoorUnlocked
-    North -> NorthEntrance: flag DoorUnlocked
+    North -> NorthEntrance: item DWSBigKey
     node East:
       door East
     node West:
