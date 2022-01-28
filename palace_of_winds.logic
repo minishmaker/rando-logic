@@ -284,7 +284,7 @@ area PalaceOfWinds:
       flag NorthDoorOpen
     node NorthExit:
       exit North
-    Center -> NorthEntrance: flag NorthDoorOpen
+    Center -> NorthEntrance: item PoWBigKey
     NorthExit -> Center: flag NorthDoorOpen
     node East:
       door East
@@ -311,7 +311,7 @@ area PalaceOfWinds:
     node SouthExit:
       exit South
     SouthExit -> Main: flag BigKeyDoorOpen
-    Main -> SouthEntrance: flag BigKeyDoorOpen
+    Main -> SouthEntrance: item PoWBigKey
     node West:
       door West
     Main <-> West: open WestDoor
