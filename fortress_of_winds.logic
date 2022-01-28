@@ -162,7 +162,7 @@ area FortressOfWinds:
       entrance North
     node EastBigDoorExit:
       exit North
-    East -> EastBigDoorEntrance: flag BigDoorUnlocked
+    East -> EastBigDoorEntrance: item FoWBigKey
     EastBigDoorExit -> East: flag BigDoorUnlocked
   room F2East:
     node East:
