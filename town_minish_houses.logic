@@ -1,10 +1,30 @@
 area TownMinishHouses:
-  room Mayor
-  room GormanWest
-  room DrLeft
-  room LumberMill
-  room Cafe
-  room LibraryBookCase
-  room LibraryBook
-  room Rem
+  room Mayor:
+    node Main:
+      door South
+  room GormanWest:
+    node Main:
+      door East
+  room DrLeft:
+    node Main:
+      door South
+  room LumberMill:
+    node Main:
+      door East
+  room Cafe:
+    node Main:
+      door West
+  room LibraryBookCase:
+    node Main:
+      door South
+    node North:
+      door House
+    Main <-> North: ( item GripRing | flag BooksReturned )
+  room LibraryBook:
+    node Main:
+      door South
+      entrance Hole
+  room Rem:
+    node Main:
+      door South
   
