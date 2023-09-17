@@ -1,0 +1,85 @@
+name: basicDefinitions
+version: '1.0'
+syntax-version: '0.1'
+dependencies: []
+soft-dependency: []
+provides:
+  descriptors:
+    flag:
+      arguments:
+        - scoped
+      stateful: false
+      type: truthy
+      export: edge
+    set:
+      arguments:
+        - unscoped
+      stateful: false
+      type: truthy
+      export: target
+    target:
+      arguments:
+        - scoped
+      stateful: false
+      type: truthy
+      export: edge-from-beyond-the-void
+    warp:
+      arguments:
+        - unscoped
+      stateful: false
+      type: truthy
+      export: target
+    item:
+      arguments:
+        - scoped
+      stateful: false
+      type: truthy
+      export: edge
+    chest:
+      arguments:
+        - unscoped
+      stateful: false
+      type: truthy
+      export: target
+    kill:
+      arguments:
+        - scoped
+      stateful: false
+      type: truthy
+      export: edge
+    enemy:
+      arguments:
+        - unscoped
+      stateful: false
+      type: truthy
+      export: target
+    spawn:
+      arguments: []
+      stateful: false
+      type: truthy
+      export: edge-from-beyond-the-void
+  logic-sugar:
+    door:
+      type: multi
+      expands-to:
+        - warp
+        - target
+    "|":
+      type: operator
+      replacement: or
+    "||":
+      type: operator
+      replacement: or
+    "&":
+      type: operator
+      replacement: and
+    "&&":
+      type: operator
+      replacement: and
+  descriptor-definitions:
+    - descriptors.dscr
+  shuffles:
+    - shuffles.shuff
+  logic: []
+  data: []
+  patches: []
