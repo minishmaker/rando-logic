@@ -13,7 +13,7 @@ provides:
       export: edge
     set:
       arguments:
-        - unscoped
+        - scoped
       stateful: false
       type: truthy
       export: target
@@ -31,7 +31,7 @@ provides:
       export: target
     item:
       arguments:
-        - scoped
+        - unscoped
       stateful: false
       type: truthy
       export: edge
@@ -53,6 +53,12 @@ provides:
       stateful: false
       type: truthy
       export: target
+    trick:
+      arguments:
+        - unscoped
+      stateful: false
+      type: truthy
+      export: edge
     spawn:
       arguments: []
       stateful: false
@@ -83,3 +89,4 @@ provides:
   logic: []
   data: []
   patches: []
+

@@ -21,11 +21,11 @@ area HyliaDigCaves:
       door WestDoor
     MainDigging <-> WestDoorOpenArea: item MoleMitts
     node EastLadder:
-      door Ladder
+      door EastLadder
     MainDigging <-> EastLadder: item MoleMitts
     node CenterLadder:
-      door Ladder
+      door CenterLadder
     node WestLadder:
-      door Ladder
+      door WestLadder
       enemy LikeLike
     CenterLadder <-> WestLadder: item MoleMitts

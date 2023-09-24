@@ -1,10 +1,10 @@
 area VeilFalls:
   room Main:
     node BottomWater:
-      exit BottomWaterFallFusion
+      target BottomWaterfallFusion
     node BottomWaterfall:
-      entrance BottomWaterfallFusion
-    BottomWater -> BottomWaterFall: flag VeilFallsBottomWaterfallFusion
+      warp BottomWaterfallFusion
+    BottomWater -> BottomWaterfall: (flag VeilFallsBottomWaterfallFusion && item Flippers)
     node Bottom:
       chest BottomHP
       door SouthEast
@@ -22,8 +22,13 @@ area VeilFalls:
     BottomEast -> BottomEastDigCave: item MoleMitts
     node MiddleMain:
       door West
+      target BottomCaveLeft
+    node SourceOfTheFlowFusion:
+      set SourceOfTheFlowFusion
+    MiddleMain -> SourceOfTheFlowFusion:
+      item VeilFallsKinstone # todo: fusion should be a key-usage, not a check for if you have the item
     node MiddleMainWallFusion:
-      door BottomCaveLeft
+      warp BottomCaveLeft
     MiddleMain <-> MiddleMainWallFusion: flag SourceOfTheFlowFusion
     node MiddleRight:
       door BottomCaveMiddle
@@ -32,20 +37,25 @@ area VeilFalls:
     MiddleRight <-> MiddleRightDig: item MoleMitts
     node MiddleHP:
       chest MiddleHP
-    MiddleMain <-> MiddleHP: (item Cape | item Flippers)
+    MiddleMain <-> MiddleHP: ((trick VeilFallsHPCapeJump && item Cape) | item Flippers)
     node MiddleDigCaveFusion:
-      door MiddleDigDoor
-    MiddleHP <-> MiddleDigCaveFusion: flag VeilFallsDigFusion
+      target MiddleDigDoor
+    node MiddleDigCaveFusionDoor:
+      warp MiddleDigCaveFusionDoor
+    MiddleDigCaveFusion -> MiddleDigCaveFusionDoor: item MoleMitts
+    MiddleHP <-> MiddleDigCaveFusion: (flag VeilFallsDigFusion && (item Cape || item Flippers))
+    MiddleMain -> MiddleDigCaveFusion: (flag VeilFallsDigFusion && (item Cape || item Flippers))
+    MiddleDigCaveFusion -> MiddleMain: (item Flippers || (flag VeilFallsDigFusion && item Cape)) # if you leave the cave without the fusion, you fall in the water
     node MiddleChestLedge:
       chest MiddleLedgeChest
       door MiddleLedgeCave
     node Crest:
       entrance Crest
       door TopCaveMiddle
-      flag Virtual.Zeffa.VeilFallsCrest
+      set Virtual.Zeffa.VeilFallsCrest
     Crest <-> MiddleRight: item GripRing
     Crest -> TopWaterLand
-    node CrestDigSpot:
+    node CrestDig:
       chest CrestDig
     Crest <-> CrestDig: item MoleMitts
     node CrestChest:
@@ -55,7 +65,7 @@ area VeilFalls:
       exit TopWaterfallFusion
     node TopWaterfall:
       entrance TopWaterfallFusion
-    TopWater -> TopWaterfall: flag VeilFallsTopWaterfallFusion
+    TopWater -> TopWaterfall: (flag VeilFallsTopWaterfallFusion && item Flippers)
     node TopWaterLand:
       door TopCaveBottom
     TopWaterLand <-> TopWater: item Flippers
@@ -67,11 +77,12 @@ area VeilFalls:
     node North:
       door North
     NorthPath <-> North: item GripRing
-    node TopCaveLedge +: exit Virtual.Zeffa.FluteAway
-    node TopWaterLand +: exit Virtual.Zeffa.FluteAway
-    node NorthPath +: exit Virtual.Zeffa.FluteAway
-    node Crest +: exit Virtual.Zeffa.FluteAway
-    node Bottom +: exit Virtual.Zeffa.FluteAwayv
-    node BottomEast +: exit Virtual.Zeffa.FluteAway
-    node MiddleRight +: exit Virtual.Zeffa.FluteAway
-    node MiddleChestLedge +: exit Virtual.Zeffa.FluteAway
+    node TopCaveLedge +: warp Virtual.Zeffa.FluteAway
+    node TopWaterLand +: warp Virtual.Zeffa.FluteAway
+    node NorthPath +: warp Virtual.Zeffa.FluteAway
+    node Crest +: warp Virtual.Zeffa.FluteAway
+    node Bottom +: warp Virtual.Zeffa.FluteAway
+    node BottomEast +: warp Virtual.Zeffa.FluteAway
+    node MiddleRight +: warp Virtual.Zeffa.FluteAway
+    node MiddleChestLedge +: warp Virtual.Zeffa.FluteAway
+

@@ -26,7 +26,7 @@ area Town:
       door LibraryRoof
     node LibraryRoofMinish:
       door LibraryMinish
-    LibraryRoof -> LibraryRoofMinish: item Cane
+    LibraryRoof -> LibraryRoofMinish: (item Cane && item CanShrink) # todo: check whether the pot being flipped is a permanent flag
     node Main:
       chest CafeLady
       door Bakery
@@ -51,11 +51,14 @@ area Town:
       door Well
       entrance Crest
       exit LibraryBottom
-      flag Virtual.Zeffa.TownCrest
+      set Virtual.Zeffa.TownCrest
     Main <-> Anju: (item Flippers | item Cape)
-    Main <-> FigurineHouseDoorEast: item CarlovMedal
+    Main <-> FigurineHouseDoorEast: flag FigurineHouseDoorEastOpen
     Main <-> GormanHouseSouth: flag TalkedToOracle
     Main -> LibraryEntrance: flag LibraryManHasMoved
+    Main -> FigurineHouseDoorEastOpen: item CarlovMedal
+    node FigurineHouseDoorEastOpen:
+      set FigurineHouseDoorEastOpen
     node MainBellHP:
       chest MainBellHP
     Main <-> MainBellHP: item Cape 
@@ -67,6 +70,7 @@ area Town:
       door DrLeftMinish
       door HearthMinish
       door RomioMinish
+      set DogMoves
     node MayorGarden:
       door MayorEast
       door MayorBasementLadder
@@ -85,7 +89,10 @@ area Town:
       door SchoolGarden
     node SchoolRoof:
       chest SchoolRoof
+    node SchoolRoofMinish:
       door SchoolEntranceMinishWest
+    SchoolRoof -> SchoolRoofMinish: item CanShrink
+    SchoolRoofMinish -> SchoolRoof: item CanGrow
     node SouthWest:
       door Carlov
       door Carpenters
@@ -102,10 +109,10 @@ area Town:
     WaterfallExit -> Main: item Flippers
     node West:
       door West
-    Main -> West: (flag GuardMoved | (setting TownGuardBootSkip & item Boots))
-    West -> Main: (flag GuardMoved | setting TownGuardEastwards) # should moving past the guard this way be in logic? probably yes unless it's decoupled ER, this way we can choose that elsewhere
+    Main -> West: (flag GuardMoved | (trick TownGuardBootSkip & item Boots))
+    West -> Main: (flag GuardMoved | trick TownGuardEastwards) # should moving past the guard this way be in logic? probably yes unless it's decoupled ER, this way we can choose that elsewhere
     node GuardMove:
-      flag GuardMoved
+      set GuardMoved
     Main -> GuardMove: item CanSpin
     node WestMinish:
       door DrLeftChimney
