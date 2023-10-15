@@ -30,7 +30,7 @@ area DeepwoodShrine:
     NorthExit -> North: ( item Flippers | ( state Lilypad & item GustJar ) )
     North <-> West: flag ButtonPressed
     node Button:
-      flag ButtonPressed
+      set ButtonPressed
     West <-> Button: ( state Lilypad & item GustJar )
   room BF1LilyChest:
     node Main:
@@ -120,10 +120,10 @@ area DeepwoodShrine:
   room GFLanterns:
     node Main:
       enemy Slugs
-      flag TopLeftTorch
-      flag TopRightTorch
-      flag BottomLeftTorch
-      flag BottomRightTorch
+      set TopLeftTorch
+      set TopRightTorch
+      set BottomLeftTorch
+      set BottomRightTorch
       door South
       lock NorthDoor
     node Chest:
@@ -193,7 +193,7 @@ area DeepwoodShrine:
       door SouthWest
       door South
       door East
-      flag SouthDoorOpen
+      set SouthDoorOpen
       enemy PuffStools
       lock NorthWestDoor
     node MainChests:
