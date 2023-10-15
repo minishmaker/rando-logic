@@ -4,8 +4,8 @@ area HouseInteriors1:
       chest HP
     node MainMinish:
       door NorthMinish
-    MainMinish -> Main: item CanGrow
     Main -> MainMinish: item CanTurnMinish
+    MainMinish -> Main: item CanGrow
   room HearthBottom:
     node Main:
       door South
@@ -64,7 +64,7 @@ area HouseInteriors1:
     node MainMinish:
       door MinishHouse
     Main -> MainMinish: (flag MasksBroken & flag PortalFlipped & item CanTurnMinish)
-    MainMinish -> Main: (flag MasksBroken & flag PortalFlipped & item CanTurnMinish)
+    MainMinish -> Main: (flag MasksBroken & flag PortalFlipped & item CanGrow)
   room PostOffice:
     node Main:
       door Door
