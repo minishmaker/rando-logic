@@ -50,7 +50,7 @@ area LakeHylia:
     node IslandTopMinish:
       door IslandMinishHouse
       door Hole
-    IslandTop -> MinishWater: (item Flippers & setting LakeMinishWaterJump)
+    IslandTop -> MinishWater: (item Flippers & trick LakeMinishWaterJump)
     node SouthWest:
       door East
       door EastSouth
