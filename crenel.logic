@@ -14,7 +14,7 @@ area Crenel:
     node EastHillTop:
       door EastHillLadder
     node EastHillTopBombBlock:
-      flag BombBlockExploded
+      set BombBlockExploded
     EastHillTopBombBlock <-> EastHillTop:( item BombBag | state HasExplosive )
     EastHillTop -> Center
     node EastHillTopMinish:
@@ -28,7 +28,7 @@ area Crenel:
       door East
       exit SouthEastBombWall
     node SouthEastVineWatered:
-      flag SouthEastVineWatered
+      set SouthEastVineWatered
     SouthEast <-> SouthEastVineWatered: item Bottle
     SouthEast -> Center: flag SouthEastVineWatered
     Center -> SouthEast
@@ -55,7 +55,7 @@ area Crenel:
       door CoFEntrance
       door MelariMinishEast
       exit Crest
-      flag Virtual.Zeffa.CrenelCrest
+      set Virtual.Zeffa.CrenelCrest
     node EastOfMine:
       door CaveEntrance
     node EastOfMineMinish:
@@ -161,7 +161,7 @@ area Crenel:
     node West +: entrance Virtual.Zeffa.FluteAway
   room Peak:
     node EastPeakRight:
-      flag BoulderPushed
+      set BoulderPushed
     node EastPeakRightMinish:
       door MinishPathEast
     EastPeakRight -> EastPeakRightMinish: item CanTurnMinish
