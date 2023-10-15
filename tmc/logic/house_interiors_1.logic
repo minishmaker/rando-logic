@@ -37,7 +37,7 @@ area HouseInteriors1:
     node South:
       entrance South
     node LampsLit:
-      flag DoorOpen
+      set DoorOpen
     Main <-> LampsLit: item Lantern
     Main -> South: flag DoorOpen
   room LibraryBottom:
@@ -56,9 +56,9 @@ area HouseInteriors1:
       door East
       door South
     node MasksBroken:
-      flag MasksBroken
+      set MasksBroken
     node PortalFlipped:
-      flag PortalFlipped
+      set PortalFlipped
     Main <-> PortalFlipped: item Cane
     Main <-> MasksBroken: item Boots
     node MainMinish:
@@ -78,7 +78,7 @@ area HouseInteriors1:
       door West
       door South
     node PortalFlipped:
-      flag PortalFlipped
+      set PortalFlipped
     Main <-> PortalFlipped: item Cane
     node MainMinish:
       door MinishLeft
