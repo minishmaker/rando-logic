@@ -29,11 +29,11 @@ area DarkHyruleCastle:
     node Main:
       door North
       door South
-      entrance Hole
+      warp Hole
     node MainMinish:
       door NorthMinish
       door SouthMinish
-      entrance HoleMinish
+      warp HoleMinish
   room B1JailStairs:
     node East:
       door East
@@ -94,10 +94,10 @@ area DarkHyruleCastle:
     Main <-> King: flag DoorsUnlocked
   room B2MinishDrop:
     node Main:
-      exit Hole
+      target Hole
       door North
     node MainMinish:
-      exit HoleMinish
+      target HoleMinish
       door NorthMinish
   room B2Staircase:
     node Main:
@@ -120,15 +120,15 @@ area DarkHyruleCastle:
     Main <-> Chest: ( open Block1 & open Block2 & open Block3 & open Block4 )
   room F1BigKeyDoor:
     node Main:
-      exit Portal
+      target Portal
       enemy ChainSoldier
       lock BigKeyDoor
     node PostFight:
-      entrance Portal
+      warp Portal
     node NorthExit:
-      exit North
+      target North
     node NorthEntrance:
-      entrance North
+      warp North
       set BigKeyDoorOpen
     node East:
       door East
@@ -141,14 +141,14 @@ area DarkHyruleCastle:
     Main -> NorthEntrance: item DHCBigKey
   room F1DarkKnight:
     node Fight:
-      exit North
-      exit South
-      exit Portal
+      target North
+      target South
+      target Portal
       enemy Darknut
     node PostFight:
-      entrance North
-      entrance South
-      entrance Portal
+      warp North
+      warp South
+      warp Portal
     Fight -> PostFight: defeat Darknut
   room F1EastEntry:
     node North:
@@ -174,11 +174,11 @@ area DarkHyruleCastle:
   room F1NortheastHologhini:
     node Fight:
       enemy Ghini
-      exit South
-      exit East
+      target South
+      target East
     node PostFight:
-      entrance South
-      entrance East
+      warp South
+      warp East
     Fight -> PostFight: defeat Ghini
   room F1NortheastLanternTrial:
     node Main:
@@ -213,12 +213,12 @@ area DarkHyruleCastle:
   room F1NorthwestTower:
     node MainEast:
       door East
-      entrance South
-      entrance Hole
+      warp South
+      warp Hole
     node MainNorth:
       door StairUp
       door StairDown
-      exit South
+      target South
     MainNorth -> MainEast
   room F1SouthCloneEntry:
     node Main:
@@ -246,7 +246,7 @@ area DarkHyruleCastle:
       door West
       door StairDown
       door StairUp
-      entrance Hole
+      warp Hole
     node South:
       door South
   room F1SouthwestBigDoor:
@@ -293,10 +293,10 @@ area DarkHyruleCastle:
   room F2KeatonPath:
     node Main:
       door South
-      exit North
+      target North
       enemy Keatons
     node NorthEntrance:
-      entrance North
+      warp North
     Main -> NorthEntrance: item CanSplit4
   room F2NortheastTower:
     node Main:
@@ -312,17 +312,17 @@ area DarkHyruleCastle:
       chest Chest
   room F2TripleDarknut:
     node Main:
-      exit South
-      exit North
+      target South
+      target North
       enemy Darknuts
     node PostFight:
-      entrance North
+      warp North
     Main -> PostFight: defeat Darknuts
     node VaatiFight:
-      exit Roof
+      target Roof
       enemy Vaati
     node PostVaatiFight:
-      entrance Warp
+      warp Warp
     VaatiFight -> PostVaatiFight: defeat Vaati
   room GFCloneBlade:
     node North:
@@ -336,20 +336,20 @@ area DarkHyruleCastle:
   room GFFrontEntrance:
     node Main:
       door North
-      exit East
+      target East
       door West
       door South
       lock EastDoor
-      exit RedPortal
-      exit BluePortal
+      target RedPortal
+      target BluePortal
     node RedPortal:
-      entrance RedPortal
+      warp RedPortal
     node BluePortal:
-      entrance BluePortal
+      warp BluePortal
     Main -> RedPortal: flag RedPortal
     Main -> BluePortal: flag BluePortal
     node EastStair:
-      entrance East
+      warp East
     Main -> EastStair: open EastDoor
   room GFNortheastPath:
     node Main:
@@ -393,7 +393,7 @@ area DarkHyruleCastle:
   room GFSoutheastTower:
     node Main:
       door StairUp
-      exit RoofHole
+      target RoofHole
   room GFSouthwestPath:
     node Main:
       door North
@@ -403,14 +403,14 @@ area DarkHyruleCastle:
       door StairUp
   room GFThrone:
     node Fight:
-      exit Stair
-      exit East
-      exit West
+      target Stair
+      target East
+      target West
       enemy Darknut
     node PostFight:
-      entrance Stair
-      entrance East
-      entrance West
+      warp Stair
+      warp East
+      warp West
     Fight -> PostFight: defeat Darknut
   room GFWestCannons:
     node Main:
