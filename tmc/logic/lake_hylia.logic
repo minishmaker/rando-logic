@@ -18,7 +18,7 @@ area LakeHylia:
       exit Crest
       set Virtual.Zeffa.LakeCrest
     node CrestMinish:
-      door MinishHouse
+      door CrestMinishHouse
       exit CrestHoleFusion
     Crest -> CrestMinish: item CanTurnMinish
     CrestMinish -> Crest: item CanGrow
@@ -28,7 +28,6 @@ area LakeHylia:
     node MinishWater:
       exit MinishSouth
       exit NorthHole
-      enemy WaterEnemies
     node MinishWaterEntrances:
       entrance South
       entrance NorthHole
@@ -48,8 +47,8 @@ area LakeHylia:
     DigCaveFusionIsland -> DigCaveFusionEntrance: item MoleMitts
     Water -> DigCaveFusionIsland: (flag HyliaDigCaveFusion & (item Flippers | item Cape))
     DigCaveFusionExit -> Water: item Flippers
-    node IslandTop:
-      door MinishHouse
+    node IslandTopMinish:
+      door IslandMinishHouse
       door Hole
     IslandTop -> MinishWater: (item Flippers & setting LakeMinishWaterJump)
     node SouthWest:
