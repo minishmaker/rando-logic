@@ -31,6 +31,10 @@ area DarkHyruleCastleOutside:
       door East
     node Center:
       door North
+    node CenterBridgeSwitch:
+      set BridgeOn
+    Center <-> CenterBridgeSwitch
+    East <-> CenterBridgeSwitch: (item Boomerang | item Bow)
     East <-> Center: flag BridgeOn
     node West:
       door NorthWest
