@@ -47,7 +47,7 @@ area VeilFalls:
       exit Crest
       door TopCaveMiddle
       enemy CrestEnemies
-      flag Virtual.Zeffa.VeilFallsCrest
+      set Virtual.Zeffa.VeilFallsCrest
     Crest <-> MiddleRight: item GripRing
     Crest -> TopWaterLand
     node CrestDigSpot:
