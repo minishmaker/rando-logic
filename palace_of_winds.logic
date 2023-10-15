@@ -75,7 +75,7 @@ area PalaceOfWinds:
       entrance East
       entrance West
       chest Chest
-      flag DoorOpen
+      set DoorOpen
     Main -> PostFight: flag DoorOpen
   room F1TowerBottomRight:
     node Main:
@@ -165,7 +165,7 @@ area PalaceOfWinds:
     node Main:
       door North
       door West
-      flag SwitchActive
+      set SwitchActive
     node East:
       door NorthEast
       door East
@@ -281,7 +281,7 @@ area PalaceOfWinds:
       door CenterCloud
     node NorthEntrance:
       entrance North
-      flag NorthDoorOpen
+      set NorthDoorOpen
     node NorthExit:
       exit North
     Center -> NorthEntrance: item PoWBigKey
@@ -307,7 +307,7 @@ area PalaceOfWinds:
       lock WestDoor
     node SouthEntrance:
       entrance South
-      flag BigKeyDoorOpen
+      set BigKeyDoorOpen
     node SouthExit:
       exit South
     SouthExit -> Main: flag BigKeyDoorOpen
