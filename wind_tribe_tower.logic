@@ -19,7 +19,7 @@ area WindTribeTower:
       entrance StairUp
     node MainGregalCured:
       chest Gregal1
-      flag GregalCured
+      set GregalCured
     node MainUnlockedGregalCured:
       chest Gregal2
     Main <-> MainUnlocked: flag WindTribeUnlocked
