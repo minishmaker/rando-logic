@@ -16,7 +16,7 @@ area LakeHylia:
   room Main:
     node Crest:
       exit Crest
-      flag Virtual.Zeffa.LakeCrest
+      set Virtual.Zeffa.LakeCrest
     node CrestMinish:
       door MinishHouse
       exit CrestHoleFusion
@@ -63,7 +63,7 @@ area LakeHylia:
     node FifiWaterHole:
       chest FifiWaterHoleHP
     node West:
-      flag Boulder
+      set Boulder
       door Tree
       enemy WestEnemies
     node NorthWest:
@@ -79,7 +79,7 @@ area LakeHylia:
       door Cabin
     SouthEast <-> Water: (item Cape | item Flippers)
     node MinishPortalBonk:
-      flag TreeBonk
+      set TreeBonk
     node MinishPortal:
       door MinishPath
     SouthEast -> MinishPortalBonk: item Boots
