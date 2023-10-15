@@ -34,6 +34,9 @@ area HouseInteriors4:
       door South
     node MainMinish:
       door NorthMinish
+    node ShelfTopMinish:
+      set HasPushedItem
+    MainMinish <-> ShelfTopMinish: item Bracelets
     node MainItem:
       chest Item
     Main <-> MainItem: flag HasPushedItem
