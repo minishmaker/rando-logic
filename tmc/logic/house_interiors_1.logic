@@ -33,9 +33,9 @@ area HouseInteriors1:
     node Main:
       door Stairs
       door West
-      exit South
+      target South
     node South:
-      entrance South
+      warp South
     node LampsLit:
       set DoorOpen
     Main <-> LampsLit: item Lantern
