@@ -1,20 +1,225 @@
 area DeepwoodShrine:
-  room BarrelMagic
-  room BF1BigKey
-  room BF1LilyButton
-  room BF1LilyChest
-  room BF1LilyDrop
-  room F1PreChu
-  room GFBarrelROom
-  room GFEntrance
-  room GFLanterns
-  room GFLeverBridge
-  room GFMadderpillar
-  room GFMadderpillarHP
-  room GFMulldozers
-  room GFMushrooms
-  room GFPillarButtons
-  room GFPillarDoor
-  room GFPortalHeart
-  room GFPotButton
-  room GFStairs
+  room BarrelMagic:
+    node Main:
+      door NorthEast
+      door SouthWest
+    node Unlocked:
+      door NorthWest
+      door SouthEast
+    node Hole:
+      entrance Hole
+    Main <-> Unlocked: flag BarrelUnlocked
+    Main -> Hole: item GustJar
+  room BF1BigKey:
+    node South:
+      door South
+    node Main:
+      door Portal
+      chest Chest
+    Main <-> South: ( item GustJar | item Cape )
+  room BF1LilyButton:
+    node WestExit:
+      exit WestWater
+    node West:
+      entrance WestWater
+    WestExit -> West: ( item Flippers | ( state Lilypad & item GustJar ) )
+    node NorthExit:
+      exit NorthWater
+    node North:
+      entrance NorthWater
+    NorthExit -> North: ( item Flippers | ( state Lilypad & item GustJar ) )
+    North <-> West: flag ButtonPressed
+    node Button:
+      set ButtonPressed
+    West <-> Button: ( state Lilypad & item GustJar )
+  room BF1LilyChest:
+    node Main:
+      door North
+      enemy Pesto
+      chest BigChest
+    node Chest:
+      chest Chest
+    Main <-> Chest: ( item Cape | ( state Lilypad & item GustJar ) )
+    node WaterExit:
+      exit Water
+    node Water:
+      entrance Water
+    WaterExit -> Water: ( item Flippers | ( state Lilypad & item GustJar ) )
+    Water -> Main: ( state Lilypad & item GustJar )
+    Main -> Water: ( item Flippers | ( state Lilypad & item GustJar ) )
+  room BF1LilyDrop:
+    node Main:
+      exit Drop
+      gain Lilypad
+    node North:
+      door North
+    node Water:
+      lock NorthDoor
+      entrance East
+      enemy Enemies
+    Water <-> North: ( open NorthDoor & ( state Lilypad & item GustJar ) )
+    node WaterExit:
+      exit East
+    WaterExit -> Water: ( item Flippers | ( state Lilypad & item GustJar ) )
+    Main -> Water: ( item Flippers | ( state Lilypad & item GustJar ) )
+  room F1PreChu:
+    node NorthExit:
+      exit North
+    node NorthEntrance:
+      entrance North
+    node North
+    NorthExit -> North: flag DoorUnlocked
+    North -> NorthEntrance: item DWSBigKey
+    node East:
+      door East
+    node West:
+      door West
+      chest WestChest
+    East <-> North: ( item GustJar | item Cape )
+  room GFBarrelRoom:
+    node SouthEast:
+      door South
+      door BarrelSouthEast
+      enemy SouthEastPuffStool
+    node SouthWest:
+      door West
+      door BarrelSouthWest
+    node NorthEast:
+      door BarrelNorthEast
+      lock NorthEastDoor
+    node NorthWest:
+      door BarrelNorthWest
+      enemy NorthWestPuffStools
+    node NorthWestChest:
+      chest Chest
+    NorthWest <-> NorthWestChest: ( item GustJar | item BombBag | state HasExplosive )
+    node NorthEastDoor:
+      door NorthEast
+    NorthEast <-> NorthEastDoor: open NorthEastDoor
+    node NorthDoor:
+      door North
+    NorthEast <-> NorthDoor: flag DeepwoodShrine.GFPortalHeart.SouthDoorOpen
+  room GFEntrance:
+    node Main:
+      door South
+      door North
+      exit RedPortal
+      exit BluePortal
+      exit LeftStair
+      exit RightStair
+    node StairEntrances:
+      entrance LeftStair
+      entrance RightStair
+    Main -> StairEntrances: ( item GustJar | item Lantern )
+    node RedPortal:
+      entrance RedPortal
+    node BluePortal:
+      entrance BluePortal
+    Main -> RedPortal: flag RedPortal
+    Main -> BluePortal: flag BluePortal
+  room GFLanterns:
+    node Main:
+      enemy Slugs
+      set TopLeftTorch
+      set TopRightTorch
+      set BottomLeftTorch
+      set BottomRightTorch
+      door South
+      lock NorthDoor
+    node Chest:
+      chest Chest
+    Main -> Chest: ( flag TopLeftTorch & flag TopRightTorch & flag BottomLeftTorch & flag BottomRightTorch )
+    node North:
+      door North
+    Main <-> North: open NorthDoor
+  room GFLeverBridge:
+    node Main:
+      door North
+      door South
+      enemy Sluggulas
+  room GFMadderpillar:
+    node Main:
+      enemy Madderpillar
+      exit NorthEast
+    node South:
+      door South
+    Main -> South: ( item GustJar | item Lantern )
+    South -> Main: item Lantern
+    node SouthEast:
+      door SouthEast
+    Main -> SouthEast: ( item GustJar | item Lantern )
+    SouthEast -> Main: item Lantern
+    node PostFight:
+      chest Chest
+    Main -> PostFight: defeat Madderpillar
+  room GFMadderpillarHP:
+    node North:
+      door North
+      chest HP
+    node South:
+      door East
+      door West
+      chest BigChest
+      enemy MullDozers
+  room GFMulldozers:
+    node Main:
+      exit West
+      exit South
+      enemy Mulldozers
+    node PostFight:
+      chest Chest
+      entrance South
+      entrance West
+    Main -> PostFight: defeat Mulldozers
+  room GFMushrooms:
+    node Main:
+      door North
+      door West
+      door SouthEast
+    node NorthEastDoor:
+      door NorthEast
+    Main <-> NorthEastDoor: defeat DeepwoodShrine.GFMulldozers.Mulldozers
+  room GFPillarButtons:
+    node Main:
+      door North
+      chest Chest
+  room GFPillarDoor:
+    node Main:
+      door North
+      door West
+      enemy Sluggulas
+  room GFPortalHeart:
+    node Main:
+      door SouthWest
+      door South
+      door East
+      set SouthDoorOpen
+      enemy PuffStools
+      lock NorthWestDoor
+    node MainChests:
+      chest EastChest
+      chest WestChest
+    Main <-> MainChests: ( item GustJar | item BombBag | state HasExplosive )
+    node NorthWest:
+      door NorthWest
+    Main <-> NorthWest: open NorthWestDoor
+    node Top:
+      door Portal
+      chest HP
+    Top -> Main
+  room GFPotButton:
+    node Main:
+      door South
+      door East
+      enemy Enemies
+  room GFStairs:
+    node Main:
+      door North
+      door West
+      enemy MullDozers
+    node MainChest:
+      chest Chest
+    Main <-> MainChest: item GustJar
+    node South:
+      door South
+    South -> Main
