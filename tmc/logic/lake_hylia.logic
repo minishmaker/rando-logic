@@ -7,9 +7,9 @@ area LakeHylia:
       door Ladder
     node BeanstalkFusion:
       warp BeanStalkFusion
-    node BeanStalkFusionTarget:
+    node BeanStalkFusionExit:
       target BeanStalkFusion
-    BeanStalkFusionTarget -> WestArea: flag HyliaBeanstalkFusion
+    BeanStalkFusionExit -> WestArea: flag HyliaBeanstalkFusion
     WestArea -> BeanstalkFusion: flag HyliaBeanstalkFusion
     node EastArea +: warp Virtual.Zeffa.FluteAway
     node WestArea +: warp Virtual.Zeffa.FluteAway
@@ -28,25 +28,25 @@ area LakeHylia:
     node MinishWater:
       target MinishSouth
       target NorthHole
-    node MinishWaterWarps:
+    node MinishWaterEntrances:
       warp South
       warp NorthHole
-    MinishWater -> MinishWaterWarps: item Flippers
+    MinishWater -> MinishWaterEntrances: item Flippers
     node EastVineHole:
       door EastVineHole
     MinishWater <-> EastVineHole: item Flippers
     node Water:
       chest SouthHP
       enemy WaterEnemies
-    node DigCaveFusionWarp:
+    node DigCaveFusionEntrance:
       warp DigCaveFusion
-    node DigCaveFusionTarget:
+    node DigCaveFusionExit:
       target DigCaveFusion
     node DigCaveFusionIsland
-    DigCaveFusionTarget -> DigCaveFusionIsland: flag HyliaDigCaveFusion
-    DigCaveFusionIsland -> DigCaveFusionWarp: item MoleMitts
+    DigCaveFusionExit -> DigCaveFusionIsland: flag HyliaDigCaveFusion
+    DigCaveFusionIsland -> DigCaveFusionEntrance: item MoleMitts
     Water -> DigCaveFusionIsland: (flag HyliaDigCaveFusion & (item Flippers | item Cape))
-    DigCaveFusionTarget -> Water: item Flippers
+    DigCaveFusionExit -> Water: item Flippers
     node IslandTopMinish:
       door IslandMinishHouse
       door Hole
@@ -56,9 +56,9 @@ area LakeHylia:
       door EastSouth
       door South
       enemy SouthWestChus
-    node DropletsWarp:
-      door DropletsWarp
-    Water <-> DropletsWarp: (item Cape | item Flippers)
+    node DropletsEntrance:
+      door DropletsEntrance
+    Water <-> DropletsEntrance: (item Cape | item Flippers)
     node FifiWaterHole:
       chest FifiWaterHoleHP
     node West:
@@ -90,9 +90,9 @@ area LakeHylia:
     node NorthHP:
       chest NorthHP
     DigCaveNorthArea <-> NorthHP: item Cape
-    node DigCaveNorthWarp:
+    node DigCaveNorthEntrance:
       warp DigCave
-    DigCaveNorthArea -> DigCaveNorthWarp: item MoleMitts
+    DigCaveNorthArea -> DigCaveNorthEntrance: item MoleMitts
     DigCaveNorthArea <-> NorthWest: item Cape
     DigCaveNorthArea -> Water: item Flippers
     NorthWest <-> Water: (item Cape | item Flippers)
