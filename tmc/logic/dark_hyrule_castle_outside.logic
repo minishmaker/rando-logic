@@ -1,8 +1,8 @@
 area DarkHyruleCastleOutside:
   room Altar:
     node Main:
-      exit Entrance
-      entrance Exit
+      target Entrance
+      warp Exit
   room EastEntry:
     node North:
       door NorthWest
