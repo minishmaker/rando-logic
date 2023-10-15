@@ -86,7 +86,7 @@ area DarkHyruleCastle:
     node MainMinish:
       door MinishHole
       door WestMinish
-      flag DoorsUnlocked
+      set DoorsUnlocked
     node Main:
       door West
     node King:
@@ -129,7 +129,7 @@ area DarkHyruleCastle:
       exit North
     node NorthEntrance:
       entrance North
-      flag BigKeyDoorOpen
+      set BigKeyDoorOpen
     node East:
       door East
     node West:
@@ -269,7 +269,7 @@ area DarkHyruleCastle:
   room F1SouthwestPathPuzzle:
     node North:
       door North
-      flag PuzzleCompleted
+      set PuzzleCompleted
     node South:
       door South
     North <-> South: flag PuzzleCompleted
@@ -366,7 +366,7 @@ area DarkHyruleCastle:
   room GFPathPuzzle:
     node Main:
       door West
-      flag PuzzleCompleted
+      set PuzzleCompleted
     node East:
       door East
     Main <-> East: flag PuzzleCompleted
