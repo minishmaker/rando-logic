@@ -109,8 +109,8 @@ area Town:
     WaterfallExit -> Main: item Flippers
     node West:
       door West
-    Main -> West: (flag GuardMoved | (trick TownGuardBootSkip & item Boots))
-    West -> Main: (flag GuardMoved | trick TownGuardEastwards) # should moving past the guard this way be in logic? probably yes unless it's decoupled ER, this way we can choose that elsewhere
+    Main -> West: (flag GuardMoved | (trick GuardBootSkip & item Boots))
+    West -> Main: (flag GuardMoved | trick GuardEastwards) # should moving past the guard this way be in logic? probably yes unless it's decoupled ER, this way we can choose that elsewhere
     node GuardMove:
       set GuardMoved
     Main -> GuardMove: item CanSpin

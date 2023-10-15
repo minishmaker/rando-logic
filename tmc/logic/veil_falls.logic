@@ -37,7 +37,7 @@ area VeilFalls:
     MiddleRight <-> MiddleRightDig: item MoleMitts
     node MiddleHP:
       chest MiddleHP
-    MiddleMain <-> MiddleHP: ((trick VeilFallsHPCapeJump && item Cape) | item Flippers)
+    MiddleMain <-> MiddleHP: ((trick HPCapeJump && item Cape) | item Flippers)
     node MiddleDigCaveFusion:
       target MiddleDigDoor
     node MiddleDigCaveFusionDoor:
