@@ -2,7 +2,7 @@ area FortressOfWinds:
   room F1BladeSpin:
     node North:
       door North
-      flag DoorOpen
+      set DoorOpen
     node South:
       door South
     North <-> South: flag DoorOpen
@@ -86,7 +86,7 @@ area FortressOfWinds:
       door North
       exit RoofHole
       entrance Hole
-      flag DoorOpen
+      set DoorOpen
       chest EastChest
       chest WestChest
     node South:
@@ -154,7 +154,7 @@ area FortressOfWinds:
       entrance Hole
       door West
     node MainWest:
-      flag KeyDropped
+      set KeyDropped
     node East:
       door South
     Main <-> East: ( item Cape | item CanSplit2 )
@@ -176,7 +176,7 @@ area FortressOfWinds:
       entrance WestHole
     node WestMinish:
       entrance MinishHole
-      flag KeyDropped
+      set KeyDropped
   room F2EyegoreButtons:
     node Main:
       door South
