@@ -17,7 +17,7 @@ area DarkHyruleCastle:
       enemy Cannons
     node North:
       door North
-    Main <-> North: defeat Cannons
+    Main <-> North: kill Cannons
   room B1EastUpperPath:
     node Lower:
       door West
@@ -134,9 +134,9 @@ area DarkHyruleCastle:
       door East
     node West:
       door West
-    Main <-> PostFight: defeat ChainSoldier
-    Main <-> East: defeat ChainSoldier
-    Main <-> West: defeat ChainSoldier
+    Main <-> PostFight: kill ChainSoldier
+    Main <-> East: kill ChainSoldier
+    Main <-> West: kill ChainSoldier
     NorthExit -> Main: flag BigKeyDoorOpen
     Main -> NorthEntrance: item DHCBigKey
   room F1DarkKnight:
@@ -149,7 +149,7 @@ area DarkHyruleCastle:
       warp North
       warp South
       warp Portal
-    Fight -> PostFight: defeat Darknut
+    Fight -> PostFight: kill Darknut
   room F1EastEntry:
     node North:
       door North
@@ -170,7 +170,7 @@ area DarkHyruleCastle:
     node PostFight:
       door North
     Main -> Fight: flag DarknutsSpawned
-    Main <-> PostFight: defeat Darknut
+    Main <-> PostFight: kill Darknut
   room F1NortheastHologhini:
     node Fight:
       enemy Ghini
@@ -179,7 +179,7 @@ area DarkHyruleCastle:
     node PostFight:
       warp South
       warp East
-    Fight -> PostFight: defeat Ghini
+    Fight -> PostFight: kill Ghini
   room F1NortheastLanternTrial:
     node Main:
       door South
@@ -209,7 +209,7 @@ area DarkHyruleCastle:
     node PostFight:
       door North
     Main -> Fight: flag DarknutsSpawned
-    Main <-> PostFight: defeat Darknut
+    Main <-> PostFight: kill Darknut
   room F1NorthwestTower:
     node MainEast:
       door East
@@ -234,7 +234,7 @@ area DarkHyruleCastle:
     node PostFight:
       door South
     Main -> Fight: flag DarknutsSpawned
-    Main <-> PostFight: defeat Darknut
+    Main <-> PostFight: kill Darknut
   room F1SoutheastCloneSwitches:
     node Main:
       door North
@@ -258,14 +258,14 @@ area DarkHyruleCastle:
     node PostFight:
       door South
     Main -> Fight: flag DarknutsSpawned
-    Main <-> PostFight: defeat Darknut
+    Main <-> PostFight: kill Darknut
   room F1SouthwestHologhini:
     node Main:
       door North
       enemy Ghini
     node South:
       door South
-    Main <-> South: defeat Ghini
+    Main <-> South: kill Ghini
   room F1SouthwestPathPuzzle:
     node North:
       door North
@@ -317,13 +317,13 @@ area DarkHyruleCastle:
       enemy Darknuts
     node PostFight:
       warp North
-    Main -> PostFight: defeat Darknuts
+    Main -> PostFight: kill Darknuts
     node VaatiFight:
       target Roof
       enemy Vaati
     node PostVaatiFight:
       warp Warp
-    VaatiFight -> PostVaatiFight: defeat Vaati
+    VaatiFight -> PostVaatiFight: kill Vaati
   room GFCloneBlade:
     node North:
       door North
@@ -411,11 +411,11 @@ area DarkHyruleCastle:
       warp Stair
       warp East
       warp West
-    Fight -> PostFight: defeat Darknut
+    Fight -> PostFight: kill Darknut
   room GFWestCannons:
     node Main:
       door South
       enemy Cannons
     node North:
       door North
-    Main <-> North: defeat Cannons
+    Main <-> North: kill Cannons
