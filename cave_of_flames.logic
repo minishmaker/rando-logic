@@ -13,7 +13,7 @@ area CaveOfFlames:
       door West
       enemy BobOmbs
     node WallBombed:
-      flag WallBombed
+      set WallBombed
     South <-> WallBombed: ( state HasExplosive | item BombBag )
     node SouthDoor:
       door South
@@ -82,7 +82,7 @@ area CaveOfFlames:
       entrance Stair
     node South:
       door South
-      flag ButtonPressed
+      set ButtonPressed
     node WestPortal:
       door Portal
     node West:
@@ -186,7 +186,7 @@ area CaveOfFlames:
     node North:
       door North
     node WallBombed:
-      flag WallBombed
+      set WallBombed
     Main <-> WallBombed: ( state HasExplosive | item BombBag )
     Main <-> North: flag WallBombed
   room GFEntrance:
