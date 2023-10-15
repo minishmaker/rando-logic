@@ -26,24 +26,24 @@ area RoyalCrypt:
     node Main:
       chest Element
       door South
-      entrance Teleport
+      warp Teleport
   room LanternRoom:
     node Main:
       door South
-      exit North
+      target North
     node Fight:
       enemy Gibdos
     node PostFight:
-      entrance North
+      warp North
     Main -> Fight: item Lantern
     Fight -> PostFight: defeat Gibdo
     Main <-> PostFight: defeat Gibdo
   room MushroomPit:
     node North:
-      exit North
+      target North
       lock Door
     node NorthEntrance:
-      entrance North
+      warp North
     North -> NorthEntrance: open Door
     node South:
       door South
