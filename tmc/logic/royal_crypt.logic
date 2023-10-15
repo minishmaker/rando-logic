@@ -7,7 +7,7 @@ area RoyalCrypt:
     node MainPostEnemies:
       chest Left
       chest Right
-    Main <-> MainPostEnemies: defeat Gibdos
+    Main <-> MainPostEnemies: kill Gibdos
   room KeyPuzzles:
     node Main:
       door South
@@ -36,8 +36,8 @@ area RoyalCrypt:
     node PostFight:
       warp North
     Main -> Fight: item Lantern
-    Fight -> PostFight: defeat Gibdo
-    Main <-> PostFight: defeat Gibdo
+    Fight -> PostFight: kill Gibdo
+    Main <-> PostFight: kill Gibdo
   room MushroomPit:
     node North:
       target North
