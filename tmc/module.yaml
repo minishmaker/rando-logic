@@ -12,6 +12,16 @@ provides:
       stateful: false
       type: truthy
       export: target
+    lock:
+      arguments: ["scoped"]
+      stateful: false
+      type: truthy
+      export: target
+    open:
+      arguments: ["scoped"]
+      stateful: false
+      type: truthy
+      export: edge
   logic-sugar:
     entrance:
       type: multi
@@ -25,7 +35,8 @@ provides:
     - descriptors.dscr
   logic:
     - "logic/*.logic"
-  shuffles: []
+  shuffles:
+    - "shuffles/*.shuf"
   data:
     - "logic/*.json"
   patches: []
