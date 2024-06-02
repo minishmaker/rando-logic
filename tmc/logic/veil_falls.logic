@@ -10,13 +10,13 @@ area VeilFalls:
       door SouthEast
       door SouthWest
     Bottom <-> BottomWater: item Flippers
-    Bottom <-> BottomEast: (item Cape | item Flippers)
     node BottomEast:
       chest Rupee1
       chest Rupee2
       chest Rupee3
       enemy LikeLike20
       exit BottomEastDigCave
+    Bottom <-> BottomEast: (item Cape | item Flippers)
     node BottomEastDigCave:
       entrance BottomEastDigCave
     BottomEast -> BottomEastDigCave: item MoleMitts
@@ -50,7 +50,7 @@ area VeilFalls:
       chest MiddleLedgeChest
       door MiddleLedgeCave
     node Crest:
-      entrance Crest
+      exit Crest
       door TopCaveMiddle
       set Virtual.Zeffa.VeilFallsCrest
     Crest <-> MiddleRight: item GripRing
@@ -60,7 +60,7 @@ area VeilFalls:
     Crest <-> CrestDig: item MoleMitts
     node CrestChest:
       chest CrestChestFusion
-    Crest <-> CrestChestFusion: flag VeilFallsCrestChestFusion
+    Crest <-> CrestChest: flag VeilFallsCrestChestFusion
     node TopWater:
       exit TopWaterfallFusion
     node TopWaterfall:
@@ -68,6 +68,7 @@ area VeilFalls:
     TopWater -> TopWaterfall: (flag VeilFallsTopWaterfallFusion && item Flippers)
     node TopWaterLand:
       door TopCaveBottom
+    Crest -> TopWaterLand
     TopWaterLand <-> TopWater: item Flippers
     node NorthPath:
       door TopCaveRight
@@ -85,4 +86,3 @@ area VeilFalls:
     node BottomEast +: warp Virtual.Zeffa.FluteAway
     node MiddleRight +: warp Virtual.Zeffa.FluteAway
     node MiddleChestLedge +: warp Virtual.Zeffa.FluteAway
-
