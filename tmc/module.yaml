@@ -5,7 +5,13 @@ dependencies:
   - [basicDefinitions, ">= 1.0, < 2.0"]
 soft-dependency: []
 provides:
-  descriptors: {}
+  descriptors:
+    npc:
+      arguments:
+        - scoped
+      stateful: false
+      type: truthy
+      export: target
   logic-sugar:
     entrance:
       type: multi
