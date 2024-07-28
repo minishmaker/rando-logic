@@ -22,6 +22,16 @@ provides:
       stateful: false
       type: truthy
       export: edge
+    hasExplosive:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
+    helper:
+      arguments: ["unscoped"]
+      stateful: false
+      type: truthy
+      export: edge
   logic-sugar:
     entrance:
       type: multi
