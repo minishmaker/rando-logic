@@ -27,8 +27,28 @@ provides:
       stateful: true
       type: truthy
       export: edge
+    noBean:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
+    hasBean:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
     helper:
       arguments: ["unscoped"]
+      stateful: false
+      type: truthy
+      export: edge
+    fusion:
+      arguments: ["scoped"]
+      stateful: false
+      type: truthy
+      export: edge
+    swipeable:
+      arguments: ["scoped"]
       stateful: false
       type: truthy
       export: edge
