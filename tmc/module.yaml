@@ -37,6 +37,11 @@ provides:
       stateful: true
       type: truthy
       export: edge
+    getBean:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: self-edge
     helper:
       arguments: ["unscoped"]
       stateful: false
@@ -52,6 +57,11 @@ provides:
       stateful: false
       type: truthy
       export: edge
+    bottleable:
+      arguments: ["unscoped"]
+      stateful: false
+      type: truthy
+      export: target
   logic-sugar:
     entrance:
       type: multi

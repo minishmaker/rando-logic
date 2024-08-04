@@ -7,6 +7,7 @@ area Crenel:
       exit WestHillBombWall
       enemy CenterTektites
       target EastClimbWall
+      bottleable Water
     node EastClimbWall:
       warp EastClimbWall
     Center -> EastClimbWall: item GripRing
@@ -47,7 +48,7 @@ area Crenel:
       exit SouthEastBombWall
     node SouthEastVineWatered:
       set SouthEastVineWatered
-    SouthEast <-> SouthEastVineWatered: item Bottle
+    SouthEast <-> SouthEastVineWatered: item Water
     SouthEast -> Center: flag SouthEastVineWatered
     Center -> SouthEast
     node SouthEastBombWall:

@@ -6,22 +6,24 @@ area CrenelMinishPaths:
       enemy Mulldozers
     node MainFusion:
       chest ChestFusion
-    Main <-> MainFusion: flag MineEntryChestFusion
+    Main <-> MainFusion: fusion MineEntryChest
   room MineralWater:
     node Main:
       door South
       enemy Mulldozers
+      bottleable MineralWater
     node MainFusion:
       chest ChestFusion
-    Main <-> MainFusion: flag MineralWaterChestFusion
+    Main <-> MainFusion: fusion MineralWaterChest
   room Rain:
     node Main:
       door East
       door West
     node MainFusion:
       chest ChestFusion
-    Main <-> MainFusion: flag RainPathChestFusion
+    Main <-> MainFusion: fusion RainPathChest
   room Sprout:
     node Main:
       door South
       enemy Pestos
+      getBean
