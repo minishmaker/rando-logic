@@ -67,6 +67,11 @@ provides:
       stateful: false
       type: truthy
       export: edge
+    version:
+      arguments: ["unscoped"]
+      stateful: false
+      type: truthy
+      export: target
   logic-sugar:
     entrance:
       type: multi

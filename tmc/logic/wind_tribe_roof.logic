@@ -3,4 +3,5 @@ area WindTribeRoof:
     node Main:
       door Stair
       door Tornado
-    node Main +: exit Virtual.Zeffa.FluteAway
+    node FluteAway : exit Virtual.Zeffa.FluteAway
+    Main -> FluteAway: (version NA | version JP)
