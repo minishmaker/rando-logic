@@ -2,9 +2,9 @@ area Vaati3Arms:
   room Arm1:
     node Main:
       door South
+      enemy Enemy
   room Arm2:
     node Main:
       door South
-  room Arm3:
-    node Main:
-      door South
+      enemy Enemy
+  room Unused
