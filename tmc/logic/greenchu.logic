@@ -1,10 +1,11 @@
 area Greenchu:
   room Main:
     node Main:
-      exit Door
+      target Door
       enemy Greenchu
-    node MainPostFight:
-      entrance GreenTeleport
+    node PostFight:
+      warp GreenWarp
       chest HP
       chest Element
-    Main -> MainPostFight: defeat Greenchu
+      warp Door # requires re-entering the room after having already defeated green chu, but relevant for decoupled entrance rando
+    Main -> PostFight: defeat Greenchu
