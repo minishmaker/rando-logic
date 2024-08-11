@@ -1,7 +1,56 @@
 area RoyalCrypt:
-  room Entrance
-  room KeyPuzzles
-  room KingsGrave
-  room LanternRoom
-  room MushroomPit
-  room RopeCorridor
+  room Entrance:
+    node Main:
+      enemy Gibdos
+      door North
+      door South
+    node MainPostEnemies:
+      chest Left
+      chest Right
+    Main <-> MainPostEnemies: kill Gibdos
+  room KeyPuzzles:
+    node Main:
+      door South
+      lock Block1
+      lock Block2
+    node North:
+      door North
+    Main <-> North: ( open Block1 & open Block2 )
+    node LeftChest:
+      chest Left
+    node RightChest:
+      chest Right
+    Main <-> LeftChest: item CanSplit3
+    Main <-> RightChest: item CanSplit3
+  room KingsGrave:
+    node Main:
+      chest Element
+      door South
+      warp Teleport
+  room LanternRoom:
+    node Main:
+      door South
+      target North
+    node Fight:
+      enemy Gibdos
+    node PostFight:
+      warp North
+    Main -> Fight: item Lantern
+    Fight -> PostFight: kill Gibdo
+    Main <-> PostFight: kill Gibdo
+  room MushroomPit:
+    node North:
+      target North
+      lock Door
+    node NorthEntrance:
+      warp North
+    North -> NorthEntrance: open Door
+    node South:
+      door South
+    South -> North
+    North -> South: ( item GustJar | item Cape )
+  room RopeCorridor:
+    node Main:
+      door North
+      door South
+      enemy Ropes
