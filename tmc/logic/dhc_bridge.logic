@@ -1,6 +1,6 @@
 area DHCBridge:
   room Main:
     node Main:
-      exit South
+      door South
       door North
       enemy Enemy
