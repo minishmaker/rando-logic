@@ -1,6 +1,6 @@
 area FortressTop:
   room Main:
     node Main:
-      chest Element
-      door South
-      entrance Exit
+      chest Prize
+      door Stairs
+      warp PostCutscene
