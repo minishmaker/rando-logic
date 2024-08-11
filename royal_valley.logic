@@ -1,46 +1,56 @@
 area RoyalValley:
   room Graveyard:
     node North:
-      door LeftGrave
-      door RightGrave
       exit Crypt
+      exit LeftGrave
+      exit RightGrave
+      set LeftGraveOpen
     node NorthDoor:
       entrance Crypt
+    node LeftGraveOpen:
+      warp LeftGrave
+    node RightGraveOpen:
+      warp RightGrave
     North -> NorthDoor: item WhiteSword3
+    North -> LeftGraveOpen: flag LeftGraveOpen
+    North -> RightGraveOpen: fusion RightGraveOpen
     node NorthButterfly:
       chest Butterfly
-    North <-> NorthButterfly: flag GraveyardButterflyFusion
+    North -> NorthButterfly: fusion GraveyardButterfly
     node NorthLeftChest:
       chest LeftChest
-    North <-> NorthLeftChest: flag LeftChestFusion
+    North -> NorthLeftChest: fusion LeftChest
     node NorthRightChest:
       chest RightChest
-    North <-> NorthRightChest: flag RightChestFusion
+    North -> NorthRightChest: fusion RightChest
     node Middle:
       door Dampe
       door South
       enemy Ghinis
-    North <-> Middle: flag GotKeyFromCrow
+    North <-> Middle: flag GateOpen
     node MiddleKeyCrow:
-      chest CrowKey
-    Middle <-> MiddleKeyCrow: ( item Boots & item GraveyardKey & flag TalkedToDampe )
+      set ReobtainedKey
+    Middle -> MiddleKeyCrow: ( item Boots & item GraveyardKey )
+    node TalkToDampe:
+      set GateOpen
+    Middle -> TalkToDampe: flag ReobtainedKey
     node South:
       door East
       door South
       door North
       enemy GhinisAndCrows
-      exit Fairy
+      target Fairy
     node SouthFairy:
-      entrance Fairy
-    South -> SouthFairy: ( item BombBag | state HasExplosive )
-    node South +: entrance Virtual.Zeffa.FluteAway
-    node Middle +: entrance Virtual.Zeffa.FluteAway
-    node North +: entrance Virtual.Zeffa.FluteAway
+      warp Fairy
+    node SouthFairyOpen:
+      set FairyOpen
+    South -> SouthFairyOpen: ( item BombBag | hasExplosive )
+    South -> SouthFairy: flag FairyOpen
+    node South +: warp Virtual.Zeffa.FluteAway
+    node Middle +: warp Virtual.Zeffa.FluteAway
+    node North +: warp Virtual.Zeffa.FluteAway
   room LostWoods:
     node Main:
       chest Chest
       door North
-      door East
       door South
-      door West
-    node Main +: entrance Virtual.Zeffa.FluteAway
