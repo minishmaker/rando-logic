@@ -1,5 +1,5 @@
 area DeepwoodShrine:
-  room BarrelMagic: #
+  room BarrelMagic:
     node Main:
       door NorthEast
       door SouthWest
@@ -10,7 +10,7 @@ area DeepwoodShrine:
       warp Hole
     node HoleOpen:
       set HoleOpen
-    Main <-> Unlocked: flag GFBarrelRoom.WestVinesBurned & flag GFBarrelRoom.EastVinesBurned
+    Main <-> Unlocked: ( flag GFBarrelRoom.WestVinesBurned & flag GFBarrelRoom.EastVinesBurned )
     Unlocked -> Hole: flag HoleOpen
     Unlocked -> HoleOpen: item GustJar
   room BF1BigKey: #
@@ -170,7 +170,7 @@ area DeepwoodShrine:
       enemy Sluggulas
       door South
       set Bridge
-    node North
+    node North:
       door North
     North -> South
     South -> North: ( flag Bridge | item Cape | item GustJar )
@@ -186,9 +186,9 @@ area DeepwoodShrine:
     node Chest:
       chest Chest
     node SouthWebGone:
-      flag SouthWebGone
+      set SouthWebGone
     node EastWebGone:
-      flag EastWebGone
+      set EastWebGone
     South -> SouthWebGone: item Lantern
     Main -> SouthWebGone: ( item GustJar | item Lantern )
     EastSouth -> EastWebGone: item Lantern
@@ -257,7 +257,7 @@ area DeepwoodShrine:
       lock WestNorthDoor
     node SouthDoor:
       warp South
-    node SouthFromDoor
+    node SouthFromDoor:
       target South
     Main -> SouthDoor: flag SouthDoorOpen
     SouthFromDoor -> Main: flag SouthDoorOpen
@@ -265,9 +265,9 @@ area DeepwoodShrine:
       set GFEntrance.BluePortal
       set EastChestSpawned
       set WestChestSpawned
-    node EastChest
+    node EastChest:
       chest EastChest
-    node WestChest
+    node WestChest:
       chest WestChest
     Main -> UncoverDust: ( item GustJar | item BombBag | hasExplosive )
     Main -> EastChest: flag EastChestSpawned
