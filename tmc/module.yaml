@@ -72,6 +72,21 @@ provides:
       stateful: false
       type: truthy
       export: target
+    stepOnLilypad:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: self-edge
+    stepOffLilypad:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
+    moveWithLilypad:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
   logic-sugar:
     entrance:
       type: multi
