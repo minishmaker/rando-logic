@@ -1,0 +1,9 @@
+area Simon:
+  room Main:
+    node Main:
+      target Warp
+      enemy Enemies
+    node PostFight:
+      chest Chest
+      warp Warp
+    Main -> PostFight: defeat Enemies
