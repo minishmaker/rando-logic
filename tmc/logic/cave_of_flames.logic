@@ -1,19 +1,295 @@
 area CaveOfFlames:
-  room BF1CartExit
-  room BF1FlippedCart
-  room BF1MinishLava
-  room BF1MinishPortal
-  room BF1PacciChest
-  room BF1PillbugsAndFloating
-  room BF1PostPacci
-  room BF1TrackSwap
-  room BF2BladeChest
-  room BF2CartPuzzle
-  room BF2GleerokEntrance
-  room BF2Lava
-  room BF2Pillbugs
-  room BF2PostLava
-  room GFBombOmbs
-  room GFEntrance
-  room GFLikeLike
-  room GFSpikedBeetles
+  room BF1CartExit:
+    node North:
+      door MinecartEastNorth
+      door North
+    node NorthEastWarp:
+      warp BombWall
+    node NorthEastTarget:
+      target BombWall
+    node NorthEastHP:
+      chest HP
+    node NorthEastBombWall:
+      set BF1FlippedCart.SouthWallBombed
+    NorthEastTarget -> NorthEastHP: flag BF1FlippedCart.SouthWallBombed
+    NorthEastHP -> NorthEastWarp: flag BF1FlippedCart.SouthWallBombed
+    NorthEastTarget -> NorthEastBombWall: ( hasExplosive | item BombBag )
+    NorthEastHP -> NorthEastBombWall: ( hasExplosive | item BombBag )
+    node South:
+      door MinecartEastSouth
+      enemy BobOmbs
+    node WestSouthBombWall:
+      set WestSouthWallBombed
+    node WestSouth:
+      door West
+    South <-> WestSouth: flag WestSouthWallBombed
+    South -> WestSouthBombWall: ( hasExplosive | item BombBag )
+    WestSouth -> WestSouthBombWall: ( hasExplosive | item BombBag )
+    node SouthDoor:
+      door South
+    SouthDoor -> South
+    node MainMinish:
+      door MinishWest
+      door MinishSouth
+      door MinishNorth
+  room BF1FlippedCart:
+    node SouthMinish:
+      door SouthWestMinish
+    node Main:
+      door SouthWest
+      door NorthMiddle
+    node NorthWestDoor:
+      door NorthWest
+    Main <-> NorthWestDoor: flag BF1PostPacci.ButtonPressed
+    node Minecart:
+      door Minecart
+    Main -> Minecart: item Cane
+    Minecart -> Main
+    node BombWall:
+      set SouthWallBombed
+    node SouthEast:
+      door SouthEast
+    Main -> BombWall: ( item BombBag | hasExplosive )
+    SouthEast -> BombWall: ( item BombBag | hasExplosive )
+    Main <-> SouthEast: flag SouthWallBombed
+  room BF1MinishLava:
+    node MainMinish:
+      door NorthMinish
+    node Main:
+      chest BigChest
+      chest Chest
+      set WestDoorOpen
+    node West:
+      door West
+    MainMinish -> Main: item CanGrow
+    Main <-> West: flag WestDoorOpen
+  room BF1MinishPortal:
+    node Main:
+      enemy Helmasaurs
+    node East:
+      door East
+    East <-> Main: flag BF1CartExit.WestSouthWallBombed
+    node BombWall:
+      set BF1CartExit.WestSouthWallBombed
+    East -> BombWall: ( item BombBag | hasExplosive )
+    Main -> BombWall: ( item BombBag | hasExplosive )
+    node MainMinish:
+      door EastMinish
+    Main -> MainMinish: ( kill Helmasaurs & item CanTurnMinish )
+    MainMinish -> Main: ( kill Helmasaurs & item CanGrow )
+  room BF1PacciChest:
+    node Fight:
+      enemy SpinyChus
+    node Ledge:
+      door SouthWest
+    node PostFight:
+      chest BigChest
+    node West:
+      door West
+    Fight -> PostFight: kill SpinyChus
+    Fight <-> West: kill SpinyChus
+    Ledge -> Fight
+    node East:
+      chest EastChest
+      door Minecart
+  room BF1PillbugsAndFloating:
+    node South:
+      door West
+      enemy Pillbugs
+    node North:
+      door North
+    node Main:
+      chest TopChest
+      set NorthDoorOpen
+    Main <-> North: flag NorthDoorOpen
+    Main -> South
+    South -> Main: ( flag PlugNorthHole | item LightArrows )
+    node PlugHoles:
+      set PlugNorthHole
+      chest BottomChest
+    South -> PlugHoles: canPlugHoles
+  room BF1PostPacci:
+    node East:
+      door East
+    node Stair:
+      warp Stair
+    node South:
+      door South
+    node Ledge:
+      set F1Entrance.BluePortal
+    node WestPortal:
+      warp BluePortal
+    node West:
+      target Stair
+      lock Door
+      target BluePortal
+    East <-> West: ( item Cane | item Cape )
+    West -> WestPortal: flag F1Entrance.BluePortal
+    West -> Stair: open Door
+    Ledge -> West
+    West -> Ledge: item Cane
+    South <-> Ledge: flag F1Entrance.BluePortal
+  room BF1TrackSwap:
+    node Main:
+      door North
+      door MinecartWestSouth
+      lock Door
+      enemy BobOmbs
+    node SwitchTracks:
+      set SwitchedTracks
+    node TrackNorth:
+      door MinecartWestNorth
+    TrackNorth <-> Main: flag SwitchedTracks
+    Main -> SwitchTracks: ( open Door & helper AnySword )
+  room BF2BladeChest:
+    node North:
+      door WestNorth
+    node South:
+      door WestSouth
+    North -> South
+    North -> Lower
+    node Lower:
+      chest Chest
+      door WestMiddle
+    Lower -> North: item Cape
+    South -> Lower
+  room BF2CartPuzzle:
+    node Main:
+      door North
+    node Minecart:
+      door SouthMinecart
+    Main -> Minecart: ( item CanTurnMinish & item CanShrink & item Cane & helper AnySword )
+    node South:
+      door East
+    node SouthUpper:
+      door South
+    node NorthChest:
+      chest NorthChest
+    node SouthChest:
+      chest SouthChest
+    SouthUpper -> NorthChest
+    NorthChest -> South
+    South -> SouthChest: item Cane
+    South -> SouthUpper: item Cane
+  room BF2GleerokEntrance:
+    node Main:
+      warp Hole
+      door Door
+  room BF2Lava:
+    node BigDoorWarp:
+      warp BigDoor
+      set BigDoorOpen
+    node BigDoorTarget:
+      target BigDoor
+    node FrontOfBigDoor
+    BigDoorTarget -> FrontOfBigDoor: flag BigDoorOpen
+    FrontOfBigDoor -> BigDoorWarp: item CoFBigKey
+    node West:
+      door West
+    node North:
+      door North
+    node MainEast:
+      target RedPortal
+      set F1Entrance.RedPortal
+    node RedPortal:
+      warp RedPortal
+    MainEast -> RedPortal: flag F1Entrance.RedPortal
+    node FloatEast:
+      chest SouthEastChest
+    node FloatWest:
+      chest SouthWestChest
+      chest BigChest
+    node NorthEastLedge:
+      door NorthEast
+    NorthEastLedge -> FloatWest
+    NorthEastLedge -> FloatEast
+    FloatEast -> NorthEastLedge: item Cape
+    NorthEastLedge -> North
+    FloatEast -> Main
+    Main <-> North: ( item Cape | item Cane )
+    Main -> FloatEast: item Cape
+    North -> NorthEastLedge: item Cape
+    West <-> Main: ( item Cane | item Cape )
+    FrontOfBigDoor <-> Main: ( item Cane | item Cape )
+    MainEast <-> Main: ( item Cane | item Cape )
+    FloatWest -> Main
+    FloatWest -> MainEast
+    FloatWest -> West
+    FloatWest -> FloatEast: item Cape
+  room BF2Pillbugs:
+    node East:
+      door MinecartNorth
+      enemy Pillbugs
+    node West:
+      door North
+    East <-> West: flag SwitchActivated
+    node Switch:
+      set SwitchActivated
+    East -> Switch: ( canPlugHoles & helper AnySword )
+  room BF2PostLava:
+    node South:
+      door SouthWest
+    node North:
+      door EastNorth
+    node East:
+      door EastMiddle
+    node West
+    node SouthEast:
+      door SouthEast
+      door EastSouth
+    South -> East
+    North -> West
+    West -> North: ( item Cane | item Cape )
+    West -> East: ( item Cane | item Cape )
+    East -> West: item Cane
+    East -> South: item Cane
+  room F1BombOmbs:
+    node Main:
+      door West
+      enemy BobOmbs
+    node North:
+      door North
+    node WallBombed:
+      set WallBombed
+    Main -> WallBombed: ( hasExplosive | item BombBag )
+    North -> WallBombed: ( hasExplosive | item BombBag )
+    Main <-> North: flag WallBombed
+  room F1Entrance:
+    node Main:
+      door North
+      door South
+      door East
+      exit RedPortal
+      exit BluePortal
+    node RedPortal:
+      entrance RedPortal
+    node BluePortal:
+      entrance BluePortal
+    Main -> RedPortal: flag RedPortal
+    Main -> BluePortal: flag BluePortal
+  room F1LikeLike:
+    node Main:
+      chest Rupee1
+      chest Rupee2
+      chest Rupee3
+      chest Rupee4
+      chest Rupee5
+      door North
+      enemy LikeLike
+    node South: 
+      door South
+    Main -> South
+    node East:
+      door East
+    East <-> Main: flag F1SpikedBeetles.DoorOpen
+  room F1SpikedBeetles:
+    node Main:
+      door South
+      enemy SpikedBeetles
+    node PostFight:
+      chest Chest
+      set DoorOpen
+    Main -> PostFight: kill SpikedBeetles
+    node West:
+      door West
+    Main <-> West: flag DoorOpen
