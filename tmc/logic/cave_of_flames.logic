@@ -46,7 +46,7 @@ area CaveOfFlames:
     Main -> Minecart: item Cane
     Minecart -> Main
     node BombWall:
-      flag SouthWallBombed
+      set SouthWallBombed
     node SouthEast:
       door SouthEast
     Main -> BombWall: ( item BombBag | hasExplosive )
