@@ -1,0 +1,576 @@
+area PalaceOfWinds:
+  room F1CapeChestRoom:
+    node Main:
+      door East
+      exit Cloud
+    node WizrobeFight:
+      enemy Wizrobes
+    node Cloud:
+      entrance Cloud
+    Main -> Cloud: item Cape
+    node PostFight:
+      chest BigChest
+    node MainBlueSwitch
+    node SouthEastBlueSwitch
+    node SouthEastRedSwitch
+    node SouthWestRedSwitch
+    node SouthWestBlueSwitch
+    SouthWestBlueSwitch -> WizrobeFight
+    SouthWestRedSwitch -> WizrobeFight: item Cape
+    SouthWestRedSwitch -> SouthWestBlueSwitch: (item BombBag | item Boomerang | item MagicalBoomerang | ( trick GustJarProjectilesThroughWalls & item GustJar ))
+    SouthEastRedSwitch -> SouthWestRedSwitch
+    SouthEastBlueSwitch -> SouthWestBlueSwitch: item Cape
+    SouthEastBlueSwitch <-> SouthEastRedSwitch: canHitSwitch
+    MainBlueSwitch <-> SouthEastBlueSwitch 
+    Main <-> SouthEastRedSwitch: item Cape
+    Main -> MainBlueSwitch: helper HasProjectileDamage
+    WizrobeFight -> PostFight: kill Wizrobes
+  room F1ClonePushBlock:
+    node South:
+      door South
+    node Middle
+    node North:
+      door North
+    Middle -> North: helper CanSplit3
+    North -> Middle
+    Middle <-> South: ( item Cape | helper HasProjectileDamage | item BombBag | item GustJar ) # TODO for enemizer: gust jar relies on peahats here
+  room F1DarknutFight:
+    node Main:
+      enemy Darknut
+      target Portal
+    node PostFight:
+      set F1Entrance.BluePortal #additional flag to the darknut being dead
+    node FightDone:
+      warp Portal
+      warp North
+    node NorthEntrance:
+      target North
+    Main <-> PostFight: kill Darknut
+    Main -> FightDone: flag F1Entrance.BluePortal
+    NorthEntrance -> Main: flag F1Entrance.BluePortal
+  room F1Entrance:
+    node Main:
+      door North
+      door Hole
+      exit RedPortal
+      exit BluePortal
+    node RedPortal:
+      entrance RedPortal
+    node BluePortal:
+      entrance BluePortal
+    Main -> RedPortal: flag RedPortal
+    Main -> BluePortal: flag BluePortal
+  room F1GrateChest:
+    node Main:
+      door East
+      door West
+    node North:
+      chest Chest
+    Main <-> North: item Cape
+  room F1Interior:
+    node Main:
+      chest BigChest
+      door South
+      door StairUp
+      exit MainRoofHoles
+    node Upper:
+      chest Chest
+      exit UpperRoofHole
+    Upper -> Main
+  room F1InteriorEntry:
+    node Main:
+      door North
+      door South
+  room F1PlatformRide:
+    node Main:
+      door South
+      door West
+  room F2BombarossaTornado:
+    node East:
+      door East
+    node West:
+      door North
+    East <-> West: item Cape
+  room F2CrumbleClones:
+    node Main:
+      door North
+      lock EastDoor
+    node East:
+      door East
+    node Upper:
+      door Upper
+    node West:
+      door West
+    Main <-> East: open EastDoor
+    Main <-> West: flag DoorOpen
+    Upper -> Main
+  room F2CloudUpAndDown:
+    node NorthEast:
+      door NorthEast
+    node NorthCenter:
+      door CloudDown
+    NorthCenter <-> NorthEast: item Cape
+    node SouthEast:
+      door SouthEast
+    node SouthCenter:
+      chest Rupee1
+      chest Rupee2
+      chest Rupee3
+      chest Rupee4
+      chest Rupee5
+      enemy LikeLike
+    NorthCenter -> SouthCenter: ( item Cape & trick DreamJump )
+    SouthCenter <-> SouthEast: item Cape
+    node West:
+      exit CloudUp
+    SouthCenter <-> West: item Cape
+    node WestCloud:
+      entrance CloudUp
+    West -> WestCloud: item Cape
+  room F2RollerSmallKey:
+    node Main:
+      chest Chest
+      door North
+      door South
+  room F2SpikyBeetleFight:
+    node Main
+    node NorthWest:
+      door NorthWest
+    NorthWest -> Main
+    node MainFight:
+      enemy SpikyBeetles
+    node SwitchesActivated:
+      set SwitchesActivated
+    Main -> SwitchesActivated:
+      ( (item Sword & item MagicalBoomerang) | helper CanSplit3 | helper CanSplit2 | (item Sword & item BombBag))
+    Main -> MainFight: flag SwitchesActivated
+    node MainPostFight:
+      set Door
+    node SouthWest:
+      door SouthWest
+    Main -> MainPostFight: kill SpikyBeetles
+    Main -> SouthWest: (item Cape & item Cane & flag Door)
+    SouthWest -> Main: (item Cape & flag Door)
+  room F2TowerBottomLeft:
+    node Main:
+      entrance FloorHole
+      door South
+      door North
+      door StairDown
+    node East:
+      door East
+    Main <-> East: flag PalaceOfWinds.F2TowerBottomMiddle.DoorOpen
+  room F2TowerBottomMiddle:
+    node Main:
+      exit RoofHole
+      enemy Wizrobes
+      exit East
+      exit West
+    node PostFight:
+      entrance East
+      entrance West
+      chest Chest
+      set DoorOpen
+    Main -> PostFight: flag DoorOpen
+  room F2TowerBottomRight:
+    node Main:
+      door South
+      door North
+      door StairDown
+    node West:
+      door West
+    Main <-> West: flag PalaceOfWinds.F2TowerBottomMiddle.DoorOpen
+  room F2TowerTopLeft:
+    node Main:
+      entrance FloorHole
+      door East
+      door South
+  room F2TowerTopMiddle:
+    node Main:
+      exit RoofHole
+      entrance FloorHole
+      door East
+      door West
+  room F2TowerTopRight:
+    node Main:
+      entrance FloorHole
+      door South
+      door West
+  room F3ClonePushBlock:
+    node Cloud:
+      door Cloud
+    node Main:
+      warp Cloud
+    node South:
+      door South
+    Cloud <-> Main: item Cape
+    South -> Main
+    Main -> South: (helper CanSplit3 | helper CanSplit4)
+  room F3ExitAfterSmallKey:
+    node West:
+      door West
+    node East:
+      door South
+    East <-> West: ( flag DoorOpen & item Cape )
+  room F3GratePlatforms:
+    node East:
+      door EastSouth
+    node West:
+      door West
+    East <-> West: item Cape
+    node North:
+      door F3PotPushing.WestDoor
+      exit Cloud
+    node NorthEast:
+      door EastNorth
+    North <-> NorthEast: open F3PotPushing.WestDoor
+    node Cloud:
+      entrance Cloud
+    North -> Cloud: item Cape
+  room F3PlatformRide:
+    node North:
+      door North
+    node South:
+      door East
+    North <-> South: item Cape
+  room F3PotPushing:
+    node Main:
+      lock WestDoor
+    node South:
+      door SouthWest
+    Main <-> South: item Cape
+    node West:
+      door West
+    Main <-> West: open WestDoor
+    node East:
+      door North
+    East -> Main
+    Main -> East: item Cane
+    node EastSwitches:
+      set SwitchesActivated
+    East -> EastSwitches: (helper CanSplit3 | helper CanSplit4 | helper CanSplit2 | (item BombBag & (item Sword | item Boomerang | item MagicalBoomerang | item Bow)))
+    node EastMinish
+    EastMinish -> East: ( helper CanGrow & flag SwitchesActivated )
+    East -> EastMinish: ( helper CanTurnMinish & flag SwitchesActivated )
+    node MainMinish:
+      door MinishNorth
+    EastMinish -> MainMinish: item PowerBracelets
+  room F3TowerBottomLeft:
+    node Main:
+      door North
+      door StairUp
+  room F3TowerBottomMiddle:
+    node Main:
+      exit RoofHole
+      entrance FloorHole
+      door East
+  room F3TowerBottomRight:
+    node Main:
+      door North
+      door West
+      door Stairs
+    node East:
+      door NorthEast
+    node EastDoor:
+      target East
+    node EastPastDoor:
+      warp East
+    East -> EastPastDoor:
+      flag DoorOpen
+    EastDoor -> East:
+      flag SwitchActive
+    node EastMinish:
+      door NorthEastMinish
+      door SouthMinish
+    node DroppedItem:
+      chest Key
+    East -> DroppedItem: flag DoorOpen
+    node HitSwitch:
+      set SwitchActive
+      set DoorOpen
+    Main -> HitSwitch: (helper CanHitSwitch | flag SwitchActive )
+    East -> HitSwitch:
+      ( helper HasProjectileDamage | item BombBag | flag SwitchActive )
+  room F3TowerTopLeft:
+    node Main:
+      door East
+      exit RoofHole
+      set PullSwitch
+    node South:
+      door South
+    Main <-> South: flag PullSwitch
+  room F3TowerTopMiddle:
+    node Main:
+      door East
+      door West
+      enemy Wizrobes
+      entrance FloorHole
+    node PostFight:
+      chest Chest
+    Main -> PostFight: kill Wizrobes
+  room F3TowerTopRight:
+    node Main:
+      exit RoofHole
+      door South
+      door West
+    node East:
+      door SouthEast
+    node EastMinish:
+      door SouthEastMinish
+    East -> EastMinish: item CanTurnMinish
+    EastMinish -> East: item CanGrow
+  room F4BlockMaze:
+    node West:
+      chest Chest
+    node Center:
+      exit CenterCloud
+    West -> Center: item Cape
+    Center -> West
+    node CenterCloud:
+      entrance CenterCloud
+    Center -> CenterCloud: item Cape
+    node East:
+      exit EastCloud
+    Center <-> East: item Cape
+    node EastCloud:
+      entrance EastCloud
+    East -> EastCloud: item Cape
+  room F4CloudEntry:
+    node Main:
+      door West
+      warp Cloud
+    node Cloud:
+      door Cloud
+    Main <-> Cloud: item Cape
+  room F4CloudJumps:
+    node West:
+      door SouthWest
+    node CenterHP:
+      chest HP
+      door South
+    node Center:
+      chest Chest
+    West -> Center: item Cape
+    node East:
+      exit Cloud
+    Center -> East: item Cape
+    East -> Center: (item Cape & trick CapeExtension)
+    node EastCloud:
+      entrance Cloud
+    East -> EastCloud: item Cape
+  room F4FanJumps:
+    node East:
+      door East
+    node West:
+      door North
+    East <-> West: item Cape
+  room F4Interior:
+    node East:
+      target StairUp
+      lock StairUp
+      warp CenterFloorHole
+      target Portal
+    node EastDoorOpen:
+      warp StairUp
+    East -> EastDoorOpen: open StairUp
+    node EastRedPortal:
+      warp RedPortal
+    East -> EastRedPortal: flag F1Entrance.RedPortal
+    node EastOpenRedPortal:
+      set F1Entrance.RedPortal
+    node EastLightTorches:
+      set LeftTorch
+      set RightTorch
+    East -> EastLightTorches: item Lantern
+    East -> EastOpenRedPortal: (flag LeftTorch & flag RightTorch)
+    node West:
+      door StairDown
+      entrance CenterFloorHole
+      entrance WestFloorHole
+    East <-> West: ( item Cape & flag BlocksBombed )
+    node NorthEast:
+      exit EastRoofHole
+      entrance EastFloorHole
+      lock NorthEast
+    node NorthEastBehindDoor:
+      warp NorthEast
+    node NorthEastInDoor:
+      target NorthEast
+    NorthEast -> NorthEastBehindDoor: open NorthEast
+    NorthEastInDoor -> NorthEast: open NorthEast
+    node NorthWest:
+      door NorthWest
+      entrance WestFloorHole
+    West -> NorthWest: item Cape
+    node North:
+      chest Chest
+    West <-> North: flag SwitchActive
+    node SwitchHit:
+      set SwitchActive
+    East -> SwitchHit: (helper HasProjectileDamage | hasExplosive | item GustJar) # do we want gust jar to be a trick? grabbing a skull from elsewhere in the room might not be intuitive. Also TODO: Does mirror shield work here, if enemizer gives you the right kind of enemy to use fo the reflection?
+  room F4LakituJumps:
+    node North:
+      door North
+    node South:
+      door South
+    North <-> South: item Cape
+  room F4ToHeartPiece:
+    node Main:
+      door North
+      door South
+  room F52ndBigKeyDoor:
+    node West:
+      chest Chest
+      door South
+    node Center:
+      warp CenterCloud
+    node CenterCloud:
+      door CenterCloud
+    Center <-> CenterCloud: item Cape
+    node NorthEntrance:
+      set NorthDoorOpen
+    node NorthExit:
+      door North
+    Center -> NorthEntrance: item PoWBigKey
+    NorthExit <-> Center: flag NorthDoorOpen
+    node East:
+      door East
+      warp EastCloud
+    node EastCloud:
+      door EastCloud
+    East <-> EastCloud: item Cape
+  room F54Buttons:
+    node NorthWest:
+      door WestNorth
+    node North:
+      door EastNorth
+    NorthWest <-> North: flag SwitchesActivated
+    node NorthSwitches:
+      set SwitchesActivated
+    North -> NorthSwitches: ( helper CanSplit2 | helper CanSplit3 | helper CanSplit4 )
+    node SouthWest:
+      door WestSouth
+    node SouthEast:
+      door WestEast
+    SouthWest <-> SouthEast: item Cape
+  room F5BallAndChainSoldiers:
+    node Main:
+      door North
+      enemy BallAndChainSoldiers
+      lock WestDoor
+    node BigKeyDoor:
+      set BigKeyDoorOpen
+    node South:
+      door South
+    South <-> Main: flag BigKeyDoorOpen
+    Main -> BigKeyDoor: item PoWBigKey
+    node West:
+      door West
+    Main <-> West: open WestDoor
+    node PostFight:
+      chest DroppedItem
+    Main -> PostFight: kill BallAndChainSoldiers
+  room F5BigKey:
+    node Main:
+      chest Chest
+      door South
+  room F5BombableWallToOutside:
+    node Main:
+      door StairDown
+      door North
+      target East
+    node PastBombWall:
+      warp BombWall
+    node BombWall:
+      set BombWall
+    Main -> BombWall: ( item BombBag | hasExplosive )
+    Main -> PastBombWall: flag BombWall
+  room F5BombarossaPath:
+    node Main:
+      door North
+      door South
+  room F5BossEntry:
+    node Main:
+      door Boss
+      door South
+    node PostFight:
+      chest Element
+      chest HeartContainer
+      entrance GreenPortal
+    Main -> PostFight: kill Gyorg.Main.Gyorg
+  room F5CloudEntry:
+    node Cloud:
+      door Cloud
+    node Main:
+      warp Cloud
+      door South
+    Main <-> Cloud: item Cape
+  room F5DropToDarknut:
+    node Main:
+      door North
+      warp Hole
+  room F5Eastof2ndBigDoorChest:
+    node Main:
+      door West
+      chest Chest
+  room F5MoblinAndWizrobeFight:
+    node North:
+      door North
+      set Fan
+    node South:
+      enemy WizzrobesAndMoblins
+    node SouthEast:
+      door South
+    North -> South: ( item Cape & flag Fan )
+    South -> SouthEast: kill WizzrobesAndMoblins
+    SouthEast -> South
+  room F5Outside:
+    node Main:
+      door WestSouth
+      enemy WizrobesAndMoblins
+    node BombWall:
+      set F5ToBombarossaPath.BombableWall
+    Main -> BombWall: ( item BombBag | hasExplosive )
+    InBombWall -> BombWall: ( item BombBag | hasExplosive )
+    node PastBombWall:
+      warp WestNorth
+    Main -> PastBombWall: flag F5ToBombarossaPath.BombableWall
+    node InBombWall:
+      target WestNorth
+    InBombWall -> Main: flag F5ToBombarossaPath.BombableWall
+  room F5SmallKeyFanJump:
+    node South:
+      door WestSouth
+      set Fan
+    node North:
+      door East
+      door WestNorth
+      lock NorthDoor
+    node NorthUp:
+      door North
+    North <-> NorthUp: open NorthDoor
+    South -> Center: ( item Cape & flag Fan )
+    node Center:
+      chest Chest
+    Center -> North
+  room F5ToBombarossaPath:
+    node South:
+      door South
+    node East:
+      target East
+    node EastPastWall:
+      warp East
+    East -> EastBlowUpWall: ( item BombBag | hasExplosive )
+    EastBlowUpWall:
+      set BombableWall
+    East -> EastPastWall: flag BombableWall
+    East -> South
+    node North:
+      door North
+      entrance FloorHole
+    East <-> North: ( flag BottomRock | flag TopRock )
+    node BlowUpRocks:
+      set BottomRock
+      set TopRock
+    East -> BlowUpRocks: ( item BombBag | hasExplosive )
+    North -> BlowUpRocks: ( item BombBag | hasExplosive )
