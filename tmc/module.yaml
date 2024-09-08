@@ -27,6 +27,11 @@ provides:
       stateful: true
       type: truthy
       export: edge
+    canPlugHoles:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
     noBean:
       arguments: []
       stateful: true
