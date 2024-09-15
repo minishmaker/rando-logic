@@ -92,6 +92,11 @@ provides:
       stateful: true
       type: truthy
       export: edge
+    notOnLilypad:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
   logic-sugar:
     entrance:
       type: multi

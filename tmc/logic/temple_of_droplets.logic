@@ -20,7 +20,7 @@ area TempleOfDroplets:
 
     Main -> FrozenChest: item FlameLantern
     Main <-> East: item FlameLantern
-    PostFrozenMadderpillar <-> PostFrozenMadderpillarDoor: defeat BF1IceMadderpillar.Maderpillar
+    PostFrozenMadderpillar <-> PostFrozenMadderpillarDoor: kill BF1IceMadderpillar.Maderpillar
     West -> WestWarp: ((item Flippers & notOnLilypad) | moveWithLilypad)
 
   room GFAboveBigKey:
@@ -42,7 +42,7 @@ area TempleOfDroplets:
       door Stairs
       target DropDown
       chest IceBlock
-      flag StoneDoorClosed
+      set StoneDoorClosed
 
   room BF1ClonePushing:
     node East:
@@ -60,7 +60,7 @@ area TempleOfDroplets:
     node SouthEast:
       door SouthEast
     node SlidingBlocksPuzzle:
-      flag SlidingBlocksPuzzle
+      set SlidingBlocksPuzzle
 
     SouthEast -> SlidingBlocksPuzzle: item CanSplit2
     SouthWest <-> SouthEast: flag SlidingBlocksPuzzle
@@ -112,8 +112,8 @@ area TempleOfDroplets:
     MazePart2 <-> MazePart3: flag MazePart2Torch
     MazePart3 <-> MazePart4: flag MazePart3Torch
     MazePart4 <-> MazePart5: flag MazePart4Torch
-    MazePart3 -> BomableWall: (item BombBag | hasExplosives)
-    WestMiddle -> BomableWall: (item BombBag | hasExplosives)
+    MazePart3 -> BomableWall: (item BombBag | hasExplosive)
+    WestMiddle -> BomableWall: (item BombBag | hasExplosive)
     MazePart3 <-> WestMiddle: flag BomableWall
     MazePart3 -> WestMiddleWarp: flag BomableWall
     MazePart5 <-> NorthWestDoor: open NorthWestDoor
@@ -125,7 +125,7 @@ area TempleOfDroplets:
       door NorthWest
     node IcePathEast:
       door East
-    node IcePathNorth
+    node IcePathNorth:
       door NorthEast
 
     IcePathNorth <-> StonePath: (item Cape & trick DarkRoomNavigation)
@@ -138,14 +138,14 @@ area TempleOfDroplets:
     node SouthDoor:
       door South
     node SouthWebBurned:
-      flag SouthWebBurned
+      set SouthWebBurned
     node EastDoor:
       door East
 
     SouthDoor <-> Main: flag SouthWebBurned
     Main -> SouthWebBurned: (item FlameLantern | item GustJar)
     South -> SouthWebBurned: item FlameLantern
-    Main <-> EastDoor: defeat Maddepillars
+    Main <-> EastDoor: kill Maddepillars
 
 
   room BF1FrozenLilyChest:
@@ -169,7 +169,7 @@ area TempleOfDroplets:
     LowerIce -> LowerWater: item Flippers
     LowerIce -> LowerFrozenChest: flag UnfrozenChest
     LowerIce -> LowerIceUnfreezeChest: item FlameLantern
-    LowerWaterEastEntry -> LowerWater: (item Flippers | moveWithLilypad)
+    LowerWaterEastEntry -> LowerWater: ((item Flippers & notOnLilypad) | moveWithLilypad)
 
 
   room BF1IceBridge:
@@ -198,10 +198,10 @@ area TempleOfDroplets:
     node NorthDoor:
       door North
 
-    WestWaterEntry -> WestWater: (item Flippers | moveWithLilypad)
+    WestWaterEntry -> WestWater: ((item Flippers & notOnLilypad) | moveWithLilypad)
     WestWaterEntry -> Main: (item Cape & stepOffLilypad)
     Main -> WestWater: item Flippers
-    Main <-> NorthDoor: defeat Maddepillar
+    Main <-> NorthDoor: kill Maddepillar
 
   room GFLightTop:
     node West:
@@ -251,7 +251,8 @@ area TempleOfDroplets:
       target EastNorth
       set SecondWaterBarrier
     node NorthWater
-    node NorthEastWater
+    node NorthEastWater:
+      stepOnLilypad
     node WestWater:
       warp West
     node WestWaterEntry:
@@ -288,7 +289,7 @@ area TempleOfDroplets:
     SouthWestWater <-> NorthWater: (((item Flippers & notOnLilypad) | moveWithLilypad) & flag SecondWaterBarrier)
     WestWaterEntry -> WestWater: ((item Flippers & notOnLilypad) | moveWithLilypad)
     WestWater <-> NorthWater: ((item Flippers & notOnLilypad) | moveWithLilypad)
-    NorthEastIsland -> NorthEastWater: (item Flippers | stepOnLilypad)
+    NorthEastIsland -> NorthEastWater
     NorthEastWater <-> NorthWater: ((item Flippers & notOnLilypad) | moveWithLilypad)
     NorthEastIsland <-> CenterIsland: item Cape
     EastSouthIsland <-> CenterIsland: item Cape
@@ -303,46 +304,46 @@ area TempleOfDroplets:
     node Keydrop:
       chest KeydropItem
 
-    Main -> Keydrop: defeat Mulldozers
+    Main -> Keydrop: kill Mulldozers
 
   room BF1PreDouble:
     node Main:
       enemy Pestos
-      flag RedWarpActivated
+      set RedWarpActivated
       target RedWarp
     node RedWarp:
       warp RedWarp
     node BombableWall:
-      flag BombableWall
+      set BombableWall
     node NorthDoor:
       door North
 
     Main -> RedWarp: flag RedWarpActivated
-    Main -> BombableWall: (item BombBag | hasExplosives)
+    Main -> BombableWall: (item BombBag | hasExplosive)
     Main <-> NorthDoor: flag BombableWall
-    NorthDoor -> BombableWall: (item BombBag | hasExplosives)
+    NorthDoor -> BombableWall: (item BombBag | hasExplosive)
 
   room BF1PushFiresnake:
     node North:
       door North
     node Main:
-      flag BlockPuzzle
+      set BlockPuzzle
     node West:
       door West
     North <-> Main: flag BF1CloneSliding.SlidingBlocksPuzzle
     Main <-> WestDoor: flag BlockPuzzle
 
   room BF1ScissorMiniboss:
-    node West
+    node West:
       door West
     node Main:
       enemy ScissorBeetles
     node East:
       door East
 
-    Main <-> East: defeat ScissorBeetles
+    Main <-> East: kill ScissorBeetles
     West -> Main
-    Main -> West: defeat ScissorBeetles
+    Main -> West: kill ScissorBeetles
 
   room BF1SlidingFireSnakes:
     node East:
@@ -390,7 +391,7 @@ area TempleOfDroplets:
     node Main:
       door East
     node LanternPuzzle:
-      flag LanternPuzzleDone
+      set LanternPuzzleDone
     node West:
       door West
 
@@ -415,15 +416,15 @@ area TempleOfDroplets:
     node EastWaterEntry:
       target EastWater
     node South:
-      flag WaterDoorOpen
+      set WaterDoorOpen
 
     North -> NorthWater: item Flippers
     NorthWater -> North: ((notOnLilypad & item Flippers) | stepOffLilypad)
     NorthWater -> SunkenRupees: item Flippers
-    NorthWater <-> MainWater: (item Flippers | moveWithLilypad)
+    NorthWater <-> MainWater: ((item Flippers & notOnLilypad) | moveWithLilypad)
     MainWater <-> South: ((item Flippers & notOnLilypad) | (item Cape & stepOffLilypad))
-    MainWater <-> EastWater: ((item Flippers | moveWithLilypad) & flag WaterDoorOpen)
-    EastWaterEntry -> EastWater: (item Flippers | moveWithLilypad)
+    MainWater <-> EastWater: (((item Flippers & notOnLilypad) | moveWithLilypad) & flag WaterDoorOpen)
+    EastWaterEntry -> EastWater: ((item Flippers & notOnLilypad) | moveWithLilypad)
 
   room BF1WaterPot:
     node West
@@ -444,16 +445,16 @@ area TempleOfDroplets:
     node WaterPot:
       chest UnderwaterKey
 
-    WestDoor <-> West: (item Flippers | moveWithLilypad)
+    WestDoor <-> West: ((item Flippers & notOnLilypad) | moveWithLilypad)
     Main -> WaterPot: item Flippers
     West -> Switch: stepOffLilypad
     East -> Switch: ((notOnLilypad & item Flippers) | stepOffLilypad)
-    East <-> West: ((item Flippers | moveWithLilypad) & flag GateOpen)
-    East <-> EastDoor: (item Flippers | moveWithLilypad)
-    East <-> NorthDoor: (item Flippers | moveWithLilypad)
-    WestDoorEntry -> WestDoor: (item Flippers | moveWithLilypad)
-    EastDoorEntry -> EastDoor: (item Flippers | moveWithLilypad)
-    NorthDoorEntry -> NorthDoor: (item Flippers | moveWithLilypad)
+    East <-> West: (((item Flippers & notOnLilypad) | moveWithLilypad) & flag GateOpen)
+    East <-> EastDoor: ((item Flippers & notOnLilypad) | moveWithLilypad)
+    East <-> NorthDoor: ((item Flippers & notOnLilypad) | moveWithLilypad)
+    WestDoorEntry -> WestDoor: ((item Flippers & notOnLilypad) | moveWithLilypad)
+    EastDoorEntry -> EastDoor: ((item Flippers & notOnLilypad) | moveWithLilypad)
+    NorthDoorEntry -> NorthDoor: ((item Flippers & notOnLilypad) | moveWithLilypad)
     NorthDoorEntry -> Switch: (item Cape & stepOffLilypad)
     EastDoorEntry -> Switch: (item Cape & stepOffLilypad & trick CapeExtension)
 
@@ -476,9 +477,9 @@ area TempleOfDroplets:
     node BigChest:
       chest LanternChest
 
-    Main -> BigChest: defeat BlueChu
+    Main -> BigChest: kill BlueChu
     North -> Main
-    Main -> North: defeat BlueChu
+    Main -> North: kill BlueChu
 
   room GFBossOctorock:
     node Main:
@@ -489,7 +490,7 @@ area TempleOfDroplets:
       chest HeartContainer
       warp North
       warp GreenWarp
-    Main -> DefeatedWaifu: defeat Waifu
+    Main -> DefeatedWaifu: kill Waifu
 
   room GFEastFreeChest:
     node UpperPath:
@@ -519,9 +520,9 @@ area TempleOfDroplets:
     node South:
       door South
 
-    Main -> NorthStairs: defeat ScissorBeetles
-    Main -> BlueWarp: defeat ScissorBeetles
-    Main <-> South: defeat ScissorBeetles
+    Main -> NorthStairs: kill ScissorBeetles
+    Main -> BlueWarp: kill ScissorBeetles
+    Main <-> South: kill ScissorBeetles
 
   room GFEntrance:
     node Main:
@@ -544,7 +545,7 @@ area TempleOfDroplets:
     BKDoor -> BKDoorOpen: item ToDBigKey
     BKDoor -> Main: flag BKDoorOpened
     Main -> BKDoorWarp: flag BKDoorOpened
-    Main -> BlueWarp: defeat GFEastStairs.ScissorBeetles
+    Main -> BlueWarp: kill GFEastStairs.ScissorBeetles
     Main -> RedWarp: flag BF1PreDouble.RedWarpActivated
 
   room GFFrozenOctoRoom:
@@ -625,21 +626,21 @@ area TempleOfDroplets:
       warp NorthWater
     node UpperWater
     node UpperButton:
-      flag WaterBarrrierOpened
+      set WaterBarrrierOpened
     node Climb:
       door Climb
     node WaterFallDrop:
       warp WaterFallDrop
 
-    UpperWaterNorth -> UpperWater: (item Flippers | moveWithLilypad)
-    UpperWater -> UpperWaterLeave: (item Flippers | moveWithLilypad)
+    UpperWaterNorth -> UpperWater: ((item Flippers & notOnLilypad) | moveWithLilypad)
+    UpperWater -> UpperWaterLeave: ((item Flippers & notOnLilypad) | moveWithLilypad)
     UpperWest -> UpperWater: item Flippers
     UpperWaterNorth -> UpperWest: ((item Flippers & notOnLilypad) | stepOffLilypad)
     UpperWater -> UpperWest: ((item Flippers & notOnLilypad) | stepOffLilypad)
     UpperWest -> UpperButton: (item GustJar | item Cape)
     Climb -> UpperWest
     UpperWater -> UpperButton: stepOffLilypad
-    UpperWater -> WaterFallDrop: ((item Flippers | moveWithLilypad) & flag WaterBarrrierOpened)
+    UpperWater -> WaterFallDrop: (((item Flippers & notOnLilypad) | moveWithLilypad) & flag WaterBarrrierOpened)
 
   room GFWestEntry:
 
@@ -655,7 +656,7 @@ area TempleOfDroplets:
       warp WestNorthWater
     node UpperPathWaterWest:
       target WestWater
-    node UpperPathWaterSouth
+    node UpperPathWaterSouth:
       target SouthWater
     node UpperPathWaterWestWarp:
       warp WestWater
@@ -669,9 +670,9 @@ area TempleOfDroplets:
 
     LowerPath <-> LowerPathWater: item Flippers
     LowerPathWater -> LowerPathWaterLeave: item Flippers
-    UpperPathWaterWest -> UpperPathWaterWestWarp: (item Flippers | moveWithLilypad)
-    UpperPathWaterSouth -> UpperPathWaterSouthWarp: (item Flippers | moveWithLilypad)
-    UpperPathWaterWest <-> UpperPathWaterSouth: (item Flippers | moveWithLilypad)
+    UpperPathWaterWest -> UpperPathWaterWestWarp: ((item Flippers & notOnLilypad) | moveWithLilypad)
+    UpperPathWaterSouth -> UpperPathWaterSouthWarp: ((item Flippers & notOnLilypad) | moveWithLilypad)
+    UpperPathWaterWest <-> UpperPathWaterSouth: ((item Flippers & notOnLilypad) | moveWithLilypad)
     UpperPathWaterSouth -> UpperPath: ((item Flippers & notOnLilypad) | stepOffLilypad)
     UpperPathWaterWest -> UpperPath: (stepOffLilypad & item Cape)
     UpperPath -> UpperPathWater: item Flippers
@@ -689,16 +690,16 @@ area TempleOfDroplets:
       target NorthWater
     node WaterNorthWarp:
       warp NorthWater
-    node WaterSouth # Lilypad Get!
+    node WaterSouth:
+      stepOnLilypad
     node WaterSouthEast
     node Ground:
       door North
-      flag WaterBarrrierOpened
+      set WaterBarrrierOpened
 
-    WaterNorth <-> WaterSouth: (flag WaterBarrrierOpened & (item Flippers | moveWithLilypad))
-    WaterNorth -> WaterNorthWarp: (item Flippers | moveWithLilypad)
-    Ground -> WaterSouth: (item Flippers | (item Cape & stepOnLilypad))
-    WaterSouth -> WaterSouth: (item Flippers & stepOnLilypad)
+    WaterNorth <-> WaterSouth: (flag WaterBarrrierOpened & ((item Flippers & notOnLilypad) | moveWithLilypad))
+    WaterNorth -> WaterNorthWarp: ((item Flippers & notOnLilypad) | moveWithLilypad)
+    Ground -> WaterSouth: (item Flippers | item Cape)
     WaterSouth -> Ground: (item Cape & stepOffLilypad)
     WaterSouth -> WaterSouthEast: moveWithLilypad
     WaterSouthEast -> Ground: stepOffLilypad
@@ -720,10 +721,10 @@ area TempleOfDroplets:
       warp SouthWater
     node Stairs:
       enemy Sluggula
-    node LowerWater:
+    node LowerWater
     node LowerWaterEastTarget:
       target EastWaterNorth
-    node LowerWaterEastTarget:
+    node LowerWaterEastWarp:
       warp EastWaterNorth
     node LowerWaterRuppees:
       chest SunkenRupee1
@@ -740,9 +741,9 @@ area TempleOfDroplets:
     LowerWater -> LowerWaterEastWarp: item Flippers
     UpperWater -> Stairs: ((item Flippers & notOnLilypad) | stepOffLilypad)
     Stairs -> UpperWater: item Flippers
-    UpperWaterEast -> UpperWaterEastWarp: (item Flippers | moveWithLilypad)
-    UpperWaterSouth -> UpperWaterSouthWarp: (item Flippers | moveWithLilypad)
-    UpperWaterEast <-> UpperWater: (item Flippers | moveWithLilypad)
-    UpperWaterSouth <-> UpperWater: (item Flippers | moveWithLilypad)
+    UpperWaterEast -> UpperWaterEastWarp: ((item Flippers & notOnLilypad) | moveWithLilypad)
+    UpperWaterSouth -> UpperWaterSouthWarp: ((item Flippers & notOnLilypad) | moveWithLilypad)
+    UpperWaterEast <-> UpperWater: ((item Flippers & notOnLilypad) | moveWithLilypad)
+    UpperWaterSouth <-> UpperWater: ((item Flippers & notOnLilypad) | moveWithLilypad)
     UpperWaterEast -> Stairs: (stepOffLilypad & item Cape)
     UpperWaterSouth -> Stairs: (stepOffLilypad & item Cape)
