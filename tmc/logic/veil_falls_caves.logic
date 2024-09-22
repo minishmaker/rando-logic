@@ -1,11 +1,101 @@
 area VeilFallsCaves:
-  room C1F1BehindBreakableWall
-  room C1F1BreakableWall
-  room C1F2Climb
-  room C1F3PushClones
-  room C1GFEntrance
-  room C2BF1WaterRupees
-  room C2F1
-  room C2GFEntry
-  room C2GFSideRoom
-  room WaterfallCave
+  room C1F1BehindBreakableWall:
+    node Main:
+      chest Chest
+      door North
+      door South
+  room C1F1BreakableWall:
+    node Main:
+      door Stair
+      door South
+      enemy RedBubble
+    node BombWallExit:
+      target BombWall
+    node BombWallEntrance:
+      warp BombWall
+    node BombedWall:
+      set BombedWall
+    Main -> BombWallEntrance: flag BombedWall
+    BombWallExit -> Main: flag BombedWall
+    Main -> BombedWall: ( item BombBag | state HasExplosive | flag BombWallBombed )
+    BombWallExit -> BombedWall: ( item BombBag | state HasExplosive | flag BombWallBombed )
+  room C1F2Climb:
+    node East:
+      door StairDown
+      enemy Ghini
+    node West:
+      door StairUp
+      enemy Ghini
+    East <-> West: (item Lantern | trick Lanternless)
+  room C1F3PushClones:
+    node North:
+      door Stair
+      enemy Leevers
+    node South:
+      door South
+      enemy Leevers
+    North <-> South: ( helper CanSplit3 | helper CanSplit4 )
+  room C1GFEntrance:
+    node East:
+      door North
+      enemy Keese
+    node West:
+      door South
+      enemy Keese
+    East <-> West: (item Lantern | trick Lanternless)
+  room C2BF1WaterRupees:
+    node Main:
+      chest Rupee1
+      chest Rupee2
+      chest Rupee3
+      chest Rupee4
+      chest Rupee5
+      chest Rupee6
+      chest Rupee7
+      chest Rupee8
+      chest Rupee9
+      door North
+      door South
+      enemy LikeLike
+    node MainWater:
+      chest UnderwaterRupee1
+      chest UnderwaterRupee2
+      chest UnderwaterRupee3
+      chest UnderwaterRupee4
+      chest UnderwaterRupee5
+      chest UnderwaterRupee6
+    Main <-> MainWater: item Flippers
+  room C2F1:
+    node Main:
+      chest Chest
+      door North
+      door SouthEast
+      door SouthWest
+      enemy KeeseAndHelmasaurs
+  room C2GFEntry:
+    node Main:
+      door NorthEast
+      door NorthWest
+      door South
+      door Ladder
+      enemy KeeseAndHelmasaurs
+    node MainBombWall:
+      door East
+    node BlowUpWall:
+      set BombWallBombed
+    MainBombWall <-> Main: flag BombWallBombed
+    Main -> BlowUpWall: ( item BombBag | state HasExplosive )
+  room C2GFSideRoom:
+    node Main:
+      chest Chest
+      door West
+      enemy Keese
+  room WaterfallCave:
+    node Main:
+      chest HP
+    node DoorEntrance:
+      target Door
+    node DoorExit:
+      warp Door
+    DoorEntrance -> Main: item Flippers
+    Main -> DoorExit: item Flippers
