@@ -1,0 +1,12 @@
+area SewerAndFountain:
+  room FountainBigChest
+  room FountainEntrance
+  room FountainPacciHole
+  room FountainSmallChest
+  room FountainWaterfall
+  room SewerBigChest
+  room SewerCrossroads
+  room SewerDropIn
+  room SewerEast
+  room SewerEntrance
+  room SewerFrozenChest

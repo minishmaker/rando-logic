@@ -1,0 +1,11 @@
+area RoyalValleyGraves:
+  room Left:
+    node Main:
+      door South
+    node HP:
+      chest HP
+    Main -> HP: ( item CanSplit3 | ( helper AnySword & swipeable HP ) )
+  room Right:
+    node Main:
+      door Door
+      chest Chest

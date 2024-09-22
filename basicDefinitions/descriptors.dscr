@@ -1,0 +1,7 @@
+flag vName:
+    [set vName].
+
+spawn: true.
+
+target vName:
+    [warp vName].
