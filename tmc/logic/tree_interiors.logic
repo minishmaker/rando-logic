@@ -1,52 +1,54 @@
 area TreeInteriors:
   room CarlovEntry:
     node Main:
-      door Door
+      door South
       door Stair
   room FairyTree:
     node Main:
-      door Door
+      door South
       door Stair
   room GreatFairyTree:
     node Main:
-      door Door
+      door South
       door Stair
   room KinstoneScrubEntry:
     node Main:
-      door Door
+      door South
       door Stair
   room Percy:
     node Main:
-      door Door
+      door South
   room SouthHyruleField:
     node Main:
       chest HP
-      door Door
+      door South
   room Syrup:
     node Main:
-      chest Chest
-      door Door
-  room TingleBottomLeft:
+      door South
+    node Buy:
+      chest Buy
+    Main -> Buy: spend60
+  room TingleSouthWest:
     node Main:
-      door Door
+      door South
       door Ladder
-  room TingleBottomRight:
+  room TingleSouthEast:
     node Main:
-      door Door
+      door South
       door Ladder
-  room TingleTopLeft:
+  room TingleNorthWest:
     node Main:
-      door Door
+      door South
       door Ladder
-  room TingleTopRight:
+  room TingleNorthEast:
     node Main:
-      door Door
+      door South
       door Ladder
   room WavebladeEntry:
     node Main:
-      door Door
+      door South
       door Stair
   room WesternWood:
     node Main:
       chest HP
-      door Door
+      door South
