@@ -22,9 +22,11 @@ area FortressOfWinds:
       door South
       enemy Eyegores
     North -> Main
-    Main -> North: defeat Eyegores
+    Main -> North: ( item Bow | item LightArrows )
     node East:
       door East
+    node EastMinish:
+      door EastMinish
     East -> North
     node West:
       door West
@@ -35,6 +37,8 @@ area FortressOfWinds:
       lock Door
     node Key:
       chest Key
+    node DropKey:
+      set KeyDropped
     node South:
       door South
     Main <-> South: open Door
@@ -43,37 +47,50 @@ area FortressOfWinds:
     node SouthMinish:
       door SouthMinish
     MainMinish <-> SouthMinish: open Door
+    Main -> DropKey: ( helper CanClone2 | ( helper CanClone3 & trick CloneSlide ))
+    Main -> Key: flag KeyDropped
   room F1Darknut:
+    node East:
+      door East
+    node South:
+      door South
     node Main:
-      exit East
-      exit South
       enemy Darknut
+      target BlueWarp
     node PostFight:
-      entrance East
-      entrance South
-    Main -> PostFight: defeat Darknut
+      set GFCenterStairs.BlueWarp
+    node BlueWarp:
+      warp BlueWarp
+    Main -> PostFight: kill Darknut
+    Main -> BlueWarp: GFCenterStairs.BlueWarp
+    South -> Main
+    East -> Main
+    Main -> South: kill Darknut
+    Main -> East: kill Darknut
   room F1DropIn:
     node UpperMinish:
       door NorthMinish
-      door NorthWestMinish
+      door WestNorthMinish
     node LowerMinish:
       door WestMinish
     node Upper:
       door North
-      door NorthWest
+      door WestNorth
     node Lower:
-      door Wes
+      door West
       door South
     node East:
-      exit RoofHole
+      target RoofHoleEast
+      target RoofHoleWest
+      chest BigChest
     East -> Lower
   room F1EastMinishHole:
     node Main:
       door East
-      door UpperEast
+      door EastNorth
       door West
     node UpperMinish:
-      door UpperEastMinish
+      door EastNorthMinish
       door NorthMinish
       door WestMinish
     node LowerMinish:
@@ -84,115 +101,168 @@ area FortressOfWinds:
   room F1EastStairs:
     node Main:
       door North
-      exit RoofHole
-      entrance Hole
       set DoorOpen
       chest EastChest
       chest WestChest
+      target South
+    node DropDown
+      target RoofHole
+      warp Hole
+    node DropDownMinish
+      target RoofMinishHole
+      warp MinishHole
     node South:
-      door South
-    Main <-> South: flag DoorOpen
+      warp South
+    Main -> South: flag DoorOpen
+    Main -> DropDown
   room F1EyeBridge:
     node East:
+      enemy Wallmaster
       door East
     node West:
       door West
-    East <-> West: ( item Cape | flag TargetsHit )
+    East <-> West: flag TargetsHit
+    node Targets:
+      set TargetsHit
+    East -> Targets: ( item Bow | item LightArrows )
+    West -> Targets: ( item Bow | item LightArrows )
   room F1EyeDoor:
     node Upper:
-      door NorthEast
-      door NorthWest
+      door EastNorth
+      door EastWest
+      target North
     node North:
-      door North
-    Upper <-> North: ( item Cape | flag TargetsHit )
+      warp North
+    Upper -> North: flag BombedWall
+    node BombWall:
+      set BombedWall
+    Upper -> BombWall: ( item BombBag | hasExplosive )
     node SouthWest:
       door SouthWest
     node South:
       door South
     South <-> SouthWest: flag TargetShot
+    node Target:
+      set TargetShot
+    South -> Target: ( item Bow | item LightArrow )
   room F1MinishPortal:
     node Main:
       door East
       door West
-      enemy WallMaster
+      enemy Floormaster
     node MainMinish:
       door EastMinish
       door WestMinish
-    Main -> MainMinish: ( defeat WallMaster & item CanTurnMinish )
-    MainMinish -> Main: ( defeat WallMaster & item CanGrow )
+    Main -> MainMinish: ( kill WallMaster & item CanTurnMinish )
+    MainMinish -> Main: ( kill WallMaster & item CanGrow )
   room F1Split:
     node SouthEast:
       door SouthEast
     node East:
+      lock F1CentralRoom.EastDoor
+    node NorthEast:
       door East
-    SouthEast -> East
+    node NorthEastMinish:
+      door EastMinish
+    SouthEast <-> East: open F1CentralRoom.EastDoor
+    East -> NorthEast
     node SouthWest:
       door SouthWest
     node West:
       door West
-    SouthWest -> West
+      lock F1CentralRoom.WestDoor
+    SouthWest <-> West: open F1CentralRoom.WestDoor
   room F1West:
     node Upper:
       door North
-      door NorthEast
+      door EastNorth
+    node East:
+      door EastSouth
     node Main:
-      exit South
-      exit SouthEast
+      target South
       enemy Enemies
-    node PostFight:
-      entrance South
-      entrance SouthEast
-    Main -> PostFight: defeat Enemies
+    node South:
+      warp South
+    Main -> South: kill Enemies
+    East -> Main
+    Main -> East: kill Enemies
   room F1WestStairs:
     node Main:
       door North
-      entrance Hole
-      exit RoofHole
       door StairDown
+    node DropDown
+      target RoofHole
+      warp Hole
+    Main -> DropDown
   room F2CenterKeyPull:
     node Main:
-      entrance Hole
+      warp Hole
       door West
-    node MainWest:
+    node MainEast:
       set KeyDropped
+    Main <-> MainEast: ( item Cape | item CanSplit2 | ( trick CloneSlide & ( item CanSplit 3 | item CanSplit4 )))
     node East:
       door South
-    Main <-> East: ( item Cape | item CanSplit2 )
-    node EastBigDoorEntrance:
-      entrance North
-    node EastBigDoorExit:
-      exit North
-    East -> EastBigDoorEntrance: item FoWBigKey
-    EastBigDoorExit -> East: flag BigDoorUnlocked
+      target RedWarp
+      set GFCenterStairs.RedWarp
+    node RedWarp:
+      warp RedWarp
+    East -> RedWarp: flag GFCenterStairs.RedWarp
+    node EastOpenBigDoor:
+      set BigDoor
+    node EastNorth:
+      door North
+    East -> EastOpenBigDoor: item FoWBigKey
+    EastNorth <-> East: flag BigDoor
   room F2East:
     node East:
       door SouthEast
       lock SouthEastDoor
     node NorthEast:
-      entrance EastHoles
-    East -> NorthEast: open SouthEastDoor
-    node West:
+      warp EastEastHole
+      warp EastWestHole
+    East <-> NorthEast: open SouthEastDoor
+    node Main:
       door SouthWest
-      entrance WestHole
-    node WestMinish:
-      entrance MinishHole
+      warp WestHole
+    node MainMinish:
+      door Armos
+      warp MinishHole
+    node WestOpenDoor:
+      set WestDoor
+    Main -> WestOpenDoor: ( helper CanClone2 | helper CanClone3 | helper CanClone4 )
+    node NorthWest
+    node NorthWestMinish
+    Main <-> NorthWest: flag WestDoor
+    NorthWest -> NorthWestMinish: item CanTurnMinish
+    NorthWestMinish -> NorthWest: item CanGrow
+    NorthWestMinish <-> MainMinish: flag OpenDoor
+    node West
+    MainMinish -> West: item CanGrow
+    West -> MainMinish: item CanTurnMinish
+    node MainKeyDropped:
       set KeyDropped
+    Main -> MainKeyDropped: flag ArmosInteriors.Armos9.Active
+    West -> Main
   room F2EyegoreButtons:
     node Main:
       door South
-      enemy Eyegores
     node Chest:
       chest Chest
-    Main <-> Chest: defeat Eyegores
+    node Fight:
+      enemy Eyegores
+    Main -> Chest: defeat Eyegores
+    Main -> Fight: ( helper CanClone2 | helper CanClone3 | helper CanClone4 )
   room F2MazaalRoom:
     node Main:
-      exit South
+      target South
+      target North
       enemy Mazaal
     node PostFight:
-      door North
+      warp North
       chest HP
-      entrance South
-    Main <-> PostFight: defeat Mazaal
+      warp South
+    Main -> PostFight: defeat Mazaal
   room F2PreMazaal:
     node Main:
       door South
@@ -204,16 +274,36 @@ area FortressOfWinds:
       door North
     node East:
       door East
-    Main <-> East: flag TargetsShot
-    Main <-> North: flag TargetsShot
+    Main <-> East: flag EastTargetsShot
+    Main <-> North: flag NorthTargetsShot
+    node Targets:
+      set EastTargetsShot
+      set NorthTargetsShot
+    Main -> Targets: ( item Bow | item LightArrows )
   room GFCenterStairs:
     node Main:
       door North
       door South
+      target RedWarp
+      target BlueWarp
+      target Wallmaster
+    node RedWarp:
+      warp RedWarp
+    node BlueWarp:
+      warp BlueWarp
+    Main -> RedWarp: flag RedWarp
+    Main -> BlueWarp: flag BlueWarp
   room GFEastStairs:
     node Main:
       door North
       door South
+      target DropDown
+    node MainMinish:
+      target DropDownMinish
+      door EastMinish
+    node Key:
+      chest Key
+    Main -> Key: F2East.KeyDropped
   room GFMinishHP:
     node Main:
       chest Chest
@@ -228,11 +318,17 @@ area FortressOfWinds:
     node Main:
       door North
       door South
+      target DropDown
+    node Key:
+      chest Key
+    Main -> Key: F2CenterKeyPull.KeyDropped
   room GFWizrobes:
     node Main:
-      exit South
       enemy Wizrobes
     node PostFight:
-      entrance South
       chest Chest
-    Main -> PostFight: defeat Wizrobes
+    node South:
+      door South
+    South -> Main
+    Main -> South: kill Wizrobes
+    Main -> PostFight: kill Wizrobes
