@@ -1,0 +1,91 @@
+area OuterFoW:
+  room Entrance:
+    node Main:
+      door Left
+      door Center
+      door Right
+      door FarRight
+      door South
+    node Dig:
+      door FarLeft
+      chest Rupee
+      chest Chest
+    Main <-> Dig: item MoleMitts
+  room F2:
+    node Left:
+      chest Rupee1
+      chest Rupee2
+      chest Rupee3
+      chest Rupee4
+      chest Rupee5
+      chest Rupee6
+      chest Rupee7
+      door LeftNorth
+      door LeftLadder
+    node LeftDig:
+      chest LeftChest
+    Left <-> LeftDig: item MoleMitts
+    node Center:
+      door NorthCenter
+      door CenterLadder
+    node CenterDig:
+      chest CenterChest
+    Center <-> CenterDig: item MoleMitts
+    node Right:
+      door NorthRight
+      door RightLadder
+    node RightDig:
+      chest RightChest
+    node RightPotCheese:
+      chest Pot2
+    Right -> RightPotCheese: ( item GustJar & trick PotThroughWall )
+    Right <-> RightDig: item MoleMitts
+    node FarRightNorth:
+      door FarRightNorth
+    node FarRightDig:
+      chest Pot1
+      chest Pot2
+    node FarRightSouth:
+      door FarRightLadder
+    FarRightNorth <-> FarRightDig: item MoleMitts
+    FarRightSouth <-> FarRightDig: item MoleMitts
+  room F3:
+    node Left:
+      door LeftNorth
+      door LeftLadder
+    node LeftDig:
+      set LeftChest
+    node LeftChest:
+      chest LeftChest
+    Left <-> LeftDig: item MoleMitts
+    Left -> LeftChest: flag LeftChest
+    node CenterDoor:
+      door CenterDoor
+    node CenterLadder:
+      door CenterLadder
+    CenterDoor <-> CenterLadder: item MoleMitts
+    node Right:
+      door RightLadder
+      door RightNorth
+    node RightDig:
+      chest RightChest
+    Right <-> RightDig: item MoleMitts
+    node FarRight:
+      door FarRightNorth
+      door FarRightLadder
+  room WestEye:
+    node Main:
+      door Door
+      chest BigChest
+    node Dig:
+      chest SmallChest
+    Main <-> Dig: item MoleMitts
+  room EastEye:
+    node Main
+    node MainMinish:
+      door Door
+    Main -> MainMinish: item CanTurnMinish
+    MainMinish -> Main: item CanGrow
+    node Dig:
+      chest Chest
+    Main <-> Dig: item MoleMitts

@@ -6,19 +6,19 @@ area MinishWoods:
     node NorthEastMinish:
      door NorthMinishCave
     node NorthEastMinishWaterIn:
-      entrance NorthEasternMinish
-    node NorthEastMinishWaterOut:
       exit NorthEasternMinish
+    node NorthEastMinishWaterOut:
+      entrance NorthEasternMinish
     NorthEastMinishWaterIn -> NorthEastMinish : item Flippers
     NorthEastMinish -> NorthEastMinishWaterOut : item Flippers
     node North:
       chest NorthHP
       door North
       door Syrup
-      entrance NorthDigging
+      exit NorthDigging
       enemy NorthOctorocs
     node NorthDigging:
-      exit NorthDigging
+      entrance NorthDigging
     North -> NorthDigging: item MoleMitts
     node NorthChestFusion:
       chest NorthChest
@@ -29,7 +29,7 @@ area MinishWoods:
     node Main:
       door West
       door MainDigging
-      entrance ScrubTree
+      exit ScrubTree
       enemy Main
       chest MainHP
     North <-> Main: (item Flippers | item Cape)
@@ -43,12 +43,13 @@ area MinishWoods:
       chest MainSouthChest
     Main -> MainSouthChestFusion : flag MainSouthChestFusion
     node MainScrubTreeFusion:
-      exit Scrubtree
+      entrance Scrubtree
     Main -> MainScrubTreeFusion: flag ScrubTreeFusion
     node MainMinish:
       exit MinishHole
       door MinishVillageSouth
-    Main <-> MainMinish # possibly require ezlo in the future?
+    Main -> MainMinish: item CanTurnMinish
+    MainMinish -> Main: item CanGrow
     node MainMinishMinishHoleFusion:
       entrance MinishHole
     MainMinish -> MainMinishHoleFusion: flag MinishHoleFusion
@@ -64,23 +65,25 @@ area MinishWoods:
       door MinishWaterCavesWest
     SouthWaterCavesMinish <-> BelariMinish: item Flippers
     node Belari:
-      entrance Crest
-      flag Virtual.Zeffa.MinishWoodsCrest
-    Belari <-> BelariMinish
+      exit Crest
+      set Virtual.Zeffa.MinishWoodsCrest
+    Belari -> BelariMinish: item CanTurnMinish
+    BelariMinish -> Belari: item CanGrow
     node BelariChestFusion:
       chest Belari
     Belari -> BelariChestFusion: flag BelariChestFusion
     node SouthWest:
       door WestSouthern
-    Belari <-> SouthWest: (flag SouthWestBombRock1 | flagSouthWestBombRock2 | flagSouthWestBombRock3)
+    Belari <-> SouthWest: (flag SouthWestBombRock1 | flag SouthWestBombRock2 | flag SouthWestBombRock3)
     node SouthWestBombRocks:
-      flag SouthWestBombRock1
-      flag SouthWestBombRock2
-      flag SouthWestBombRock3
-    SouthEast -> SouthWestBombRocks: item BombBag
+      set SouthWestBombRock1
+      set SouthWestBombRock2
+      set SouthWestBombRock3
+    SouthWest -> SouthWestBombRocks: item BombBag
     Belari -> SouthWestBombRocks: item BombBag
-    node Main +: exit Virtual.Zeffa.FluteAway
-    node North +: exit Virtual.Zeffa.FluteAway
-    node Belari +: exit Virtual.Zeffa.FluteAway
-    node SouthWest +: exit Virtual.Zeffa.FluteAway
-    node FairyTree +: exit Virtual.Zeffa.FluteAway
+    node Main +: entrance Virtual.Zeffa.FluteAway
+    node North +: entrance Virtual.Zeffa.FluteAway
+    node Belari +: entrance Virtual.Zeffa.FluteAway
+    node SouthWest +: entrance Virtual.Zeffa.FluteAway
+    node FairyTree +: entrance Virtual.Zeffa.FluteAway
+

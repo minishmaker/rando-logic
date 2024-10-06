@@ -1,0 +1,10 @@
+area Gleerock:
+  room Main:
+    node Main:
+      target DropDown
+      enemy Gleerock
+    node PostFight:
+      warp GreenWarp
+      chest HC
+      chest Prize
+    Main -> PostFight: defeat Gleerock

@@ -1,0 +1,8 @@
+area HyruleCastleGardenFountains:
+  room Left:
+    node Main:
+      door Door
+  room Right:
+    node Main:
+      chest HP
+      door Door

@@ -35,4 +35,4 @@ jobs:
       - name: Run the CI tool
         run: |
           cd $GITHUB_WORKSPACE
-          ./tmcr-newlogic-ci *.logic
+          ./tmcr-newlogic-ci tmc/logic/*.logic
