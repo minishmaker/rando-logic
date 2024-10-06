@@ -2,70 +2,90 @@ area Caves:
   room EasternHillsBomb:
     node Main:
       chest Chest
-      door Door
+      door South
       enemy Keese
   room LonLonPuddle:
-    door Door
+    door South
     chest Chest
   room LonLonTingle:
     node South:
-      door Door
+      door South
     node North:
       chest Chest
       door Ladder
     node BombWallExit:
-      exit BombWall
+      target East
     node BombWallEntrance:
-      entrance BombWall
+      warp East
+    node BombWall:
+      set WallBombed
     South -> North: item WhiteSword
-    North -> BombWallEntrance: ( item BombBag | state HasExplosive )
+    North -> BombWallEntrance: flag WallBombed
     BombWallExit -> North: flag WallBombed
+    North -> BombWall: ( item BombBag | hasExplosive )
+    BombWallExit -> BombWall: ( item BombBag | hasExplosive )
   room LonLonTingleDark:
     node Main:
-      door Door
+      door West
     node MainChest:
       chest Chest
-    Main <-> MainChest: item Lantern
+    node LightLanterns:
+      set LitLanterns
+    Main -> LightLanterns: item Lantern
+    Main -> MainChest: flag LitLanterns
   room MagicBoomerang:
-    node TopLeft:
-      chest TopLeft
-      door TopLeftLadder
-    node TopRight:
-      chest TopRight
-      door TopRightLadder
+    node NorthWest:
+      chest NorthWest
+      door NorthWestLadder
+      set NorthWestTorch
+    node NorthEast:
+      chest NorthEast
+      door NorthEastLadder
+      set NorthEastTorch
     node Middle:
       chest Middle
-      entrance MiddleLadder
+      target MiddleLadder
     node MiddleExit:
-      exit MiddleLadder
-    Middle -> MiddleExit: flag AllTingleTreesLit
-    node BottomLeft:
-      chest BottomLeft
-      door BottomLeftLadder
-    node BottomRight:
-      chest BottomRight
-      door BottomRightLadder
+      warp MiddleLadder
+    Middle -> MiddleExit: flag AllTorches
+    node SouthWest:
+      chest SouthWest
+      door SouthWestLadder
+      set SouthWestTorch
+    node SouthEast:
+      chest SouthEast
+      door SouthEastLadder
+      set SouthEastTorch
+    node AllTorchesCheck
+    node AllTorches:
+      set AllTorches
+    AllTorchesCheck -> AllTorches: (flag NorthWestTorch & flag NorthEastTorch & flag SouthWestTorch & flag SouthEastTorch)
+    NorthWest -> AllTochesCheck
+    NorthEast -> AllTochesCheck
+    SouthWest -> AllTochesCheck
+    SouthEast -> AllTochesCheck
+    Middle -> AllTochesCheck
   room MinishWoodsScrub:
     node Main:
-      door Door
+      door South
   room NorthHyruleFieldCave:
-    node Left:
-      door LeftLadder
+    node East:
+      door EastLadder
       door South
       door Stair
-    node Right:
-      door RightLadder
-    Right -> Left: item WhiteSword3
+    node West:
+      door WestLadder
+    East -> West: ( helper CanSplit3 | helper CanSplit4 )
   room NorthHyruleFieldCaveBasement:
     chest HP
     door Stair
     door South
   room NorthHyruleFieldFairy:
     node Main:
-      door Door
+      door South
   room SouthHyruleFieldFairy:
     node Main:
-      door Door
+      door South
   room SouthHyruleFieldPuddle:
     node Main:
       chest Rupee1
@@ -83,14 +103,14 @@ area Caves:
       chest Rupee13
       chest Rupee14
       chest Rupee15
-      door Door
+      door South
   room TownWaterfall:
     node Main:
       chest Chest
     node MainExit:
-      exit Door
+      warp South
     node MainEntrance: 
-      entrance Door
+      target South
     MainEntrance -> Main: item Flippers
     Main -> MainExit: item Flippers
   room TrilbyDigFairy:
@@ -105,17 +125,21 @@ area Caves:
       door Door
       enemy Keese
   room TrilbyLowerAccess:
-    node Left:
-      door LadderLeft
-    node Right:
-      door LadderRight
+    node West:
+      door WestLadder
+    node East:
+      door EastLadder
     node BombWallExit:
-      exit BombWall
+      target BombWall
     node BombWallEntrance:
-      entrance BombWall
-    Right -> Left: item WhiteSword
-    Right -> BombWallEntrance: ( item BombBag | state HasExplosive )
-    BombWallExit -> Right: flag WallBombed
+      warp BombWall
+    East -> BombWallEntrance: flag WallBombed
+    BombWallExit -> East: flag WallBombed
+    node BombWall:
+      set WallBombed
+    East -> BombWall: ( item BombBag | hasExplosive )
+    BombWallExit -> BombWall: ( item BombBag | hasExplosive )
+    East -> West: ( helper CanSplit2 | helper CanSplit3 | helper CanSplit4 )
   room TrilbyPuddle:
     node Main:
       chest Rupee1
@@ -133,10 +157,10 @@ area Caves:
       chest Rupee13
       chest Rupee14
       chest Rupee15
-      door Door
+      door South
   room TrilbyScrub:
     node Main:
-      door Door
+      door West
     node Scrub:
       chest Scrub
-    Main <-> Scrub: item Shield
+    Main -> Scrub: (( item Shield | item MirrorShield ) & spend20 )
