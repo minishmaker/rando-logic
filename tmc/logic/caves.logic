@@ -1,19 +1,166 @@
 area Caves:
-  room EasternHillsBomb
-  room LonLonPuddle
-  room LonLonTingle
-  room LonLonTingleDark
-  room MagicBoomerang
-  room MinishWoodsScrub
-  room NorthHyruleFieldCave
-  room NorthHyruleFieldCaveBasement
-  room NorthHyruleFieldFairy
-  room SouthHyruleFieldFairy
-  room SouthHyruleFieldPuddle
-  room TownWaterfall
-  room TrilbyDigFairy
-  room TrilbyFairy
-  room TrilbyKeese
-  room TrilbyLowerAccess
-  room TrilbyPuddle
-  room TrilbyScrub
+  room EasternHillsBomb:
+    node Main:
+      chest Chest
+      door South
+      enemy Keese
+  room LonLonPuddle:
+    door South
+    chest Chest
+  room LonLonTingle:
+    node South:
+      door South
+    node North:
+      chest Chest
+      door Ladder
+    node BombWallExit:
+      target East
+    node BombWallEntrance:
+      warp East
+    node BombWall:
+      set WallBombed
+    South -> North: item WhiteSword
+    North -> BombWallEntrance: flag WallBombed
+    BombWallExit -> North: flag WallBombed
+    North -> BombWall: ( item BombBag | hasExplosive )
+    BombWallExit -> BombWall: ( item BombBag | hasExplosive )
+  room LonLonTingleDark:
+    node Main:
+      door West
+    node MainChest:
+      chest Chest
+    node LightLanterns:
+      set LitLanterns
+    Main -> LightLanterns: item Lantern
+    Main -> MainChest: flag LitLanterns
+  room MagicBoomerang:
+    node NorthWest:
+      chest NorthWest
+      door NorthWestLadder
+      set NorthWestTorch
+    node NorthEast:
+      chest NorthEast
+      door NorthEastLadder
+      set NorthEastTorch
+    node Middle:
+      chest Middle
+      target MiddleLadder
+    node MiddleExit:
+      warp MiddleLadder
+    Middle -> MiddleExit: flag AllTorches
+    node SouthWest:
+      chest SouthWest
+      door SouthWestLadder
+      set SouthWestTorch
+    node SouthEast:
+      chest SouthEast
+      door SouthEastLadder
+      set SouthEastTorch
+    node AllTorchesCheck
+    node AllTorches:
+      set AllTorches
+    AllTorchesCheck -> AllTorches: (flag NorthWestTorch & flag NorthEastTorch & flag SouthWestTorch & flag SouthEastTorch)
+    NorthWest -> AllTochesCheck
+    NorthEast -> AllTochesCheck
+    SouthWest -> AllTochesCheck
+    SouthEast -> AllTochesCheck
+    Middle -> AllTochesCheck
+  room MinishWoodsScrub:
+    node Main:
+      door South
+  room NorthHyruleFieldCave:
+    node East:
+      door EastLadder
+      door South
+      door Stair
+    node West:
+      door WestLadder
+    East -> West: ( helper CanSplit3 | helper CanSplit4 )
+  room NorthHyruleFieldCaveBasement:
+    chest HP
+    door Stair
+    door South
+  room NorthHyruleFieldFairy:
+    node Main:
+      door South
+  room SouthHyruleFieldFairy:
+    node Main:
+      door South
+  room SouthHyruleFieldPuddle:
+    node Main:
+      chest Rupee1
+      chest Rupee2
+      chest Rupee3
+      chest Rupee4
+      chest Rupee5
+      chest Rupee6
+      chest Rupee7
+      chest Rupee8
+      chest Rupee9
+      chest Rupee10
+      chest Rupee11
+      chest Rupee12
+      chest Rupee13
+      chest Rupee14
+      chest Rupee15
+      door South
+  room TownWaterfall:
+    node Main:
+      chest Chest
+    node MainExit:
+      warp South
+    node MainEntrance: 
+      target South
+    MainEntrance -> Main: item Flippers
+    Main -> MainExit: item Flippers
+  room TrilbyDigFairy:
+    node Main:
+      door Ladder
+  room TrilbyFairy:
+    node Main:
+      door Door
+  room TrilbyKeese:
+    node Main:
+      chest Chest
+      door Door
+      enemy Keese
+  room TrilbyLowerAccess:
+    node West:
+      door WestLadder
+    node East:
+      door EastLadder
+    node BombWallExit:
+      target BombWall
+    node BombWallEntrance:
+      warp BombWall
+    East -> BombWallEntrance: flag WallBombed
+    BombWallExit -> East: flag WallBombed
+    node BombWall:
+      set WallBombed
+    East -> BombWall: ( item BombBag | hasExplosive )
+    BombWallExit -> BombWall: ( item BombBag | hasExplosive )
+    East -> West: ( helper CanSplit2 | helper CanSplit3 | helper CanSplit4 )
+  room TrilbyPuddle:
+    node Main:
+      chest Rupee1
+      chest Rupee2
+      chest Rupee3
+      chest Rupee4
+      chest Rupee5
+      chest Rupee6
+      chest Rupee7
+      chest Rupee8
+      chest Rupee9
+      chest Rupee10
+      chest Rupee11
+      chest Rupee12
+      chest Rupee13
+      chest Rupee14
+      chest Rupee15
+      door South
+  room TrilbyScrub:
+    node Main:
+      door West
+    node Scrub:
+      chest Scrub
+    Main -> Scrub: (( item Shield | item MirrorShield ) & spend20 )

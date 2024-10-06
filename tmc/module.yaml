@@ -102,6 +102,11 @@ provides:
       stateful: true
       type: truthy
       export: edge
+    spend20:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
   logic-sugar:
     entrance:
       type: multi
