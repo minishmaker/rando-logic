@@ -2,14 +2,14 @@ area GreatFairies:
   room RoyalValley:
     node Main:
       chest Fairy
-      door Door
+      door South
   room MinishWoods:
     node Main:
       chest Fairy
-      door Door
+      door South
   room Crenel:
     node Main:
-      door Door
+      door South
     node Fairy:
       chest Fairy
-    Main <-> Fairy: item BombBag
+    Main -> Fairy: ( item BombBag | ( item Bottle & trick Bombless ))
