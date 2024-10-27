@@ -1,2 +1,8 @@
 area FortressTop:
-  room Main
+  room Main:
+    node Main:
+      chest Prize
+      door Stairs
+    node PostCutscene:
+      warp PostCutscene
+    Main -> PostCutscene: once

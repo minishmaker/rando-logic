@@ -1,2 +1,6 @@
 area DHCBridge:
-  room Main
+  room Main:
+    node Main:
+      door South
+      door North
+      enemy Enemy

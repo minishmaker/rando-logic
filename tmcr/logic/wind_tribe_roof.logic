@@ -1,0 +1,3 @@
+area WindTribeRoof:
+  room Main +:
+    Main -> FluteAway

@@ -55,7 +55,7 @@ provides:
       export: target
     trick:
       arguments:
-        - unscoped
+        - scoped
       stateful: false
       type: truthy
       export: edge
@@ -89,4 +89,3 @@ provides:
   logic: []
   data: []
   patches: []
-

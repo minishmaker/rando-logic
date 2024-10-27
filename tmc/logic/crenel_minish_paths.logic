@@ -1,5 +1,29 @@
 area CrenelMinishPaths:
-  room MineEntry
-  room MineralWater
-  room Rain
-  room Sprout
+  room MineEntry:
+    node Main:
+      door East
+      door West
+      enemy Mulldozers
+    node MainFusion:
+      chest ChestFusion
+    Main <-> MainFusion: fusion MineEntryChest
+  room MineralWater:
+    node Main:
+      door South
+      enemy Mulldozers
+      bottleable MineralWater
+    node MainFusion:
+      chest ChestFusion
+    Main <-> MainFusion: fusion MineralWaterChest
+  room Rain:
+    node Main:
+      door East
+      door West
+    node MainFusion:
+      chest ChestFusion
+    Main <-> MainFusion: fusion RainPathChest
+  room Sprout:
+    node Main:
+      door South
+      enemy Pestos
+      getBean
