@@ -3,21 +3,23 @@ area DarkHyruleCastle:
     node North:
       door North
     node East:
-      door East
+      door NorthEast
       door EastStair
     node West:
       chest Chest
-      door West
+      door NorthWest
       door WestStair
     West -> North
     East -> West
+    node WestMinish:
+      door NorthMinish
   room B1EastCannons:
     node Main:
       door South
-      enemy Cannons
     node North:
       door North
-    Main <-> North: kill Cannons
+    Main <-> North: flag Cannons
+    Main -> ExplodeCannons: (helper CanSplit4 | (((trick Bombing | (item RemoteBombs & trick RemoteBombing)) & item BombBag) & item Sword) | (trick TwoClones & helper CanSplit3) | (trick PossiblyImpossibleOneClone & helper CanSplit2)) # no idea if red sword is possible
   room B1EastUpperPath:
     node Lower:
       door West
@@ -37,28 +39,47 @@ area DarkHyruleCastle:
   room B1JailStairs:
     node East:
       door East
+    node BombWall:
+      set WallBombed
     node Main:
       door StairDown
       door South
-    Main <-> East: ( item BombBag | state HasExplosive )
+    Main -> BombWall: ( item BombBag | state HasExplosive )
+    Main <-> East: flag WallBombed
+    node EastMinish:
+      door EastMinish
+    node MainMinish:
+      door SouthMinish
+    EastMinish <-> MainMinish: flag WallBombed
   room B1KeatonBombWall:
     node Main:
       door South
     node West:
       door West
-    Main <-> West: ( item BombBag | state HasExplosive )
+    node BombWall:
+      set WallBombed
+    Main <-> West: flag WallBombed
+    Main -> BombWall: ( item BombBag | state HasExplosive )
   room B1MinishPortal:
     node East:
       door East
     node North:
       door North
-    East <-> North: ( item BombBag | state HasExplosive )
+    node EastBomb:
+      set B1KeatonBombWall.WallBombed
+    East <-> North: flag B1KeatonBombWall.WallBombed
     node West:
       door West
     node WestMinish:
       door WestMinish
-    West -> WestMinish: item CanTurnMinish
-    WestMinish -> West: item CanGrow
+    node WestMain
+    node WestMainMinish
+    node WestBomb:
+      set B1JailStairs.WallBombed
+    West <-> WestMain: flag B1JailStairs.WallBombed
+    WestMinish <-> WestMainMinish: flag B1JailStairs.WallBombed
+    WestMain -> WestMainMinish: helper CanTurnMinish
+    WestMainMinish -> WestMain: helper CanGrow
   room B1PostThroneStairs:
     node Main:
       door Stair
@@ -81,17 +102,32 @@ area DarkHyruleCastle:
     node Main:
       door East
       door North
+      lock Door
+    node South:
       door South
+    Main <-> South: open Door
+    node MainMinish:
+      door NorthMinish
+    node SouthMinish:
+      door SouthMinish
+    MainMinish <-> SouthMinish: open Door
   room B2Jail:
     node MainMinish:
-      door MinishHole
       door WestMinish
-      set DoorsUnlocked
     node Main:
       door West
     node King:
       chest King
-    Main <-> King: flag DoorsUnlocked
+    node KingJail
+    node PortalJail:
+      set DoorsUnlocked
+    node PortalJailMinish:
+      door MinishHole
+    PortalJailMinish -> PortalJail: helper CanGrow
+    PortalJail -> PortalJailMinish: helper CanTurnMinish
+    Main <-> PortalJail: flag DoorsUnlocked
+    Main <-> KingJail: flag DoorsUnlocked
+    KingJail -> King: ( item FourSword & helper CanSpin )
   room B2MinishDrop:
     node Main:
       target Hole
@@ -117,39 +153,45 @@ area DarkHyruleCastle:
       lock Block4
     node Chest:
       chest Chest
-    Main <-> Chest: ( open Block1 & open Block2 & open Block3 & open Block4 )
+    Main -> Chest: ( open Block1 & open Block2 & open Block3 & open Block4 & helper CanSplit4 )
   room F1BigKeyDoor:
     node Main:
       target Portal
       enemy ChainSoldier
-      lock BigKeyDoor
+    node OpenBigKeyDoor:
+      set BigKeyDoorOpen
     node PostFight:
+      set GFFrontEntrance.RedPortal
+    node RedPortal:
       warp Portal
     node NorthExit:
       target North
     node NorthEntrance:
       warp North
-      set BigKeyDoorOpen
     node East:
       door East
     node West:
       door West
     Main <-> PostFight: kill ChainSoldier
+    Main -> RedPortal: flag GFFrontEntrance.RedPortal
     Main <-> East: kill ChainSoldier
     Main <-> West: kill ChainSoldier
     NorthExit -> Main: flag BigKeyDoorOpen
-    Main -> NorthEntrance: item DHCBigKey
+    Main -> NorthEntrance: flag BigKeyDoorOpen
+    Main -> OpenBigKeyDoor: item DHCBigKey
   room F1DarkKnight:
-    node Fight:
-      target North
-      target South
+    node North:
+      door North
+    node South:
+      door South
+    node Main:
       target Portal
       enemy Darknut
-    node PostFight:
-      warp North
-      warp South
+    node BluePortal:
       warp Portal
-    Fight -> PostFight: kill Darknut
+    Main -> South: kill Darknut
+    Main -> North: kill Darknut
+    Main -> BluePortal: flag GFFrontEntrance.BluePortal
   room F1EastEntry:
     node North:
       door North
@@ -157,114 +199,151 @@ area DarkHyruleCastle:
       door South
     North -> South: item Cape
     node NorthEast:
-      door NorthEast
+      door EastNorth
     node SouthEast:
-      door SouthEast
-    NorthEast -> SouthEast: item CanSplit4
+      door EastSouth
+    NorthEast -> SouthEast: helper CanSplit4
   room F1NortheastBigDoor:
-    node Main:
+    node Main: # if you get here after having killed a darknut, without being able to kill a darknut, that's a you problem :P
       door South
       door West
     node Fight:
       enemy Darknut
-    node PostFight:
+    node North:
       door North
-    Main -> Fight: flag DarknutsSpawned
-    Main <-> PostFight: kill Darknut
+    Main -> Fight: kill F1DarkKnight.Darknut
+    Main -> North: kill Darknut
+    North -> Main
   room F1NortheastHologhini:
-    node Fight:
+    node East:
+      door East
+    node Main:
       enemy Ghini
-      target South
-      target East
-    node PostFight:
-      warp South
-      warp East
-    Fight -> PostFight: kill Ghini
+      door South
+    Main <-> East: kill Ghini
   room F1NortheastLanternTrial:
     node Main:
       door South
     node North:
       door North
+    node LightLanters:
+      set LanternsLit
     Main <-> North: flag LanternsLit
+    Main -> LightLanters: item Lantern
   room F1NortheastTower:
     node East:
       door StairDown
       door South
     node West:
       door West
-      door StairDown
-      enemy Spark
+    node WestMain:
+      door StairUp
+    WestMain <-> West: kill F1NortheastHologhini.Ghini
   room F1NorthwestArrowTrial:
     node Main:
       door South
     node West:
       door West
+    node Shootout:
+      set TargetsShot
     Main <-> West: flag TargetsShot
+    Main -> Shootout: ( item Bow | item LightArrows )
   room F1NorthwestBigDoor:
-    node Main:
+    node Main: # if you get here after having killed a darknut, without being able to kill a darknut, that's a you problem :P
       door South
       door East
     node Fight:
       enemy Darknut
-    node PostFight:
+    node North:
       door North
-    Main -> Fight: flag DarknutsSpawned
-    Main <-> PostFight: kill Darknut
+    Main -> Fight: kill F1DarkKnight.Darknut
+    Main -> North: kill Darknut
+    North -> Main
   room F1NorthwestTower:
-    node MainEast:
+    node EastRocksNotPushed:
       door East
-      warp South
+    node EastSouthRocksPushed:
+      warp East
       warp Hole
-    node MainNorth:
-      door StairUp
-      door StairDown
+    node SouthWarp:
+      warp South
+    EastRocksNotPushed -> EastSouthRocksPushed
+    EastSouthRocksPushed -> SouthWarp: flag Button
+    node MainRocksNotPushed:
       target South
-    MainNorth -> MainEast
+      door StairsUp
+      door StairsDown
+      warp Hole
+      set Button
+    node MainRocksPushed:
+      warp StairsUp
+      warp StairsDown
+      warp East
+      warp Hole
+      set Button
+    MainRocksNotPushed -> MainRocksPushed
+    MainRocksNotPushed -> SouthWarp: flag Button
+    MainRocksPushed -> SouthWarp: flag Button
   room F1SouthCloneEntry:
     node Main:
       door South
     node North:
       door North
-    Main <-> North: flag SwitchesActivated
+    Main -> North: flag SwitchesActivated
+    North -> Main
+    node Switches:
+      set SwitchesActivated
+    Main -> Switches: ( helper CanSpin | ( item BombBag & ( trick Swordless  | item Sword )) | helper CanSplit3 | helper CanSplit4 )
   room F1SoutheastBigDoor:
-    node Main:
+    node Main: # if you get here after having killed a darknut, without being able to kill a darknut, that's a you problem :P
+      door North
       door West
     node Fight:
       enemy Darknut
-    node PostFight:
+    node South:
       door South
-    Main -> Fight: flag DarknutsSpawned
-    Main <-> PostFight: kill Darknut
+    Main -> Fight: kill F1DarkKnight.Darknut
+    Main -> South: kill Darknut
+    South -> Main
   room F1SoutheastCloneSwitches:
     node Main:
       door North
     node East:
       door East
     Main <-> East: flag SwitchesActivated
+    node Switches:
+      set SwitchesActivated
+    Main -> Switches: (helper CanSpin | (item BombBag & (trick Swordless | item Sword)) | (item RemoteBombs & item Sword) | helper CanSplit2 | helper CanSplit3 | helper CanSplit4)
   room F1SoutheastTower:
     node North:
       door West
       door StairDown
-      door StairUp
+      target StairUp
       warp Hole
+      set Button
+    node StairUp:
+      warp StairUp
     node South:
       door South
+    North -> StairUp: flag Button
   room F1SouthwestBigDoor:
-    node Main:
+    node Main: # if you get here after having killed a darknut, without being able to kill a darknut, that's a you problem :P
       door North
       door East
     node Fight:
       enemy Darknut
-    node PostFight:
+    node South:
       door South
-    Main -> Fight: flag DarknutsSpawned
-    Main <-> PostFight: kill Darknut
+    Main -> Fight: kill F1DarkKnight.Darknut
+    Main -> South: kill Darknut
+    South -> Main
   room F1SouthwestHologhini:
     node Main:
       door North
       enemy Ghini
+      target South
     node South:
-      door South
+      warp South
     Main <-> South: kill Ghini
   room F1SouthwestPathPuzzle:
     node North:
@@ -289,32 +368,56 @@ area DarkHyruleCastle:
       door South
     node North:
       door North
-    South <-> North: ( ( item BombBag | state HasExplosive ) & item Cape & ( item Bow | item Boomerang ) )
+    node Middle
+    node Upper
+    node Switches:
+      set EastSwitch
+      set WestSwitch
+    node BombRocks:
+      set EastRock
+      set CenterRock
+      set WestRock
+    node Enemies:
+      enemy Bobombs
+    South <-> Upper: item Cape
+    Middle -> BombRocks: ( item BombBag | hasExplosive )
+    South -> BombRocks: ( item BombBag | hasExplosive | ( item GustJar & providesExplosive Bobombs ))
+    South -> Enemies
+    Enemies -> South: ( loseExplosive | trick RunInThereAndGrabABomb )
+    Upper -> Switches: helper HasProjectileDamage
+    North <-> Middle: ( flag EastSwitch & flag WestSwitch )
+    South <-> Middle: ( flag EastRock | flag CenterRock | flag WestRock )
   room F2KeatonPath:
     node Main:
       door South
-      target North
       enemy Keatons
-    node NorthEntrance:
-      warp North
-    Main -> NorthEntrance: item CanSplit4
+    node North:
+      door North
+    Main -> North: item CanSplit4
+    North -> Main
   room F2NortheastTower:
     node Main:
+      door Stairs
       chest Chest
   room F2NorthwestTower:
     node Main:
+      door Stairs
       chest Chest
   room F2SoutheastTower:
     node Main:
+      node Stairs
       chest Chest
   room F2SouthwestTower:
     node Main:
+      door Stairs
       chest Chest
   room F2TripleDarknut:
     node Main:
-      target South
       target North
       enemy Darknuts
+    node South:
+      door South
+    South -> Main
     node PostFight:
       warp North
     Main -> PostFight: kill Darknuts
@@ -327,11 +430,14 @@ area DarkHyruleCastle:
   room GFCloneBlade:
     node North:
       door North
+    node SpawnChest:
+      set Chest
     node Chest:
       chest Chest
     node South:
       door South
-    North -> Chest: item CanSplit4
+    North -> SpawnChest: ( item CanSplit4 | ( trick ButtonShuffling & ( item CanSplit3 | item CanSplit2 )))
+    North -> Chest: flag Chest
     North -> South
   room GFFrontEntrance:
     node Main:
@@ -342,6 +448,7 @@ area DarkHyruleCastle:
       lock EastDoor
       target RedPortal
       target BluePortal
+      target Floormaster
     node RedPortal:
       warp RedPortal
     node BluePortal:
@@ -359,10 +466,15 @@ area DarkHyruleCastle:
     node Main:
       door StairUp
       door West
+  room GFNorthwestTower:
+    node Main:
+      door StairUp
+      target RoofHole
   room GFNorthwestPath:
     node Main:
       door East
       door South
+      enemy Floormaster
   room GFPathPuzzle:
     node Main:
       door West
@@ -402,20 +514,28 @@ area DarkHyruleCastle:
     node Main:
       door StairUp
   room GFThrone:
-    node Fight:
+    node South:
+      door South
+    node East:
+      door East
+    node Main:
       target Stair
-      target East
-      target West
       enemy Darknut
-    node PostFight:
+    node StairsDown:
       warp Stair
-      warp East
-      warp West
-    Fight -> PostFight: kill Darknut
+    node ThronePush:
+      set ThronePushed
+    Main -> ThronePush: kill Darknut
+    Main -> StairsDown: flag ThronePushed
+    South -> Main
+    East <-> Main: kill Darknut
+    Main -> South: kill Darknut
   room GFWestCannons:
     node Main:
       door South
-      enemy Cannons
+    node ExplodeCannons:
+      set CannonsGone
     node North:
       door North
-    Main <-> North: kill Cannons
+    Main -> ExplodeCannons: (helper CanSplit4 | (((trick Bombing | (item RemoteBombs & trick RemoteBombing)) & item BombBag) & item Sword) | (trick TwoClones & helper CanSplit3) | (trick PossiblyImpossibleOneClone & helper CanSplit2)) # no idea if red sword is possible
+    Main <-> North: flag CannonsGone
