@@ -27,6 +27,16 @@ provides:
       stateful: true
       type: truthy
       export: edge
+    loseExplosive:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
+    providesExplosive:
+      arguments: ["scoped"]
+      stateful: false
+      type: truthy
+      export: edge
     canPlugHoles:
       arguments: []
       stateful: true
