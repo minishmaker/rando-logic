@@ -22,6 +22,101 @@ provides:
       stateful: false
       type: truthy
       export: edge
+    hasExplosive:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
+    loseExplosive:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
+    providesExplosive:
+      arguments: ["scoped"]
+      stateful: false
+      type: truthy
+      export: edge
+    canPlugHoles:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
+    noBean:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
+    hasBean:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
+    getBean:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: self-edge
+    helper:
+      arguments: ["unscoped"]
+      stateful: false
+      type: truthy
+      export: edge
+    fusion:
+      arguments: ["scoped"]
+      stateful: false
+      type: truthy
+      export: edge
+    swipeable:
+      arguments: ["scoped"]
+      stateful: false
+      type: truthy
+      export: edge
+    bottleable:
+      arguments: ["unscoped"]
+      stateful: false
+      type: truthy
+      export: target
+    once:
+      arguments: []
+      stateful: false
+      type: truthy
+      export: edge
+    version:
+      arguments: ["unscoped"]
+      stateful: false
+      type: truthy
+      export: target
+    stepOnLilypad:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: self-edge
+    stepOffLilypad:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
+    moveWithLilypad:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
+    notOnLilypad:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
+    spend60:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
+    spend20:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
   logic-sugar:
     entrance:
       type: multi

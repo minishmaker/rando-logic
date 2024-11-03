@@ -1,6 +1,266 @@
 area Crenel:
-  room Base
-  room BottomMid # Can just be "Mid" if TopMid gets a better name
-  room Climb
-  room Peak
-  room TopMid # Outside CoF and surrounding area, probably a better name
+  room Base:
+    node Center:
+      door WestCave
+      exit EastHillBombWall
+      exit FairyBombWall
+      exit WestHillBombWall
+      enemy CenterTektites
+      target EastClimbWall
+      bottleable Water
+    node EastClimbWall:
+      warp EastClimbWall
+    Center -> EastClimbWall: item GripRing
+    node CenterBombWalls:
+      set EastHillBombWallOpen
+      set FairyBombWallOpen
+      set WestHillBombWallOpen
+    node EastHillBombWall:
+      entrance EastHillBombWall
+    node FairyBombWall:
+      entrance FairyBombWall
+    node WestHillBombWall:
+      entrance WestHillBombWall
+    Center -> CenterBombWalls: ( item BombBag | hasExplosive )
+    Center -> EastHillBombWall: flag EastHillBombWallOpen
+    Center -> FairyBombWall: flag FairyBombWallOpen
+    Center -> WestHillBombWall: flag WestHillBombWallOpen
+    node EastHillTop:
+      door EastHillLadder
+    node EastHillTopBombBlock:
+      set BombBlockExploded
+    EastHillTopBombBlock <-> EastHillTop:( item BombBag | hasExplosive )
+    EastHillTop -> Center
+    node EastHillTopSwipeSouthEastRupee:
+      chest SouthEastRupee
+    EastHillTop -> EastHillTopSwipeSouthEastRupee: ( helper AnySword & swipeable SouthEastRupee )
+    node EastHillTopMinish:
+      door SpringMinishPath
+    EastHillTop -> EastHillTopMinish: ( item CanTurnMinish & flag BombBlockExploded )
+    EastHillTopMinish -> EastHillTop: ( item CanGrow & flag BombBlockExploded )
+    node NorthVine:
+      warp NorthVine
+    node NorthVineDown:
+      target NorthVine
+    node SouthEast:
+      chest SouthEastRupee
+      door East
+      exit SouthEastBombWall
+    node SouthEastVineWatered:
+      set SouthEastVineWatered
+    SouthEast <-> SouthEastVineWatered: item Water
+    SouthEast -> Center: flag SouthEastVineWatered
+    Center -> SouthEast
+    node SouthEastBombWall:
+      entrance SouthEastBombWall
+    SouthEast -> SouthEastBombWall: flag SouthEastBombWallOpen
+    SouthEast -> SouthEastBombWallOpen: ( item BombBag | hasExplosive )
+    node SouthEastBombWallOpen:
+      set SouthEastBombWallOpen
+    node West:
+      door LedgeCave
+      door NorthBridge
+      enemy WestEnemies
+    Center -> West: item Cape
+    West -> Center
+    node WestBridgeChestFusion:
+      chest WestBridgeChestFusion
+    West <-> WestBridgeChestFusion: fusion WestBridgeChest
+    node WestMinish:
+      door MinishPath
+    node WestMinishUpVines:
+      door MinishCave
+    WestMinish <-> WestMinishUpVines: noBean
+    node WestMinishPlantBean:
+      set CrenelGreenBeanIsPlanted
+    WestMinish -> WestMinishPlantBean: hasBean
+    node WestMinishHouseExit:
+      target MinishHouse
+    node WestMinishHouse:
+      warp MinishHouse
+    node WestBlowUpDust:
+      set WestMinishHouseRevealed
+      set WestPortalRevealed
+    West -> NorthVine: flag CrenelGreenBeanIsGrown
+    NorthVineDown -> West: flag CrenelGreenBeanIsGrown
+    West -> WestBlowUpDust: (item GustJar | item BombBag)
+    West -> WestMinish: ( flag WestPortalRevealed & item CanTurnMinish )
+    WestMinish -> West: ( flag WestPortalRevealed & item CanGrow )
+    WestMinish -> WestMinishHouse: flag WestMinishHouseRevealed
+    WestMinishHouseExit -> WestMinish: flag WestMinishHouseRevealed
+    node WestGrowBean:
+      set CrenelGreenBeanIsGrown
+    West -> WestGrowBean: ( flag CrenelGreenBeanIsPlanted & item MineralWater )
+    node SouthEast +: warp Virtual.Zeffa.FluteAway
+    node Center +: warp Virtual.Zeffa.FluteAway
+    node West +: warp Virtual.Zeffa.FluteAway
+    node EastHillTop +: warp Virtual.Zeffa.FluteAway
+  room Higher:
+    node CoFExterior:
+      door CoFEntrance
+      exit Crest
+      set Virtual.Zeffa.CrenelCrest
+    node CoFExteriorMinish:
+      door MelariMinishWest
+    node EastOfMine:
+      door CaveEntrance
+    node EastOfMineMinish:
+      door MelariMinishEast
+    EastOfMine -> EastOfMineMinish: item CanTurnMinish
+    EastOfMineMinish -> EastOfMine: item CanGrow
+    CoFExterior -> CoFExteriorMinish: item CanTurnMinish
+    CoFExteriorMinish -> CoFExterior: item CanGrow
+    node GraybladeExterior:
+      door Grayblade
+    node Main:
+      door LadderSouth
+      enemy MainEnemies
+      exit MainBombWall
+    Main -> CoFExterior: item Cane
+    CoFExterior -> Main
+    Main <-> GraybladeExterior: item GripRing
+    node MainClimbSouth:
+      door MainClimbSouth
+    Main <-> MainClimbSouth: item GripRing
+    node MainBombWall:
+      entrance MainBombWall
+    node MainBombWallOpen:
+      set MainBombWall
+    Main -> MainBombWallOpen: ( item BombBag | hasExplosive )
+    Main -> MainBombWall: flag MainBombWall
+    node MiddleMountainShelf:
+      door MiddleMountainShelfEast
+      door MiddleMountainShelfWest
+      enemy MiddleMountainShelfEnemies
+    node TopMountainShelf:
+      door TopMountainShelfEast
+      door TopMountainShelfWest
+      enemy TopMountainShelfEnemies
+    node CoFExterior +: entrance Virtual.Zeffa.FluteAway
+    node EastOfMine +: entrance Virtual.Zeffa.FluteAway
+    node GraybladeExterior +: entrance Virtual.Zeffa.FluteAway
+    node MiddleMountainShelf +: entrance Virtual.Zeffa.FluteAway
+    node TopMountainShelf +: entrance Virtual.Zeffa.FluteAway
+    node MainClimbSouth +: entrance Virtual.Zeffa.FluteAway
+    node Main +: entrance Virtual.Zeffa.FluteAway
+  room Middle:
+    node BridgeBombWall:
+      entrance BridgeBombWall
+    node FairyBombWall:
+      entrance FairyBombWall
+    node Main:
+      enemy BottomCenterEnemies
+      enemy NorthWestTektites
+      exit BridgeBombWall
+      exit FairyBombWall
+      door SouthVineEntrance
+      target NorthWestClimb
+    node MainBombWalls:
+      set BridgeBombWall
+      set FairyBombWall
+    Main -> MainBombWalls: ( item BombBag | hasExplosive )
+    Main -> BridgeBombWall: flag BrigeBombWall
+    Main -> FairyBombWall: flag FairyBombWall
+    node UpperEast:
+      target NorthEastClimb
+    node NorthEastClimb:
+      warp NorthEastClimb
+    Main -> UpperEast: ( item GripRing | ( item GustJar & trick LayerGustJar ) )
+    UpperEast -> UpperCenter
+    UpperEast -> NorthEastClimb: item GripRing
+    node NorthWestClimb:
+      warp NorthWestClimb
+    Main -> NorthWestClimb: item GripRing
+    node UpperWest:
+      door NorthLadder
+      enemy UpperEastTektites
+    node UpperCenter:
+      door CenterCave
+      enemy UpperEastTektites
+    UpperCenter -> Main
+    UpperWest -> Main
+    UpperWest <-> UpperCenter
+    node SouthClimb:
+      door SouthClimb
+    Main <-> SouthClimb: item GripRing
+    node SouthWest:
+      door BridgeSouth
+      exit SouthWestBombWall
+    node SouthWestBombWallOpen:
+      set SouthWestBombWall
+    node SouthWestBombWall:
+      entrance SouthWestBombWall
+    SouthWest -> SouthWestBombWallOpen: ( item BombBag | hasExplosive )
+    SouthWest -> SouthWestBombWall: flag SouthWestBombWall
+    node Main +: warp Virtual.Zeffa.FluteAway
+    node SouthClimb +: warp Virtual.Zeffa.FluteAway
+    node UpperWest +: warp Virtual.Zeffa.FluteAway
+    node UpperCenter +: warp Virtual.Zeffa.FluteAway
+    node UpperEast +: warp Virtual.Zeffa.FluteAway
+  room Climb:
+    node NorthEntrance:
+      entrance North
+    node North:
+      exit North
+    node MiddlePlatform
+    node MiddlePlatformChestFusion:
+      chest ChestFusion
+    node BombWallPlatform:
+      exit BombWall
+    node BombWallEntrance:
+      entrance BombWall
+    node BombWall:
+      set BombWall
+    node South:
+      door South
+    North -> MiddlePlatform
+    North -> NorthEntrance: item GripRing
+    MiddlePlatform -> BombWallPlatform
+    MiddlePlatform -> North: item GripRing
+    BombWallPlatform -> South
+    BombWallPlatform -> MiddlePlatform: item GripRing
+    South -> BombWallPlatform: item GripRing
+    MiddlePlatform -> MiddlePlatformChestFusion: fusion MiddlePlatformChest
+    BombWallPlatform -> BombWallEntrance: flag BombWall
+    BombWallPlatform -> BombWall: ( item BombBag | hasExplosive )
+    node DigCave:
+      door DigCave
+    node West:
+      door NorthWest
+      door HermitCave
+    West <-> DigCave: item MoleMitts
+    node South +: entrance Virtual.Zeffa.FluteAway
+    node West +: entrance Virtual.Zeffa.FluteAway
+    node North +: entrance Virtual.Zeffa.FluteAway
+    node MiddlePlatform +: entrance Virtual.Zeffa.FluteAway
+    node BombWallPlatform +: entrance Virtual.Zeffa.FluteAway
+  room Peak:
+    node EastPeakRight:
+      set SouthBoulderInHole
+      set NorthBoulderInHole
+    node EastPeakRightMinish:
+      door MinishPathEast
+    EastPeakRight -> EastPeakRightMinish: item CanTurnMinish
+    EastPeakRightMinish -> EastPeakRight: item CanGrow
+    node EastPeakLadder:
+      door EastPeakLadder
+    node EastPeakLeftMinish:
+      door MinishPathWest
+    node Main:
+      door Ladder
+      enemy PeakEnemies
+      exit Beanstalk
+    node MainBeanstalk:
+      entrance Beanstalk
+    node WestClimb:
+      door Climb
+    Main <-> WestClimb: item GripRing
+    Main -> EastPeakLeftMinish: item CanTurnMinish
+    EastPeakLeftMinish -> Main: item CanGrow
+    Main -> EastPeakLadder: flag NorthBoulderInHole
+    EastPeakLadder -> Main
+    Main <-> EastPeakRight: flag SouthBoulderInHole
+    Main -> MainBeanstalk: fusion CrenelBeanstalk
+    node EastPeakRight +: entrance Virtual.Zeffa.FluteAway
+    node EastPeakLadder +: entrance Virtual.Zeffa.FluteAway
+    node Main +: entrance Virtual.Zeffa.FluteAway

@@ -1,88 +1,104 @@
 area VeilFalls:
   room Main:
     node BottomWater:
-      target BottomWaterfallFusion
+      target BottomWaterFallFusion
     node BottomWaterfall:
       warp BottomWaterfallFusion
-    BottomWater -> BottomWaterfall: (flag VeilFallsBottomWaterfallFusion && item Flippers)
+    BottomWater -> BottomWaterFall: (fusion BottomWaterfall & item Flippers)
     node Bottom:
       chest BottomHP
       door SouthEast
       door SouthWest
+      enemy BottomLeeversAndOctoroks
     Bottom <-> BottomWater: item Flippers
-    Bottom <-> BottomEast: (item Cape | item Flippers)
+    Bottom <-> BottomEast: item Cape
+    BottomWater <-> BottomEast: item Flippers
     node BottomEast:
       chest Rupee1
       chest Rupee2
       chest Rupee3
-      enemy LikeLike20
-      exit BottomEastDigCave
+      enemy BottomEastLikeLike
     node BottomEastDigCave:
-      entrance BottomEastDigCave
+      door BottomEastDigCave # you don't need mole mitts to reenter as it destroys the wall if you leave
     BottomEast -> BottomEastDigCave: item MoleMitts
-    node MiddleMain:
-      door West
-      target BottomCaveLeft
-    node SourceOfTheFlowFusion:
-      set SourceOfTheFlowFusion
-    MiddleMain -> SourceOfTheFlowFusion:
-      item VeilFallsKinstone # todo: fusion should be a key-usage, not a check for if you have the item
-    node MiddleMainWallFusion:
-      warp BottomCaveLeft
-    MiddleMain <-> MiddleMainWallFusion: flag SourceOfTheFlowFusion
+    BottomEastDigCave -> BottomEast
+
     node MiddleRight:
       door BottomCaveMiddle
+      enemy BottomRightEnemies
     node MiddleRightDig:
       chest MiddleDigSpot
-    MiddleRight <-> MiddleRightDig: item MoleMitts
-    node MiddleHP:
-      chest MiddleHP
-    MiddleMain <-> MiddleHP: ((trick HPCapeJump && item Cape) | item Flippers)
-    node MiddleDigCaveFusion:
-      target MiddleDigDoor
-    node MiddleDigCaveFusionDoor:
-      warp MiddleDigCaveFusionDoor
-    MiddleDigCaveFusion -> MiddleDigCaveFusionDoor: item MoleMitts
-    MiddleHP <-> MiddleDigCaveFusion: (flag VeilFallsDigFusion && (item Cape || item Flippers))
-    MiddleMain -> MiddleDigCaveFusion: (flag VeilFallsDigFusion && (item Cape || item Flippers))
-    MiddleDigCaveFusion -> MiddleMain: (item Flippers || (flag VeilFallsDigFusion && item Cape)) # if you leave the cave without the fusion, you fall in the water
-    node MiddleChestLedge:
-      chest MiddleLedgeChest
-      door MiddleLedgeCave
+    MiddleRight -> MiddleRightDig: item MoleMitts
     node Crest:
-      entrance Crest
+      target Crest
       door TopCaveMiddle
+      enemy CrestEnemies
       set Virtual.Zeffa.VeilFallsCrest
     Crest <-> MiddleRight: item GripRing
     Crest -> TopWaterLand
-    node CrestDig:
+    node CrestDigSpot:
       chest CrestDig
-    Crest <-> CrestDig: item MoleMitts
+    Crest -> CrestDigSpot: item MoleMitts
     node CrestChest:
       chest CrestChestFusion
-    Crest <-> CrestChestFusion: flag VeilFallsCrestChestFusion
+    Crest -> CrestChestFusion: fusion CrestChest
     node TopWater:
-      exit TopWaterfallFusion
+      target TopWaterfallFusion
     node TopWaterfall:
-      entrance TopWaterfallFusion
-    TopWater -> TopWaterfall: (flag VeilFallsTopWaterfallFusion && item Flippers)
+      warp TopWaterfallFusion
+    TopWater -> TopWaterfall: ( fusion TopWaterfall & item Flippers )
     node TopWaterLand:
       door TopCaveBottom
     TopWaterLand <-> TopWater: item Flippers
-    node NorthPath:
-      door TopCaveRight
+
+    node MiddleMain:
+      door SouthWest
+      target BottomCaveLeft
+      lock SourceOfTheFlow
+    node MiddleMainWallFusion:
+      warp BottomCaveLeft
+    MiddleMain -> MiddleMainWallFusion: open SourceOfTheFlow
+
+    node MiddleWater
+    MiddleRight -> MiddleWater: item Flippers
+    node MiddleHP:
+      chest MiddleHP
+    MiddleMain <-> MiddleHP: (item Cape & trick HardCapeJump)
+    MiddleMain <-> MiddleWater: item Flippers
+    MiddleWater <-> MiddleHp: item Flippers
+    node MiddleDigCaveFusion
+    node MiddleDigCaveFusionWarp:
+      warp MiddleDigDoor
+    node MiddleDigCaveFusionTarget:
+      target MiddleDigDoor
+    MiddleDigCaveFusionTarget -> MiddleDigCaveFusion: fusion MiddleDigCave
+    MiddleDigCaveFusionTarget -> MiddleDigCaveFusionWarp: fusion MiddleDigCave
+    MiddleDigCaveFusion -> MiddleDigCaveFusionWarp: item MoleMitts
+    MiddleHP <-> MiddleDigCaveFusion: (fusion MiddleDigCave & item Cape)
+    MiddleMain <-> MiddleDigCaveFusion: (fusion MiddleDigCave & item Cape & trick EasyCapeJump)
+    MiddleWater -> MiddleDigCaveFusion: (fusion MiddleDigCave & item Flippers)
+    MiddleDigCaveFusionTarget -> MiddleWater: item Flippers
+
+    node MiddleChestLedge:
+      chest MiddleLedgeChest
+      door MiddleLedgeCave
+
     node TopCaveLedge:
       door TopCaveLadder
-      door TopCaveLeft
-    node North:
-      door North
-    NorthPath <-> North: item GripRing
-    node TopCaveLedge +: warp Virtual.Zeffa.FluteAway
-    node TopWaterLand +: warp Virtual.Zeffa.FluteAway
-    node NorthPath +: warp Virtual.Zeffa.FluteAway
-    node Crest +: warp Virtual.Zeffa.FluteAway
-    node Bottom +: warp Virtual.Zeffa.FluteAway
-    node BottomEast +: warp Virtual.Zeffa.FluteAway
-    node MiddleRight +: warp Virtual.Zeffa.FluteAway
-    node MiddleChestLedge +: warp Virtual.Zeffa.FluteAway
+      door TopCaveWest
 
+    node NorthPath:
+      door TopCaveEast
+      target North
+    node North:
+      warp North
+    NorthPath <-> North: item GripRing
+
+    node TopCaveLedge +: entrance Virtual.Zeffa.FluteAway
+    node TopWaterLand +: entrance Virtual.Zeffa.FluteAway
+    node NorthPath +: entrance Virtual.Zeffa.FluteAway
+    node Crest +: entrance Virtual.Zeffa.FluteAway
+    node Bottom +: entrance Virtual.Zeffa.FluteAwayv
+    node BottomEast +: entrance Virtual.Zeffa.FluteAway
+    node MiddleRight +: entrance Virtual.Zeffa.FluteAway
+    node MiddleChestLedge +: entrance Virtual.Zeffa.FluteAway

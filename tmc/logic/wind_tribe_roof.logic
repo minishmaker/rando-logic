@@ -1,2 +1,7 @@
 area WindTribeRoof:
-  room Main
+  room Main:
+    node Main:
+      door Stair
+      door Tornado
+    node FluteAway : exit Virtual.Zeffa.FluteAway
+    Main -> FluteAway: (version NA | version JP)

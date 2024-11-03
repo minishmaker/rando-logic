@@ -1,2 +1,8 @@
 area Vaati2:
-  room Main
+  room Main:
+    node Main:
+      target EnterFight
+      enemy Vaati
+    node PostFight:
+      warp PostFight
+    Main -> PostFight: defeat Vaati

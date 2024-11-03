@@ -1,2 +1,5 @@
 area HyruleCastlePreSanctuaryGarden:
-  room Main
+  room Main:
+    node Main:
+      door North
+      door South
