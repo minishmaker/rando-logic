@@ -1,20 +1,26 @@
 area DarkHyruleCastleOutside:
   room Altar:
     node Main:
-      target Entrance
-      warp Exit
+      door Stairs
+    node VaatiOneDone # yes, the Vaati fights don't happen in this room - but modeling it this way is easier, and for entrance rando we'll probably keep the vaati sequence normal at least for the start
+    node VaatiTwoDone
+    node VaatiThreeDone:
+      goal
+    Main -> VaatiOneDone: (item GustJar & item Sword)
+    VaatiOneDone -> VaatiTwoDone: ((item Bow | item LightArrows) & item Sword & (trick TASlash | (item RollAttack & trick RollAttackV2) | (item Cape & item DownThrust & trick DownThrustV2) | helper CanSplit2 | helper CanSplit3 | helper CanSplit4))
+    VaatiTwoDone -> VaatiThreeDone: (item FourSword & helper CanSplit4 & item Cane & (item Lantern | trick Lanternless) & helper CanTurnMinish & helper CanGrow)
   room EastEntry:
     node North:
-      door NorthWest
+      door WestNorth
       door North
     node South:
-      door SouthWest
+      door WestSouth
       door South
   room NorthEastTower:
     node Main:
       door South
       door North
-  room NorthwestTower:
+  room NorthWestTower:
     node Main:
       door Door
   room ShrineEntrance:
@@ -32,10 +38,13 @@ area DarkHyruleCastleOutside:
     node Center:
       door North
     node CenterBridgeSwitch:
-      set BridgeOn
-    Center <-> CenterBridgeSwitch
-    East <-> CenterBridgeSwitch: (item Boomerang | item Bow)
-    East <-> Center: flag BridgeOn
+      set Bridge
+    node WestBridgeSwitch:
+      set WestBridge
+    Center -> CenterBridgeSwitch: helper CanHitSwitch
+    Center -> WestBridgeSwitch: helper CanHitSwitch
+    East -> CenterBridgeSwitch: helper HasProjectileDamage
+    East <-> Center: flag Bridge
     node West:
       door NorthWest
       door West
