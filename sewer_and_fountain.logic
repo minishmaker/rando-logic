@@ -1,15 +1,18 @@
 area SewerAndFountain:
   room FountainBigChest:
+    node South:
+      door South
+    node West:
+      door West
     node Main:
       enemy Mulldozers
-      exit South
-      exit West
-    node PostFight:
+    node Chest:
       chest Chest
-      entrance South
-      entrance West
-    Main -> PostFight: defeat Mulldozers
-  room FountainEntrance:
+    Main -> Chest: defeat Mulldozers
+    Main <-> West: defeat Mulldozers
+    Main -> South: defeat Mulldozers
+    South -> Main
+  room FountainEntrance: #
     node Main:
       door North
       door South
@@ -17,7 +20,14 @@ area SewerAndFountain:
       enemy Sluggulas
     node HP:
       chest HP
+    node Water:
+      target WaterNorth
+    node WaterEntrance:
+      warp WaterNorth
     Main <-> HP: item Cape
+    Water -> WaterEntrance: item Flippers
+    Main <-> Water: item Flippers
+    Water <-> HP: (item Flippers & (version NA | version JP))
   room FountainPacciHole:
     node Main:
       door West
@@ -29,7 +39,7 @@ area SewerAndFountain:
   room FountainSmallChest:
     node Main:
       chest Chest
-      door Door
+      door East
   room FountainWaterfall:
     node Main:
       door South
@@ -37,71 +47,86 @@ area SewerAndFountain:
       door West
     node East:
       door East
-    East -> Main
-    Main <-> West: ( item Cape | item Flippers )
+    node Water:
+      target WaterSouth
+    node WaterEntrance:
+      warp WaterSouth
+    East -> Main: defeat FountainBigChest.Mulldozers
+    Main <-> West: item Cape
+    Main -> Water: item Flippers
+    Water <-> West: item Flippers
+    Water -> WaterEntrance: item Flippers
   room SewerBigChest:
     node Main:
-      exit South
+      door South
       enemy Enemies
     node Water:
       chest WaterRupee
-      door SouthWater
+      warp SouthWater
+    node WaterEntrance
+      target SouthWater
     node Chest:
       chest Chest
-    Main <-> Chest: defeat Enemies
-    Main <-> Water: item Flippers
+    Main -> Chest: defeat Enemies
+    Main -> Water: item Flippers
+    WaterEntrance -> Water: item Flippers
   room SewerCrossroads:
     node Main:
       door North
       door East
       enemy Sluggulas
     node Water:
-      exit WaterNorth
-      exit WaterEast
-      exit WaterWest
-      exit WaterSouth
+      target WaterNorth
+      target WaterEast
+      target WaterWest
+      target WaterSouth
     Water <-> Main: item Flippers
     node WaterEntrances:
-      entrance WaterNorth
-      entrance WaterEast
-      entrance WaterWest
-      entrance WaterSouth
+      warp WaterNorth
+      warp WaterEast
+      warp WaterWest
+      warp WaterSouth
     Water <-> WaterEntrances: item Flippers
   room SewerDropIn:
     node Main:
       door South
+      target DropIn
     node Water:
-      door South
+      target WaterSouth
+    node WaterEntrance:
+      warp WaterSouth
     Main -> Water: item Flippers
+    Water -> WaterEntrance: item Flippers
   room SewerEast:
     node East:
-      door East
+      door North
       enemy Sluggulas
     node West:
       door West
-    East -> West: item GustJar
-    West -> East: item Cape
+    East -> West: (item GustJar | item Cape)
+    West -> East
     node Water:
-      exit WaterNorth
-      exit WaterWest
+      target WaterNorth
+      target WaterWest
     East <-> Water: item Flippers
     West -> Water: item Flippers
     node WaterEntrances:
-      entrance WaterNorth
-      entrance WaterWest
+      warp WaterNorth
+      warp WaterWest
+    Water -> WaterEntrances: item Flippers
   room SewerEntrance:
     node Water:
-      exit WaterNorth
-      exit WaterSouth
+      target WaterNorth
+      target WaterSouth
     node WaterEntrances:
-      entrance WaterNorth
-      entrance WaterSouth
-    Water <-> WaterEntrances: item Flippers
+      warp WaterNorth
+      warp WaterSouth
+    Water -> WaterEntrances: item Flippers
   room SewerFrozenChest:
     node WaterEntry:
-      entrance Water
+      warp Water
     node WaterExit:
-      exit Water
+      target Water
     node MainChest:
       chest Chest
     WaterExit -> WaterEntry: item Flippers
