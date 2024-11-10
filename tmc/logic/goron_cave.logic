@@ -10,6 +10,6 @@ area GoronCave:
       chest SmallChest
     node SecondChest:
       chest BigChest
-    Main -> FirstChest: fourOfSix Goron1 Goron2 Goron3 Goron4 Goron5 Goron6
-    Main -> Fusion: ( fiveOfSix Goron1 Goron2 Goron3 Goron4 Goron5 Goron6 & postGameFusions )
+    Main -> FirstChest: fourGorons
+    Main -> Fusion: ( fiveGorons & postGameFusions )
     Main -> SecondChest: ( fusion Goron1 & fusion Goron2 & fusion Goron3 & fusion Goron4 & fusion Goron5 & fusion Goron6 )
