@@ -5,6 +5,7 @@ area LakeWoodsCave:
     node WestDigging:
       chest WestDigging
       enemy LikeLikes
+      npc Wall
     LadderArea <-> WestDigging: item MoleMitts
     node WestDigEntrance:
       door SouthWest
