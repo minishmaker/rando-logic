@@ -1,14 +1,13 @@
 area HyruleTownDigCave:
   room Main:
-    node LeftEntry:
-      exit Door
+    node East:
+      door South
     node Dig:
       chest Chest1
       chest Chest2
       chest Chest3
       enemy Beetles
-      entrance Door
-    node RightEntry:
+    node West:
       door Ladder
-    LeftEntry <-> Dig: item MoleMitts
-    RightEntry <-> Dig: item MoleMitts
+    East <-> Dig: item MoleMitts
+    West <-> Dig: item MoleMitts
