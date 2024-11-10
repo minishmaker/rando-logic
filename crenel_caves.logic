@@ -1,120 +1,134 @@
 area CrenelCaves:
   room BlocksChest:
     node Main:
-      door Staircase
-      door Doorway
+      door Stairs
+      door South
       enemy RedChus
-      chest BlocksChest
+      chest Chest
   room BlocksPuzzle:
-    node BlocksPuzzle:
+    node BlocksPuzzleNorth:
       door Ladder
-      door BlocksPuzzleDoor
       enemy Helmasaurs
+    node BlocksPuzzleSouth:
+      door SouthWest
+    BlocksPuzzleNorth -> BlocksPuzzleSouth
     node MushroomGapSouth:
-      door MushroomGapDoor
+      door SouthEast
       enemy Helmasaur
     node MushroomGapNorth:
-      door Staircase
+      door Stairs
       enemy Helmasaur
     MushroomGapNorth <-> MushroomGapSouth: (item GustJar | item Cape | item LightArrows | item Cane)
   room BlocksBomb:
     node PreBombBlocks:
-      door PreBombBlocks
+      door North
       enemy Chus
     node PostBombBlocks:
-      door PostBombBlocks
+      door South
       enemy SilverChu
     #These blocks respawn when leaving, and it seems to be impossible to go backwards through this room?
-    PreBombBlocks -> PostBombBlocks: item BombBag
-  room FloodBlock: #This is the room w/ 2 chests and a HP on the very left side of crenel right?
+    PreBombBlocks -> PostBombBlocks: ( item BombBag | hasExplosive )
+  room FloodBlock:
     node FloodBlockEntrance:
-      door FloodBlock
+      door South
     node FloodBlockChests:
       chest LeftFloodBlockChest
       chest RightFloodBlockChest
     #These are also respawning bomb-blocks
-    FloodBlockEntrance -> FloodBlockChests: (item BombBag | item Cape)
+    FloodBlockEntrance -> FloodBlockChests: (item BombBag | hasExplosive | item Cape)
     node FloodBlockHP:
       chest HearPiece
     #Should grabbing the HP from the water be in logic? Don't think it currently is
-    FloodBlockEntrance -> FloodBlockHP: (item BombBag | item Cape | item Flippers)
+    FloodBlockEntrance -> FloodBlockHP: ( item BombBag | hasExplosive | item Cape | ( item Flippers | trick GrabFromWater ))
   room FountHP:
     node Main:
-      door Doorway
+      door South
       chest HeartPiece
   room FountRupee:
     node Main:
-      door Doorway
-      chest LeftRupee
+      door South
+      chest WestRupee
       chest CenterRupee
-      chest RightRupee
+      chest EastRupee
   room GraybladeEntrance:
     node Main:
       door South
-      exit North
+      target North
     node Switches:
       flag Switches
     Main -> Switches: item CanSplit2
     node SwitchDoor:
-      entrance North
-    GraybladeEntrance -> SwitchDoor: flag Switches
+      warp North
+    Main -> SwitchDoor: flag Switches
   room Guru:
     node Main:
-      door Doorway
+      door South
+      npc Guru
   room HelmaHall:
     node Main:
-      door Staircase
-      door Doorway
+      door NorthStairs
+      door South
       enemy Helmasaurs
   room MushroomGap:
     node Main:
-      door Doorway
-      door Staircase
+      door South
+      door NorthStairs
       enemy LowerKeese
       enemy UpperKeese
   room RockPush:
     node Main:
-      door Doorway
-      door Staircase
+      door South
+      door NorthStairs
   room ScrubBomb:
-    node ScrubBomb:
-      door Doorway
+    node Main:
+      door South
+    node DefeatScrub:
+      set DekuScrub
+    Main -> DefeatScrub: ( item Shield | item MirrorShield )
     node DekuScrub:
-      flag DekuScrub
-    ScrubBomb -> DekuScrub: item Shield
+      npc DekuScrub
+    Main -> DekuScrub: flag DekuScrub
   room ScrubGrip:
-    node ScrubGrip:
-      door ScrubGrip
+    node Main:
+      door South
+    node DefeatScrub:
+      set DekuScrub
+    Main -> DefeatScrub: ( item Shield | item MirrorShield )
     node DekuScrub:
+      npc DekuScrub
+    node Buy:
       chest DekuScrub
-    ScrubGrip -> DekuScrub: item Shield
+    Main -> DekuScrub: flag DekuScrub
+    DekuScrub -> Buy: spend40
   room ScrubHint:
-    node ScrubHint:
-      door ScrubHint
+    node Main:
+      door South
+    node DefeatScrub:
+      set DekuScrub
+    Main -> DefeatScrub: ( item Shield | item MirrorShield )
     node DekuScrub:
-      flag DekuScrub
-    ScrubHint -> DekuScrub: item Shield
+      npc DekuScrub
+    ScrubHint -> DekuScrub: flag DekuScrub
   room SwitchBridge:
     node SwitchBridgeNorth:
-      door Staircase
-      enemy RedChus
+      door NorthStairs
+      enemy NorthChus
     node SwitchBridgeGap:
       flag Switch
-    SwitchBridgeNorth -> SwitchBridgeGap: (item Boomerang | item BombBag | item Bow | item CanUseSwordBeam | item CanUsePerilBeam)
+    SwitchBridgeNorth -> SwitchBridgeGap: ( helper HasProjectileDamage | item BombBag | hasExplosive )
     node SwitchBridgeSouth:
-      door Doorway
-      enemy RedChus
-    SwitchBridgeSouth -> SwitchBridgeGap: (item SmithSword | item Boomerang | item BombBag | item Bow)
-    SwitchBridgeNorth <-> SwitchBridgeSouth: (item Cape | flag Switch)
+      door South
+      enemy SouthChus
+    SwitchBridgeSouth -> SwitchBridgeGap: helper CanHitSwitch
+    SwitchBridgeNorth <-> SwitchBridgeSouth: ( item Cape | flag Switch )
   room PotCircle:
     node Main:
-      door Doorway
-      door Staircase
-      chest PotCircleChest
+      door South
+      door NorthStairs
+      chest Chest
       enemy RedChus
-  #This room was missing from the stub so I added it
   room PreMineralSpring:
     node Main:
-      door Doorway
+      door South
       door Ladder
       enemy RedChus
