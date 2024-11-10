@@ -1,3 +1,14 @@
 area CastorDarknutCave:
-  room Darknut
-  room Stairs
+  room Darknut:
+    node Main:
+      enemy Darknut
+      target South
+    node PostFight:
+      chest Chest
+      warp South
+    Main -> PostFight: defeat Darknut
+  room Stairs:
+    node Main:
+      door NorthEastStair
+      door NorthWest
+      enemy Ropes
