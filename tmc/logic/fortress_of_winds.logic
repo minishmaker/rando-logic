@@ -1,0 +1,334 @@
+area FortressOfWinds:
+  room F1BladeSpin:
+    node North:
+      door North
+      set DoorOpen
+    node South:
+      door South
+    North <-> South: flag DoorOpen
+  room F1CentralRoom:
+    node North:
+      chest Chest
+      lock EastDoor
+      lock WestDoor
+    node NorthEast:
+      door NorthEast
+    North <-> NorthEast: open EastDoor
+    node NorthWest:
+      door NorthWest
+    North <-> NorthWest: open WestDoor
+    node Main:
+      door Stair
+      door South
+      enemy Eyegores
+    North -> Main
+    Main -> North: ( item Bow | item LightArrows )
+    node East:
+      door East
+    node EastMinish:
+      door EastMinish
+    East -> North
+    node West:
+      door West
+    West -> North
+  room F1CloneButtons:
+    node Main:
+      door West
+      lock Door
+    node Key:
+      chest Key
+    node DropKey:
+      set KeyDropped
+    node South:
+      door South
+    Main <-> South: open Door
+    node MainMinish:
+      door WestMinish
+    node SouthMinish:
+      door SouthMinish
+    MainMinish <-> SouthMinish: open Door
+    Main -> DropKey: ( helper CanClone2 | ( helper CanClone3 & trick CloneSlide ))
+    Main -> Key: flag KeyDropped
+  room F1Darknut:
+    node East:
+      door East
+    node South:
+      door South
+    node Main:
+      enemy Darknut
+      target BlueWarp
+    node PostFight:
+      set GFCenterStairs.BlueWarp
+    node BlueWarp:
+      warp BlueWarp
+    Main -> PostFight: kill Darknut
+    Main -> BlueWarp: GFCenterStairs.BlueWarp
+    South -> Main
+    East -> Main
+    Main -> South: kill Darknut
+    Main -> East: kill Darknut
+  room F1DropIn:
+    node UpperMinish:
+      door NorthMinish
+      door WestNorthMinish
+    node LowerMinish:
+      door WestMinish
+    node Upper:
+      door North
+      door WestNorth
+    node Lower:
+      door West
+      door South
+    node East:
+      target RoofHoleEast
+      target RoofHoleWest
+      chest BigChest
+    East -> Lower
+  room F1EastMinishHole:
+    node Main:
+      door East
+      door EastNorth
+      door West
+    node UpperMinish:
+      door EastNorthMinish
+      door NorthMinish
+      door WestMinish
+    node LowerMinish:
+      door EastMinish
+    UpperMinish -> LowerMinish
+    LowerMinish -> Main: item CanGrow
+    Main -> LowerMinish: item CanTurnMinish
+  room F1EastStairs:
+    node Main:
+      door North
+      set DoorOpen
+      chest EastChest
+      chest WestChest
+      target South
+    node DropDown
+      target RoofHole
+      warp Hole
+    node DropDownMinish
+      target RoofMinishHole
+      warp MinishHole
+    node South:
+      warp South
+    Main -> South: flag DoorOpen
+    Main -> DropDown
+  room F1EyeBridge:
+    node East:
+      enemy Wallmaster
+      door East
+    node West:
+      door West
+    East <-> West: flag TargetsHit
+    node Targets:
+      set TargetsHit
+    East -> Targets: ( item Bow | item LightArrows )
+    West -> Targets: ( item Bow | item LightArrows )
+  room F1EyeDoor:
+    node Upper:
+      door EastNorth
+      door EastWest
+      target North
+    node North:
+      warp North
+    Upper -> North: flag BombedWall
+    node BombWall:
+      set BombedWall
+    Upper -> BombWall: ( item BombBag | hasExplosive )
+    node SouthWest:
+      door SouthWest
+    node South:
+      door South
+    South <-> SouthWest: flag TargetShot
+    node Target:
+      set TargetShot
+    South -> Target: ( item Bow | item LightArrow )
+  room F1MinishPortal:
+    node Main:
+      door East
+      door West
+      enemy Floormaster
+    node MainMinish:
+      door EastMinish
+      door WestMinish
+    Main -> MainMinish: ( kill WallMaster & item CanTurnMinish )
+    MainMinish -> Main: ( kill WallMaster & item CanGrow )
+  room F1Split:
+    node SouthEast:
+      door SouthEast
+    node East:
+      lock F1CentralRoom.EastDoor
+    node NorthEast:
+      door East
+    node NorthEastMinish:
+      door EastMinish
+    SouthEast <-> East: open F1CentralRoom.EastDoor
+    East -> NorthEast
+    node SouthWest:
+      door SouthWest
+    node West:
+      door West
+      lock F1CentralRoom.WestDoor
+    SouthWest <-> West: open F1CentralRoom.WestDoor
+  room F1West:
+    node Upper:
+      door North
+      door EastNorth
+    node East:
+      door EastSouth
+    node Main:
+      target South
+      enemy Enemies
+    node South:
+      warp South
+    Main -> South: kill Enemies
+    East -> Main
+    Main -> East: kill Enemies
+  room F1WestStairs:
+    node Main:
+      door North
+      door StairDown
+    node DropDown
+      target RoofHole
+      warp Hole
+    Main -> DropDown
+  room F2CenterKeyPull:
+    node Main:
+      warp Hole
+      door West
+    node MainEast:
+      set KeyDropped
+    Main <-> MainEast: ( item Cape | item CanSplit2 | ( trick CloneSlide & ( item CanSplit 3 | item CanSplit4 )))
+    node East:
+      door South
+      target RedWarp
+      set GFCenterStairs.RedWarp
+    node RedWarp:
+      warp RedWarp
+    East -> RedWarp: flag GFCenterStairs.RedWarp
+    node EastOpenBigDoor:
+      set BigDoor
+    node EastNorth:
+      door North
+    East -> EastOpenBigDoor: item FoWBigKey
+    EastNorth <-> East: flag BigDoor
+  room F2East:
+    node East:
+      door SouthEast
+      lock SouthEastDoor
+    node NorthEast:
+      warp EastEastHole
+      warp EastWestHole
+    East <-> NorthEast: open SouthEastDoor
+    node Main:
+      door SouthWest
+      warp WestHole
+    node MainMinish:
+      door Armos
+      warp MinishHole
+    node WestOpenDoor:
+      set WestDoor
+    Main -> WestOpenDoor: ( helper CanClone2 | helper CanClone3 | helper CanClone4 )
+    node NorthWest
+    node NorthWestMinish
+    Main <-> NorthWest: flag WestDoor
+    NorthWest -> NorthWestMinish: item CanTurnMinish
+    NorthWestMinish -> NorthWest: item CanGrow
+    NorthWestMinish <-> MainMinish: flag OpenDoor
+    node West
+    MainMinish -> West: item CanGrow
+    West -> MainMinish: item CanTurnMinish
+    node MainKeyDropped:
+      set KeyDropped
+    Main -> MainKeyDropped: flag ArmosInteriors.Armos9.Active
+    West -> Main
+  room F2EyegoreButtons:
+    node Main:
+      door South
+    node Chest:
+      chest Chest
+    node Fight:
+      enemy Eyegores
+    Main -> Chest: defeat Eyegores
+    Main -> Fight: ( helper CanClone2 | helper CanClone3 | helper CanClone4 )
+  room F2MazaalRoom:
+    node Main:
+      target South
+      target North
+      enemy Mazaal
+    node PostFight:
+      warp North
+      chest HP
+      warp South
+    Main -> PostFight: defeat Mazaal
+  room F2PreMazaal:
+    node Main:
+      door South
+      door North
+  room F2West:
+    node Main:
+      door South
+    node North:
+      door North
+    node East:
+      door East
+    Main <-> East: flag EastTargetsShot
+    Main <-> North: flag NorthTargetsShot
+    node Targets:
+      set EastTargetsShot
+      set NorthTargetsShot
+    Main -> Targets: ( item Bow | item LightArrows )
+  room GFCenterStairs:
+    node Main:
+      door North
+      door South
+      target RedWarp
+      target BlueWarp
+      target Wallmaster
+    node RedWarp:
+      warp RedWarp
+    node BlueWarp:
+      warp BlueWarp
+    Main -> RedWarp: flag RedWarp
+    Main -> BlueWarp: flag BlueWarp
+  room GFEastStairs:
+    node Main:
+      door North
+      door South
+      target DropDown
+    node MainMinish:
+      target DropDownMinish
+      door EastMinish
+    node Key:
+      chest Key
+    Main -> Key: F2East.KeyDropped
+  room GFMinishHP:
+    node Main:
+      chest Chest
+    node MainMinish:
+      door WestMinish
+    node South:
+      door South
+    Main -> South
+    Main -> MainMinish: item CanTurnMinish
+    MainMinish -> Main: item CanGrow
+  room GFWestStairs:
+    node Main:
+      door North
+      door South
+      target DropDown
+    node Key:
+      chest Key
+    Main -> Key: F2CenterKeyPull.KeyDropped
+  room GFWizrobes:
+    node Main:
+      enemy Wizrobes
+    node PostFight:
+      chest Chest
+    node South:
+      door South
+    South -> Main
+    Main -> South: kill Wizrobes
+    Main -> PostFight: kill Wizrobes

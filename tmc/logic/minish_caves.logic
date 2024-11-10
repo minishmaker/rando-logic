@@ -1,0 +1,76 @@
+area MinishCaves:
+  room CastorWaterEntry:
+    node Main
+    node Chest:
+      chest Chest
+    node North:
+      door North
+    Main <-> North: ( item Cape | item Flippers )
+    Main <-> Chest: ( item Cape | item Flippers )
+    node Entrance:
+      warp South
+    node Exit:
+      target South
+    Exit -> Main: item Flippers
+    Main -> Entrance: item Flippers
+  room CastorWaterTop:
+    node Main:
+      door South
+      chest HP
+      enemy Enemies
+  room CrenelVine:
+    node Main:
+      chest Chest
+      door South
+      enemy Pestos
+  room HyliaToLibrari:
+    node East:
+      door EastLadder
+    node West:
+      door WestLadder
+    East <-> West: ( item Cape | item Flippers )
+  room HyliaWater:
+    node Main:
+      chest Chest
+    node Enter:
+      target South
+    node Leave:
+      warp South
+    Enter -> Main: item Flippers
+    Main -> Leave: item Flippers
+  room SouthHyruleFieldWater:
+    node Main:
+      chest HP
+    node Enter:
+      target South
+    node Leave:
+      warp South
+    Enter -> Main: item Flippers
+    Main -> Leave: item Flippers
+  room WindRuinsVine:
+    node Main:
+      chest HP
+      door Door
+      enemy Enemies
+  room WoodsFlipper:
+    node West:
+      door SouthWest
+      chest WestChest
+      chest HP
+    node Middle:
+      door South
+      chest Middle
+    node East:
+      door SouthEast
+      chest East
+  room WoodsFromHyliaEntry:
+    node Main:
+      door South
+      door WestNorth
+    node Chest:
+      door WestSouth
+      chest Chest
+  room WoodsFromHyliaIce:
+    node Main:
+      door EastNorth
+      door EastSouth

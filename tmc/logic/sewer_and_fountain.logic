@@ -1,0 +1,133 @@
+area SewerAndFountain:
+  room FountainBigChest:
+    node South:
+      door South
+    node West:
+      door West
+    node Main:
+      enemy Mulldozers
+    node Chest:
+      chest Chest
+    Main -> Chest: defeat Mulldozers
+    Main <-> West: defeat Mulldozers
+    Main -> South: defeat Mulldozers
+    South -> Main
+  room FountainEntrance: #
+    node Main:
+      door North
+      door South
+      door East
+      enemy Sluggulas
+    node HP:
+      chest HP
+    node Water:
+      target WaterNorth
+    node WaterEntrance:
+      warp WaterNorth
+    Main <-> HP: item Cape
+    Water -> WaterEntrance: item Flippers
+    Main <-> Water: item Flippers
+    Water <-> HP: (item Flippers & (version NA | version JP))
+  room FountainPacciHole:
+    node Main:
+      door West
+      enemy Mulldozers
+    node North:
+      door North
+    North -> Main
+    Main -> North: item Cane
+  room FountainSmallChest:
+    node Main:
+      chest Chest
+      door East
+  room FountainWaterfall:
+    node Main:
+      door South
+    node West:
+      door West
+    node East:
+      door East
+    node Water:
+      target WaterSouth
+    node WaterEntrance:
+      warp WaterSouth
+    East -> Main: defeat FountainBigChest.Mulldozers
+    Main <-> West: item Cape
+    Main -> Water: item Flippers
+    Water <-> West: item Flippers
+    Water -> WaterEntrance: item Flippers
+  room SewerBigChest:
+    node Main:
+      door South
+      enemy Enemies
+    node Water:
+      chest WaterRupee
+      warp SouthWater
+    node WaterEntrance
+      target SouthWater
+    node Chest:
+      chest Chest
+    Main -> Chest: defeat Enemies
+    Main -> Water: item Flippers
+    WaterEntrance -> Water: item Flippers
+  room SewerCrossroads:
+    node Main:
+      door North
+      door East
+      enemy Sluggulas
+    node Water:
+      target WaterNorth
+      target WaterEast
+      target WaterWest
+      target WaterSouth
+    Water <-> Main: item Flippers
+    node WaterEntrances:
+      warp WaterNorth
+      warp WaterEast
+      warp WaterWest
+      warp WaterSouth
+    Water <-> WaterEntrances: item Flippers
+  room SewerDropIn:
+    node Main:
+      door South
+      target DropIn
+    node Water:
+      target WaterSouth
+    node WaterEntrance:
+      warp WaterSouth
+    Main -> Water: item Flippers
+    Water -> WaterEntrance: item Flippers
+  room SewerEast:
+    node East:
+      door North
+      enemy Sluggulas
+    node West:
+      door West
+    East -> West: (item GustJar | item Cape)
+    West -> East
+    node Water:
+      target WaterNorth
+      target WaterWest
+    East <-> Water: item Flippers
+    West -> Water: item Flippers
+    node WaterEntrances:
+      warp WaterNorth
+      warp WaterWest
+    Water -> WaterEntrances: item Flippers
+  room SewerEntrance:
+    node Water:
+      target WaterNorth
+      target WaterSouth
+    node WaterEntrances:
+      warp WaterNorth
+      warp WaterSouth
+    Water -> WaterEntrances: item Flippers
+  room SewerFrozenChest:
+    node WaterEntry:
+      warp Water
+    node WaterExit:
+      target Water
+    node MainChest:
+      chest Chest
+    WaterExit -> WaterEntry: item Flippers
+    WaterEntry -> MainChest: item Lantern

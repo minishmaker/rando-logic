@@ -1,0 +1,8 @@
+area Gyorg:
+  room Main:
+    node Main:
+      target EnterFight
+      enemy Gyorg
+    node PostFight:
+      warp PostFight
+    Main -> PostFight: defeat Gyorg
