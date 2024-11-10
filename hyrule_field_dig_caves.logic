@@ -5,20 +5,22 @@ area HyruleFieldDigCaves:
     node Dig:
       chest Rupee
       enemy LikeLikeAndBeetle
+      npc Wall
     Main <-> Dig: item MoleMitts
   room Trilby:
-    node LeftLadder:
+    node WestLadder:
       chest CenterChest
-      door LeftLadder
-    node LeftDoor:
-      door LeftDoor
-    LeftLadder <-> LeftDoor: item MoleMitts
-    node LeftChest:
-      chest LeftChest
-    LeftDoor <-> LeftChest: item MoleMitts
-    node RightLadder:
-      door RightLadder
-    node RightDoor:
-      chest RightChest
-      door RightDoor
-    RightLadder <-> RightDoor: item MoleMitts
+      door WestLadder
+    node WestDoor:
+      door SouthWest
+    WestLadder <-> WestDoor: item MoleMitts
+    node WestDigging:
+      chest WestChest
+      npc Wall
+    WestDoor <-> WestDigging: item MoleMitts
+    node EastLadder:
+      door EastLadder
+    node EastDoor:
+      chest EastChest
+      door EastDoor
+    EastLadder <-> EastDoor: item MoleMitts
