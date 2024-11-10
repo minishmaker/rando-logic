@@ -1,0 +1,11 @@
+area InsideMazaal:
+  room NotPhase1:
+    node Main:
+      door South
+    node Pillar:
+      enemy Pillar
+    Main -> Pillar: item MoleMitts
+  room Phase1:
+    node Main:
+      door South
+      enemy Pillar

@@ -1,0 +1,89 @@
+area MinishWoods:
+  room Main:
+    node FairyTree:
+      door WestNorthern # equivalent to MinishWoods.Main.WestNorthern
+      door FairyTree
+    node NorthEastMinish:
+     door NorthMinishCave
+    node NorthEastMinishWaterIn:
+      exit NorthEasternMinish
+    node NorthEastMinishWaterOut:
+      entrance NorthEasternMinish
+    NorthEastMinishWaterIn -> NorthEastMinish : item Flippers
+    NorthEastMinish -> NorthEastMinishWaterOut : item Flippers
+    node North:
+      chest NorthHP
+      door North
+      door Syrup
+      exit NorthDigging
+      enemy NorthOctorocs
+    node NorthDigging:
+      entrance NorthDigging
+    North -> NorthDigging: item MoleMitts
+    node NorthChestFusion:
+      chest NorthChest
+    North -> NorthChestFusion: flag NorthChestFusion
+    node NorthGoldenOctoFusion:
+      enemy GoldenOcto
+    North -> NorthGoldenOctoFusion: flag GoldenOctoFusion
+    node Main:
+      door West
+      door MainDigging
+      exit ScrubTree
+      enemy Main
+      chest MainHP
+    North <-> Main: (item Flippers | item Cape)
+    node MainWestChestFusion:
+      chest MainWestChest
+    Main -> MainWestChestFusion : flag MainWestChestFusion
+    node MainEastChestFusion:
+      chest MainEastChest
+    Main -> MainEastChestFusion : flag MainEastChestFusion
+    node MainSouthChestFusion:
+      chest MainSouthChest
+    Main -> MainSouthChestFusion : flag MainSouthChestFusion
+    node MainScrubTreeFusion:
+      entrance Scrubtree
+    Main -> MainScrubTreeFusion: flag ScrubTreeFusion
+    node MainMinish:
+      exit MinishHole
+      door MinishVillageSouth
+    Main -> MainMinish: item CanTurnMinish
+    MainMinish -> Main: item CanGrow
+    node MainMinishMinishHoleFusion:
+      entrance MinishHole
+    MainMinish -> MainMinishHoleFusion: flag MinishHoleFusion
+    node ByDeepwoodMinish:
+      door MinishVillageNorth
+      door Deepwood
+    MainMinish <-> ByDeepwoodMinish: item Flippers
+    node BelariMinish:
+      door MinishVillageWest
+    node SouthWaterCavesMinish:
+      door MinishWaterCavesEast
+      door MinishWaterCavesCenter
+      door MinishWaterCavesWest
+    SouthWaterCavesMinish <-> BelariMinish: item Flippers
+    node Belari:
+      exit Crest
+      set Virtual.Zeffa.MinishWoodsCrest
+    Belari -> BelariMinish: item CanTurnMinish
+    BelariMinish -> Belari: item CanGrow
+    node BelariChestFusion:
+      chest Belari
+    Belari -> BelariChestFusion: flag BelariChestFusion
+    node SouthWest:
+      door WestSouthern
+    Belari <-> SouthWest: (flag SouthWestBombRock1 | flag SouthWestBombRock2 | flag SouthWestBombRock3)
+    node SouthWestBombRocks:
+      set SouthWestBombRock1
+      set SouthWestBombRock2
+      set SouthWestBombRock3
+    SouthWest -> SouthWestBombRocks: item BombBag
+    Belari -> SouthWestBombRocks: item BombBag
+    node Main +: entrance Virtual.Zeffa.FluteAway
+    node North +: entrance Virtual.Zeffa.FluteAway
+    node Belari +: entrance Virtual.Zeffa.FluteAway
+    node SouthWest +: entrance Virtual.Zeffa.FluteAway
+    node FairyTree +: entrance Virtual.Zeffa.FluteAway
+

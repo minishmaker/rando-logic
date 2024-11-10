@@ -1,6 +1,0 @@
-area Crenel:
-  room Base
-  room BottomMid # Can just be "Mid" if TopMid gets a better name
-  room Climb
-  room Peak
-  room TopMid # Outside CoF and surrounding area, probably a better name
