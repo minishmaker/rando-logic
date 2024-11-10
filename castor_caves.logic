@@ -1,24 +1,27 @@
 area CastorCaves:
   room DarknutEntry:
     node Main:
-      door Door
+      door South
       door Stair
       enemy Ropes
   room DekuScrub:
-    node Left:
-      door Left
-    node Right:
+    node West:
+      door SouthWest
+    node Scrub:
+      npc Scrub
+    West -> Scrub: ( item Shield | item MirrorShield )
+    node East:
       chest Chest
-      door Right
+      door SouthEast
   room HeartPiece:
     node Main:
       chest HP
-      door Door  
+      door South
   room RuinsCave:
     node Main:
       chest Chest
-      door Door  
+      door South
   room SouthCave:
     node Main:
       chest Chest
-      door Door
+      door South
