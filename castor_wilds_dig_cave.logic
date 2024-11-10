@@ -1,9 +1,9 @@
 area CastorWildsDigCave:
   room Main:
     node Entrance:
-      door Door
+      door South
     node Main:
-      chest LeftChest
-      chest RightChest
+      chest EastChest
+      chest WestChest
       enemy LikeLike
     Entrance <-> Main: item MoleMitts
