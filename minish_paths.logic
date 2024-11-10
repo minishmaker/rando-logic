@@ -10,10 +10,14 @@ area MinishPaths:
       door North
     node South:
       door South
-    North <-> South: (item Flippers | item GustJar)
+    North <-> South: item GustJar
+    node Water:
+      warp South
+    North <-> Water: item Flippers
+    South -> Water: item Flippers
     node SouthFusionChest:
       chest FusionChest
-    South <-> SouthFusionChest: flag FusionChest
+    South -> SouthFusionChest: fusion Chest
   room LonLonRanch:
     node Main:
       chest HP
@@ -21,24 +25,24 @@ area MinishPaths:
       enemy PestoAndMoldWorm
     node MainFusionChest:
       chest FusionChest
-    Main <-> MainFusionChest: flag FusionChest
+    Main -> MainFusionChest: fusion Chest
   room MinishVillageWoods:
     node Main:
       door North
       door South
     node MainFusionChest:
       chest FusionChest
-    Main <-> MainFusionChest: flag FusionChest
+    Main -> MainFusionChest: fusion Chest
   room SchoolYard:
     node Main:
       door South
       enemy ScissorsBeetle
     node MainFusionChest:
       chest FusionChest
-    Main <-> MainFusionChest: flag FusionChest
+    Main -> MainFusionChest: fusion Chest
     node North:
       chest Left
       chest Middle
       chest Right
       chest HP
-    Main <-> North: item CanSplit4
+    Main -> North: helper CanSplit4
