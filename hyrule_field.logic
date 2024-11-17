@@ -4,481 +4,622 @@ area HyruleField:
       door West
       enemy WestAcroBandits
       door South
-      entrance Virtual.Zeffa.FluteAway
+      warp Virtual.Zeffa.FluteAway
+
     node WestFusionChest:
       chest WestFusionChest
+    West -> WestFusionChest: fusion Chest
+
     node GoldenRopeFusion:
       enemy GoldenRope
+    West -> GoldenRopeFusion: flag GoldenRopeFusion
+
     node East:
       door FarmersHouse
-      door SouthEast
+      door EastSouth
+      door North
       enemy EastAcroBanditsAndOctorocs
-      exit DiggingCaveExit
-      entrance Virtual.Zeffa.FluteAway
-    node WoodsFairyLedge:
-      door NorthEast
-      entrance Virtual.Zeffa.FluteAway
-    node FarmersDiggingCave:
-      entrance DiggingCaveEntrance
-    node BombableBlocks:
-      flag BombableBlocks
+      warp Virtual.Zeffa.FluteAway
 
-    West -> WestFusionChest: flag WestFusionChest
-    West -> GoldenRopeFusion: flag GoldenRopeFusion
-    West <-> East: flag BombableBlocks
-    West -> BombableBlocks: item BombBag
-    East -> BombableBlocks: item BombBag
-    East -> WoodsFairyLedge: item PacciCane
+    node EastFarmers:
+      npc Eenie
+      npc Meenie
+    East -> EastFarmers: flag WestWoodsNorth.VaatiTakeover
+
+    node WoodsFairyLedge:
+      door EastNorth
+      warp Virtual.Zeffa.FluteAway
     WoodsFairyLedge -> East
+    East -> WoodsFairyLedge: item Cane
+
+    node FarmersDiggingCave:
+      door DiggingCaveExit
+    FarmersDiggingCave -> East
     East -> FarmersDiggingCave: item MoleMitts
 
+    node BombableBlocks:
+      set BombableBlocks
+    West -> BombableBlocks: ( item BombBag | hasExplosive )
+    East -> BombableBlocks: ( item BombBag | hasExplosive )
+    West <-> East: ( flag BombableBlockOne | ( flag BombableBlockTwo & flag BombableBlockThree ) | flag BombableBlockFour )
 
   room EastHillsMid:
-
     node Main:
       door North
       enemy PeahatsAndSpinyBeetles
       door SouthEast
       door SouthWest
-      entrance Virtual.Zeffa.FluteAway
-      exit CaveExit
-    node Beanstalk:
-      door Beanstalk
-      entrance Virtual.Zeffa.FluteAway
+      warp Virtual.Zeffa.FluteAway
+      target CaveExit
     node CaveEntrance:
-      entrance CaveEntrance
+      warp CaveEntrance
     node BombableCave:
-      flag BombableCave
-
-    Main <-> Beanstalk: flag Beanstalk
-    Main -> BombableCave: item BombBag
+      set BombableCave
+    Main -> BombableCave: ( item BombBag | hasExplosive )
     Main -> CaveEntrance: flag BombableCave
 
+    node Beanstalk:
+      warp Beanstalk
+    node BeanstalkDown:
+      target Beanstalk
+    Main <-> Beanstalk: fusion Beanstalk
+    BeanstalkDown -> Beanstalk: fusion Beanstalk
 
   room EastHillsSouth:
-
     node NorthWest:
       door NorthWest
-      entrance Virtual.Zeffa.FluteAway
+      warp Virtual.Zeffa.FluteAway
     node West:
-      entrance Virtual.Zeffa.FluteAway
-    node MinishHouse:
+      warp Virtual.Zeffa.FluteAway
+
+    node BombableBlocks:
+      set BombableBlockOne
+      set BombableBlockTwo
+    NorthWest <-> West: ( flag BombableBlockOne | flag BombableBlockTwo )
+    NorthWest -> BombableBlocks: item BombBag
+    West -> BombableBlocks: item BombBag
+
+    node WestMinish:
       door MinishHouse
-      entrance Virtual.Zeffa.FluteAway
+    West -> MinishHouse: helper CanTurnMinish
+    MinishHouse -> West: helper CanGrow
+
     node East:
       door NorthEast
       door East
       enemy SpinyBeetles
-      entrance Virtual.Zeffa.FluteAway
-    node BombableBlocks:
-      flag BombableBlocks
-
-    NorthWest <-> West: flag BombableBlocks
-    NorthWest -> BombableBlocks: item BombBag
-    West -> BombableBlocks: item BombBag
-    # Can be used to check for Ezlo
-    West -> MinishHouse: item CanTurnMinish
-    MinishHouse -> West: item CanGrow
+      warp Virtual.Zeffa.FluteAway
     East <-> West
 
-
   room LonLon:
-
-    node VeilFallsEast:
-      door VeilFallsEast
-      entrance Virtual.Zeffa.FluteAway
-    node VeilFallsWest:
-      door VeilFallsWest
-      entrance Virtual.Zeffa.FluteAway
-    node VeilFallsFusionChest:
-      chest VeilFallsFusionChest
     node West:
-      door NorthWest
+      door WestNorth
       enemy AcroBanditsAndOctorocs
       door South
-      exit LeftRanchDoorExit
-      entrance Virtual.Zeffa.FluteAway
+      target LeftRanchDoorExit
+      warp Virtual.Zeffa.FluteAway
+
+    node WestMinish:
+      target MinishLeftRanchDoor
+    West -> WestMinish: item CanTurnMinish
+    WestMinish -> West: item CanGrow
+
+    node MinishEastRanchDoor:
+      warp MinishEastRanchDoor
+    WestMinish -> MinishLeftRanchDoor: ( ool | flag TownMinishHouses.Rem.FetchQuestStarted ) # ool since she doesn't start to stand there until earth element
+    node Malon:
+      npc Malon
+    West -> Malon: ool # malon leaves
+
+    node WestRanchDoorEntrance:
+      warp WestRanchDoorEntrance
+      warp Virtual.Zeffa.FluteAway
+    node OpenWestRanchDoor:
+      set OpenWestRanchDoor
+    West -> WestRanchDoorEntrance: flag OpenWestRanchDoor
+    node Talon:
+      npc Talon
+    Talon -> OpenWestRanchDoor: item LonLonKey
+    West -> Talon: flag TownMinishHouses.Rem.FetchQuestStarted
+
+    node VeilFallsEast:
+      door NorthEast
+      warp Virtual.Zeffa.FluteAway
+    node VeilFallsFusionChest:
+      chest VeilFallsFusionChest
+    VeilFallsEast -> VeilFallsFusionChest: fusion VeilFallsChest
+
+    node VeilFallsWest:
+      door NorthWest
+      warp Virtual.Zeffa.FluteAway
+    West -> VeilFallsWest: item Cane
+    VeilFallsWest -> West
+
     node TownAccess:
-      door SouthWest
-      entrance Virtual.Zeffa.FluteAway
-    node LeftRanchDoorEntrance:
-      entrance LeftRanchDoorEntrance
-      entrance Virtual.Zeffa.FluteAway
-    node OpenLeftRanchDoor:
-      flag OpenLeftRanchDoor
-    node MinishLeftRanchDoor:
-      door MinishLeftRanchDoor
+      door WestSouth
+      warp Virtual.Zeffa.FluteAway
+    node TownAccessBombRocks:
+      set BombableBlockOne
+      set BombableBlockTwo
+      set BombableBlockThree
+      set BombableBlockFour
+    West -> TownAccessBombRocks: ( item BombBag | hasExplosive )
+    TownAccess -> TownAccessBombRocks: ( item BombBag | hasExplosive )
+    West <-> TownAccess: ( flag BombableBlockOne | flag BombableBlockTwo | flag BombableBlockThree | flag BombableBlockFour )
+
     node GoronCave:
-      flag GoronCaveBoulder
+      set GoronCaveBoulder
       door GoronCave
-      entrance Virtual.Zeffa.FluteAway
+      warp Virtual.Zeffa.FluteAway
+    West -> GoronCave: ( flag GoronCaveBoulder | item Cape)
+    GoronCave -> West: flag GoronCaveBoulder
+    node Goron:
+      npc Goron
+    GoronCave -> Goron: ool
+
     node SouthEast:
-      door SouthEast
-      flag SouthEastBoulder
-      entrance Virtual.Zeffa.FluteAway
-    node MiddleEast:
-      door MiddleEast
-      entrance Virtual.Zeffa.FluteAway
+      door EastSouth
+      set SouthEastBoulder
+      warp Virtual.Zeffa.FluteAway
+    West -> SouthEast: ( flag SouthEastBoulder | item Cape )
+    SouthEast -> West
+    SouthEast -> GoronCave
+
     node Center:
       door RightFarmDoor
       door Cave
-      door NorthEast
-      flag NorthBoulder
+      door EastNorth
+      set NorthBoulder
       enemy Octorocs
-      exit PondFusionExit
-      entrance Virtual.Zeffa.FluteAway
+      target PondFusionExit
+      warp Virtual.Zeffa.FluteAway
+    West <-> Center: flag NorthBoulder
+
+    node CenterLedge:
+      door Ladder
+    CenterLedge -> Center
+    node Ankle:
+      npc Ankle
+    CenterLedge -> Ankle: ( flag WestWoodsNorth.VaatiTakeover & flag South.TalkedToTingle )
+
     node MinishCenter:
       door MinishPath
       door MinishRightRanchDoor
-    node PondFusionEntrance:
-      entrance PondFusionEntrance
-      entrance Virtual.Zeffa.FluteAway
-    node NorthLedge:
-      entrance Virtual.Zeffa.FluteAway
-    node MinishCrack:
-      door MinishCrack
-    #Tag this as obsucre
-    node CenterLedge:
-      chest ObscureDiggingSpot
-    node NorthFreestanding:
-      chest Freestanding
-      exit NorthDiggingCaveExit
-      entrance Virtual.Zeffa.FluteAway
-    node NorthDiggingCaveEntrance:
-      entrance NorthDiggingCaveEntrance
-      entrance Virtual.Zeffa.FluteAway
+    node TreePortal:
+      set TreePortal
+    Center -> TreePortal: item PegasusBoots
+    Center -> MinishCenter: ( helper CanTurnMinish & flag TreePortal )
+    MinishCenter -> Center: item CanGrow
 
-    VeilFallsEast -> VeilFallsFusionChest: flag VeilFallsFusionChest
-    West <-> TownAccess: item BombBag
-    West -> VeilFallsWest: item PacciCane
-    VeilFallsWest -> West
-    West -> OpenLeftRanchDoor: item LonLonKey
-    West -> LeftRanchDoorEntrance: flag OpenLeftRanchDoor
-    West -> MinishLeftRanchDoor: item CanTurnMinish
-    MinishLeftRanchDoor -> West: item CanGrow
-    # Not checking if we have ezlo to get into the tornados bc it works without him
-    West -> GoronCave: (flag GoronCaveBoulder | item RocsCape)
-    GoronCave -> West
-    West -> SouthEast: (flag SouthEastBoulder | item RocsCape)
-    SouthEast -> West
-    SouthEast -> GoronCave
-    Center -> West
-    West -> Center: (flag NorthBoulder)
+    node PondFusionEntrance:
+      warp PondFusionEntrance
+    Center -> PondFusionEntrance: fusion Pond
+
+    node MiddleEast:
+      door EastMiddle
+      warp Virtual.Zeffa.FluteAway
     Center -> MiddleEast: (item RocsCape | item Flippers)
-    MiddleEast -> Center: (item RocsCape)
-    Center -> MinishCenter: (item PegasusBoots | item CanTurnMinish)
-    MinishCenter -> Center: (item CanGrow)
-    Center -> PondFusionEntrance: (flag PondFusion)
-    Center -> NorthLedge: (item RocsCape | item PacciCane )
+    MiddleEast -> Center: item RocsCape
+
+    node NorthLedge:
+      warp Virtual.Zeffa.FluteAway
     NorthLedge -> Center
     NorthLedge -> MiddleEast
-    NorthLedge -> MinishCrack: item CanTurnMinish
-    MinishCrack -> NorthLedge: item CanGrow
-    NorthLedge -> CenterLedge: item MoleMitts
-    NorthFreestanding -> NorthDiggingCaveEntrance: item MoleMitts
-    CenterLedge -> Center
+    Center -> NorthLedge: ( item Cape | item Cane )
 
+    node CenterLedgeDigSpot:
+      chest DiggingSpot
+    NorthLedge -> CenterLedgeDigSpot: item MoleMitts
+
+    node NorthLedgeMinish:
+      door MinishCrack
+    NorthLedge -> NorthLedgeMinish: helper CanTurnMinish
+    NorthLedgeMinish -> NorthLedge: helper CanGrow
+
+    node NorthDiggingCaveEntrance:
+      chest Freestanding
+      door NorthDiggingCaveEntrance
+      warp Virtual.Zeffa.FluteAway
 
   room North:
-
     node Main:
       door South
       door North
       enemy OctorcsAndCrows
-      exit NWTingleTreeExit
-      exit NETingleTreeExit
-      exit SWTingleTreeExit
-      exit SETingleTreeExit
-      exit CenterTingleTreeExit
-      exit FairyFountainExit
-      entrance Virtual.Zeffa.FluteAway
+      target NWTingleTree
+      target NETingleTree
+      target SWTingleTree
+      target SETingleTree
+      target CenterTingleTree
+      target FairyFountain
+      warp Virtual.Zeffa.FluteAway
     node NWTingleTreeEntrance:
-      entrance NWTingleTreeEntrance
+      warp NWTingleTree
     node NETingleTreeEntrance:
-      entrance NETingleTreeEntrance
+      warp NETingleTree
     node SWTingleTreeEntrance:
-      entrance SWTingleTreeEntrance
-    node SETingleTreeEntrance:
-      entrance SETingleTreeEntrance
-    node CenterTingleTreeEntrance:
-      entrance CenterTingleTreeEntrance
+      warp SWTingleTree
+    node SETingleTree:
+      warp SETingleTree
+    node CenterTingleTree:
+      warp CenterTingleTree
     node FairyFountainEntrance:
-      entrance FairyFountainExit
-    node RightBombableRocks:
-      flag RightBombableRocks
+      warp FairyFountain
+    Main -> NWTingleTreeEntrance: fusion NWTingleTree
+    Main -> NETingleTreeEntrance: fusion NETingleTree
+    Main -> SWTingleTreeEntrance: fusion SWTingleTree
+    Main -> SETingleTreeEntrance: fusion SETingleTree
+    Main -> CenterTingleTreeEntrance: flag Caves.MagicBoomerang.AllTorches
+    Main -> FairyFountainEntrance: fusion FairyFountain
+
+    node EastBombableRocks:
+      set EastBombableRockOne
+      set EastBombableRockTwo
     node NorthEast:
       door NorthEast
-      entrance Virtual.Zeffa.FluteAway
+      warp Virtual.Zeffa.FluteAway
+    Main -> RightBombableRocks: ( item BombBag | hasExplosive)
+    NorthEast -> RightBombableRocks: ( item BombBag | hasExplosive )
+    Main <-> NorthEast: flag RightBombableRocks
+
+    node MainMinish
+    MainMinish -> Main: helper CanGrow
+    Main -> MainMinish: ( helper CanTurnMinish & flag TreePortal )
+    node TreePortal:
+      set TreePortal
+    Main -> TreePortal: item PegasusBoots
+    node MinishCrackBoulder:
+      set MinishCrackBoulder
+    Main -> MinishCrackBoulder: (helper AnySword | item FlameLantern | item LightArrows | item BombBag | hasExplosive | item GustJar)
+    node MinishCrack:
+      warp MinishCrack
+    node MinishCrackExit:
+      target MinishCrack
+    MainMinish -> MinishCrack: flag MinishCrackBoulder
+    MinishCrackExit -> MainMinish: flag MinishCrackBoulder
+
     node WaterFallExit:
-      door WaterFallExit
-      entrance Virtual.Zeffa.FluteAway
+      target WaterFall
+    node WaterFall:
+      warp WaterFall
+    WestWater -> WaterFall: (fusion WaterFall & item Flippers)
+    Main -> WaterFall: (fusion WaterFall & item Cape)
+    SouthWest -> WaterFall: (fusion WaterFall & item Cape)
+
+    WestWater <-> SouthWestWater: ool # if you don't spawn the bridge you can swim between them
+
     node SouthWest:
-      door SouthWest
+      door WestSouth
       enemy Keaton
-      entrance Virtual.Zeffa.FluteAway
+      warp Virtual.Zeffa.FluteAway
+    Main <-> SouthWest: (flag Bridge | item RocsCape)
+    Main -> SouthWestWater: item Flippers
+    SouthWest <-> SouthWestWater: item Flippers
+    SouthWest -> WestWater: item Flippers
+
     node SouthCave:
       door SouthCave
       entrance Virtual.Zeffa.FluteAway
-    node LeftBombableBlocks:
-      flag LeftBombableBlocks
-    node NorthCave:
-      door NorthLadder
-      door MiddleCave
-      entrance Virtual.Zeffa.FluteAway
-    node NorthWestWater:
-      door NorthWestWater
-      entrance Virtual.Zeffa.FluteAway
-    node NorthWestGraveyard:
-      door NorthWestGraveyard
-      entrance Virtual.Zeffa.FluteAway
-      ennemy GraveyardOctorocs
+    WestWater <-> SouthCave: item Flippers
+    SouthCave <-> SouthWest: item Cape
+
+    node WestLedge
+    node BridgeSwitch:
+      set Bridge
+    WestLedge -> BridgeSwitch: helper AnySword
+    WestLedge -> SouthWest
+    SouthWest -> WestLedge: item Cane
+
+    node NorthWest:
+      door WestNorth
+      door WestLadder
+      warp Virtual.Zeffa.FluteAway
+      enemy GraveyardOctorocs
+    NorthWest -> WestLedge
+    NorthWest -> NorthWater: item Flippers
+
     node NorthWestChestFusion:
       chest NorthWestChestFusion
-    node MinishCrackBoulder:
-      flag MinishCrackBoulder
-    node MinishCrack:
-      door MinishCrack
-    #Tag this as obsucre
-    node ObscureSpot:
-      chest ObscureDigRupee
+    NorthWest -> NorthWestChestFusion: fusion Chest
 
-    Main -> NWTingleTreeEntrance: flag NWTingleTree
-    Main -> NETingleTreeEntrance: flag NETingleTree
-    Main -> SWTingleTreeEntrance: flag SWTingleTree
-    Main -> SETingleTreeEntrance: flag SETingleTree
-    Main -> CenterTingleTreeEntrance: flag CenterTingleTree
-    Main -> FairyFountainEntrance: flag FairyFountain
-    Main -> RightBombableRocks: item BombBag
-    NorthEast -> RightBombableRocks: item BombBag
-    Main <-> NorthEast: flag RightBombableRocks
-    Main -> WaterFallExit: (flag WaterFallFusion | (item Flippers | item RocsCape ))
-    Main -> SouthWest: (item Flippers | item RocsCape)
-    # No flag for the bridge bc it resets in rando
-    SouthWest -> Main: (item Flippers | item RocsCape | (item PacciCane & item SmithSword))
-    SouthWest -> WaterFallExit: (flag WaterFallFusion | (item Flippers | item RocsCape ))
-    WaterFallExit -> SouthWest: item Flippers
-    WaterFallExit -> SouthCave: item Flippers
-    # Possible with cape only, but a bit hard
-    SouthCave -> WaterFallExit: (item Flippers | item RocsCape)
-    Main -> LeftBombableBlocks: item BombBag
-    NorthCave -> LeftBombableBlocks: item BombBag
-    Main <-> NorthCave: (flag LeftBombableBlocks)
-    NorthCave <-> NorthEast: item Flippers
-    NorthWestGraveyard -> SouthWest
-    NorthWestGraveyard -> NorthWestChestFusion: (flag NorthWestChestFusion)
-    # With Entrando you could access the lever (and the bridge that way)
-    NorthWestGraveyard -> Main: item SmithSword
-    Main -> MinishCrackBoulder: (item SmithSword | item FlameLantern | item LightArrows | item BombBag | item GustJar)
-    # Need to have removed the boulder to entrance the cave
-    Main -> MinishCrack: (flag MinishCrackBoulder & item CanTurnMinish & item PegasusBoots)
-    MinishCrack -> Main: (flag MinishCrackBoulder & item CanGrow)
-    Main -> ObscureSpot: item MoleMitts
+    node NorthCave:
+      door WestCaveEastLadder
+      door MiddleCave
+      warp Virtual.Zeffa.FluteAway
+    node WestBombableBlock:
+      set WestBombableBlock
+    NorthCave -> WestBombableBlock: ( item BombBag | hasExplosive)
+    Main -> WestBombableBlock: ( item BombBag | hasExplosive)
+    NorthCave <-> Main: flag WestBombableBlock
 
+    node NorthWestWater:
+      target MoatEast
+      target MoatWest
+    node Moat:
+      warp MoatEast
+      warp MoatWest
+    NorthWestWater -> Moat: item Flippers
+    NorthWestWater <-> NorthCave: item Flippers
+
+    node DigSpot:
+      chest DigRupee
+    Main -> DigSpot: item MoleMitts
 
   room South:
-
     node Main:
       door North
-      enemy MainOctorocs
       door LinksHouse
-      exit FairyFountainExit
-      entrance Virtual.Zeffa.FluteAway
-    node WindTribeWarpFusion:
-      door WindTribeWarpFusion
+      enemy MainOctorocs
+      target FairyFountainExit
+      target WindTribeWarpFusion
+      warp Virtual.Zeffa.FluteAway
+
     node FairyFountainEntrance:
-      entrance FairyFountainEntrance
+      warp FairyFountainEntrance
     node FairyFountainBombableWall:
-      flag FairyFountainBombableWall
+      set FairyFountainBombableWall
+    Main -> FairyFountainBombableWall: ( item BombBag | hasExplosive )
+    Main -> FairyFountainEntrance: flag FairyFountainBombableWall
+
+    node WindTribeWarpFusion:
+      warp WindTribeWarpFusion
+    Main -> WindTribeWarpFusion: fusion WindTribeWarp
+
     node NorthWest:
       door West
       enemy NorthWestOctorocs
-      exit RupeePondFusionExit
-      entrance Virtual.Zeffa.FluteAway
+      target RupeePondFusionExit
+      warp Virtual.Zeffa.FluteAway
+    node NorthWestTrees:
+      set NorthWestTreeOne
+      set NorthWestTreeTwo
+      set NorthWestTreeThree
+    Main <-> NorthWest: (flag NorthWestTreeOne | flag NorthWestTreeTwo | flag NorthWestTreeThree | item Cape)
+    Main -> NorthWestTrees: ( helper AnySword | item FlameLantern | item BombBag | item LightArrows | hasExplosive )
+    NorthWest -> NorthWestTrees: ( helper AnySword | item FlameLantern | item BombBag | item LightArrows | hasExplosive )
+    Main <-> Water: item Flippers
+    NorthWest <-> Water: item Flippers
+
     node RupeePondFusionEntrance:
-      entrance RupeePondFusionEntrance
+      warp RupeePondFusionEntrance
+    Main -> RupeePondFusionEntrance: fusion RupeePond
+
     node East:
       door East
       enemy EastOctorocs
-      exit EastTreeFusionExit
-      entrance Virtual.Zeffa.FluteAway
-      exit Crest
-      flag Virtual.Zeffa.SouthernHyruleFieldCrest
-    # Splitting this for vanilla fusions
+      target EastTreeFusionExit
+      warp Virtual.Zeffa.FluteAway
+      target Crest
+      set Virtual.Zeffa.SouthernHyruleFieldCrest
+    node EastTrees:
+      set NorthEastTreeOne
+      set NorthEastTreeTwo
+      set NorthEastTreeThree
+      set NorthEastTreeFour
+      set SouthEastTreeOne
+      set SouthEastTreeTwo
+      set SouthEastTreeThree
+    Main -> EastTrees: ( helper AnySword | item FlameLantern | item BombBag | item LightArrows | hasExplosive )
+    East -> EastTrees: ( helper AnySword | item FlameLantern | item BombBag | item LightArrows | hasExplosive )
+    Main <-> East: ( flag NorthEastTreeOne | flag NorthEastTreeTwo | ( flag NorthEastTreeThree & flag NorthEastTreeFour ) | flag SouthEastTreeOne | flag SouthEastTreeTwo | flag SouthEastTreeThree )
+
     node TingleLedge:
-      entrance Virtual.Zeffa.FluteAway
+      warp Virtual.Zeffa.FluteAway
     node Tingle:
+      npc Tingle
+      set TalkedToTingle
+    node TingleReward:
       chest Tingle
+    TingleLedge -> East
+    East -> TingleLedge: item Cane
+    TingleLedge -> Tingle: flag WestWoodsNorth.VaatiTakeover
+    Tingle -> TingleReward: helper AllFusions
+
     node EastTreeFusionEntrance:
-      entrance EastTreeFusionEntrance
+      warp EastTreeFusionEntrance
+    East -> EastTreeFusionEntrance: fusion EastTree
+
     node EastChestFusion:
      chest EastChestFusion
+    East -> EastChestFusion: fusion EastChest
+
     node SouthWest:
       enemy SouthWestOctorocs
-      entrance Virtual.Zeffa.FluteAway
+      warp Virtual.Zeffa.FluteAway
+    node SouthWestTrees:
+      set SouthWestTreeOne
+      set SouthWestTreeTwo
+      set SouthWestTreeThree
+    Main -> SouthWestTrees: (helper AnySword | item FlameLantern | item BombBag | item LightArrows | hasExplosive)
+    SouthWest -> SouthWestTrees: (helper AnySword | item FlameLantern | item BombBag | item LightArrows | hasExplosive)
+    Main <-> SouthWest: ( flag SouthWestTreeOne | flag SouthWestTreeTwo | flag SouthWestTreeThree )
+    SouthWest -> Water: item Flippers
+
+    node PortalTree:
+      set PortalTree
+    SouthWest -> PortalTree: item PegasusBoots
     node SouthWestMinish:
       door MinishHouse
+    SouthWest -> SouthWestMinish: (helper CanTurnMinish & flag PortalTree)
+    SouthWestMinish -> SouthWest: helper CanGrow
+
+    node MinishWater:
+      target MinishWaterHole
+    SouthWestMinish <-> MinishWater: item Flippers
     node MinishWaterHole:
-      door MinishWaterHole
-
-    Main <-> WindTribeWarpFusion: flag WindTribeWarpFusion
-    Main -> FairyFountainBombableWall: item BombBag
-    Main -> FairyFountainEntrance: flag FairyFountainBombableWall
-    Main <-> NorthWest: (item SmithSword | item FlameLantern | item BombBag | item LightArrows | item Flippers | item RocsCape)
-    Main -> RupeePondFusionEntrance: (flag RupeePondFusion)
-    Main <-> East: (item SmithSword | item FlameLantern | item BombBag | item LightArrows)
-    East -> TingleLedge: item PacciCane
-    TingleLedge -> East
-    TingleLedge -> Tingle: item TingleTrophee
-    East -> EastTreeFusionEntrance: flag EastTreeFusion
-    East -> EastChestFusion: flag EastChestFusion
-    Main <-> SouthWest: (item SmithSword | item FlameLantern | item BombBag | item LightArrows)
-    SouthWest -> SouthWestMinish: (item CanTurnMinish & item PegasusBoots)
-    SouthWestMinish -> SouthWest: item CanGrow
-    SouthWestMinish <-> MinishWaterHole: item Flippers
-
+      warp MinishWaterHole
+    MinishWater -> MinishWaterHole: item Flippers
 
   room Trilby:
-    node Top:
-      door SouthEast
-      ennemy OctorocsAndKeatons
-      door NorthEast
+    node Main:
+      door EastNorth
+      door EastSouth
       door West
+      ennemy OctorocsAndKeatons
       door TopLadder
-      exit LeftDiggingCaveExit
-      entrance Virtual.Zeffa.FluteAway
-    node NorthChestFusion:
-      chest NorthChestFusion
-    node MidChestFusion:
-      chest MidChestFusion
-    node LeftDiggingCaveEntrance:
-      entrance LeftDiggingCaveEntrance
-    node RightDiggingCaveFusion:
-      exit RightDiggingCaveExit
-    node RightDiggingCaveEntrance:
-      entrance RightDiggingCaveEntrance
-    node KnuckleLedge:
-      door DiggingCaveLadder
-      entrance Virtual.Zeffa.FluteAway
-    node MinishKnuckleLedge:
-      door MinishHouse
+      warp Virtual.Zeffa.FluteAway
+
     node GraveyardLedge:
       door North
-      entrance Virtual.Zeffa.FluteAway
-    node Bottom:
+      warp Virtual.Zeffa.FluteAway
+    GraveyardLedge -> Main
+
+    node NorthChestFusion:
+      chest NorthChestFusion
+    Main -> NorthChestFusion: fusion NorthChest
+
+    node MidChestFusion:
+      chest MidChestFusion
+    Main -> MidChestFusion: fusion MidChest
+
+    node WestDiggingCaveEntrance:
+      door WestDiggingCaveEntrance
+    Main -> WestDiggingCaveEntrance: item MoleMitts
+    WestDiggingCaveEntrance -> Main
+
+    node EastDiggingCaveExit:
+      target EastDiggingCave
+    node EastDiggingCaveEntrance:
+      warp EastDiggingCave
+    EastDiggingCaveExit -> EastDiggingCaveEntrance: fusion EastDiggingCave # the door is open if you come out of it
+    node EastDiggingCaveFusion
+    EastDiggingCaveExit -> EastDiggingCaveFusion: fusion EastDiggingCave
+    EastDiggingCaveFusion -> EastDiggingCaveEntrance: item MoleMitts
+    EastDiggingCaveExit -> Water: item Flippers
+    EastDiggingCaveFusion <-> Water: ( item Flippers & fusion EastDiggingCave )
+    Main <-> Water: item Flippers
+    Main <-> EastDiggingCaveFusion: ( item Cape & fusion EastDiggingCave )
+
+    node KnuckleLedge:
+      door DiggingCaveLadder
+      warp Virtual.Zeffa.FluteAway
+    KnuckleLedge -> Water: item Flippers
+    node Knuckle:
+      npc Knuckle
+    KnuckleLedge -> Knuckle: ( flag WestWoodsNorth.VaatiTakeover & flag South.TalkedToTingle )
+
+    node MinishKnuckleLedge:
+      door MinishHouse
+    KnuckleLedge -> MinishKnuckleLedge: item CanTurnMinish
+    MinishKnuckleLedge -> KnuckleLedge: item CanGrow
+
+    node South:
       enemy BlueOctorocsMoblinsAndKeatons
       door BottomLadder
       door PercyTreeHouse
       door South
-      flag BoulderShortcut
-      exit RupeePondFusionExit
-      exit BombableCaveExit
-      exit FairyFountainExit
-      entrance Virtual.Zeffa.FluteAway
-    node RupeePondFusionEntrance:
-      entrance RupeePondFusionEntrance
-    node BombableCaveEntrance:
-      entrance BombableCaveEntrance
-    node BombableCaveWall:
-      flag BombableCaveWall
-    node FairyFountainEntrance:
-      entrance FairyFountainEntrance
-    node FairyFountainWall:
-      flag FairyFountainWall
-    Top -> NorthChestFusion: flag NorthChestFusion
-    Top -> MidChestFusion: flag MidChestFusion
-    Top -> LeftDiggingCaveEntrance: item MoleMitts
-    Top -> RightDiggingCaveFusion: (item Flippers | item RocsCape )
-    RightDiggingCaveFusion -> Top: ((flag RightDiggingCaveFusion & item RocsCape) | item Fippers)
-    RightDiggingCaveFusion -> RightDiggingCaveEntrance: (item MoleMitts & flag RightDiggingCaveFusion)
-    KnuckleLedge -> MinishKnuckleLedge: item CanTurnMinish
-    MinishKnuckleLedge -> KnuckleLedge: item CanGrow
-    KnuckleLedge -> Top: item Flippers
-    GraveyardLedge -> Top
-    Top <-> Bottom: flag BoulderShortcut
-    Bottom -> RupeePondFusionEntrance: flag RupeePondFusion
-    Bottom -> BombableCaveWall: item BombBag
-    Bottom -> BombableCaveEntrance: flag BombableCaveWall
-    Bottom -> FairyFountainWall: item BombBag
-    Bottom -> FairyFountainEntrance: flag FairyFountainWall
+      set BoulderShortcut
+      target RupeePondFusionExit
+      target WestBombableCave
+      target EastBombableCave
+      warp Virtual.Zeffa.FluteAway
+    Main <-> South: flag BoulderShortcut
 
+    node RupeePondFusion:
+      warp RupeePondFusionEntrance
+    South -> RupeePondFusion: fusion RupeePond
+
+    node EastBombableCaveWall:
+      set EastBombableCaveWall
+    node WestBombableCaveWall:
+      set WestBombableCaveWall
+    node EastBombableCaveEntrance:
+      warp EastBombableCave
+    node WestBombableCaveEntrance:
+      warp WestBombableCave
+    South -> EastBombableCaveWall: (item BombBag | hasExplosive)
+    South -> WestBombableCaveWall: (item BombBag | hasExplosive)
+    South -> EastBombableCaveEntrance: flag EastBombableCaveWall
+    South -> WestBombableCaveEntrance: flag WestBombableCaveWall
 
   room WestWoodsNorth:
-
     node Main:
       enemy CrowsBlueOctorocsKeatonsAndMoblins
       door North
       door West
-      door SouthMid
-      flag BoulderShortcut
-      exit WestTreeFusionExit
-      entrance Virtual.Zeffa.FluteAway
+      door SouthMiddle
+      set BoulderShortcut
+      target WestTreeFusion
+      set Sign
+      warp Virtual.Zeffa.FluteAway
+
+    node VaatiTakeoverCutscene:
+      set VaatiTakeover
+    Main -> VaatiTakeoverCutscene: ( item RedSword & defeat Gleerock.Main.Gleerock )
+
     node East:
       door East
-      entrance Virtual.Zeffa.FluteAway
+      warp Virtual.Zeffa.FluteAway
+    Main <-> East: flag BoulderShortcut
+
     node MiddleChestFusion:
       chest MiddleChestFusion
+    Main -> MiddleChestFusion: fusion MiddleChestTree
+
     node WestTreeFusionEntrance:
-      entrance WestTreeFusionEntrance
-    node SouthWestTreeFusion:
-      door SouthWestFusion
+      warp WestTreeFusion
+    Main -> WestTreeFusionEntrance: fusion WestTree
+
+    node SouthWest:
+      door SouthWest
+    Main <-> SouthWest: fusion SouthWestTree
+
     node NorthWestTreeFusion
     #Tag this as obsucre
-    node NorthWestObscure:
+    node NorthWestDigSpots:
       chest NorthWestDigSpot1
       chest NorthWestDigSpot2
       chest NorthWestDigSpot3
       chest NorthWestDigSpot4
       chest NorthWestDigSpot5
       chest NorthWestDigSpot6
+    Main -> NorthWestDigSpots: ( fusion NorthWestTree & item MoleMitts)
+
     node SouthEast:
       door SouthEast
-      entrance Virtual.Zeffa.FluteAway
-    node SouthEastTreeFusion
-    #Tag this as obsucre
-    node SouthEastObsucre:
+      warp Virtual.Zeffa.FluteAway
+    node SouthEastDigSpots:
       chest SouthWestDigSpot1
       chest SouthWestDigSpot2
-
-    Main <-> East: flag BoulderShortcut
-    Main -> MiddleChestFusion: flag MiddleChestFusion
-    Main -> WestTreeFusionEntrance: flag WestTreeFusion
-    Main <-> SouthWestTreeFusion: flag SouthWestTreeFusion
-    Main <-> NorthWestTreeFusion: flag NorthWestTreeFusion
-    NorthWestTreeFusion -> NorthWestObscure: item MoleMitts
-    SouthEast <-> SouthEastTreeFusion: flag SouthEastTreeFusion
-    SouthEastTreeFusion -> SouthEastObsucre: item MoleMitts
+    SouthEast -> SouthEastDigSpots: ( fusion SouthEastTree & item MoleMitts )
 
 
   room WestWoodsMid:
     node West:
       door NorthWest
       door PercyHouse
-      entrance Virtual.Zeffa.FluteAway
+      warp Virtual.Zeffa.FluteAway
+    node Percy:
+      npc Percy
+    West -> Percy: ool # Percy goes away
+
     node East:
       door NorthMiddle
       door NortEast
       enemy Moblins
-      door SouthMiddle
+      door SouthWest
       door SouthEast
-      entrance Virtual.Zeffa.FluteAway
+      warp Virtual.Zeffa.FluteAway
+
     node GoldenOcotorocFusion:
       enemy GoldenOcotorocFusion
-
-    East -> GoldenOcotorocFusion: flag GoldenOctorocFusion
-
+    East -> GoldenOcotorocFusion: fusion GoldenOctoroc
 
   room WestWoodsSouth:
-
     node Main:
-      door NorthMiddle
+      door NorthWest
       door NorthEast
       enemy Moblins
-      entrance Virtual.Zeffa.FluteAway
+      warp Virtual.Zeffa.FluteAway
+
     node Beanstalk:
-      door Beanstalk
+      target Beanstalk
+    node Climb:
+      warp Beanstalk
+    Main <-> Beanstalk: fusion Beanstalk
+    Beanstalk -> Climb: fusion Beanstalk
+
     node MinishMain:
       door MinishHouse
-
-    Main <-> Beanstalk: flag Beanstalk
     Main -> MinishMain: item CanTurnMinish
     MinishMain -> Main: item CanGrow
