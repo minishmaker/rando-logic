@@ -252,11 +252,22 @@ area HyruleField:
     Main -> CenterTingleTreeEntrance: flag Caves.MagicBoomerang.AllTorches
     Main -> FairyFountainEntrance: fusion FairyFountain
 
+    node SouthEast:
+      door EastSouth
+    node SouthEastTrees:
+      set SouthEastTree1
+      set SouthEastTree2
+      set SouthEastTree3
+      set SouthEastTree4
+    SouthEast <-> Main: ( flag SouthEastTree1 | flag SouthEastTree2 | flag SouthEastTree3 | flag SouthEastTree4 )
+    Main -> SouthEastTrees: ( helper AnySword | item FlameLantern | item BombBag | item LightArrows | hasExplosive )
+    SouthEast -> SouthEastTrees: ( helper AnySword | item FlameLantern | item BombBag | item LightArrows | hasExplosive )
+
     node EastBombableRocks:
       set EastBombableRockOne
       set EastBombableRockTwo
     node NorthEast:
-      door NorthEast
+      door EastNorth
       warp Virtual.Zeffa.FluteAway
     Main -> RightBombableRocks: ( item BombBag | hasExplosive)
     NorthEast -> RightBombableRocks: ( item BombBag | hasExplosive )
