@@ -6,99 +6,140 @@ area CastorWilds:
     node Main:
       door DarknutCave
       door NorthCave
-      exit DigCave
       enemy NorthEyeGore
       enemy NorthEastEyeGore
       enemy WestEyeGore
       enemy Ropes
       enemy PeaHats
+    Main <-> East: ( item Boots | item Cape | ( item BombBag & trick BombAcrossSwamp ))
+    node GoldenRope:
+      enemy GoldenRope
+    Main -> GoldenRope: fusion GoldenRope
+    node Butterfly:
+      chest Butterfly
+    Main -> Butterfly: fusion Butterfly
     node MainDigCave:
-      entrance DigCave
+      door DigCave
     Main -> MainDigCave: item MoleMitts
-    Main <-> East: ( item Boots | item Cape )
     node NorthEast:
       enemy PeaHats
-      door NorthEastCave
-      flag NorthBoulderPushed
+      door NorthCaveEast
+      set NorthBoulderPushed
     node NorthEastIsland:
       door NorthEastIslandCave
     NorthEast -> NorthEastIsland: ( item Flippers | item Cape )
     node NorthEastWaterfallExit:
-      door WaterfallExit
+      target Waterfall
     node NorthEastWaterfallEntrance:
-      door WaterfallEntrance
-    NorthEast -> NorthEastWaterfallEntrance: ( item Flippers & flag CastorWaterfallFusion )
-    NorthEastWaterfallExit -> NorthEast: ( item Flippers & flag CastorWaterfallFusion )
+      warp Waterfall
+    NorthEast -> NorthEastWaterfallEntrance: ( item Flippers & fusion Waterfall )
+    NorthEastWaterfallExit -> NorthEast: ( item Flippers & fusion Waterfall )
+    Main -> NorthEast: ( item Bow | item LightArrows | flag NorthBoulderPushed )
+    NorthEast -> Main: flag NorthBoulderPushed
+    node NorthCenter
+    Main -> NorthCenter: ( item Bow | item LightArrows )
+    NorthCenter -> Main
+    NorthCenter -> NorthWest
+    NorthCenter -> West
     node NorthWest
-    Main <-> NorthEast: ( defeat NorthEastEyeGore | flag NorthBoulderPushed )
     node MainMinish:
-      door MinishPathNorth
+      door MinishPathSouth
     node WestMinish:
       door CenterHole
-    MainMinish <-> WestMinish: flag CenterLilyFusion
-    Main <-> NorthWest: ( defeat NorthEyeGore | ( item Boots | item Cape ) )
+    MainMinish <-> WestMinish: fusion CenterLilypad
+    Main <-> NorthWest: ( item Boots | item Cape )
     node NorthWestMinish:
       door BowHole
-      door South
+      door MinishPathNorth
       exit NorthWestFusionHole
     node NorthWestMinishFusion:
       entrance NorthWestFusionHole
-    NorthWestMinishFusion <-> NorthWestMinish: flag NorthWestMinishHoleFusion
+    NorthWestMinishFusion <-> NorthWestMinish: fusion NorthWestMinishHole
     node NorthMinishFusion:
       door NorthMunishHole
-    MainMinish <-> NorthMinishFusion: flag NorthLilyFusion
-    NorthWest -> MainMinish: item CanTurnMinish
-    MainMinish -> NorthWest: item CanGrow
+    MainMinish <-> NorthMinishFusion: fusion NorthLilypad
+    NorthWest -> MainMinish: helper CanTurnMinish
+    MainMinish -> NorthWest: helper CanGrow
     node West:
       door Ghostblade
       enemy PeaHats
+    West -> Main: ( item Cape | (item Flippers & ( item Boots | ( item BombBag & trick BombAcrossSwampNorth ))))
     node WestHillTop:
       chest WestChest
       enemy PeaHats
       enemy LikeLikes
     WestHillTop -> West
-    Main -> WestHillTop: defeat WestEyeGore
+    Main -> WestHillTop: (item Bow | item LightArrows)
     WestHillTop -> Main
     node MinishVineHole:
       door MinishVineHole
-    WestMinish <-> MinishVineHole: flag MinishVineLilyFusion
+    WestMinish <-> MinishVineHole: fusion MinishVineLily
     node South:
-      entrance Crest
+      target Crest
       enemy SouthEyeGore
-      flag SouthBoulderPushed
-      flag Virtual.Zeffa.CastorCrest
+      set SouthBoulderPushed
+      set Virtual.Zeffa.CastorCrest
     South <-> West: ( item Cape | item Boots )
-    South <-> Main: ( defeat SouthEyeGore | flag SouthBoulderPushed )
+    South <-> Main: flag SouthBoulderPushed
     node SouthEast:
       door SouthCave
-    Main <-> SouthEast: ( item Cape | item Flippers )
-    SouthEast <-> South: ( item Bow | flag EastBoulderPushed )
+      set EastBoulderPushed
+    Main <-> SouthEast: item Cape
+    SouthEast <-> South: flag EastBoulderPushed
+    node SouthEastLedge
+    South -> SouthEastLedge: ( item Bow | item LightArrows )
+    SouthEastLedge -> SouthEast
+    SouthEastLedge -> Main
+    node SouthEastWater
+    node SouthEastWaterItems:
+      chest Underwater1
+      chest Underwater2
+      chest Underwater3
+    SouthEastWater -> SouthEastWaterItems: item Flippers
+    Main <-> SouthEastWater: item Flippers
+    SouthEastWater <-> SouthEast: item Flippers
     node SouthWest:
       enemy PeaHats
-      lock CastorKinstone1: key CastorKinstone
-      lock CastorKinstone2: key CastorKinstone
-      lock CastorKinstone3: key CastorKinstone
+      lock CastorKinstone1
+      lock CastorKinstone2
+      lock CastorKinstone3
     node SouthWestExit:
-      exit SouthWest
+      target SouthWest
     node SouthWestEntrance:
-      entrance SouthWest
+      warp SouthWest
+    SouthWestExit -> SouthWestEntrance: trick ReenterWindRuinsWithoutFusion # the boulder only softlocks you on the east side
     South <-> SouthWest: ( item Cape | item Boots )
+    West <-> SouthWest: ( item Cape | item Boots )
     SouthWestExit -> SouthWest: ( open CastorKinstone1 & open CastorKinstone2 & open CastorKinstone3)
     SouthWest -> SouthWestEntrance: ( open CastorKinstone1 & open CastorKinstone2 & open CastorKinstone3)
-    node SouthEastWater:
-      chest Rupee1
-      chest Rupee2
-      chest Rupee3
-    Main <-> SouthEastWater: item Flippers
     node SouthEastWaterMinishEntrance:
-      entrance SouthEastMinish
+      warp SouthEastMinish
     node SouthEastWaterMinishExit:
-      exit SouthEastMinish
-    WestMinish -> SouthEastWaterMinishEntrance: item Flippers
-    SouthEastWaterMinishExit -> WestMinish: item Flippers
-    node East +: entrance Virtual.Zeffa.FluteAway
-    node Main +: entrance Virtual.Zeffa.FluteAway
-    node West +: entrance Virtual.Zeffa.FluteAway
-    node South +: entrance Virtual.Zeffa.FluteAway
-    node SouthWest +: entrance Virtual.Zeffa.FluteAway
-    node NorthEast +: entrance Virtual.Zeffa.FluteAway
+      target SouthEastMinish
+    WestMinish <-> SouthEastMinish: item Flippers
+    SouthEastWaterMinishExit -> SouthEastMinish: item Flippers
+    SouthEastMinish -> SouthEastWaterMinishEntrance: item Flippers
+    SouthEastMinish -> SouthEastWaterItems: item Flippers
+    node East +:
+      warp Virtual.Zeffa.FluteAway
+      set HyruleField.WestWoodsNorth.Sign
+    node Main +:
+      warp Virtual.Zeffa.FluteAway
+      set HyruleField.WestWoodsNorth.Sign
+    node West +:
+      warp Virtual.Zeffa.FluteAway
+      set HyruleField.WestWoodsNorth.Sign
+    node South +:
+      warp Virtual.Zeffa.FluteAway
+      set HyruleField.WestWoodsNorth.Sign
+    node SouthWest +:
+      warp Virtual.Zeffa.FluteAway
+      set HyruleField.WestWoodsNorth.Sign
+    node SouthWestEntrance +:
+      warp Virtual.Zeffa.FluteAway
+    node NorthWest +:
+      warp Virtual.Zeffa.FluteAway
+      set HyruleField.WestWoodsNorth.Sign
+    node NorthEast +:
+      warp Virtual.Zeffa.FluteAway
+      set HyruleField.WestWoodsNorth.Sign
