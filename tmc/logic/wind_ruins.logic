@@ -1,7 +1,134 @@
 area WindRuins:
-  room ArmosRunner
-  room BeanstalkArea
-  room DungeonEntry
-  room Entry
-  room LadderBottom
-  room TektiteFight
+  room ArmosRunner:
+    node North:
+      door NorthWest
+      enemy Armoses
+    node NorthMinish:
+      door NorthMinish
+      door Armos
+    node South:
+      enemy SouthEnemies
+    node SouthGoldenRope:
+      enemy GoldenRope
+    South -> SouthGoldenRope: fusion GoldenRope
+    North -> South: flag ArmosOff
+    South -> North
+    node NorthEast:
+      door NorthEast
+    South <-> NorthEast: defeat SouthEnemies
+    node Chests:
+      chest ChestLeft
+      chest ChestRight
+    North <-> Chests: defeat Armoses
+    node South +: warp Virtual.Zeffa.FluteAway
+    node North +: warp Virtual.Zeffa.FluteAway
+    node NorthEast +: warp Virtual.Zeffa.FluteAway
+  room BeanstalkArea:
+    node Main:
+      door East
+      door South
+      enemy LeverAndTektites
+    node MainMinish:
+      door SouthMinish
+      door EastMinish
+    node BeanstalkEntrance:
+      entrance BeanstalkFusion
+    node BeanstalkExit:
+      exit BeanstalkFusion
+    Main -> BeanstalkEntrance: fusion Beanstalk
+    BeanstalkExit -> Main: fusion Beanstalk
+    node Main +: warp Virtual.Zeffa.FluteAway
+  room DungeonEntry:
+    node East:
+      door North
+      door SouthEast
+      enemy Leevers
+    node EastChestFusion:
+      chest ChestFusion
+    East <-> EastChestFusion: fusion Chest
+    node Center:
+      door SouthWest
+      enemy Tektites
+      set BoulderPushed
+    East -> Center
+    node West:
+      door West
+      enemy Armos
+      enemy Ropes
+    West -> Center: ( flag ArmosActive | flag BoulderPushed )
+    Center -> West: flag BoulderPushed
+    node WestMinish:
+      door WestMinish
+      door Armos
+    West -> WestMinish: helper CanTurnMinish
+    WestMinish -> West: helper CanGrow
+    node SouthMinish:
+      door SouthWestMinish
+    node East +: warp Virtual.Zeffa.FluteAway
+    node West +: warp Virtual.Zeffa.FluteAway
+    node Center +: warp Virtual.Zeffa.FluteAway
+  room Entry:
+    node North:
+      door North
+      enemy NorthLeever
+      enemy NorthArmos
+      exit BombWall
+    node BombWallEntrance:
+      entrance BombWall
+    node BombWall:
+      set BombWall
+    North -> BombWall: ( item BombBag | state HasExplosive )
+    North -> BombWallEntrance: flag BombWall
+    node ButterflyFusion:
+      chest Butterfly
+    North <-> ButterflyFusion: fusion Butterfly
+    node South:
+      enemy SouthLeeverAndTektite
+      enemy SouthArmos
+    North -> South
+    South -> North
+    node SouthMinish:
+      door MinishHouse
+      door Armos
+    node East:
+      door East
+      set BoulderPushed
+    South -> SouthMinish: item CanTurnMinish
+    SouthMinish -> South: item CanGrow
+    South -> East: ( flag ActivatedSouthArmos | flag BoulderPushed )
+    East -> South: flag BoulderPushed
+    node North +: warp Virtual.Zeffa.FluteAway
+    node South +: warp Virtual.Zeffa.FluteAway
+    node East +: warp Virtual.Zeffa.FluteAway
+  room LadderBottom:
+    node Main:
+      enemy Tektites
+      door West
+      door North
+    node MainChestFusion:
+      chest ChestFusion
+    Main <-> MainChestFusion: fusion Chest
+    node MainMinish:
+      door MinishVineEast
+      door MinishVineWest
+    node MinishCave:
+      door MinishCave
+      door MinishVineCenter
+    node Main +: warp Virtual.Zeffa.FluteAway
+  room TektiteFight:
+    node Main:
+      enemy Tektites
+      node South
+    node MainNorth:
+      door North
+    Main <-> MainNorth: defeat Tektites
+    node MainMinish:
+      door NorthMinish
+      door SouthWestMinish
+      door SouthCenterMinish
+      door SouthEastMinish
+      exit FusionHole
+    node MainMinishFusionHole:
+      entrance FusionHole
+    MainMinish -> MainMinishFusionHole: fusion MinishHole
+    node Main +: warp Virtual.Zeffa.FluteAway
