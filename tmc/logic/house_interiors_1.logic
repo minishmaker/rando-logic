@@ -4,36 +4,59 @@ area HouseInteriors1:
       chest HP
     node MainMinish:
       door NorthMinish
-    Main -> MainMinish: item CanTurnMinish
-    MainMinish -> Main: item CanGrow
+    Main -> MainMinish: helper CanTurnMinish
+    MainMinish -> Main: helper CanGrow
   room HearthBottom:
     node Main:
       door South
-      door Left
-      door Middle
-      door Right
+      door NorthWest
+      door NorthCenter
+      door NorthEast
       door Stair
+      npc Bindle
+    node RentCheapRoom:
+      warp RentCheapRoom
+    node RentGoodRoom:
+      warp RentGoodRoom
+    node RentDeluxeRoom:
+      warp RentDeluxeRoom
+    Main -> RentCheapRoom: spend50
+    Main -> RentGoodRoom: spend200
+    Main -> RentDeluxeRoom: spend400
   room HearthCheap:
     node Main:
       door South
+    node Rent:
+      target Rent
       chest Chest
+    Rent -> Main
   room HearthDeluxe:
     node Main:
       door South
+    node Rent:
+      target Rent
       chest Chest
+    Rent -> Main
   room HearthGood:
     node Main:
       door South
+    node Rent:
+      target Rent
       chest Chest
+    Rent -> Main
   room HearthOracles:
     node Main:
       door East
       door South
+      npc Din
+      npc Nayru
+      npc Farore
   room HearthTop:
     node Main:
       door Stairs
       door West
       target South
+      npc Satchel
     node South:
       warp South
     node LampsLit:
@@ -42,12 +65,23 @@ area HouseInteriors1:
     Main -> South: flag DoorOpen
   room LibraryBottom:
     node Main:
-      door North
+      door South
       door Stair
+      set BookQuestStart
+    node BestiaryReturned:
+      set BestiaryReturned
+    node LegendsReturned:
+      set LegendsReturned
+    node MasksReturned:
+      set MasksReturned
+    Main -> BestiaryReturned: item HyruleanBestiary
+    Main -> LegendsReturned: item PicoriLegends
+    Main -> MasksReturned: item AHistoryOfMasks
   room LibraryTop:
     node Main:
       door North
       door South
+      npc Sturgeon
     node MainMinish:
       door Bookcase
       door SouthMinish
@@ -55,33 +89,40 @@ area HouseInteriors1:
     node Main:
       door East
       door South
+      npc Mayor
     node MasksBroken:
-      set MasksBroken
+      set MaskOneBroken
+      set MaskTwoBroken # all of these have flags, but three of them get reset when entering the room
+      set MaskThreeBroken
+      set MaskFourBroken
     node PortalFlipped:
       set PortalFlipped
     Main <-> PortalFlipped: item Cane
     Main <-> MasksBroken: item Boots
     node MainMinish:
       door MinishHouse
-    Main -> MainMinish: (flag MasksBroken & flag PortalFlipped & item CanTurnMinish)
-    MainMinish -> Main: (flag MasksBroken & flag PortalFlipped & item CanGrow)
+    Main -> MainMinish: (flag MaskOneBroken & flag MaskTwoBroken & flag MaskThreeBroken & flag MaskFourBroken & flag PortalFlipped & helper CanTurnMinish)
+    MainMinish -> Main: (flag PortalFlipped & helper CanGrow) # the masks don't appear if you enter from the minish house
   room PostOffice:
     node Main:
       door Door
+      npc Postman
   room SchoolLeft:
     node Main:
       door East
       door South
       door Stairs
+      npc Dina
   room SchoolRight:
     node Main:
       door West
       door South
+      npc Tina
     node PortalFlipped:
       set PortalFlipped
     Main <-> PortalFlipped: item Cane
     node MainMinish:
-      door MinishLeft
-      door MinishRight
-    Main -> MainMinish: ( flag PortalFlipped & item CanTurnMinish )
-    MainMinish -> Main: ( flag PortalFlipped & item CanGrow)
+      door MinishSouthWest
+      door MinishSouthEast
+    Main -> MainMinish: ( flag PortalFlipped & helper CanTurnMinish )
+    MainMinish -> Main: ( flag PortalFlipped & helper CanGrow)
