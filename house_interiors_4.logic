@@ -5,25 +5,34 @@ area HouseInteriors4:
   room LonLonEast:
     node Main:
       door South
+      door West
     node MainMinish:
       door SouthMinish
-    node MainUnlocked:
-      door West
-    Main <-> MainUnlocked: item LonLonKey
+      npc Cow
+      npc Talon
   room LonLonWest:
     node Main:
       chest Pot
+      target South
     node MainMinish:
       door SouthMinish
-    node MainUnlocked:
-      door South
-      door East
     Main -> MainMinish: item CanTurnMinish
     MainMinish -> Main: item CanGrow
-    Main <-> MainUnlocked: item LonLonKey
+    node MainUnlocked:
+      warp South
+      warp East
+      npc Malon
+    node MainEnterFromEast:
+      target East
+    Main <-> MainUnlocked: HyruleField.LonLon.OpenWestRanchDoor
+    MainEnterFromEast -> Main: HyruleField.LonLon.OpenWestRanchDoor
   room Lumberjack:
     node Main:
       door South
+      npc Mutoh
+      npc Mack
+      npc Bremor
+      npc Brent
     node MainMinish:
       door NorthMinish
       door MinishHouse
@@ -32,26 +41,30 @@ area HouseInteriors4:
   room MayorCabin:
     node Main:
       door South
-    node MainMinish:
-      door NorthMinish
-    node ShelfTopMinish:
-      set HasPushedItem
-    MainMinish <-> ShelfTopMinish: item Bracelets
     node MainItem:
       chest Item
     Main <-> MainItem: flag HasPushedItem
+    node MainMinish:
+      door NorthMinish
+    node PushBookshelf:
+      set BookshelfMoved
+    MainMinish -> PushBookshelf: item PowerBracelets
+    node ShelfTopMinish:
+      set HasPushedItem
+    MainMinish -> ShelfTopMinish: ( flag BookshelfMoved & flag HouseInteriors2.Library.BookQuestStart )
   room Swiftblade:
     node Main:
       door South
-    node MainSpinScroll:
+      npc Swiftblade
+    node SpinScroll:
       chest SpinScroll
-    node MainDashScroll:
-      chest DashScroll
-    node MainRockScroll:
+    Main <-> SpinScroll: helper AnySword
+    node RockScroll:
       chest RockScroll
-    node MainDownScroll:
+    SpinScroll <-> RockScroll: item WhiteSword
+    node DashScroll:
+      chest DashScroll
+    RockScroll <-> DashScroll: item Boots
+    node DownScroll:
       chest DownScroll
-    Main <-> MainSpinScroll: item SmithsSword
-    Main <-> MainDashScroll: ( item SmithsSword & item Boots )
-    Main <-> MainRockScroll: item WhiteSword
-    Main <-> MainDownScroll: ( item WhiteSword & item Cape )
+    RockScroll <-> DownScroll: item Cape
