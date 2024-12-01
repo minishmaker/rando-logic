@@ -2,34 +2,54 @@ area HouseInteriors3:
   room Bakery:
     node Main:
       door West
+      npc Wheaton
+      npc Pita
     node MainMinish:
       door EastMinish
       door NorthEastMinish
       door NorthWestMinish
   room BorlovFront:
     node Main:
-      door North
+      target North
       door South
+      npc Borlov
+    node Game:
+      warp North
+    Main -> North: spend10
   room BorlovBack:
     node Main:
       door Door
+      npc Borlov
   room Cafe:
     node Main:
       door South
+      set BookcaseMoved
+      npc Baris
+      npc "Hurdy-Gurdy Man"
+      npc Chai
+      npc Mama
+      npc Breve
+      npc Gepper
+    node FlipPot:
+      set PortalFlipped
+    Main -> FlipPot: item Cane
     node MainMinish:
       door SouthMinish
       door EastMinish
-      exit RoofHole
+      target RoofHole
+    Main -> MainMinish: ( flag PortalFlipped & helper CanTurnMinish )
+    MainMinish -> Main: ( flag PortalFlipped & helper CanGrow )
+    node PushBookcase:
+      set BookcaseMoved
+    MainMinish -> PushBookcase: item PowerBracelets
     node MinishLedge:
       door MinishLedge
     MainMinish -> MinishLedge: flag BookcaseMoved 
     MinishLedge -> MainMinish: flag BookcaseMoved
-    Main -> MainMinish: flag PortalFlipped 
-    MainMinish -> Main: flag PortalFlipped
   room Carlov:
     node Main:
-      chest Carlov
-      door SOuth
+      npc Carlov
+      door South
   room FigurineHouse:
     node West:
       door West
@@ -38,31 +58,48 @@ area HouseInteriors3:
       chest Chest2
       chest Chest3
       chest HP
-      entrance East
+      target East
     node EastExit:
-      exit East
-    East <-> EastExit: item CarlovMedal
+      warp East
+    East -> EastExit: item CarlovMedal
   room Rem:
     node Main:
-      chest Rem
       door East
+    node Wake:
+      set RemReawakened
+    Main -> Wake: ( flag HyruleField.WestWoodsNorth.Sign & item WakeUpMushroom )
+    node Woken:
+      chest Rem
+      npc Rem
+    Main -> Woken: flag RemReawakened
+    node MainMinish:
+      door MinishLadder
+    Main -> MainMinish: helper CanTurnMinish
+    MainMinish -> Main: helper CanGrow
   room Simon:
     node Main:
       door East
-      door Bed
+      target Bed
+      npc Simon
+    node Minigame:
+      warp Bed
+    Main -> Minigame: spend10
   room Shop:
     node Back:
       chest BackItem
     node BackMinish:
       door MinishRafters
-    node Main:
-      chest Item1
-      door South
-    node MainSecondItem:
-      chest Item2
-    node MainThirdItem:
-      chest Item3
-    BackMinish -> Back: item CanGrow
     Back -> BackMinish: item CanTurnMinish
-    Main <-> MainSecondItem: item Wallet300
-    Main <-> MainThirdItem: item Wallet999
+    BackMinish -> Back: item CanGrow
+    node Main:
+      door South
+      npc Stockwell
+    node FirstItem:
+      chest Item1
+    node SecondItem:
+      chest Item2
+    node ThirdItem:
+      chest Item3
+    Main -> FirstItem: spend80
+    FirstItem -> SecondItem: spend300
+    Main -> ThirdItem: ( spend600 & item Bow )
