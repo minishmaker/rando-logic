@@ -1,18 +1,167 @@
 area HouseInteriors2:
-  room Anju
-  room Dampe
-  room DrLeft
-  room Gorman1A
-  room Gorman1B
-  room Gorman1C
-  room Gorman2A
-  room Gorman2B
-  room Gorman2C
-  room Julietta
-  room LinkBedroom
-  room LinkEntry
-  room LinkSmithy
-  room Percy
-  room Romio
-  room Fifi
-  room Strato
+  room Anju:
+    node Main:
+      warp South
+    node MainMinish:
+      door WestMinish
+      door MinishChimney
+  room Dampe:
+    node Main:
+      chest Dampe
+      door South
+    node BeforeDampeLeaves:
+      npc Dampe
+    Main -> BeforeDampeLeaves: ool
+  room DrLeft:
+    node Main:
+      door South
+      npc DrLeft
+    node MainBook:
+      chest Book
+    Main -> MainBook: flag MinishRafters.DrLeft.BookFall
+    node DouseChimney:
+      set ChimneyPutOut
+    Main -> DouseChimney:
+      item Water
+    node MainMinish:
+      door MinishNorth
+      target MinishChimney
+      door MinishSouth
+    node Chimney:
+      warp MinishChimney
+    MainMinish -> Chimney: flag ChimneyPutOut
+    node RaftersEntrance:
+      door MinishRafters
+    MainMinish <-> RaftersEntrance: ( flag BookcaseOnePushed & flag BookcaseTwoPushed )
+    node PushBookcases:
+      set BookcaseOnePushed
+      set BookcaseTwoPushed
+    MainMinish -> PushBookcases: item PowerBracelets
+    node PushBookcaseTwo:
+      set BookcaseTwoPushed
+    Main -> PushBookcaseTwo: flag BookcaseOnePushed
+  room Fifi:
+    node Main:
+      door South
+    node Feed:
+      chest Fifi
+    Main -> Feed: item DogFood
+    node FlipPortal:
+      set PortalFlipped
+    Main -> FlipPortal: item Cane
+    node MainMinish:
+      npc Fifi
+    Main -> MainMinish: ( flag PortalFlipped & helper CanTurnMinish )
+    MainMinish -> Main: ( flag PortalFlipped & helper CanGrow )
+  room GormanEastNayru:
+    node Main:
+      door South
+      npc Nayru
+  room GormanEastFarore:
+    node Main:
+      door South
+      npc Farore
+  room GormanEastDin:
+    node Main:
+      door South
+      npc Din
+  room GormanWestNayru:
+    node Main:
+      door South
+      npc Nayru
+      set LeftPotBroken
+      set RightPotBroken
+    node MainMinish:
+      door SouthMinish
+    node PushBookcases:
+      set BookcaseOnePushed
+      set BookcaseTwoPushed
+    MainMinish -> PushBookcases: ( item PowerBracelets & flag LeftPotBroken & flag RightPotBroken )
+    node PushBookcaseTwo:
+      set BookcaseTwoPushed
+    Main -> PushBookcaseTwo: ( flag BookcaseOnePushed & flag RightPotBroken )
+    node BreakLeftPot:
+      set LeftPotBroken
+    MainMinish -> BreakLeftPot: flag BookcaseOnePushed
+    node MainMinishHouse:
+      door MinishHouse
+    MainMinish <-> MainMinishHouse: ( flag BookcaseOnePushed & flag BookcaseTwoPushed )
+  room GormanWestFarore:
+    node Main:
+      door South
+      npc Farore
+    node MainMinish:
+      door SouthMinish
+      door MinishHouse
+  room GormanWestDin:
+    node Main:
+      door South
+      npc Din
+    node MainMinish:
+      door SouthMinish
+    node MainMinishHouse:
+      door MinishHouse
+    MainMinish <-> MainMinishHouse: ( flag BookcaseMoved )
+    node PushBookcase:
+      set BookcaseMoved
+    Main -> PushBookcase
+    MainMinish -> PushBookcase: item PowerBracelets
+  room Julietta:
+    node Main:
+      door South
+      npc Julietta
+    node MainBook:
+      chest Book
+    Main -> MainHP: flag BookPushed
+    node MainMinish:
+      door Chimney
+      set BookPushed
+  room LinkBedroom:
+    node Main:
+      door North
+      spawn
+  room LinkEntry:
+    node Main:
+      door South
+      door East
+      door Stairs
+  room LinkSmithy:
+    node Main:
+      chest Chest
+      door East
+  room Percy:
+    node Main:
+      door South
+    node LightUpRoom:
+      set LitTorches
+    Main -> LightUpRoom: item Lantern
+    node NPCItems:
+      chest OldLady
+      chest Percy
+    Main -> NPCItems: ( flag LitTorches & item Boots )
+  room Romio:
+    node Main:
+      door South
+      npc Romio
+    node FlipPortal:
+      set PortalFlipped
+    node DouseChimney:
+      set ChimneyPutOut
+    Main -> DouseChimney: item Water
+    node MainMinish:
+      door WestChimney
+      door SouthMinish
+      target EastChimney
+      npc Dog
+    Main -> MainMinish: ( flag PortalFlipped & helper CanTurnMinish )
+    MainMinish -> Main: ( flag PortalFlipped & helper CanGrow )
+    node MinishEastChimney:
+      warp EastChimney
+    MainMinish -> MinishEastChimney: flag ChimneyPutOut
+  room Strato:
+    node Main:
+      door South
+      npc Strato
+    node MainMinish:
+      door MinishNorth
+      door MinishSouth
