@@ -1,5 +1,44 @@
 area MinishRafters:
-  room Bakery
-  room Cafe
-  room DrLeft
-  room Shop
+  room Bakery:
+    node West:
+      npc TownMinishGreen
+      npc TownMinishPink
+      chest Chest
+      door WestStairs
+      warp FloorHole
+    node East:
+      npc TownMinishBlue
+      npc TownMinishRed
+      door EastStairs
+      warp FloorHole
+    Left <-> Right: item Cape
+  room Cafe:
+    node Main:
+      npc TownMinishOne
+      npc TownMinishTwo
+      npc TownMinishBarkeep
+      npc ForestMinishOne
+      npc ForestMinishTwo
+      npc ForestMinishThree
+      door Stairs
+      door East
+      warp FloorHole
+  room DrLeft:
+    node Main:
+      npc TownMinishBlueWest
+      npc TownMinishBlueEast
+      npc TownMinishGreen
+      door Stairs
+      warp FloorHole
+    node Book
+    node DropBook:
+      set BookFall
+    Main -> Book: flag HouseInteriors2.Library.BookQuestStart
+    Book -> DropBook: ( item CanSplit & ( item BombBag | state HasExplosive | item GustJar ) )
+  room Shop:
+    node Main:
+      chest Chest
+      door Stairs
+      door West
+      warp FloorHole
+      enemy Mulldozers
