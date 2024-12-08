@@ -1,40 +1,59 @@
 area WindTribeTower:
-  room GF:
+  room F1:
     node Main:
+      npc Strata
       chest LeftChest
       chest RightChest
+      target PortalFusion
       door Stair
-    node MainUnlocked:
-      door South
     node MainPortal:
-      door PortalFusion
-    Main <-> MainPortal: flag WindTribePortalFusion
-    Main <-> MainUnlocked: flag WindTribeUnlocked
-  room F1:
+      warp PortalFusion
+    Main <-> MainPortal: fusion Portal
+    node MainUnlocked:
+      warp South
+    node Doorway:
+      target South
+    Main -> MainUnlocked: flag CloudTops.LowerClouds.WindTribeDoorOpen
+    Doorway -> Main: flag CloudTops.LowerClouds.WindTribeDoorOpen
+  room F2:
     node Main:
       chest Chest
       door StairDown
-      exit StairUp
+      target StairUp
+      npc Caprice
+    node BeforeUnlocked:
+      npc Flurris
+    Main -> BeforeUnlocked: ool
     node MainUnlocked:
-      entrance StairUp
+      warp StairUp
+    Main <-> MainUnlocked: flag CloudTops.LowerClouds.WindTribeDoorOpen
     node MainGregalCured:
       chest Gregal1
       set GregalCured
     node MainUnlockedGregalCured:
       chest Gregal2
-    Main <-> MainUnlocked: flag WindTribeUnlocked
-    Main <-> MainGregalCured: item GustJar
+      npc Gregal
+    Main -> MainGregalCured: ( item GustJar & ool ) # you can fail to save gregal, locking yourself out of this
     MainUnlocked <-> MainUnlockedGregalCured: flag GregalCured
-  room F2:
-    node Main:
-      chest Left
-      chest Middle
-      chest Right
-      door StairUp
-      door StairDown
   room F3:
     node Main:
-      chest Left
-      chest Right
+      chest West
+      chest Center
+      chest East
+      npc Flurris
       door StairUp
       door StairDown
+  room F4:
+    node Main:
+      chest Left
+      chest Right
+      npc Siroc
+      npc Hailey
+      set HaileyMoved
+      door StairDown
+    node GoUp:
+      warp StairUp
+    node EnterFromAbove:
+      target StairUp
+    Main -> GoUp: flag HaileyMoved
+    EnterFromAbove -> Main: flag HaileyMoved
