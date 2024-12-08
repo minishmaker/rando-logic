@@ -1,59 +1,70 @@
 area Dojos:
-  room Ghostblade:
+  room SwiftbladeTheFirst:
     node Main:
       chest HP
+      npc SwiftbladeTheFirst
       door South
-    node CanLearn:
-      chest Ghostblade
-    Main <-> CanLearn: ( item SmithsSword & item HasSevenScrolls )
+    node StartLesson
+    Main -> StartLesson: ( item SpinAttack & item RollAttack & item RockBreaker & item DashAttack & item DownThrust & item SwordBeam & item PerilBeam )
+    node Demonstrated:
+      chest SwiftbladeTheFirst
+    StartLesson -> Demonstrated: helper AnySword
   room Grayblade:
     node Main:
       chest HP
       chest LeftChest
       chest RightChest
+      npc Grayblade
       door South
-    node CanLearn:
+    node StartLesson
+    Main -> StartLesson
+    node Demonstrated:
       chest Grayblade
-    Main <-> CanLearn: item SmithsSword
+    StartLesson -> Demonstrated: helper AnySword
   room Greatblade:
     node Main:
+      npc Greatblade
       door South
     node CanLearn:
       chest Greatblade
-    Main <-> CanLearn: item SmithsSword
+    Main -> CanLearn: item GreatSpinAttack
   room Grimblade:
     node Main:
       chest HP
+      npc Grimblade
       door South
-    node CanLearn:
+    node StartLesson
+    Main -> StartLesson: item Lantern
+    node Demonstrated:
       chest Grimblade
-    Main <-> CanLearn: ( item SmithsSword & item Lantern )
+    StartLesson -> Demonstrated: helper AnySword
   room Scarblade:
     node Main:
       door South
-    node CanLearn:
+      npc Scarblade
       chest Scarblade
-    Main <-> CanLearn: item SmithsSword
   room Splitblade:
     node Main:
       door South
-    node CanLearn:
+      npc Splitblade
       chest Splitblade
-    Main <-> CanLearn: item SmithsSword
   room Waveblade:
     node Main:
       chest HP
+      npc Waveblade
       door South
-    node CanLearn:
+    node StartLesson
+    node Demonstrated:
       chest Waveblade
-    Main <-> CanLearn: ( item SmithsSword & item HasTenHearts )
+    Main <-> StartLesson: helper HasTenHearts
+    Demonstrated <-> StartLesson: helper AnySword
   room GreatbladeEntry:
     node Main:
       door North
     node SouthExit:
-      exit South
+      target South
     node SouthEntrance:
-      entrance South
+      warp South
     Main -> SouthEntrance: item Flippers
     SouthExit -> Main: item Flippers
   room GrimbladeEntry:
@@ -64,17 +75,17 @@ area Dojos:
     node Main:
       door North
     node SouthExit:
-      exit South
+      target South
     node SouthEntrance:
-      entrance South
+      warp South
     Main -> SouthEntrance: item Flippers
     SouthExit -> Main: item Flippers
   room SplitbladeEntry:
     node Main:
       door North
     node SouthExit:
-      exit South
+      target South
     node SouthEntrance:
-      entrance South
+      warp South
     Main -> SouthEntrance: item Flippers
     SouthExit -> Main: item Flippers
