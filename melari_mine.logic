@@ -5,7 +5,14 @@ area MelariMine:
       door North
       door SouthEast
       door SouthWest
-      door West
+      npc WestDoorMinish
+      npc South
+      npc East
+      npc North
+      target West
+    node West:
+      warp West
+    Main -> West: WestEntranceFree
     node MainDigSpots: # digspots are clockwise from the north entrance to Melari
       chest DigSpot1
       chest DigSpot2
@@ -16,6 +23,17 @@ area MelariMine:
       chest DigSpot7
       chest DigSpot8
     Main <-> MainDigSpots: item MoleMitts
+    node MoveMelari:
+      set MelariMoved
+    Main -> MoveMelari: item WhiteSword
     node Melari:
+      npc Melari
+      npc ForgerOne
+      npc ForgerTwo
+    Main -> Melari: ool
+    node TurnInPicoriBlade:
+      set WestEntranceFree
+    Melari -> TurnInPicoriBlade: item PicoriBlade
+    node MelariForgingDone:
       chest Sword
-    Main <-> Melari: flag HasDefeatedGleerock
+    Melari -> MelariForgingDone: item FireElement
