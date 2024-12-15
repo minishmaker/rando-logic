@@ -73,10 +73,10 @@ area HouseInteriors1:
     node LegendsReturned:
       set LegendsReturned
     node MasksReturned:
-      set MasksReturned
+      set BooksReturned
     Main -> BestiaryReturned: item HyruleanBestiary
-    Main -> LegendsReturned: item PicoriLegends
-    Main -> MasksReturned: item AHistoryOfMasks
+    BestiaryReturned -> LegendsReturned: item PicoriLegends
+    LegendsReturned -> MasksReturned: item AHistoryOfMasks
   room LibraryTop:
     node Main:
       door North

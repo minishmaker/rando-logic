@@ -65,9 +65,13 @@ area HouseInteriors3:
   room Rem:
     node Main:
       door East
+    node Sleepy:
+      set FallenAsleep
+    Main -> Sleepy: flag HyruleField.WestWoodsNorth.Sign
+    MainMinish -> Sleepy: flag HyruleField.WestWoodsNorth.Sign
     node Wake:
       set RemReawakened
-    Main -> Wake: ( flag HyruleField.WestWoodsNorth.Sign & item WakeUpMushroom )
+    Main -> Wake: ( flag FallenAsleep & item WakeUpMushroom )
     node Woken:
       chest Rem
       npc Rem
