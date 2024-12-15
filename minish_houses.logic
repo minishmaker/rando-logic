@@ -2,16 +2,28 @@ area MinishHouseInteriors:
   room EasternHills:
     node Main:
       door South
+      npc Minish
   room Festari:
     node Main:
       door South
-      exit North
+      target North
+      npc Festari
     node NorthEntrance:
-      entrance North
-    Main <-> NorthEntrance: ( item JabberNut | item BombBag )
+      warp North
+    Main -> NorthEntrance: flag FestariMoved
+    node FestariMoves:
+      set FestariMoved
+    Main -> FestariMoves: ( item JabberNut & flag Gentari.TalkToElder )
   room Gentari:
     node Main:
       door South
+      npc Gentari
+    node OpenCurtains:
+      set CurtainsOpen
+    Main -> CurtainsOpen: item EarthElement
+    node TalkToElder:
+      set TalkToElder
+    Main -> TalkToElder: item JabberNut
     node West:
       door West
     Main <-> West: flag CurtainsOpen
@@ -22,53 +34,87 @@ area MinishHouseInteriors:
   room HyruleTownPreWestGorman:
     node Main:
       door South
+      npc Minish
   room LakeCenter:
     node Main:
       door South
+    node Librari:
+      npc Librari
+      item Librari
+    Main -> Librari: defeat Gyorg.Main.Gyorg
   room LakeCrest:
     node Main:
       door South
+      npc Minish
+      set HyruleTown.LibraryOpen
   room MineEast:
     node Main:
       door West
+    node Apprentice:
+      npc Apprentice
+    Main -> Apprentice: MelariMine.Main.MelariMoved
   room MineSouthEast:
     node Main:
       door North
+    node Apprentice:
+      npc Apprentice
+    Main -> Apprentice: MelariMine.Main.MelariMoved
   room MineSouthWest:
     node Main:
       door North
+    node Melari:
+      npc Melari
+    Main -> Mellari: MelariMine.Main.MelariMoved
   room MinishWoods:
     node Main:
       door South
+      npc Belari
+      item Belari
+    node RemoteBombs:
+      item RemoteBombs
+    Main -> RemoteBombs: fusion RemoteBombs
   room SouthHyruleField:
     node Main:
       door South
+      npc Minish
   room Trilby:
     node Main:
       door South
+      npc Minish
   room VillageBarrel:
     node Main:
-      chest Chest
+      chest ItemOnTable
       door South
       door Ladder
+      npc South
+    node NorthMinish:
+      npc North
+    Main -> NorthMinish: item JabberNut
   room VillageLakeMushroom:
     node Main:
       door South
+      npc Minish
   room VillageMushroomCenter:
     node Main:
       door South
+      npc Minish
   room VillageMushroomEast:
     node Main:
       door South
+      npc Minish
   room VillageMushroomWest:
     node Main:
       door South
+      npc Minish
   room VillagePot:
     node Main:
       door South
+      npc Minish
   room VillageShoe:
     node Main:
       door South
+      npc Minish
   room WesternWood:
     node Main:
       door South
+      npc Minish
