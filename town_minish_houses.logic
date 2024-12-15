@@ -2,29 +2,54 @@ area TownMinishHouses:
   room Mayor:
     node Main:
       door South
+      npc Blue
+      npc Red
   room GormanWest:
     node Main:
       door East
+      npc Yellow
   room DrLeft:
     node Main:
       door South
+      npc Blue
   room LumberMill:
     node Main:
       door East
+      npc Blue
   room Cafe:
     node Main:
       door West
+      npc Pink
+      npc Green
   room LibraryBookCase:
     node Main:
       door South
+    node Center:
+      npc Blue
+    Main <-> Center: item GripRing
     node North:
       door House
-    Main <-> North: ( item GripRing | flag BooksReturned )
+    Main <-> North: ( item GripRing & flag HouseInteriors1.LibraryBottom.BooksReturned )
+    node Yellari:
+      npc LibraryBook.Jotari
+    Main -> Yellari: ool # at some point, he will leave
   room LibraryBook:
     node Main:
-      door South
-      entrance Hole
+      target South
+      npc Librari
+      npc Jotari
+    node Hole:
+      warp Hole
+    Main -> Hole: ool # only before flippers
+    node South:
+      warp South
+    Main -> South: ( ool | item Flippers ) # once you open the trap door, you can never take the south exit again until flippers
   room Rem:
-    node Main:
+    node South:
       door South
+    node Main:
+      npc North
+      npc East
+      npc SouthWest
+    South <-> Main: flag HouseInteriors3.Rem.FallenAsleep
   
