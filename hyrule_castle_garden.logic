@@ -2,37 +2,61 @@ area Garden:
   room Main:
     node Main:
       door South
-      door NorthWestLadder
-      door SouthEastLadder
-      exit North
-      exit LeftFountain
-      exit RightFountain
-    node MainBonk:
-      flag Bonk
-    node North:
-      entrance North
-    Main -> North: flag CastleOpen
+      target North
+    node West:
+      target WestFountain
+    node WestFountain:
+      warp WestFountain
+    West -> WestFountain: fusion WestFountain
+    node WestLadderExit:
+      target NorthWestLadder
+    WestLadderExit -> West: flag WestLadderUncovered
+    node WestLadderEntry:
+      warp NorthWestLadder
+    West -> WestLadderEntry: flag WestLadderUncovered
+    node UncoverWestLadder:
+      set WestLadderUncovered
+    WestLadderExit -> WestLadderUncovered: helper CanDestroyGrassWhileStandingOnIt # lantern, bombs free you instantly, sword, cane, mole mitts, gust jar, bow allow you to set the flag (or free yourself with cape)
+    West -> WestLadderUncovered
+    node East:
+      target EastFountain
     node LeftFountain:
-      entrance LeftFountain
-    node RightFountain:
-      entrance RightFountain
-    Main -> LeftFountain: flag LeftFountainFusion
-    Main -> RightFountain: flag RightFountainFusion
+      warp EastFountain
+    East -> EastFountain: fusion EastFountain
+    node EastLadderExit:
+      target SouthEastLadder
+    EastLadderExit -> East: flag EastLadderUncovered
+    node EastLadderEntry:
+      warp SouthEastLadder
+    East -> EastLadderExit: flag EastLadderUncovered
+    node EastLadderUncovered:
+      set EastLadderUncovered
+    EastLadderExit -> EastLadderUncovered: helper CanDestroyGrassWhileStandingOnIt
+    East -> EastLadderUncovered
+    node EastTreeBonked:
+      set TreeBonked
     node MainMinish:
       door MinishHouse
-    node LeftFountainMinishEntrance:
-      entrance LeftFountainMinish
-    node RightFountainMinishEntrance:
-      entrance RightFountainMinish
-    node LeftFountainMinishExit:
-      exit LeftFountainMinish
-    node RightFountainMinishExit:
-      exit RightFountainMinish
-    RightFountainMinishExit -> MainMinish: flag RightFountainFusion
-    MainMinish -> RightFountainMinishEntrance: flag RightFountainFusion
-    LeftFountainMinishExit -> MainMinish: flag LeftFountainFusion
-    MainMinish -> LeftFountainMinishEntrance: flag LeftFountainFusion
-    Main -> MainMinish: ( flag Bonk & item CanTurnMinish )
-    MainMinish -> Main: item CanGrow
+    Main -> MainMinish: ( flag TreeBonked & helper CanTurnMinish )
+    MainMinish -> Main: helper CanGrow
+    node WestFountainMinishEntrance:
+      warp WestFountainMinish
+    MainMinish -> EastFountainMinishEntrance: fusion EastFountain
+    node WestFountainMinishExit:
+      target WestFountainMinish
+    EastFountainMinishExit -> MainMinish: fusion EastFountain
+    node EastFountainMinishEntrance:
+      warp EastFountainMinish
+    MainMinish -> WestFountainMinishEntrance: fusion WestFountain
+    node EastFountainMinishExit:
+      target EastFountainMinish
+    WestFountainMinishExit -> MainMinish: fusion WestFountain
+    node North:
+      warp North
+    Main -> North: item FourSword
+    Main <-> East: ( flag HyruleField.WestWoodsNorth.VaatiTakeover & item WaterElement )
+    Main <-> West: ( flag HyruleField.WestWoodsNorth.VaatiTakeover & item WaterElement )
     node Main +: entrance Virtual.Zeffa.FluteAway
     node North +: entrance Virtual.Zeffa.FluteAway
+    node East +: entrance Virtual.Zeffa.FluteAway
+    node West +: entrance Virtual.Zeffa.FluteAway
