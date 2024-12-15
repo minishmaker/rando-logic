@@ -1,0 +1,128 @@
+area HouseInteriors1:
+  room HearthBackDoor:
+    node Main:
+      chest HP
+    node MainMinish:
+      door NorthMinish
+    Main -> MainMinish: helper CanTurnMinish
+    MainMinish -> Main: helper CanGrow
+  room HearthBottom:
+    node Main:
+      door South
+      door NorthWest
+      door NorthCenter
+      door NorthEast
+      door Stair
+      npc Bindle
+    node RentCheapRoom:
+      warp RentCheapRoom
+    node RentGoodRoom:
+      warp RentGoodRoom
+    node RentDeluxeRoom:
+      warp RentDeluxeRoom
+    Main -> RentCheapRoom: spend50
+    Main -> RentGoodRoom: spend200
+    Main -> RentDeluxeRoom: spend400
+  room HearthCheap:
+    node Main:
+      door South
+    node Rent:
+      target Rent
+      chest Chest
+    Rent -> Main
+  room HearthDeluxe:
+    node Main:
+      door South
+    node Rent:
+      target Rent
+      chest Chest
+    Rent -> Main
+  room HearthGood:
+    node Main:
+      door South
+    node Rent:
+      target Rent
+      chest Chest
+    Rent -> Main
+  room HearthOracles:
+    node Main:
+      door East
+      door South
+      npc Din
+      npc Nayru
+      npc Farore
+  room HearthTop:
+    node Main:
+      door Stairs
+      door West
+      target South
+      npc Satchel
+    node South:
+      warp South
+    node LampsLit:
+      set DoorOpen
+    Main <-> LampsLit: item Lantern
+    Main -> South: flag DoorOpen
+  room LibraryBottom:
+    node Main:
+      door South
+      door Stair
+      set BookQuestStart
+    node BestiaryReturned:
+      set BestiaryReturned
+    node LegendsReturned:
+      set LegendsReturned
+    node MasksReturned:
+      set MasksReturned
+    Main -> BestiaryReturned: item HyruleanBestiary
+    Main -> LegendsReturned: item PicoriLegends
+    Main -> MasksReturned: item AHistoryOfMasks
+  room LibraryTop:
+    node Main:
+      door North
+      door South
+      npc Sturgeon
+    node MainMinish:
+      door Bookcase
+      door SouthMinish
+  room Mayor:
+    node Main:
+      door East
+      door South
+      npc Mayor
+    node MasksBroken:
+      set MaskOneBroken
+      set MaskTwoBroken # all of these have flags, but three of them get reset when entering the room
+      set MaskThreeBroken
+      set MaskFourBroken
+    node PortalFlipped:
+      set PortalFlipped
+    Main <-> PortalFlipped: item Cane
+    Main <-> MasksBroken: item Boots
+    node MainMinish:
+      door MinishHouse
+    Main -> MainMinish: (flag MaskOneBroken & flag MaskTwoBroken & flag MaskThreeBroken & flag MaskFourBroken & flag PortalFlipped & helper CanTurnMinish)
+    MainMinish -> Main: (flag PortalFlipped & helper CanGrow) # the masks don't appear if you enter from the minish house
+  room PostOffice:
+    node Main:
+      door Door
+      npc Postman
+  room SchoolLeft:
+    node Main:
+      door East
+      door South
+      door Stairs
+      npc Dina
+  room SchoolRight:
+    node Main:
+      door West
+      door South
+      npc Tina
+    node PortalFlipped:
+      set PortalFlipped
+    Main <-> PortalFlipped: item Cane
+    node MainMinish:
+      door MinishSouthWest
+      door MinishSouthEast
+    Main -> MainMinish: ( flag PortalFlipped & helper CanTurnMinish )
+    MainMinish -> Main: ( flag PortalFlipped & helper CanGrow)

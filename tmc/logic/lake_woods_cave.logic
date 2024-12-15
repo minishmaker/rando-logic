@@ -1,0 +1,19 @@
+area LakeWoodsCave:
+  room Main:
+    node LadderArea:
+      door Ladder
+    node WestDigging:
+      chest WestDigging
+      enemy LikeLikes
+      npc Wall
+    LadderArea <-> WestDigging: item MoleMitts
+    node WestDigEntrance:
+      door SouthWest
+    WestDigEntrance <-> WestDigging: item MoleMitts
+    node EastDigging:
+      chest EastDigging1
+      chest EastDigging2
+      enemy LikeLikes
+    node EastDigEntrance:
+      door EastDigDoor
+    EastDigEntrance <-> EastDigging: item MoleMitts

@@ -1,0 +1,26 @@
+area HyruleFieldDigCaves:
+  room Farm:
+    node Main:
+      door Door
+    node Dig:
+      chest Rupee
+      enemy LikeLikeAndBeetle
+      npc Wall
+    Main <-> Dig: item MoleMitts
+  room Trilby:
+    node WestLadder:
+      chest CenterChest
+      door WestLadder
+    node WestDoor:
+      door SouthWest
+    WestLadder <-> WestDoor: item MoleMitts
+    node WestDigging:
+      chest WestChest
+      npc Wall
+    WestDoor <-> WestDigging: item MoleMitts
+    node EastLadder:
+      door EastLadder
+    node EastDoor:
+      chest EastChest
+      door EastDoor
+    EastLadder <-> EastDoor: item MoleMitts

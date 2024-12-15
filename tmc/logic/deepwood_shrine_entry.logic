@@ -1,0 +1,5 @@
+area DeepwoodEntry:
+  room Main:
+    node Main:
+      door South
+      door North

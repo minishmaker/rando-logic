@@ -1,0 +1,9 @@
+area CastleGardenMinishHoles:
+  room East:
+    node Main:
+      chest Chest
+      door South
+  room West:
+    node Main:
+      chest Chest
+      door South

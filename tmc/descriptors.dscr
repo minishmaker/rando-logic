@@ -1,0 +1,23 @@
+trick Town.Main.GuardEastwards: ool.
+trick Town.Main.GuardBootSkip: ool.
+trick VeilFalls.Main.HPCapeJump: ool.
+
+item CanSpin:
+  item Sword,
+  item SpinAttack,
+  true.
+
+
+
+numberOfGorons:
+  (fusion GoronCave.Main.Goron1 & 1) +
+  (fusion GoronCave.Main.Goron2 & 1) +
+  (fusion GoronCave.Main.Goron3 & 1) +
+  (fusion GoronCave.Main.Goron4 & 1) +
+  (fusion GoronCave.Main.Goron5 & 1) +
+  (fusion GoronCave.Main.Goron6 & 1).
+
+fourGorons:
+  numberOfGorons >= 4.
+fiveGorons:
+  numberOfGorons >= 5.

@@ -1,0 +1,15 @@
+area GoronCave:
+  room Entrance:
+    node Main:
+      door South
+      door Stairs
+  room Main:
+    node Main:
+      door Stairs
+    node FirstChest:
+      chest SmallChest
+    node SecondChest:
+      chest BigChest
+    Main -> FirstChest: fourGorons
+    Main -> Fusion: ( fiveGorons & postGameFusions )
+    Main -> SecondChest: ( fusion Goron1 & fusion Goron2 & fusion Goron3 & fusion Goron4 & fusion Goron5 & fusion Goron6 )

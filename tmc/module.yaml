@@ -1,0 +1,156 @@
+name: tmc
+version: '1.0'
+syntax-version: '0.1'
+dependencies:
+  - [basicDefinitions, ">= 1.0, < 2.0"]
+soft-dependency: []
+provides:
+  descriptors:
+    npc:
+      arguments:
+        - scoped
+      stateful: false
+      type: truthy
+      export: target
+    lock:
+      arguments: ["scoped"]
+      stateful: false
+      type: truthy
+      export: target
+    open:
+      arguments: ["scoped"]
+      stateful: false
+      type: truthy
+      export: edge
+    hasExplosive:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
+    loseExplosive:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
+    providesExplosive:
+      arguments: ["scoped"]
+      stateful: false
+      type: truthy
+      export: edge
+    canPlugHoles:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
+    noBean:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
+    hasBean:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
+    getBean:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: self-edge
+    helper:
+      arguments: ["unscoped"]
+      stateful: false
+      type: truthy
+      export: edge
+    fusion:
+      arguments: ["scoped"]
+      stateful: false
+      type: truthy
+      export: edge
+    swipeable:
+      arguments: ["scoped"]
+      stateful: false
+      type: truthy
+      export: edge
+    bottleable:
+      arguments: ["unscoped"]
+      stateful: false
+      type: truthy
+      export: target
+    once:
+      arguments: []
+      stateful: false
+      type: truthy
+      export: edge
+    version:
+      arguments: ["unscoped"]
+      stateful: false
+      type: truthy
+      export: target
+    stepOnLilypad:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: self-edge
+    stepOffLilypad:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
+    moveWithLilypad:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
+    notOnLilypad:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
+    spend60:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
+    spend20:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
+    postGameFusions:
+      arguments: []
+      stateful: false
+      type: truthy
+      export: edge
+    numberOfGorons:
+      arguments: []
+      stateful: false
+      type: county
+    fourGorons:
+      arguments: []
+      stateful: false
+      type: truthy
+      export: edge
+    fiveGorons:
+      arguments: []
+      stateful: false
+      type: truthy
+      export: edge
+  logic-sugar:
+    entrance:
+      type: multi
+      expands-to:
+        - warp
+    exit:
+      type: multi
+      expands-to:
+        - target
+  descriptor-definitions:
+    - descriptors.dscr
+  logic:
+    - "logic/*.logic"
+  shuffles:
+    - "shuffles/*.shuf"
+  data:
+    - "logic/*.json"
+  patches: []

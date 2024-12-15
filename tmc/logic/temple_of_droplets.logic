@@ -1,0 +1,749 @@
+area TempleOfDroplets:
+
+  room BF1BigAndFrozenChest:
+    node East:
+      door East
+      enemy RedMulldozers
+    node Main:
+      door Stairs
+    node FrozenChest:
+      chest FrozenChest
+    node West:
+      target West
+    node WestWarp:
+      warp West
+    node PostFrozenMadderpillar:
+      chest BigChest
+    node PostFrozenMadderpillarDoor:
+      door South
+
+
+    Main -> FrozenChest: item FlameLantern
+    Main <-> East: item FlameLantern
+    PostFrozenMadderpillar <-> PostFrozenMadderpillarDoor: kill BF1IceMadderpillar.Maderpillar
+    West -> WestWarp: ((item Flippers & notOnLilypad) | moveWithLilypad)
+
+  room GFAboveBigKey:
+    node West:
+      enemy Mulldozers
+      door Stairs
+    node East:
+      enemy Mulldozers
+      door EastDoor
+    node DropDown:
+      warp DropDown
+
+    West <-> East: (item Cape | flag BF1BigKey.StoneDoorClosed)
+    West -> DropDown #possible softlock in ER: this can be closed
+    East -> DropDown #possible softlock in ER: this can be closed
+
+  room BF1BigKey:
+    node Main:
+      door Stairs
+      target DropDown
+      chest IceBlock
+      set StoneDoorClosed
+
+  room BF1ClonePushing:
+    node East:
+      door East
+    node North:
+      door North
+
+    North -> East: ((helper CanSplit2 | helper CanSplit3) & trick PushInBlocks) # CanSplit4 might be TAS viable?
+    East -> North: (item CanSplit2 | (helper CanSplit3 & trick PushInBlocks))
+
+
+  room BF1CloneSliding:
+    node SouthWest:
+      door SouthWest
+    node SouthEast:
+      door SouthEast
+    node SlidingBlocksPuzzle:
+      set SlidingBlocksPuzzle
+
+    SouthEast -> SlidingBlocksPuzzle: item CanSplit2
+    SouthWest <-> SouthEast: flag SlidingBlocksPuzzle
+
+
+  room BF1DarkMaze:
+    # Here the parts are delimited by the blocks you remove with the torches when doing this room vanilla
+    node MazePart1:
+      door WestSouth
+      enemy Pestos
+    node MazePart1Torch:
+      set MazePart1Torch
+    node MazePart2:
+      chest SouthChest
+      enemy Part2Mulldozers
+      enemy Pestos
+    node MazePart2Torch:
+      set MazePart2Torch
+    node MazePart3:
+      chest NorthEast
+      enemy Part3Mulldozers
+      enemy Pestos
+    node WestMiddle:
+      target WestMiddle
+    node WestMiddleWarp:
+      warp WestMiddle
+    node BomableWall:
+      set BomableWall
+    node MazePart3Torch:
+      set MazePart3Torch
+    node MazePart4:
+      chest NorthWest
+      enemy Part4Mulldozers
+      enemy Pestos
+    node MazePart4Torch:
+      set MazePart4Torch
+    node MazePart5:
+      lock NorthWestDoor
+      enemy Pestos
+    node NorthWestDoor:
+      door WestNorth
+
+    MazePart1 -> MazePart1Torch: item FlameLantern
+    MazePart2 -> MazePart2Torch: item FlameLantern
+    MazePart3 -> MazePart3Torch: item FlameLantern
+    MazePart4 -> MazePart4Torch: item FlameLantern
+    MazePart5 -> MazePart4Torch: item FlameLantern
+    MazePart1 <-> MazePart2: flag MazePart1Torch
+    MazePart2 <-> MazePart3: flag MazePart2Torch
+    MazePart3 <-> MazePart4: flag MazePart3Torch
+    MazePart4 <-> MazePart5: flag MazePart4Torch
+    MazePart3 -> BomableWall: (item BombBag | hasExplosive)
+    WestMiddle -> BomableWall: (item BombBag | hasExplosive)
+    MazePart3 <-> WestMiddle: flag BomableWall
+    MazePart3 -> WestMiddleWarp: flag BomableWall
+    MazePart5 <-> NorthWestDoor: open NorthWestDoor
+
+
+  room BF1DarkSplitPath:
+    node StonePath:
+      door West
+      door NorthWest
+    node IcePathEast:
+      door East
+    node IcePathNorth:
+      door NorthEast
+
+    IcePathNorth <-> StonePath: (item Cape & trick DarkRoomNavigation)
+    IcePathNorth <-> IcePathEast: trick DarkRoomNavigation
+
+
+  room BF1DoubleMadderpillars:
+    node Main:
+      enemy Maddepillars
+    node SouthDoor:
+      door South
+    node SouthWebBurned:
+      set SouthWebBurned
+    node EastDoor:
+      door East
+
+    SouthDoor <-> Main: flag SouthWebBurned
+    Main -> SouthWebBurned: (item FlameLantern | item GustJar)
+    South -> SouthWebBurned: item FlameLantern
+    Main <-> EastDoor: kill Maddepillars
+
+
+  room BF1FrozenLilyChest:
+    node North:
+      door North
+    node NorthWestDoor:
+      door West
+    node LowerWaterEast:
+      warp East
+    node LowerWaterEastEntry:
+      target East
+    node LowerIce
+    node LowerIceUnfreezeChest:
+      set UnfrozenChest
+    node LowerFrozenChest:
+      chest LowerFrozenChest
+
+    North <-> NorthWestDoor: flag BF1DoubleMadderpillars.OpenDoor
+    LowerWaterEast <-> LowerWater: ((notOnLilypad & item Flippers) | moveWithLilypad)
+    LowerWater -> LowerIce: stepOffLilypad
+    LowerIce -> LowerWater: item Flippers
+    LowerIce -> LowerFrozenChest: flag UnfrozenChest
+    LowerIce -> LowerIceUnfreezeChest: item FlameLantern
+    LowerWaterEastEntry -> LowerWater: ((item Flippers & notOnLilypad) | moveWithLilypad)
+
+
+  room BF1IceBridge:
+    node LowerNorth:
+      door EastNorth
+      enemy NorthMulldozers
+    node LowerSouth:
+      door WestSouth
+      enemy SouthMulldozers
+    node Upper:
+      door South
+      door North
+      enemy Sluggula
+
+    LowerNorth -> LowerSouth: (item FlameLantern & item CanSplit2)
+    LowerSouth -> LowerNorth: item CanSplit2
+
+
+  room BF1IceMadderpillar:
+    node Main:
+      enemy Maddepillar
+    node WestWater:
+      warp West
+    node WestWaterEntry:
+      target WestWater
+    node NorthDoor:
+      door North
+
+    WestWaterEntry -> WestWater: ((item Flippers & notOnLilypad) | moveWithLilypad)
+    WestWaterEntry -> Main: (item Cape & stepOffLilypad)
+    Main -> WestWater: item Flippers
+    Main <-> NorthDoor: kill Maddepillar
+
+  room GFLightTop:
+    node West:
+      door West
+      door NorthWest
+    node East:
+      door South
+      door NorthStairs
+    node DropDown:
+      entrance DropDown
+
+    East -> DropDown: flag BF1LightMiddle.StoneDoorOpened
+
+  room BF1LightMiddle:
+    node Main:
+      door WestStairs
+      door EastStairs
+    node AboveDropDown:
+      target FromAbove
+    node BelowDropDown:
+      warp DropDown
+    node Lever:
+      set StoneDoorOpened
+
+    AboveDropDown -> Main: flag BF2LightBottom.StoneDoorClosed
+    Main -> BelowDropDown #possible softlock in ER: this can be closed
+    Main <-> Lever: (flag BF2LightBottom.StoneDoorClosed | item Cape)
+    AboveDropDown -> BelowDropDown #possible softlock in ER: this can be closed
+    Lever -> BelowDropDown: flag BF2LightBottom.StoneDoorOpened
+
+  room BF2LightBottom:
+    node Main:
+      door Stairs
+      target DropDown
+      set StoneDoorClosed #possible softlock in ER: this can be closed
+    node FrozenItem:
+      chest FrozenItem
+
+    Main -> FrozenItem: (item FlameLantern | flag BF1LightMiddle.StoneDoorOpened)
+
+
+  room BF1LilypadPuzzles:
+    node NorthEastIsland:
+      warp EastNorth
+      enemy Pestos
+    node NorthEastIslandEntry:
+      target EastNorth
+      set SecondWaterBarrier
+    node NorthWater
+    node NorthEastWater:
+      stepOnLilypad
+    node WestWater:
+      warp West
+    node WestWaterEntry:
+      target West
+    node CenterIsland:
+      set SecondWaterBarrier
+      chest CenterChest
+      enemy PestosAndMulldozers
+    node CenterIslandFrozenChest:
+      chest CenterIslandFrozenChest
+    node CenterIslandUnfreezeChest:
+      set CenterIslandUnfreezeChest
+    node SouthWestWater:
+      enemy Pestos
+    node SouthEastWater:
+      warp EastWater
+      warp SouthWater
+    node SouthEastWaterEntrances:
+      target East
+      target South
+    node EastSouthIsland:
+      set FirstWaterBarrier
+    
+    SouthEastWaterEntrances -> SouthEastWater: ((item Flippers & notOnLilypad) | moveWithLilypad)
+    SouthEastWaterEntrances -> EastSouthIsland: (stepOffLilypad & item Cape)
+    SouthEastWater -> EastSouthIsland: stepOffLilypad
+    EastSouthIsland -> SouthEastWater: item Flippers
+    SouthWestWater <-> SouthEastWater: (((item Flippers & notOnLilypad) | moveWithLilypad) & flag FirstWaterBarrier)
+    SouthWestWater -> EastSouthIsland: (stepOffLilypad | (notOnLilypad & item Flippers))
+    SouthWestWater -> CenterIsland: ((item Flippers & notOnLilypad) | stepOffLilypad)
+    CenterIsland -> CenterIslandFrozenChest: flag CenterIslandUnfreezeChest
+    CenterIsland -> CenterIslandUnfreezeChest: item FlameLantern
+    NorthEastIslandEntry -> NorthEastIsland
+    SouthWestWater <-> NorthWater: (((item Flippers & notOnLilypad) | moveWithLilypad) & flag SecondWaterBarrier)
+    WestWaterEntry -> WestWater: ((item Flippers & notOnLilypad) | moveWithLilypad)
+    WestWater <-> NorthWater: ((item Flippers & notOnLilypad) | moveWithLilypad)
+    NorthEastIsland -> NorthEastWater
+    NorthEastWater <-> NorthWater: ((item Flippers & notOnLilypad) | moveWithLilypad)
+    NorthEastIsland <-> CenterIsland: item Cape
+    EastSouthIsland <-> CenterIsland: item Cape
+    NorthWater -> CenterIsland: ((item Flippers & notOnLilypad) | stepOffLilypad)
+    CenterIsland -> NorthWater: item Flippers
+
+
+  room BF1Mulldozers:
+    node Main:
+      enemy Mulldozers
+      door East
+    node Keydrop:
+      chest KeydropItem
+
+    Main -> Keydrop: kill Mulldozers
+
+  room BF1PreDouble:
+    node Main:
+      enemy Pestos
+      set RedWarpActivated
+      target RedWarp
+    node RedWarp:
+      warp RedWarp
+    node BombableWall:
+      set BombableWall
+    node NorthDoor:
+      door North
+
+    Main -> RedWarp: flag RedWarpActivated
+    Main -> BombableWall: (item BombBag | hasExplosive)
+    Main <-> NorthDoor: flag BombableWall
+    NorthDoor -> BombableWall: (item BombBag | hasExplosive)
+
+  room BF1PushFiresnake:
+    node North:
+      door North
+    node Main:
+      set BlockPuzzle
+    node West:
+      door West
+    North <-> Main: flag BF1CloneSliding.SlidingBlocksPuzzle
+    Main <-> WestDoor: flag BlockPuzzle
+
+  room BF1ScissorMiniboss:
+    node West:
+      door West
+    node Main:
+      enemy ScissorBeetles
+    node East:
+      door East
+
+    Main <-> East: kill ScissorBeetles
+    West -> Main
+    Main -> West: kill ScissorBeetles
+
+  room BF1SlidingFireSnakes:
+    node East:
+      door East
+    node West:
+      door West
+    East <-> West: trick DarkRoomNavigation
+
+  room GFAboveSmallKey:
+    node Main:
+      enemy Mulldozers
+      door West
+      door Stairs
+    node DropDown:
+      warp DropDown
+
+    Main -> DropDown: flag BF1SmallKey.StoneDoorOpened
+
+  room BF1SmallKey:
+    node Ice:
+      target FromAbove
+    node FrozenItem:
+      chest FrozenItem
+    node Main:
+      door Stairs
+      set StoneDoorOpened
+
+    Ice -> FrozenItem: (item FlameLantern | flag StoneDoorOpened)
+    Ice -> Main
+
+  room BF1SplitPath:
+    node UpperPath:
+      door SouthWest
+      door NorthStairs
+    node LowerPath:
+      door SouthEast
+      door West
+      chest RupeePath1
+      chest RupeePath2
+      chest RupeePath3
+      chest RupeePath4
+      chest RupeePath5
+
+  room BF1UnlitLanterns:
+    node Main:
+      door East
+    node LanternPuzzle:
+      set LanternPuzzleDone
+    node West:
+      door West
+
+    Main -> LanternPuzzle : item FlameLantern
+    Main <-> WestDoor: flag LanternPuzzleDone
+
+  room BF1WaterfallDrop:
+    node North:
+      door North
+    node MainWater
+    node NorthWater:
+      target WaterfallDrop
+    node SunkenRupees:
+      chest SunkenRupee1
+      chest SunkenRupee2
+      chest SunkenRupee3
+      chest SunkenRupee4
+      chest SunkenRupee5
+      chest SunkenRupee6
+    node EastWater:
+      warp EastWater
+    node EastWaterEntry:
+      target EastWater
+    node South:
+      set WaterDoorOpen
+
+    North -> NorthWater: item Flippers
+    NorthWater -> North: ((notOnLilypad & item Flippers) | stepOffLilypad)
+    NorthWater -> SunkenRupees: item Flippers
+    NorthWater <-> MainWater: ((item Flippers & notOnLilypad) | moveWithLilypad)
+    MainWater <-> South: ((item Flippers & notOnLilypad) | (item Cape & stepOffLilypad))
+    MainWater <-> EastWater: (((item Flippers & notOnLilypad) | moveWithLilypad) & flag WaterDoorOpen)
+    EastWaterEntry -> EastWater: ((item Flippers & notOnLilypad) | moveWithLilypad)
+
+  room BF1WaterPot:
+    node West
+    node Switch:
+      set GateOpen
+    node WestDoor:
+      warp West
+    node WestDoorEntry:
+      target West
+    node EastDoor:
+      warp East
+    node EastDoorEntry:
+      target East
+    node NorthDoor:
+      warp North
+    node NorthDoorEntry:
+      target North
+    node WaterPot:
+      chest UnderwaterKey
+
+    WestDoor <-> West: ((item Flippers & notOnLilypad) | moveWithLilypad)
+    Main -> WaterPot: item Flippers
+    West -> Switch: stepOffLilypad
+    East -> Switch: ((notOnLilypad & item Flippers) | stepOffLilypad)
+    East <-> West: (((item Flippers & notOnLilypad) | moveWithLilypad) & flag GateOpen)
+    East <-> EastDoor: ((item Flippers & notOnLilypad) | moveWithLilypad)
+    East <-> NorthDoor: ((item Flippers & notOnLilypad) | moveWithLilypad)
+    WestDoorEntry -> WestDoor: ((item Flippers & notOnLilypad) | moveWithLilypad)
+    EastDoorEntry -> EastDoor: ((item Flippers & notOnLilypad) | moveWithLilypad)
+    NorthDoorEntry -> NorthDoor: ((item Flippers & notOnLilypad) | moveWithLilypad)
+    NorthDoorEntry -> Switch: (item Cape & stepOffLilypad)
+    EastDoorEntry -> Switch: (item Cape & stepOffLilypad & trick CapeExtension)
+
+  room BF1WaterScissors:
+    node NorthDoor:
+      door EastNorth
+    node Main:
+      enemy ScissorBeetles
+    node SouthDoor:
+      door EastSouth
+
+    NorthDoor <-> Main: (item Flippers | (item Cape & trick JumpOverRollers))
+    Main <-> SouthDoor: (item Flippers | item Cape)
+
+  room GFBluChu:
+    node North:
+      door NorthDoor
+    node Main:
+      enemy BlueChu
+    node BigChest:
+      chest LanternChest
+
+    Main -> BigChest: kill BlueChu
+    North -> Main
+    Main -> North: kill BlueChu
+
+  room GFBossOctorock:
+    node Main:
+      target North
+      enemy Waifu
+    node DefeatedWaifu:
+      chest Element
+      chest HeartContainer
+      warp North
+      warp GreenWarp
+    Main -> DefeatedWaifu: kill Waifu
+
+  room GFEastFreeChest:
+    node UpperPath:
+      door West
+      door North
+    node LowerPath:
+      door South
+      door East
+      chest FreeChest
+
+  room GFEastIceMaze:
+    node Main:
+      door WestNorth
+      door WestSouth
+      chest CenterChest
+      chest Pot
+
+  room GFEastStairs:
+    node Main:
+      target NorthStairs
+      enemy ScissorBeetles
+      target BlueWarp
+    node NorthStairs:
+      warp NorthStairs
+    node BlueWarp:
+      warp BlueWarp
+    node South:
+      door South
+
+    Main -> NorthStairs: kill ScissorBeetles
+    Main -> BlueWarp: kill ScissorBeetles
+    Main <-> South: kill ScissorBeetles
+
+  room GFEntrance:
+    node Main:
+      door MainEntrance
+      door North
+      target BlueWarp
+      target RedWarp
+    node BKDoorOpen:
+      set BKDoorOpened
+    node BKDoor:
+      target BKDoor
+    node BKDoorWarp:
+      warp BKDoor
+    node BlueWarp:
+      warp BlueWarp
+    node RedWarp:
+      warp RedWarp
+
+    Main -> BKDoorOpen: item ToDBigKey
+    BKDoor -> BKDoorOpen: item ToDBigKey
+    BKDoor -> Main: flag BKDoorOpened
+    Main -> BKDoorWarp: flag BKDoorOpened
+    Main -> BlueWarp: kill GFEastStairs.ScissorBeetles
+    Main -> RedWarp: flag BF1PreDouble.RedWarpActivated
+
+  room GFFrozenOctoRoom:
+    node Main:
+      door North
+      door West
+      enemy Pots
+    node East:
+      door East
+    node MetlingWaifuCutscene:
+      set MeltedElementAndWaifu
+    node South:
+      door South
+    node WestSideUpperArea:
+      door UpperWestDoor
+    node WestLever:
+      set WestLever
+    node EastSideUpperArea:
+      door UpperEastDoor
+    node EastLever:
+      set EastLever
+    node MeltEastIceBlock:
+      set EastIceBlockMelted
+
+    Main -> MetlingWaifuCutscene: (flag WestLever & flag EastLever)
+    EastSideUpperArea -> MetlingWaifuCutscene: (flag WestLever & flag EastLever)
+    WestSideUpperArea -> MetlingWaifuCutscene: (flag WestLever & flag EastLever)
+    South -> MetlingWaifuCutscene: (flag WestLever & flag EastLever)
+    East -> MetlingWaifuCutscene: (flag WestLever & flag EastLever)
+    Main <-> South: flag MeltedElementAndWaifu
+    WestSideUpperArea -> WestLever: item CanSplit2
+    WestSideUpperArea -> WestLever: item CanSplit2
+    Main -> MeltEastIceBlock: flag WestLever
+    WestSideUpperArea -> MeltEastIceBlock: flag WestLever
+    EastSideUpperArea -> MeltEastIceBlock: flag WestLever
+    South -> MeltEastIceBlock: flag WestLever
+    East -> MeltEastIceBlock: flag WestLever
+
+
+  room GFNorthTorches:
+    node Main:
+      door South
+      door East
+      lock West
+      enemy Pots
+    node WestDoor:
+      door WestDoor
+
+    Main <-> WestDoor: open WestDoor
+
+  room GFPreBluChu:
+    node Main:
+      door East
+      door North
+      lock SouthDoor
+    node SouthDoor:
+      door South
+    node BehindIce:
+      door Stairs
+
+    Main <-> SouthDoor: open SouthDoor
+    Main <-> BehindIce: item FlameLantern
+
+  room GFWaterfallDrop:
+    node LowerPath:
+      door NorthEast
+      chest RupeePath1
+      chest RupeePath2
+      chest RupeePath3
+      chest RupeePath4
+      chest RupeePath5
+      chest BigChest
+    node UpperWest:
+      door NorthWest
+    node UpperWaterNorth:
+      target NorthWater
+    node UpperWaterLeaveNorth:
+      warp NorthWater
+    node UpperWater
+    node UpperButton:
+      set WaterBarrrierOpened
+    node Climb:
+      door Climb
+    node WaterFallDrop:
+      warp WaterFallDrop
+
+    UpperWaterNorth -> UpperWater: ((item Flippers & notOnLilypad) | moveWithLilypad)
+    UpperWater -> UpperWaterLeave: ((item Flippers & notOnLilypad) | moveWithLilypad)
+    UpperWest -> UpperWater: item Flippers
+    UpperWaterNorth -> UpperWest: ((item Flippers & notOnLilypad) | stepOffLilypad)
+    UpperWater -> UpperWest: ((item Flippers & notOnLilypad) | stepOffLilypad)
+    UpperWest -> UpperButton: (item GustJar | item Cape)
+    Climb -> UpperWest
+    UpperWater -> UpperButton: stepOffLilypad
+    UpperWater -> WaterFallDrop: (((item Flippers & notOnLilypad) | moveWithLilypad) & flag WaterBarrrierOpened)
+
+  room GFWestEntry:
+
+    node LeverPath:
+      door North
+      door EastNorth
+    node LowerPath:
+      door East
+      door SouthEast
+    node LowerPathWater:
+      target WestNorthWater
+    node LowerPathWaterLeave:
+      warp WestNorthWater
+    node UpperPathWaterWest:
+      target WestWater
+    node UpperPathWaterSouth:
+      target SouthWater
+    node UpperPathWaterWestWarp:
+      warp WestWater
+    node UpperPathWaterSouthWarp:
+      warp SouthWater
+    node UpperPath:
+      lock UpperPathWestDoor
+      door SouthWest
+    node UpperPathWestDoor:
+      door WestSouth
+
+    LowerPath <-> LowerPathWater: item Flippers
+    LowerPathWater -> LowerPathWaterLeave: item Flippers
+    UpperPathWaterWest -> UpperPathWaterWestWarp: ((item Flippers & notOnLilypad) | moveWithLilypad)
+    UpperPathWaterSouth -> UpperPathWaterSouthWarp: ((item Flippers & notOnLilypad) | moveWithLilypad)
+    UpperPathWaterWest <-> UpperPathWaterSouth: ((item Flippers & notOnLilypad) | moveWithLilypad)
+    UpperPathWaterSouth -> UpperPath: ((item Flippers & notOnLilypad) | stepOffLilypad)
+    UpperPathWaterWest -> UpperPath: (stepOffLilypad & item Cape)
+    UpperPath -> UpperPathWater: item Flippers
+    UpperPath <-> UpperPathWestDoor: open UpperPathWestDoor
+
+
+  room GFWestStairs:
+    node Main:
+      door Stairs
+      door South
+      enemy Mulldozers
+
+  room GFWestWaterButton:
+    node WaterNorth:
+      target NorthWater
+    node WaterNorthWarp:
+      warp NorthWater
+    node WaterSouth:
+      stepOnLilypad
+    node WaterSouthEast
+    node Ground:
+      door North
+      set WaterBarrrierOpened
+
+    WaterNorth <-> WaterSouth: (flag WaterBarrrierOpened & ((item Flippers & notOnLilypad) | moveWithLilypad))
+    WaterNorth -> WaterNorthWarp: ((item Flippers & notOnLilypad) | moveWithLilypad)
+    Ground -> WaterSouth: (item Flippers | item Cape)
+    WaterSouth -> Ground: (item Cape & stepOffLilypad)
+    WaterSouth -> WaterSouthEast: moveWithLilypad
+    WaterSouthEast -> Ground: stepOffLilypad
+
+  room GFWestWaterfall:
+    node LilyPadAccess:
+      lock GFWestEntry.UpperPathWestDoor
+      door South
+    node LilyPadAcessEast:
+      door LilyPadAcessEast
+    node UpperWater
+    node UpperWaterEast:
+      target EastWater
+    node UpperWaterEastWarp:
+      warp EastWater
+    node UpperWaterSouth:
+      target SouthWater
+    node UpperWaterSouthWarp:
+      warp SouthWater
+    node Stairs:
+      enemy Sluggula
+    node LowerWater
+    node LowerWaterEastTarget:
+      target EastWaterNorth
+    node LowerWaterEastWarp:
+      warp EastWaterNorth
+    node LowerWaterRuppees:
+      chest SunkenRupee1
+      chest SunkenRupee2
+      chest SunkenRupee3
+      chest SunkenRupee4
+      chest SunkenRupee5
+      chest SunkenRupee6
+
+    LilyPadAccess <-> LilyPadAcessEast: open GFWestEntry.UpperPathWestDoor
+    Stairs <-> LowerWater: item Flippers
+    LowerWater -> LowerWaterRuppees: item Flippers
+    LowerWaterEastTarget -> LowerWater: item Flippers
+    LowerWater -> LowerWaterEastWarp: item Flippers
+    UpperWater -> Stairs: ((item Flippers & notOnLilypad) | stepOffLilypad)
+    Stairs -> UpperWater: item Flippers
+    UpperWaterEast -> UpperWaterEastWarp: ((item Flippers & notOnLilypad) | moveWithLilypad)
+    UpperWaterSouth -> UpperWaterSouthWarp: ((item Flippers & notOnLilypad) | moveWithLilypad)
+    UpperWaterEast <-> UpperWater: ((item Flippers & notOnLilypad) | moveWithLilypad)
+    UpperWaterSouth <-> UpperWater: ((item Flippers & notOnLilypad) | moveWithLilypad)
+    UpperWaterEast -> Stairs: (stepOffLilypad & item Cape)
+    UpperWaterSouth -> Stairs: (stepOffLilypad & item Cape)

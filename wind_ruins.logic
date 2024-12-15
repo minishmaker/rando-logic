@@ -1,7 +1,0 @@
-area WindRuins:
-  room ArmosRunner
-  room BeanstalkArea
-  room DungeonEntry
-  room Entry
-  room LadderBottom
-  room TektiteFight
