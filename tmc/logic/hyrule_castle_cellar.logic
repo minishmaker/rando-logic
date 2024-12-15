@@ -1,3 +1,15 @@
 area HyruleCastleCellar:
-  room GardenEntrance
-  room CastleEntrance
+  room GardenEntrance:
+    node Main:
+      door Ladder
+      door East
+      enemy Ropes
+  room CastleEntrance:
+    node Main:
+      door West
+      target East
+      enemy Rope
+      set DoorOpen
+    node East:
+      warp East
+    Main -> East: ( flag DoorOpen & ool ) # the rubble can lock you out of this
