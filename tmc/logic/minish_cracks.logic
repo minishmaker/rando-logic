@@ -9,7 +9,7 @@ area MinishCracks:
       enemy Mulldozers
     node MainEnemiesDefeated:
       chest Chest
-    Main -> MainEnemiesDefeated: defeat Mulldozers
+    Main -> MainEnemiesDefeated: kill Mulldozers
   room CastorLilyDown:
     node Main:
       chest Chest
@@ -38,7 +38,7 @@ area MinishCracks:
   room LonLon:
     node Main:
       chest Chest
-      door Ladde
+      door Ladder
   room MinishWoodsFusion:
     node Main:
       chest Chest

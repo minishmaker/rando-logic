@@ -17,8 +17,8 @@ area VeilFallsCaves:
       set BombedWall
     Main -> BombWallEntrance: flag BombedWall
     BombWallExit -> Main: flag BombedWall
-    Main -> BombedWall: ( item BombBag | state HasExplosive | flag BombWallBombed )
-    BombWallExit -> BombedWall: ( item BombBag | state HasExplosive | flag BombWallBombed )
+    Main -> BombedWall: ( item BombBag | hasExplosive | flag BombWallBombed )
+    BombWallExit -> BombedWall: ( item BombBag | hasExplosive | flag BombWallBombed )
   room C1F2Climb:
     node East:
       door StairDown
@@ -84,7 +84,7 @@ area VeilFallsCaves:
     node BlowUpWall:
       set BombWallBombed
     MainBombWall <-> Main: flag BombWallBombed
-    Main -> BlowUpWall: ( item BombBag | state HasExplosive )
+    Main -> BlowUpWall: ( item BombBag | hasExplosive )
   room C2GFSideRoom:
     node Main:
       chest Chest

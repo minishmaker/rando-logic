@@ -7,4 +7,4 @@ area Gleerock:
       warp GreenWarp
       chest HC
       chest Prize
-    Main -> PostFight: defeat Gleerock
+    Main -> PostFight: kill Gleerock

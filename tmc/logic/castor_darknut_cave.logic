@@ -6,7 +6,7 @@ area CastorDarknutCave:
     node PostFight:
       chest Chest
       warp South
-    Main -> PostFight: defeat Darknut
+    Main -> PostFight: kill Darknut
   room Stairs:
     node Main:
       door NorthEastStair

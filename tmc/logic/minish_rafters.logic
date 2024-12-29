@@ -34,7 +34,7 @@ area MinishRafters:
     node DropBook:
       set BookFall
     Main -> Book: flag HouseInteriors2.Library.BookQuestStart
-    Book -> DropBook: ( item CanSplit & ( item BombBag | state HasExplosive | item GustJar ) )
+    Book -> DropBook: ( item CanSplit & ( item BombBag | hasExplosive | item GustJar ) )
   room Shop:
     node Main:
       chest Chest

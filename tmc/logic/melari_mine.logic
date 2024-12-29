@@ -12,7 +12,7 @@ area MelariMine:
       target West
     node West:
       warp West
-    Main -> West: WestEntranceFree
+    Main -> West: flag WestEntranceFree
     node MainDigSpots: # digspots are clockwise from the north entrance to Melari
       chest DigSpot1
       chest DigSpot2

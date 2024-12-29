@@ -55,7 +55,7 @@ area CrenelCaves:
       door South
       target North
     node Switches:
-      flag Switches
+      set Switches
     Main -> Switches: item CanSplit2
     node SwitchDoor:
       warp North
@@ -114,7 +114,7 @@ area CrenelCaves:
       door NorthStairs
       enemy NorthChus
     node SwitchBridgeGap:
-      flag Switch
+      set Switch
     SwitchBridgeNorth -> SwitchBridgeGap: ( helper HasProjectileDamage | item BombBag | hasExplosive )
     node SwitchBridgeSouth:
       door South

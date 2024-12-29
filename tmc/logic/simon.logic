@@ -6,4 +6,4 @@ area Simon:
     node PostFight:
       chest Chest
       warp Warp
-    Main -> PostFight: defeat Enemies
+    Main -> PostFight: kill Enemies

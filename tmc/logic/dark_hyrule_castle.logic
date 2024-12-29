@@ -44,7 +44,7 @@ area DarkHyruleCastle:
     node Main:
       door StairDown
       door South
-    Main -> BombWall: ( item BombBag | state HasExplosive )
+    Main -> BombWall: ( item BombBag | hasExplosive )
     Main <-> East: flag WallBombed
     node EastMinish:
       door EastMinish
@@ -59,7 +59,7 @@ area DarkHyruleCastle:
     node BombWall:
       set WallBombed
     Main <-> West: flag WallBombed
-    Main -> BombWall: ( item BombBag | state HasExplosive )
+    Main -> BombWall: ( item BombBag | hasExplosive )
   room B1MinishPortal:
     node East:
       door East
@@ -405,7 +405,7 @@ area DarkHyruleCastle:
       chest Chest
   room F2SoutheastTower:
     node Main:
-      node Stairs
+      door Stairs
       chest Chest
   room F2SouthwestTower:
     node Main:

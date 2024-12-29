@@ -8,4 +8,4 @@ area Greenchu:
       chest HP
       chest Element
       warp Door # requires re-entering the room after having already defeated green chu, but relevant for decoupled entrance rando
-    Main -> PostFight: defeat Greenchu
+    Main -> PostFight: kill Greenchu

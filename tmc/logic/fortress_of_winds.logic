@@ -62,7 +62,7 @@ area FortressOfWinds:
     node BlueWarp:
       warp BlueWarp
     Main -> PostFight: kill Darknut
-    Main -> BlueWarp: GFCenterStairs.BlueWarp
+    Main -> BlueWarp: flag GFCenterStairs.BlueWarp
     South -> Main
     East -> Main
     Main -> South: kill Darknut
@@ -105,10 +105,10 @@ area FortressOfWinds:
       chest EastChest
       chest WestChest
       target South
-    node DropDown
+    node DropDown:
       target RoofHole
       warp Hole
-    node DropDownMinish
+    node DropDownMinish:
       target RoofMinishHole
       warp MinishHole
     node South:
@@ -190,7 +190,7 @@ area FortressOfWinds:
     node Main:
       door North
       door StairDown
-    node DropDown
+    node DropDown:
       target RoofHole
       warp Hole
     Main -> DropDown
@@ -200,7 +200,7 @@ area FortressOfWinds:
       door West
     node MainEast:
       set KeyDropped
-    Main <-> MainEast: ( item Cape | item CanSplit2 | ( trick CloneSlide & ( item CanSplit 3 | item CanSplit4 )))
+    Main <-> MainEast: ( item Cape | helper CanSplit2 | ( trick CloneSlide & ( helper CanSplit3 | helper CanSplit4 )))
     node East:
       door South
       target RedWarp
@@ -251,7 +251,7 @@ area FortressOfWinds:
       chest Chest
     node Fight:
       enemy Eyegores
-    Main -> Chest: defeat Eyegores
+    Main -> Chest: kill Eyegores
     Main -> Fight: ( helper CanClone2 | helper CanClone3 | helper CanClone4 )
   room F2MazaalRoom:
     node Main:
@@ -262,7 +262,7 @@ area FortressOfWinds:
       warp North
       chest HP
       warp South
-    Main -> PostFight: defeat Mazaal
+    Main -> PostFight: kill Mazaal
   room F2PreMazaal:
     node Main:
       door South
@@ -303,7 +303,7 @@ area FortressOfWinds:
       door EastMinish
     node Key:
       chest Key
-    Main -> Key: F2East.KeyDropped
+    Main -> Key: flag F2East.KeyDropped
   room GFMinishHP:
     node Main:
       chest Chest
@@ -321,7 +321,7 @@ area FortressOfWinds:
       target DropDown
     node Key:
       chest Key
-    Main -> Key: F2CenterKeyPull.KeyDropped
+    Main -> Key: flag F2CenterKeyPull.KeyDropped
   room GFWizrobes:
     node Main:
       enemy Wizrobes

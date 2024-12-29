@@ -5,8 +5,9 @@ area Caves:
       door South
       enemy Keese
   room LonLonPuddle:
-    door South
-    chest Chest
+    node Main:
+      door South
+      chest Chest
   room LonLonTingle:
     node South:
       door South
@@ -77,9 +78,10 @@ area Caves:
       door WestLadder
     East -> West: ( helper CanSplit3 | helper CanSplit4 )
   room NorthHyruleFieldCaveBasement:
-    chest HP
-    door Stair
-    door South
+    node Main:
+      chest HP
+      door Stair
+      door South
   room NorthHyruleFieldFairy:
     node Main:
       door South

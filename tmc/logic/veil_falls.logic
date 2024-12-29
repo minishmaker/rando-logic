@@ -98,7 +98,7 @@ area VeilFalls:
     node TopWaterLand +: entrance Virtual.Zeffa.FluteAway
     node NorthPath +: entrance Virtual.Zeffa.FluteAway
     node Crest +: entrance Virtual.Zeffa.FluteAway
-    node Bottom +: entrance Virtual.Zeffa.FluteAwayv
+    node Bottom +: entrance Virtual.Zeffa.FluteAway
     node BottomEast +: entrance Virtual.Zeffa.FluteAway
     node MiddleRight +: entrance Virtual.Zeffa.FluteAway
     node MiddleChestLedge +: entrance Virtual.Zeffa.FluteAway

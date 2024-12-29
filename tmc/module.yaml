@@ -77,6 +77,11 @@ provides:
       stateful: false
       type: truthy
       export: target
+    ool:
+      arguments: []
+      stateful: false
+      type: truthy
+      export: edge
     once:
       arguments: []
       stateful: false
@@ -86,7 +91,7 @@ provides:
       arguments: ["unscoped"]
       stateful: false
       type: truthy
-      export: target
+      export: edge
     stepOnLilypad:
       arguments: []
       stateful: true
@@ -107,12 +112,52 @@ provides:
       stateful: true
       type: truthy
       export: edge
-    spend60:
+    spend10:
       arguments: []
       stateful: true
       type: truthy
       export: edge
     spend20:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
+    spend40:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
+    spend50:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
+    spend60:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
+    spend80:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
+    spend200:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
+    spend300:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
+    spend400:
+      arguments: []
+      stateful: true
+      type: truthy
+      export: edge
+    spend600:
       arguments: []
       stateful: true
       type: truthy

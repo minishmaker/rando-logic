@@ -40,8 +40,8 @@ area MinishHouseInteriors:
       door South
     node Librari:
       npc Librari
-      item Librari
-    Main -> Librari: defeat Gyorg.Main.Gyorg
+      chest Librari
+    Main -> Librari: kill Gyorg.Main.Gyorg
   room LakeCrest:
     node Main:
       door South
@@ -52,26 +52,26 @@ area MinishHouseInteriors:
       door West
     node Apprentice:
       npc Apprentice
-    Main -> Apprentice: MelariMine.Main.MelariMoved
+    Main -> Apprentice: flag MelariMine.Main.MelariMoved
   room MineSouthEast:
     node Main:
       door North
     node Apprentice:
       npc Apprentice
-    Main -> Apprentice: MelariMine.Main.MelariMoved
+    Main -> Apprentice: flag MelariMine.Main.MelariMoved
   room MineSouthWest:
     node Main:
       door North
     node Melari:
       npc Melari
-    Main -> Mellari: MelariMine.Main.MelariMoved
+    Main -> Mellari: flag MelariMine.Main.MelariMoved
   room MinishWoods:
     node Main:
       door South
       npc Belari
-      item Belari
+      chest Belari
     node RemoteBombs:
-      item RemoteBombs
+      chest RemoteBombs
     Main -> RemoteBombs: fusion RemoteBombs
   room SouthHyruleField:
     node Main:

@@ -466,7 +466,7 @@ area HyruleField:
       door EastNorth
       door EastSouth
       door West
-      ennemy OctorocsAndKeatons
+      enemy OctorocsAndKeatons
       door TopLadder
       warp Virtual.Zeffa.FluteAway
 
@@ -556,7 +556,7 @@ area HyruleField:
 
     node VaatiTakeoverCutscene:
       set VaatiTakeover
-    Main -> VaatiTakeoverCutscene: ( item RedSword & defeat Gleerock.Main.Gleerock )
+    Main -> VaatiTakeoverCutscene: ( item RedSword & kill Gleerock.Main.Gleerock )
 
     node East:
       door East

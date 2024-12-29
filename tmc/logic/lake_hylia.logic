@@ -72,7 +72,7 @@ area LakeHylia:
       enemy ChuAndOctorok
     node DavidJr:
       npc DavidJr
-    NorthWest -> DavidJr: flag HyruleField.WestWoodsNorth.VaatiTakeover & flag HyruleField.South.TalkedToTingle
+    NorthWest -> DavidJr: ( flag HyruleField.WestWoodsNorth.VaatiTakeover & flag HyruleField.South.TalkedToTingle )
     West <-> Water: item Flippers
     West <-> SouthIslands: item Cape
     West <-> NorthWest: flag Boulder
@@ -90,7 +90,7 @@ area LakeHylia:
     SouthEast -> SouthEastMinish: (item CanTurnMinish & flag TreeBonk)
     SouthEastMinish <-> MinishWater: item Flippers
     SouthEastMinish -> SouthEast: item CanGrow
-    node DigCaveNorthArea:
+    node DigCaveNorthArea
     node NorthIslands:
       chest NorthHP
     DigCaveNorthArea <-> NorthHP: item Cape

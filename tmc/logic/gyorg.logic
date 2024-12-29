@@ -5,4 +5,4 @@ area Gyorg:
       enemy Gyorg
     node PostFight:
       warp PostFight
-    Main -> PostFight: defeat Gyorg
+    Main -> PostFight: kill Gyorg

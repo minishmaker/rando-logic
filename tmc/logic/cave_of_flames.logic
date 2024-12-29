@@ -94,7 +94,7 @@ area CaveOfFlames:
       door Minecart
   room BF1PillbugsAndFloating:
     node South:
-      door West
+      door East
       enemy Pillbugs
     node North:
       door North

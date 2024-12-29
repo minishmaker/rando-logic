@@ -20,7 +20,7 @@ area PalaceOfWinds:
     SouthWestRedSwitch -> SouthWestBlueSwitch: (item BombBag | item Boomerang | item MagicalBoomerang | ( trick GustJarProjectilesThroughWalls & item GustJar ))
     SouthEastRedSwitch -> SouthWestRedSwitch
     SouthEastBlueSwitch -> SouthWestBlueSwitch: item Cape
-    SouthEastBlueSwitch <-> SouthEastRedSwitch: canHitSwitch
+    SouthEastBlueSwitch <-> SouthEastRedSwitch: helper CanHitSwitch
     MainBlueSwitch <-> SouthEastBlueSwitch 
     Main <-> SouthEastRedSwitch: item Cape
     Main -> MainBlueSwitch: helper HasProjectileDamage
@@ -561,7 +561,7 @@ area PalaceOfWinds:
     node EastPastWall:
       warp East
     East -> EastBlowUpWall: ( item BombBag | hasExplosive )
-    EastBlowUpWall:
+    node EastBlowUpWall:
       set BombableWall
     East -> EastPastWall: flag BombableWall
     East -> South

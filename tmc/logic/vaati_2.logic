@@ -5,4 +5,4 @@ area Vaati2:
       enemy Vaati
     node PostFight:
       warp PostFight
-    Main -> PostFight: defeat Vaati
+    Main -> PostFight: kill Vaati

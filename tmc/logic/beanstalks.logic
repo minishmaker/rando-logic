@@ -24,6 +24,7 @@ area Beanstalks:
       chest HP
       chest North
       chest West
+      door South
   room LakeHyliaClimb:
     node Main:
       door North

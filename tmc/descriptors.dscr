@@ -10,12 +10,12 @@ item CanSpin:
 
 
 numberOfGorons:
-  (fusion GoronCave.Main.Goron1 & 1) +
-  (fusion GoronCave.Main.Goron2 & 1) +
-  (fusion GoronCave.Main.Goron3 & 1) +
-  (fusion GoronCave.Main.Goron4 & 1) +
-  (fusion GoronCave.Main.Goron5 & 1) +
-  (fusion GoronCave.Main.Goron6 & 1).
+  (fusion GoronCave.Main.Goron1, 1) +
+  (fusion GoronCave.Main.Goron2, 1) +
+  (fusion GoronCave.Main.Goron3, 1) +
+  (fusion GoronCave.Main.Goron4, 1) +
+  (fusion GoronCave.Main.Goron5, 1) +
+  (fusion GoronCave.Main.Goron6, 1).
 
 fourGorons:
   numberOfGorons >= 4.

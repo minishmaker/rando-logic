@@ -5,7 +5,10 @@ area WindRuins:
       enemy Armoses
     node NorthMinish:
       door NorthMinish
-      door Armos
+      door Armos1
+      door Armos2
+      door Armos3
+      door Armos4
     node South:
       enemy SouthEnemies
     node SouthGoldenRope:
@@ -15,11 +18,11 @@ area WindRuins:
     South -> North
     node NorthEast:
       door NorthEast
-    South <-> NorthEast: defeat SouthEnemies
+    South <-> NorthEast: kill SouthEnemies
     node Chests:
       chest ChestLeft
       chest ChestRight
-    North <-> Chests: defeat Armoses
+    North <-> Chests: kill Armoses
     node South +: warp Virtual.Zeffa.FluteAway
     node North +: warp Virtual.Zeffa.FluteAway
     node NorthEast +: warp Virtual.Zeffa.FluteAway
@@ -77,7 +80,7 @@ area WindRuins:
       entrance BombWall
     node BombWall:
       set BombWall
-    North -> BombWall: ( item BombBag | state HasExplosive )
+    North -> BombWall: ( item BombBag | hasExplosive )
     North -> BombWallEntrance: flag BombWall
     node ButterflyFusion:
       chest Butterfly
@@ -118,10 +121,10 @@ area WindRuins:
   room TektiteFight:
     node Main:
       enemy Tektites
-      node South
+      door South
     node MainNorth:
       door North
-    Main <-> MainNorth: defeat Tektites
+    Main <-> MainNorth: kill Tektites
     node MainMinish:
       door NorthMinish
       door SouthWestMinish

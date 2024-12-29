@@ -24,8 +24,8 @@ area HouseInteriors4:
       npc Malon
     node MainEnterFromEast:
       target East
-    Main <-> MainUnlocked: HyruleField.LonLon.OpenWestRanchDoor
-    MainEnterFromEast -> Main: HyruleField.LonLon.OpenWestRanchDoor
+    Main <-> MainUnlocked: flag HyruleField.LonLon.OpenWestRanchDoor
+    MainEnterFromEast -> Main: flag HyruleField.LonLon.OpenWestRanchDoor
   room Lumberjack:
     node Main:
       door South

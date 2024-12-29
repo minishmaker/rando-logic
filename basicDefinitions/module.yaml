@@ -25,7 +25,7 @@ provides:
       export: edge-from-beyond-the-void
     warp:
       arguments:
-        - unscoped
+        - scoped
       stateful: false
       type: truthy
       export: target
@@ -49,7 +49,7 @@ provides:
       export: edge
     enemy:
       arguments:
-        - unscoped
+        - scoped
       stateful: false
       type: truthy
       export: target
@@ -64,6 +64,11 @@ provides:
       stateful: false
       type: truthy
       export: edge-from-beyond-the-void
+    goal:
+      arguments: []
+      stateful: false
+      type: truthy
+      export: target
   logic-sugar:
     door:
       type: multi

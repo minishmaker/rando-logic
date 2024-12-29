@@ -8,9 +8,9 @@ area SewerAndFountain:
       enemy Mulldozers
     node Chest:
       chest Chest
-    Main -> Chest: defeat Mulldozers
-    Main <-> West: defeat Mulldozers
-    Main -> South: defeat Mulldozers
+    Main -> Chest: kill Mulldozers
+    Main <-> West: kill Mulldozers
+    Main -> South: kill Mulldozers
     South -> Main
   room FountainEntrance: #
     node Main:
@@ -51,7 +51,7 @@ area SewerAndFountain:
       target WaterSouth
     node WaterEntrance:
       warp WaterSouth
-    East -> Main: defeat FountainBigChest.Mulldozers
+    East -> Main: kill FountainBigChest.Mulldozers
     Main <-> West: item Cape
     Main -> Water: item Flippers
     Water <-> West: item Flippers
@@ -63,11 +63,11 @@ area SewerAndFountain:
     node Water:
       chest WaterRupee
       warp SouthWater
-    node WaterEntrance
+    node WaterEntrance:
       target SouthWater
     node Chest:
       chest Chest
-    Main -> Chest: defeat Enemies
+    Main -> Chest: kill Enemies
     Main -> Water: item Flippers
     WaterEntrance -> Water: item Flippers
   room SewerCrossroads:
