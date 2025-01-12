@@ -8,6 +8,7 @@ area HouseInteriors3:
       door EastMinish
       door NorthEastMinish
       door NorthWestMinish
+      target DropMinish
   room BorlovFront:
     node Main:
       target North
@@ -93,6 +94,7 @@ area HouseInteriors3:
       chest BackItem
     node BackMinish:
       door MinishRafters
+      target DropMinish
     Back -> BackMinish: item CanTurnMinish
     BackMinish -> Back: item CanGrow
     node Main:

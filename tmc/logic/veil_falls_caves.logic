@@ -2,11 +2,11 @@ area VeilFallsCaves:
   room C1F1BehindBreakableWall:
     node Main:
       chest Chest
-      door North
+      door StairsUp
       door South
   room C1F1BreakableWall:
     node Main:
-      door Stair
+      door StairsDown
       door South
       enemy RedBubble
     node BombWallExit:
@@ -37,7 +37,7 @@ area VeilFallsCaves:
     North <-> South: ( helper CanSplit3 | helper CanSplit4 )
   room C1GFEntrance:
     node East:
-      door North
+      door StairsUp
       enemy Keese
     node West:
       door South
@@ -54,7 +54,7 @@ area VeilFallsCaves:
       chest Rupee7
       chest Rupee8
       chest Rupee9
-      door North
+      door StairsUp
       door South
       enemy LikeLike
     node MainWater:
@@ -68,14 +68,14 @@ area VeilFallsCaves:
   room C2F1:
     node Main:
       chest Chest
-      door North
+      door StairsDown
       door SouthEast
       door SouthWest
       enemy KeeseAndHelmasaurs
   room C2GFEntry:
     node Main:
-      door NorthEast
-      door NorthWest
+      door StairsUp
+      door StairsDown
       door South
       door Ladder
       enemy KeeseAndHelmasaurs

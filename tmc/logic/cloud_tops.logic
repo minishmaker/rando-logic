@@ -2,157 +2,192 @@
 #I also checked most jumps to see if they worked, might have missed one or two though
 area CloudTops:
   room LowerClouds:
-    node CenterPlatform:
+    node CenterIsland:
       door CloudTopsExit
-      door CenterTornado
-      exit BigTornado
-      lock CenterFusion
-    node MiddleRightPlatform:
-      enemy MiddleRightCloudPiranha
-      door MiddleRightPlatformLowerTornado
-      door MiddleBottomPlatformUpperTornado
-    CenterPlatform <-> MiddleRightPlatform: item Cape
-    node TopRightPlatform:
-      door TopRightTornado
-      lock TopRightFusion
-    node MiddleTopPlatform:
-      enemy NorthCloudPiranhas
-      exit NorthFightTornado
+      door CenterIslandSmallTornado
+      target BigTornado
+      npc CenterCloud
+    node EastIsland:
+      enemy EastIslandCloudPiranha
+      door EastIslandSouthTornado
+      door EastIslandNorthTornado
+    CenterIsland <-> EastIsland: item Cape
+    node NortheastIsland:
+      door NortheastIslandTornado
+      npc NortheastCloud
+    EastIsland <-> NortheastIsland: item Cape
+    node NorthIsland:
+      enemy NorthIslandCloudPiranhas
+      target NorthIslandTornado
     node NorthFight:
-      chest NorthFightItem
-      entrance NorthFightTornado
+      chest NorthIsland
+      warp NorthIslandTornado
     #Could just be a flag since you don't need sword to beat them?
-    MiddleTopPlatform -> NorthFight: kill NorthCloudPiranhas
-    node TopLeftPlatform:
-      door TopLeftTornado
-      enemy TopLeftLakitu
-      lock TopLeftFusion
-    node BottomLeftPlatform:
-      enemy BottomLeftEnemies
-      door BottomLeftPlatformLeftTornado
-      door BottomLeftPlatformRightTornado
-      door BottomLeftPlatformTopTornado
-      lock BottomLeftFusion
-    node MiddleBottomPlatform:
-      door MiddleBottomPlatformLowerTornado
-      exit SouthFightTornado
-      enemy SouthCloudPiranhas
+    NorthIsland -> NorthFight: kill NorthIslandCloudPiranhas
+    node NorthwestIslandSouth:
+      door NorthwestIslandTornado
+      enemy NorthwestIslandLakitu
+    node NorthwestIslandNorth:
+      enemy NorthwestIslandLakitu
+      npc NorthwestCloud
+    NorthwestIslandNorth <-> NorthwestIslandSouth: ( kill NorthwestIslandLakitu | trick RollThroughLakitu )
+    node SouthwestIsland:
+      enemy SouthwestIslandEnemies
+      door SouthwestIslandNorthTornado
+      door SouthwestIslandEastTornado
+      door SouthwestIslandWestTornado
+      npc SouthwestCloud
+    node SouthIsland:
+      door SouthIslandSouthTornado
+      target SouthIslandNorthTornado
+      enemy SouthIslandCloudPiranhas
+    SouthwestIsland <-> SouthIsland: item Cape
     node SouthFight:
-      chest SouthFight
-      entrance SouthFightTornado
-    MiddleBottomPlatform -> SouthFight: kill SouthCloudPiranhas
-    node BottomRightPlatform:
-      enemy BottomRightCloudPiranha
-      door BottomRightTornado
-    MiddleBottomPlatform <-> BottomRightPlatform: item Cape
-    node BottomRightFusionPlatform:
-      door BottomRightFusionPlatformTornado
-      lock BottomRightFusion
+      chest SouthIsland
+      warp SouthIslandNorthTornado
+    SouthIsland -> SouthFight: kill SouthCloudPiranhas
+    node SoutheastSouthIsland:
+      enemy SoutheastSouthIslandCloudPiranha
+      door SoutheastSouthIslandTornado
+      target SoutheastSouthIslandWestDrop
+    SouthIsland <-> SouthEastSouthIsland: item Cape
+    node SoutheastNorthIsland:
+      door SoutheastNorthIslandTornado
+      npc SoutheastCloud
+    SouthEastNorthIsland <-> SouthEastSouthIsland: item Cape
     #This way we could pre-set it maybe? Could just remove this if it's not necessary
     node FusionsComplete:
       set FusionsComplete
-    CenterPlatform -> FusionsComplete: (open CenterFusion & open TopRightFusion & open TopLeftFusion & open BottomLeftFusion & open BottomRightFusion)
+    CenterIsland -> FusionsComplete: (fusion Center & fusion Northeast & fusion Northwest & fusion Southwest & fusion Southeast)
     node BigTornado:
       set WindTribeDoorOpen
       entrance BigTornado
-    CenterPlatform -> BigTornado: flag FusionsComplete
-    node CenterPlatform +: entrance Virtual.Zeffa.FluteAway
-    node MiddleRightPlatform +: entrance Virtual.Zeffa.FluteAway
-    node MiddleTopPlatform +: entrance Virtual.Zeffa.FluteAway
-    node TopLeftPlatform +: entrance Virtual.Zeffa.FluteAway
-    node BottomLeftPlatform +: entrance Virtual.Zeffa.FluteAway
-    node MiddleBottomPlatform +: entrance Virtual.Zeffa.FluteAway
-    node BottomRightPlatform +: entrance Virtual.Zeffa.FluteAway
+    CenterIsland -> BigTornado: flag FusionsComplete
+    node CenterIsland +: warp Virtual.Zeffa.FluteAway
+    node EastIsland +: warp Virtual.Zeffa.FluteAway
+    node NortheastIsland +: warp Virtual.Zeffa.FluteAway
+    node NorthIsland +: warp Virtual.Zeffa.FluteAway
+    node NorthwestIslandSouth +: warp Virtual.Zeffa.FluteAway
+    node NorthwestIslandNorth +: warp Virtual.Zeffa.FluteAway
+    node SouthwestIsland +: warp Virtual.Zeffa.FluteAway
+    node SouthIsland +: warp Virtual.Zeffa.FluteAway
+    node SoutheastNorthIsland +: warp Virtual.Zeffa.FluteAway
+    node SoutheastSouthIsland +: warp Virtual.Zeffa.FluteAway
   room TowerEntrance:
     node Main:
-      exit Crest
+      target Crest
       set Virtual.Zeffa.CloudTopsCrest
       door WindTribeTower
       door Hole
-    node Main +: entrance Virtual.Zeffa.FluteAway
+    node Main +: warp Virtual.Zeffa.FluteAway
   room UpperClouds:
-    node StartingPlatform:
-      chest StartingPlatformChest
-      door StartingPlatformLeftHole
-      door StartingPlatformRightHole
-    node TopRightCornerLowerArea:
-      door TopRightCornerLowerHole
-    node TopRightObscure:
-      chest TopRightObscureItem
-    TopRightCornerLowerArea -> TopRightObscure: item MoleMitts
-    #All of the northern islands that can reach each other w/o items condensed together
-    node TopTornadoField:
-      door TopRightHole
-      door TopCenterHole
-      door CenterLeftHole
-    TopRightCornerLowerArea -> TopTornadoField: (item Cape | item Mitts)
-    TopTornadoField -> TopRightObscure: item MoleMitts
-    node TopLeftDigItems:
-      chest TopLeftLeftChest
-      chest TopLeftRightChest
-      chest TopLeftObscure
-    TopTornadoField -> TopLeftDigItems: item MoleMitts
-    node TopLeftCornerLowerArea:
-      chest TopLeftLowerChest
-    TopTornadoField -> TopLeftCornerLowerArea
-    TopLeftCornerLowerArea -> TopTornadoField: (item MoleMitts | item Cape)
-    node BottomleftPlatform:
-      door BottomLeftHole
-    #Can't go backwards from here
-    TopTornadoField -> BottomleftPlatform
-    node BottomLeftDigItems:
-      chest BottomLeftDigChest
-      chest BottomLeftObscure
-    BottomleftPlatform -> BottomLeftDigItems: item MoleMitts
-    node BottomCenterLeftPlatform:
-      door BottomCenterLeftPlatformHole
-      chest BottomCenterLeftChest
-    BottomleftPlatform <-> BottomCenterLeftPlatform: item Cape
-    TopTornadoField -> BottomCenterLeftPlatform
-    node BottomCenterLeftDigItem:
-      chest BottomCenterLeftObscure
-    BottomCenterLeftPlatform -> BottomCenterLeftDigItem: item MoleMitts
-    #Can jump into a tornado in the corner to go back up
-    BottomCenterLeftDigItem -> TopTornadoField
-    node BottomCenterPlatform:
-      door BottomCenterPlatformLeftHole
-      door BottomCenterPlatformRightHole
-    BottomleftPlatform <-> BottomCenterPlatform: item Cape
-    TopTornadoField -> BottomCenterPlatform
-    #Also includes the empty platform that has the 1x1 hole
-    node BottomCenterRightPlatform:
-      door BottomCenterRightPlatformHole
-      chest BottomCenterRightChest
-    BottomCenterPlatform <-> BottomCenterRightPlatform: item Cape
-    #BottomCenterRightPlatform has a tornado that can reach the other platforms w/o items
-    BottomCenterRightPlatform -> BottomCenterPlatform
-    BottomCenterRightPlatform -> BottomCenterLeftPlatform
-    BottomCenterRightPlatform -> BottomLeftPlatform
-    node BottomRightLeftDigItem:
-      chest BottomRightLeftObscureItem
-    BottomCenterRightPlatform -> BottomRightLeftDigItem: item MoleMitts
-    node SmallHole:
-      door SmallHole
-    BottomCenterRightPlatform -> SmallHole: item MoleMitts
-    #Includes the empty platform to the left of the starting platform
-    node BottomRightCornerPlatform:
-      door BottomRightLowerHole
-      door BottomRightUpperHole
-    BottomRightCornerPlatform -> SmallHole: item Cape
-    BottomCenterRightPlatform -> BottomRightCornerPlatform: (item MoleMitts & item Cape)
-    #Via the center platform
-    BottomRightCornerPlatform -> TopTornadoField: item MoleMitts
-    StartingPlatform -> BottomRightCornerPlatform: (item MoleMitts & item Cape)
-    node BottomRightCornerDigItems:
-      chest BottomRightLowerObscureItem
-      chest BottomRightUpperObscureItem
-    BottomRightCornerPlatform -> BottomRightCornerDigItems: item MoleMitts
-    node StartingPlatform +: entrance Virtual.Zeffa.FluteAway
-    node TopRightCornerLowerArea +: entrance Virtual.Zeffa.FluteAway
-    node TopTornadoField +: entrance Virtual.Zeffa.FluteAway
-    node TopLeftCornerLowerArea +: entrance Virtual.Zeffa.FluteAway
-    node BottomleftPlatform +: entrance Virtual.Zeffa.FluteAway
-    node BottomCenterLeftPlatform +: entrance Virtual.Zeffa.FluteAway
-    node BottomCenterPlatform +: entrance Virtual.Zeffa.FluteAway
-    node BottomCenterRightPlatform +: entrance Virtual.Zeffa.FluteAway
-    node BottomRightCornerPlatform +: entrance Virtual.Zeffa.FluteAway
+    node EastIsland:
+      chest EastIsland
+      door EastIslandEastHole
+      door EastIslandWestHole
+    node NortheastIslandSouth:
+      door NortheastIslandSouthHole
+    node NortheastIslandDigItems:
+      chest NortheastIslandDig
+    node NortheastIslandNorth:
+       door NortheastIslandNorthHole
+    NortheastIslandSouth -> NortheastIslandDigItems: item MoleMitts
+    node NorthTornadoField
+    NortheastIslandNorth <-> NorthTornadoField
+    NorthTornadoField -> NortheastIslandSouth
+    node NorthIslandEast:
+      door NorthIslandHole
+    NorthIslandEast <-> NortheastIslandNorth: (item Cape & trick CapeExtension)
+    NorthIslandEast <-> NorthTornadoField
+    node NorthIslandWest
+    NorthIslandEast <-> NorthIslandWest: item MoleMitts
+    NorthIslandWest <-> NorthTornadoField
+    node NorthwestIslandNorth
+    NorthTornadoField <-> NorthwestIslandNorth
+    node NorthwestIslandDig:
+      chest NorthwestIslandDigItem
+      chest NorthwestIslandEast
+      chest NorthwestIslandWest
+    NorthwestIslandDig <-> NorthwestIslandNorth
+    node NorthwestIslandSouth:
+      chest NorthwestIslandSouth
+    NorthTornadoField -> NorthwestIslandSouth
+    NorthwestIslandSouth -> NorthTornadoField: item Cape
+    NorthwestIslandNorth <-> NorthwestIslandSouth: ( item MoleMitts | item Cape )
+    node WestIsland:
+      door WestIslandHole
+    NorthwestIslandSouth -> WestIsland: (item Cape & trick CornerJump)
+    NorthTornadoField <-> WestIsland
+    node SouthwestIsland:
+      door SouthwestIslandHole
+    NorthTornadoField -> SouthwestIsland
+    node SouthwestIslandDig:
+      chest SouthwestIslandCenter
+      chest SouthwestIslandDig
+    SouthwestIsland -> SouthwestIslandDig: item MoleMitts
+    node SouthNorthwestIsland:
+      chest SouthNorthwestIsland
+      door SouthNorthwestIslandHole
+    NorthTornadoField -> SouthNorthwestIsland
+    node SouthNorthwestIslandDig:
+      chest SouthNorthwestIslandDig
+    SouthNorthwestIsland -> SouthNorthwestIslandDig: item MoleMitts
+    SouthNorthwestIslandDig -> NorthTornadoField
+    node SouthSouthwestIsland:
+       door SouthSouthwestIslandEastHole
+       door SouthSouthwestIslandWestHole
+    NorthTornadoField -> SouthSouthwestIsland
+    SouthNorthwestIsland <-> SouthSouthwestIsland: item Cape
+    SouthwestIsland <-> SouthSouthwestIsland: item Cape
+    node SouthNortheastIsland:
+      chest SouthNortheastIsland
+      door SouthNortheastIslandHole
+    SouthNorthwestIsland <-> SouthNortheastIsland: item Cape
+    node SouthTornadoField
+    SouthNortheastIsland <-> SouthTornadoField
+    SouthTornadoField -> SouthwestIsland
+    SouthTornadoField -> SouthNorthwestIsland
+    SouthTornadoField -> SouthSouthwestIsland
+    node SouthSoutheastIsland
+    SouthSouthwestIsland <-> SouthSoutheastIsland: item Cape
+    SouthTornadoField -> SouthSoutheastIsland
+    node SouthSoutheastIslandDig:
+      chest SouthSoutheastIslandDig
+    SouthSoutheastIsland -> SouthSoutheastIslandDig: item MoleMitts
+    node SouthSoutheastIslandHole:
+      warp SouthSoutheastIslandHole
+    SouthSoutheastIslandDig -> SouthSoutheastIslandHole
+    node SoutheastIsland:
+      door SoutheastIslandSouthHole
+      door SoutheastIslandNorthHole
+    SouthSoutheastIslandDig -> SoutheastIsland: item Cape
+    SoutheastIsland -> SouthSoutheastIslandHole: item Cape
+    node SoutheastIslandDig:
+      chest SoutheastIslandNorthDig
+      chest SoutheastIslandSouthDig
+    SoutheastIsland -> SoutheastIslandDig: item MoleMitts
+    node EastTornadoField
+    SoutheastIsland <-> EastTornadoField
+    EastIsland -> EastTornadoField: (item MoleMitts & item Cape)
+    node CenterIsland
+    EastTornadoField <-> CenterIsland
+    CenterIsland -> NorthTornadoField: item MoleMitts
+    node CenterHole:
+      target FromAbove
+      warp ToBelow
+
+    node EastIsland +: warp Virtual.Zeffa.FluteAway
+    node NortheastIslandSouth +: warp Virtual.Zeffa.FluteAway
+    node NortheastIslandNorth +: warp Virtual.Zeffa.FluteAway
+    node NorthIslandEast +: warp Virtual.Zeffa.FluteAway
+    node NorthIslandWest +: warp Virtual.Zeffa.FluteAway
+    node NorthwestIslandNorth +: warp Virtual.Zeffa.FluteAway
+    node NorthwestIslandSouth +: warp Virtual.Zeffa.FluteAway
+    node WestIsland +: warp Virtual.Zeffa.FluteAway
+    node SouthwestIsland +: warp Virtual.Zeffa.FluteAway
+    node SouthNortheastIsland +: warp Virtual.Zeffa.FluteAway
+    node SouthSoutheastIsland +: warp Virtual.Zeffa.FluteAway
+    node SouthNorthwestIsland +: warp Virtual.Zeffa.FluteAway
+    node SouthSouthwestIsland +: warp Virtual.Zeffa.FluteAway
+    node SoutheastIsland +: warp Virtual.Zeffa.FluteAway
+    node CenterIsland +: warp Virtual.Zeffa.FluteAway

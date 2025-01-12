@@ -33,7 +33,7 @@ area HyruleField:
     East -> WoodsFairyLedge: item Cane
 
     node FarmersDiggingCave:
-      door DiggingCaveExit
+      door DiggingCave
     FarmersDiggingCave -> East
     East -> FarmersDiggingCave: item MoleMitts
 
@@ -50,9 +50,9 @@ area HyruleField:
       door SouthEast
       door SouthWest
       warp Virtual.Zeffa.FluteAway
-      target CaveExit
+      target Cave
     node CaveEntrance:
-      warp CaveEntrance
+      warp Cave
     node BombableCave:
       set BombableCave
     Main -> BombableCave: ( item BombBag | hasExplosive )
@@ -96,23 +96,23 @@ area HyruleField:
       door WestNorth
       enemy AcroBanditsAndOctorocs
       door South
-      target LeftRanchDoorExit
+      target WestRanchDoor
       warp Virtual.Zeffa.FluteAway
 
     node WestMinish:
-      target MinishLeftRanchDoor
+      target MinishWestRanchDoor
     West -> WestMinish: item CanTurnMinish
     WestMinish -> West: item CanGrow
 
-    node MinishEastRanchDoor:
-      warp MinishEastRanchDoor
-    WestMinish -> MinishLeftRanchDoor: ( ool | flag TownMinishHouses.Rem.FetchQuestStarted ) # ool since she doesn't start to stand there until earth element
+    node MinishWestRanchDoor:
+      warp MinishWestRanchDoor
+    WestMinish -> MinishWestRanchDoor: ( ool | flag TownMinishHouses.Rem.FetchQuestStarted ) # ool since she doesn't start to stand there until earth element
     node Malon:
       npc Malon
     West -> Malon: ool # malon leaves
 
     node WestRanchDoorEntrance:
-      warp WestRanchDoorEntrance
+      warp WestRanchDoor
       warp Virtual.Zeffa.FluteAway
     node OpenWestRanchDoor:
       set OpenWestRanchDoor
@@ -166,12 +166,12 @@ area HyruleField:
     SouthEast -> GoronCave
 
     node Center:
-      door RightFarmDoor
+      door EastRanchDoor
       door Cave
       door EastNorth
       set NorthBoulder
       enemy Octorocs
-      target PondFusionExit
+      target PondFusion
       warp Virtual.Zeffa.FluteAway
     West <-> Center: flag NorthBoulder
 
@@ -184,7 +184,7 @@ area HyruleField:
 
     node MinishCenter:
       door MinishPath
-      door MinishRightRanchDoor
+      door MinishEastRanchDoor
     node TreePortal:
       set TreePortal
     Center -> TreePortal: item PegasusBoots
@@ -192,7 +192,7 @@ area HyruleField:
     MinishCenter -> Center: item CanGrow
 
     node PondFusionEntrance:
-      warp PondFusionEntrance
+      warp PondFusion
     Center -> PondFusionEntrance: fusion Pond
 
     node MiddleEast:
@@ -218,7 +218,7 @@ area HyruleField:
 
     node NorthDiggingCaveEntrance:
       chest Freestanding
-      door NorthDiggingCaveEntrance
+      door NorthDiggingCave
       warp Virtual.Zeffa.FluteAway
 
   room North:
@@ -361,12 +361,12 @@ area HyruleField:
       door North
       door LinksHouse
       enemy MainOctorocs
-      target FairyFountainExit
+      target FairyFountain
       target WindTribeWarpFusion
       warp Virtual.Zeffa.FluteAway
 
     node FairyFountainEntrance:
-      warp FairyFountainEntrance
+      warp FairyFountain
     node FairyFountainBombableWall:
       set FairyFountainBombableWall
     Main -> FairyFountainBombableWall: ( item BombBag | hasExplosive )
@@ -379,7 +379,7 @@ area HyruleField:
     node NorthWest:
       door West
       enemy NorthWestOctorocs
-      target RupeePondFusionExit
+      target RupeePondFusion
       warp Virtual.Zeffa.FluteAway
     node NorthWestTrees:
       set NorthWestTreeOne
@@ -392,13 +392,13 @@ area HyruleField:
     NorthWest <-> Water: item Flippers
 
     node RupeePondFusionEntrance:
-      warp RupeePondFusionEntrance
+      warp RupeePondFusion
     Main -> RupeePondFusionEntrance: fusion RupeePond
 
     node East:
       door East
       enemy EastOctorocs
-      target EastTreeFusionExit
+      target EastTreeFusion
       warp Virtual.Zeffa.FluteAway
       target Crest
       set Virtual.Zeffa.SouthernHyruleFieldCrest
@@ -427,7 +427,7 @@ area HyruleField:
     Tingle -> TingleReward: helper AllFusions
 
     node EastTreeFusionEntrance:
-      warp EastTreeFusionEntrance
+      warp EastTreeFusion
     East -> EastTreeFusionEntrance: fusion EastTree
 
     node EastChestFusion:
@@ -484,7 +484,7 @@ area HyruleField:
     Main -> MidChestFusion: fusion MidChest
 
     node WestDiggingCaveEntrance:
-      door WestDiggingCaveEntrance
+      door WestDiggingCave
     Main -> WestDiggingCaveEntrance: item MoleMitts
     WestDiggingCaveEntrance -> Main
 
@@ -520,14 +520,14 @@ area HyruleField:
       door PercyTreeHouse
       door South
       set BoulderShortcut
-      target RupeePondFusionExit
+      target RupeePondFusion
       target WestBombableCave
       target EastBombableCave
       warp Virtual.Zeffa.FluteAway
     Main <-> South: flag BoulderShortcut
 
     node RupeePondFusion:
-      warp RupeePondFusionEntrance
+      warp RupeePondFusion
     South -> RupeePondFusion: fusion RupeePond
 
     node EastBombableCaveWall:

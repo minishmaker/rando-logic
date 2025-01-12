@@ -52,7 +52,7 @@ area VeilFalls:
     TopWaterLand <-> TopWater: item Flippers
 
     node MiddleMain:
-      door SouthWest
+      door West
       target BottomCaveLeft
       lock SourceOfTheFlow
     node MiddleMainWallFusion:

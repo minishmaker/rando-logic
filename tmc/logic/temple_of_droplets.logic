@@ -9,9 +9,9 @@ area TempleOfDroplets:
     node FrozenChest:
       chest FrozenChest
     node West:
-      target West
+      target WestWater
     node WestWarp:
-      warp West
+      warp WestWater
     node PostFrozenMadderpillar:
       chest BigChest
     node PostFrozenMadderpillarDoor:
@@ -181,7 +181,7 @@ area TempleOfDroplets:
       enemy SouthMulldozers
     node Upper:
       door South
-      door North
+      door StairsUp
       enemy Sluggula
 
     LowerNorth -> LowerSouth: (item FlameLantern & item CanSplit2)
@@ -192,7 +192,7 @@ area TempleOfDroplets:
     node Main:
       enemy Maddepillar
     node WestWater:
-      warp West
+      warp WestWater
     node WestWaterEntry:
       target WestWater
     node NorthDoor:
@@ -254,9 +254,9 @@ area TempleOfDroplets:
     node NorthEastWater:
       stepOnLilypad
     node WestWater:
-      warp West
+      warp WestWater
     node WestWaterEntry:
-      target West
+      target WestWater
     node CenterIsland:
       set SecondWaterBarrier
       chest CenterChest
@@ -271,8 +271,8 @@ area TempleOfDroplets:
       warp EastWater
       warp SouthWater
     node SouthEastWaterEntrances:
-      target East
-      target South
+      target EastWater
+      target SouthWater
     node EastSouthIsland:
       set FirstWaterBarrier
     
@@ -311,6 +311,7 @@ area TempleOfDroplets:
       enemy Pestos
       set RedWarpActivated
       target RedWarp
+      door West
     node RedWarp:
       warp RedWarp
     node BombableWall:
@@ -431,17 +432,17 @@ area TempleOfDroplets:
     node Switch:
       set GateOpen
     node WestDoor:
-      warp West
+      warp WestWater
     node WestDoorEntry:
-      target West
+      target WestWater
     node EastDoor:
-      warp East
+      warp EastWater
     node EastDoorEntry:
-      target East
+      target EastWater
     node NorthDoor:
-      warp North
+      warp NorthWater
     node NorthDoorEntry:
-      target North
+      target NorthWater
     node WaterPot:
       chest UnderwaterKey
 
@@ -471,7 +472,7 @@ area TempleOfDroplets:
 
   room GFBluChu:
     node North:
-      door NorthDoor
+      door North
     node Main:
       enemy BlueChu
     node BigChest:
@@ -530,6 +531,8 @@ area TempleOfDroplets:
       door North
       target BlueWarp
       target RedWarp
+      target GreenWarp
+      target Floormaster
     node BKDoorOpen:
       set BKDoorOpened
     node BKDoor:
@@ -709,7 +712,7 @@ area TempleOfDroplets:
       lock GFWestEntry.UpperPathWestDoor
       door South
     node LilyPadAcessEast:
-      door LilyPadAcessEast
+      door EastSouth
     node UpperWater
     node UpperWaterEast:
       target EastWater

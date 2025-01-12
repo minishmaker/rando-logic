@@ -53,10 +53,28 @@ area Garden:
     WestFountainMinishExit -> MainMinish: fusion WestFountain
     node North:
       warp North
+    node MoatEast:
+      chest MoatEast
+    node MoatEastTarget:
+      target SouthWaterEast
+    MoatEastTarget -> MoatEast: item Flippers
+    node MoatEastWarp:
+      warp SouthWaterEast
+    MoatEast -> MoatEastWarp: item Flippers
+    node MoatWest:
+      chest MoatEast
+    node MoatWestTarget:
+      target SouthWaterWest
+    MoatWestTarget -> MoatWest: item Flippers
+    node MoatWestWarp:
+      warp SouthWaterWest
+    MoatWest -> MoatWestWarp: item Flippers
     Main -> North: item FourSword
     Main <-> East: ( flag HyruleField.WestWoodsNorth.VaatiTakeover & item WaterElement )
     Main <-> West: ( flag HyruleField.WestWoodsNorth.VaatiTakeover & item WaterElement )
-    node Main +: entrance Virtual.Zeffa.FluteAway
-    node North +: entrance Virtual.Zeffa.FluteAway
-    node East +: entrance Virtual.Zeffa.FluteAway
-    node West +: entrance Virtual.Zeffa.FluteAway
+    node Main +: warp Virtual.Zeffa.FluteAway
+    node North +: warp Virtual.Zeffa.FluteAway
+    node East +: warp Virtual.Zeffa.FluteAway
+    node West +: warp Virtual.Zeffa.FluteAway
+    node MoatEast +: warp Virtual.Zeffa.FluteAway
+    node MoatWest +: warp Virtual.Zeffa.FluteAway

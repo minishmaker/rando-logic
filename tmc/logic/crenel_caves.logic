@@ -37,7 +37,7 @@ area CrenelCaves:
     #These are also respawning bomb-blocks
     FloodBlockEntrance -> FloodBlockChests: (item BombBag | hasExplosive | item Cape)
     node FloodBlockHP:
-      chest HearPiece
+      chest HeartPiece
     #Should grabbing the HP from the water be in logic? Don't think it currently is
     FloodBlockEntrance -> FloodBlockHP: ( item BombBag | hasExplosive | item Cape | ( item Flippers | trick GrabFromWater ))
   room FountHP:

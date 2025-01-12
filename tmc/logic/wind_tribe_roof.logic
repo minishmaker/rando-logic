@@ -3,5 +3,6 @@ area WindTribeRoof:
     node Main:
       door Stair
       door Tornado
+      target PostDungeon
     node FluteAway : exit Virtual.Zeffa.FluteAway
     Main -> FluteAway: (version NA | version JP)

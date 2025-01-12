@@ -98,6 +98,7 @@ area Crenel:
   room Higher:
     node CoFExterior:
       door CoFEntrance
+      target PostDungeon
       exit Crest
       set Virtual.Zeffa.CrenelCrest
     node CoFExteriorMinish:

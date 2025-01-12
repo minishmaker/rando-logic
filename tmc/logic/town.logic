@@ -3,7 +3,7 @@ area Town:
     node Anju:
       chest AnjuHP
     node AnjuGarden:
-      door Anju
+      target Anju
     node AnjuRoof:
       door AnjuChimney
     node CatsMinish:
@@ -30,6 +30,7 @@ area Town:
       chest CafeLady
       door Bakery
       door Borlov
+      door Cafe
       door East
       door FigurineHouseWest
       door HearthNorth

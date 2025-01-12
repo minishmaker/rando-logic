@@ -46,6 +46,7 @@ area WindRuins:
       door North
       door SouthEast
       enemy Leevers
+      target PostDungeon
     node EastChestFusion:
       chest ChestFusion
     East <-> EastChestFusion: fusion Chest

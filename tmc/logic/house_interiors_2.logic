@@ -27,6 +27,7 @@ area HouseInteriors2:
       door MinishNorth
       target MinishChimney
       door MinishSouth
+      target DropMinish
     node Chimney:
       warp MinishChimney
     MainMinish -> Chimney: flag ChimneyPutOut

@@ -21,7 +21,7 @@ area DeepwoodShrine:
       chest Chest
       set GFEntrance.RedPortal
     node RedPortal:
-      warp GFEntrance.RedPortal
+      warp Portal
     Main -> RedPortal: flag GFEntrance.RedPortal
     South -> Main: ( item GustJar | item Cape )
     Main -> South: ( item GustJar | item Cape | item Flippers )

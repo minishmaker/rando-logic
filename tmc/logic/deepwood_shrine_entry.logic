@@ -2,4 +2,5 @@ area DeepwoodEntry:
   room Main:
     node Main:
       door South
+      target PostDungeon
       door North

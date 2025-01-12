@@ -37,11 +37,12 @@ area PalaceOfWinds:
   room F1DarknutFight:
     node Main:
       enemy Darknut
-      target Portal
+      target BluePortal
+      target Drop
     node PostFight:
       set F1Entrance.BluePortal #additional flag to the darknut being dead
     node FightDone:
-      warp Portal
+      warp BluePortal
       warp North
     node NorthEntrance:
       target North
@@ -54,6 +55,7 @@ area PalaceOfWinds:
       door Hole
       exit RedPortal
       exit BluePortal
+      target Floormaster
     node RedPortal:
       entrance RedPortal
     node BluePortal:
@@ -72,7 +74,14 @@ area PalaceOfWinds:
       chest BigChest
       door South
       door StairUp
-      exit MainRoofHoles
+      target NorthNortheastRoofHole
+      target NorthNorthwestRoofHole
+      target NorthSoutheastRoofHole
+      target NorthSouthwestRoofHole
+      target NortheastRoofHole
+      target NorthwestEastRoofHole
+      target NorthwestWestRoofHole
+      target SouthwestRoofHole
     node Upper:
       chest Chest
       exit UpperRoofHole
@@ -86,9 +95,9 @@ area PalaceOfWinds:
       door South
       door West
   room F2BombarossaTornado:
-    node East:
-      door East
     node West:
+      door West
+    node East:
       door North
     East <-> West: item Cape
   room F2CrumbleClones:
@@ -130,8 +139,8 @@ area PalaceOfWinds:
   room F2RollerSmallKey:
     node Main:
       chest Chest
-      door North
-      door South
+      door EastNorth
+      door EastSouth
   room F2SpikyBeetleFight:
     node Main
     node NorthWest:
@@ -176,21 +185,41 @@ area PalaceOfWinds:
     node Main:
       door South
       door North
-      door StairDown
+      door StairUp
     node West:
       door West
     Main <-> West: flag PalaceOfWinds.F2TowerBottomMiddle.DoorOpen
   room F2TowerTopLeft:
     node Main:
-      entrance FloorHole
+      entrance EastFloorHole
+      entrance WestFloorHole
       door East
       door South
   room F2TowerTopMiddle:
     node Main:
-      exit RoofHole
-      entrance FloorHole
+      target NorthEastInnerRoofHole
+      target NorthWestInnerRoofHole
+      target SouthEastInnerRoofHole
+      target SouthWestInnerRoofHole
+      warp CenterFloorHole
       door East
       door West
+    node Northeast:
+      target NortheastOuterRoofHole
+      warp NortheastFloorHole
+    node Northwest:
+      target NorthwestOuterRoofHole
+      warp NorthwestFloorHole
+    node Southeast:
+      target SoutheastOuterRoofHole
+      warp SoutheastFloorHole
+    node Southwest:
+      target SouthwestOuterRoofHole
+      warp SouthwestFloorHole
+    Main -> Northeast
+    Main -> Northwest
+    Main -> Southeast
+    Main -> Southwest
   room F2TowerTopRight:
     node Main:
       entrance FloorHole
@@ -219,7 +248,7 @@ area PalaceOfWinds:
       door West
     East <-> West: item Cape
     node North:
-      door F3PotPushing.WestDoor
+      lock F3PotPushing.WestDoor
       exit Cloud
     node NorthEast:
       door EastNorth
@@ -304,7 +333,14 @@ area PalaceOfWinds:
       door East
       door West
       enemy Wizrobes
-      entrance FloorHole
+      warp NortheastInnerFloorHole
+      warp NorthwestInnerFloorHole
+      warp SoutheastInnerFloorHole
+      warp SouthwestInnerFloorHole
+      warp NortheastOuterFloorHole
+      warp NorthwestOuterFloorHole
+      warp SoutheastOuterFloorHole
+      warp SouthwestOuterFloorHole
     node PostFight:
       chest Chest
     Main -> PostFight: kill Wizrobes
@@ -322,6 +358,7 @@ area PalaceOfWinds:
   room F4BlockMaze:
     node West:
       chest Chest
+      door South
     node Center:
       exit CenterCloud
     West -> Center: item Cape
@@ -369,7 +406,7 @@ area PalaceOfWinds:
       target StairUp
       lock StairUp
       warp CenterFloorHole
-      target Portal
+      target RedPortal
     node EastDoorOpen:
       warp StairUp
     East -> EastDoorOpen: open StairUp
@@ -451,7 +488,7 @@ area PalaceOfWinds:
     node SouthWest:
       door WestSouth
     node SouthEast:
-      door WestEast
+      door EastSouth
     SouthWest <-> SouthEast: item Cape
   room F5BallAndChainSoldiers:
     node Main:
@@ -480,7 +517,7 @@ area PalaceOfWinds:
       door North
       target East
     node PastBombWall:
-      warp BombWall
+      warp East
     node BombWall:
       set BombWall
     Main -> BombWall: ( item BombBag | hasExplosive )
@@ -515,12 +552,12 @@ area PalaceOfWinds:
       chest Chest
   room F5MoblinAndWizrobeFight:
     node North:
-      door North
+      door EastNorth
       set Fan
     node South:
       enemy WizzrobesAndMoblins
     node SouthEast:
-      door South
+      door EastSouth
     North -> South: ( item Cape & flag Fan )
     South -> SouthEast: kill WizzrobesAndMoblins
     SouthEast -> South

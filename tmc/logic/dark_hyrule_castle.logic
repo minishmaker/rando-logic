@@ -172,6 +172,10 @@ area DarkHyruleCastle:
       door East
     node West:
       door West
+    node South:
+      door South
+    South -> Main # todo: check (maybe you cutscene walk in here?)
+    Main -> South: kill ChainSoldier
     Main <-> PostFight: kill ChainSoldier
     Main -> RedPortal: flag GFFrontEntrance.RedPortal
     Main <-> East: kill ChainSoldier

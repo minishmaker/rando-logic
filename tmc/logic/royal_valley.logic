@@ -5,6 +5,7 @@ area RoyalValley:
       exit LeftGrave
       exit RightGrave
       set LeftGraveOpen
+      target CryptPostCompletion
     node NorthDoor:
       entrance Crypt
     node LeftGraveOpen:
@@ -25,7 +26,7 @@ area RoyalValley:
     North -> NorthRightChest: fusion RightChest
     node Middle:
       door Dampe
-      door South
+      door LostWoodsNorth
       enemy Ghinis
     North <-> Middle: flag GateOpen
     node MiddleKeyCrow:
@@ -37,7 +38,7 @@ area RoyalValley:
     node South:
       door East
       door South
-      door North
+      door LostWoodsSouth
       enemy GhinisAndCrows
       target Fairy
     node SouthFairy:

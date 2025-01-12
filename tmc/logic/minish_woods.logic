@@ -59,6 +59,7 @@ area MinishWoods:
     MainMinish <-> ByDeepwoodMinish: item Flippers
     node BelariMinish:
       door MinishVillageWest
+      door Belari
     node SouthWaterCavesMinish:
       door MinishWaterCavesEast
       door MinishWaterCavesCenter
