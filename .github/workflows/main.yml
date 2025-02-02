@@ -16,7 +16,6 @@ on:
 jobs:
   syntax-check:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
       - name: log in to ghcr
@@ -26,4 +25,4 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Run the CI tool
-        run: "docker run -v ${{ github.workspace }}:/var/modules" ghcr.io/ibot02/tmcr-newlogic-cli /var/modules
+        run: docker run -v ${{ github.workspace }}:/var/modules ghcr.io/ibot02/tmcr-newlogic-cli /var/modules
