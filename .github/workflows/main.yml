@@ -24,5 +24,9 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+          sparse-checkout: |
+            basicDefinitions
+            tmc
+            tmcr
       - name: Run the CI tool
         run: docker run -v ${{ github.workspace }}:/var/modules ghcr.io/ibot02/tmcr-newlogic-cli /var/modules
