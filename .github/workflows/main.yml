@@ -28,5 +28,5 @@ jobs:
         run: |
           cd ${{ github.workspace }}
           mkdir modules
-          cp * modules
+          mv * modules || echo "ignoring error"
           docker run -v ./modules:/var/modules ghcr.io/ibot02/tmcr-newlogic-cli /var/modules
