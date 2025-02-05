@@ -26,7 +26,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Run the CI tool
         run: |
-             cd ${{ github.workspace }}
-	     mkdir modules
-	     cp * modules
-             docker run -v ./modules:/var/modules ghcr.io/ibot02/tmcr-newlogic-cli /var/modules
+          cd ${{ github.workspace }}
+          mkdir modules
+          cp * modules
+          docker run -v ./modules:/var/modules ghcr.io/ibot02/tmcr-newlogic-cli /var/modules
